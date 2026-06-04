@@ -67,7 +67,7 @@ All global design tokens are stored as CSS variables (`--primary-color`, `--bg-c
 | Command                   | Action                                           |
 | :------------------------ | :----------------------------------------------- |
 | `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      | 
 | `npm run build`           | Builds your production site to the `./dist/` directory |
 | `npm run preview`         | Previews your production build locally           |
 
