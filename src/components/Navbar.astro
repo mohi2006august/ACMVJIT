@@ -1,0 +1,87 @@
+---
+const currentPath = Astro.url.pathname;
+---
+<header class="navbar">
+  <div class="container nav-container">
+    <a href="/" class="logo">
+      <span class="logo-acm">ACM</span> VJIT
+    </a>
+    <nav class="nav-menu">
+      <ul class="nav-links">
+        <li><a href="/" class={currentPath === '/' ? 'active' : ''}>Home</a></li>
+        <li><a href="/about" class={currentPath === '/about' ? 'active' : ''}>About</a></li>
+        <li><a href="/events" class={currentPath === '/events' ? 'active' : ''}>Events</a></li>
+        <li><a href="/team" class={currentPath === '/team' ? 'active' : ''}>Team</a></li>
+        <li><a href="/blog" class={currentPath === '/blog' ? 'active' : ''}>Blog</a></li>
+        <li><a href="/contact" class={currentPath === '/contact' ? 'active' : ''}>Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .navbar {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 1rem 0;
+  }
+  
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+
+  .logo-acm {
+    color: var(--primary-color);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .nav-links a {
+    font-weight: 500;
+    font-size: 0.95rem;
+    position: relative;
+    padding-bottom: 0.25rem;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    color: var(--primary-color);
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover::after,
+  .nav-links a.active::after {
+    width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none; /* Basic mobile hide for now */
+    }
+  }
+</style>

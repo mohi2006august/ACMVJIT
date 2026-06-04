@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Alex Johnson",
+    "role": "Chairperson",
+    "photo": ""
+  },
+  {
+    "name": "Samantha Lee",
+    "role": "Vice Chairperson",
+    "photo": ""
+  },
+  {
+    "name": "Michael Chen",
+    "role": "Secretary",
+    "photo": ""
+  },
+  {
+    "name": "Emily Davis",
+    "role": "Treasurer",
+    "photo": ""
+  },
+  {
+    "name": "David Wilson",
+    "role": "Webmaster",
+    "photo": ""
+  },
+  {
+    "name": "Jessica Taylor",
+    "role": "Event Coordinator",
+    "photo": ""
+  },
+  {
+    "name": "Daniel Martinez",
+    "role": "PR Head",
+    "photo": ""
+  },
+  {
+    "name": "Sarah Anderson",
+    "role": "Design Lead",
+    "photo": ""
+  },
+  {
+    "name": "James Thomas",
+    "role": "Technical Lead",
+    "photo": ""
+  }
+]

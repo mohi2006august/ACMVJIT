@@ -1,0 +1,163 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Contact Us">
+  <div class="page-header">
+    <div class="container text-center">
+      <h1>Get In <span class="text-primary">Touch</span></h1>
+      <p>Have a question or want to collaborate? We'd love to hear from you.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container contact-container">
+      <div class="contact-info">
+        <h2>Contact Information</h2>
+        <p>Reach out to us through any of the following channels or visit us on campus.</p>
+        
+        <div class="info-item">
+          <div class="icon">📍</div>
+          <div>
+            <h4>Address</h4>
+            <p>Vidya Jyothi Institute of Technology<br/>Aziz Nagar Gate, C.B. Post<br/>Hyderabad, Telangana 500075</p>
+          </div>
+        </div>
+        
+        <div class="info-item">
+          <div class="icon">✉️</div>
+          <div>
+            <h4>Email</h4>
+            <p>acm@vjit.ac.in</p>
+          </div>
+        </div>
+        
+        <div class="info-item">
+          <div class="icon">📱</div>
+          <div>
+            <h4>Social Media</h4>
+            <p>Follow us on <a href="#" class="text-primary">Instagram</a> and <a href="#" class="text-primary">LinkedIn</a></p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="contact-form">
+        <form onsubmit="event.preventDefault(); alert('Message sent successfully!');">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" required placeholder="John Doe">
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" required placeholder="john@example.com">
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" required placeholder="How can we help?">
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" rows="5" required placeholder="Your message here..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary w-full">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-header {
+    background: var(--bg-secondary);
+    padding: 6rem 0 4rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+
+  .contact-info h2 {
+    margin-bottom: 1rem;
+  }
+  
+  .contact-info > p {
+    margin-bottom: 2rem;
+  }
+
+  .info-item {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .info-item .icon {
+    font-size: 2rem;
+    background: var(--bg-secondary);
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: var(--primary-color);
+  }
+
+  .info-item h4 {
+    margin-bottom: 0.25rem;
+    font-size: 1.1rem;
+  }
+
+  .info-item p {
+    margin: 0;
+  }
+
+  .contact-form {
+    background: #fff;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 114, 206, 0.1);
+  }
+
+  .w-full {
+    width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .contact-container {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,679 @@
+---
+import Layout from '../layouts/Layout.astro';
+import leadsData from '../data/leads.json';
+---
+
+<Layout title="Home">
+  <!-- Hero Section (2-Column with Animated Terminal) -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <!-- Left Column: Text -->
+      <div class="hero-content">
+        <div class="hero-badge">Welcome to the future of tech</div>
+        <h1 class="hero-title">Welcome to <br/><span class="text-gradient-animated">ACM VJIT</span></h1>
+        <p class="hero-subtitle">
+          Empowering students to <span class="text-primary font-bold" id="typewriter">Innovate</span><span class="cursor">|</span>
+          <br/><span class="subtitle-desc">Join the largest computing society at Vidya Jyothi Institute of Technology.</span>
+        </p>
+        <div class="hero-actions">
+          <a href="/events" class="btn btn-primary btn-glow">Upcoming Events</a>
+          <a href="/about" class="btn btn-outline">Learn More</a>
+        </div>
+      </div>
+
+      <!-- Right Column: Animated Code Terminal -->
+      <div class="hero-visual">
+        <div class="terminal-window">
+          <div class="terminal-header">
+            <div class="terminal-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <div class="terminal-title">join_acm.ts</div>
+          </div>
+          <div class="terminal-body">
+            <pre><code id="code-editor"></code><span class="code-cursor"></span></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- About Snippet Section -->
+  <section class="section about-snippet scroll-reveal">
+    <div class="container snippet-grid">
+      <div class="snippet-image delay-1">
+        <div class="img-placeholder">
+          <span>Tech Innovation</span>
+        </div>
+      </div>
+      <div class="snippet-content delay-2">
+        <h2>Driving Technical <span class="text-primary">Excellence</span></h2>
+        <p>ACM VJIT Student Chapter is a vibrant community of passionate learners and builders. We believe in bridging the gap between academia and industry by providing our members with real-world skills, mentorship, and opportunities to shine.</p>
+        <ul class="check-list">
+          <li><span class="check-icon">✅</span> Weekly Coding Sessions</li>
+          <li><span class="check-icon">✅</span> Expert Guest Lectures</li>
+          <li><span class="check-icon">✅</span> Open Source Contributions</li>
+        </ul>
+        <a href="/about" class="btn btn-outline" style="margin-top: 1.5rem;">Read Our Story</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Institution Leads Section -->
+  <section class="section leads scroll-reveal">
+    <div class="container">
+      <div class="text-center" style="margin-bottom: 4rem;">
+        <h2>Institution <span class="text-primary">Leads</span></h2>
+        <p style="color: var(--text-muted); font-size: 1.1rem;">Meet the dedicated team driving ACM VJIT forward.</p>
+      </div>
+      <div class="leads-grid">
+        {
+          leadsData.map((lead, index) => (
+            <div class={`lead-card delay-${(index % 4) + 1}`}>
+              <div class="lead-photo">
+                {lead.photo ? (
+                  <img src={lead.photo} alt={lead.name} style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;" />
+                ) : (
+                  <span>{lead.name.charAt(0)}</span>
+                )}
+              </div>
+              <h3 class="lead-name">{lead.name}</h3>
+              <p class="lead-role">{lead.role}</p>
+            </div>
+          ))
+        }
+      </div>
+      <div class="text-center" style="margin-top: 3.5rem;">
+        <a href="/team" class="btn btn-outline">View Full Team</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="section cta scroll-reveal">
+    <div class="container text-center cta-box delay-1">
+      <h2>Ready to shape your future?</h2>
+      <p>Join ACM VJIT today and unlock a world of opportunities in computing and technology.</p>
+      <a href="/contact" class="btn btn-primary btn-glow-white">Become a Member</a>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  function initHomeJS() {
+    // 1. Intersection Observer for scroll animations
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target); 
+        }
+      });
+    }, observerOptions);
+
+    const revealElements = document.querySelectorAll('.scroll-reveal');
+    revealElements.forEach(el => observer.observe(el));
+
+    // 2. Typewriter Effect for Hero Subtitle
+    const words = ["Innovate", "Collaborate", "Build", "Lead", "Code"];
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typedTextSpan = document.getElementById("typewriter");
+    
+    if(typedTextSpan) {
+      typedTextSpan.textContent = "";
+
+      function typeSubtitle() {
+        if(!typedTextSpan) return;
+        const currentWord = words[wordIndex];
+        if (isDeleting) {
+          typedTextSpan.textContent = currentWord.substring(0, charIndex - 1);
+          charIndex--;
+        } else {
+          typedTextSpan.textContent = currentWord.substring(0, charIndex + 1);
+          charIndex++;
+        }
+        
+        let typeSpeed = isDeleting ? 40 : 80;
+        
+        if (!isDeleting && charIndex === currentWord.length) {
+          typeSpeed = 2000;
+          isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          wordIndex = (wordIndex + 1) % words.length;
+          typeSpeed = 500;
+        }
+        
+        setTimeout(typeSubtitle, typeSpeed);
+      }
+      setTimeout(typeSubtitle, 1000);
+    }
+
+    // 3. Animated Code Terminal Effect
+    const codeSnippet = `import { Student } from '@vjit/core';
+import { ACM } from './chapters';
+
+const you = new Student({
+  passion: 'technology',
+  goal: 'innovate',
+  coffee_cups: Infinity
+});
+
+if (you.wantsToLearn()) {
+  ACM.join(you);
+  console.log("Welcome to the community! 🚀");
+}`;
+    
+    const codeEditor = document.getElementById("code-editor");
+    if(codeEditor) {
+      codeEditor.innerHTML = "";
+      let codeIndex = 0;
+      
+      // Simple syntax highlighting regex (safe from HTML attribute collisions)
+      function highlight(text) {
+        return text
+          .replace(/\b(import|from|const|new|if)\b/g, '<span style="color: #c678dd;">$1</span>')
+          .replace(/({|})/g, '<span style="color: #abb2bf;">$1</span>')
+          .replace(/\b(Student|ACM)\b/g, '<span style="color: #e5c07b;">$1</span>')
+          .replace(/\b(passion|goal|coffee_cups)\b/g, '<span style="color: #e06c75;">$1</span>')
+          .replace(/\b(Infinity)\b/g, '<span style="color: #d19a66;">$1</span>')
+          .replace(/'technology'/g, '<span style="color: #98c379;">\'technology\'</span>')
+          .replace(/'innovate'/g, '<span style="color: #98c379;">\'innovate\'</span>')
+          .replace(/'@vjit\/core'/g, '<span style="color: #98c379;">\'@vjit/core\'</span>')
+          .replace(/'\.\/chapters'/g, '<span style="color: #98c379;">\'./chapters\'</span>')
+          .replace(/"Welcome to the community! 🚀"/g, '<span style="color: #98c379;">"Welcome to the community! 🚀"</span>')
+          .replace(/\b(wantsToLearn|join|log|console)\b/g, '<span style="color: #61afef;">$1</span>');
+      }
+
+      function typeCode() {
+        if(!codeEditor) return;
+        
+        // Add one character at a time, but highlight the whole substring
+        const currentText = codeSnippet.substring(0, codeIndex);
+        codeEditor.innerHTML = highlight(currentText);
+        
+        codeIndex++;
+        
+        if (codeIndex <= codeSnippet.length) {
+          // Randomize typing speed slightly for realism
+          const randomSpeed = Math.random() * 30 + 10;
+          
+          // Pause slightly longer at newlines
+          const char = codeSnippet.charAt(codeIndex - 1);
+          const speed = (char === '\n') ? 300 : randomSpeed;
+          
+          setTimeout(typeCode, speed);
+        }
+      }
+      
+      setTimeout(typeCode, 1500); // Start terminal after 1.5s
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', initHomeJS);
+  document.addEventListener('astro:page-load', initHomeJS);
+</script>
+
+<style>
+  /* --- Hero Section (2-Column) --- */
+  .hero {
+    padding: 8rem 0 6rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .hero-content {
+    text-align: left;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    background: rgba(0, 114, 206, 0.05);
+    color: var(--primary-color);
+    border-radius: 999px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(0, 114, 206, 0.15);
+    opacity: 0;
+    animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .hero-title, .hero-subtitle, .hero-actions {
+    opacity: 0;
+    animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .hero-title {
+    font-size: 4.5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: -2px;
+    animation-delay: 0.2s;
+    line-height: 1.1;
+  }
+
+  .text-gradient-animated {
+    background: linear-gradient(to right, #0072CE, #00d2ff, #0072CE);
+    background-size: 200% auto;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: gradient-shift 4s linear infinite;
+  }
+
+  @keyframes gradient-shift {
+    to { background-position: 200% center; }
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    margin-bottom: 3rem;
+    color: var(--text-muted);
+    animation-delay: 0.4s;
+    line-height: 1.6;
+  }
+
+  .subtitle-desc {
+    font-size: 1.1rem;
+    opacity: 0.8;
+  }
+  
+  .font-bold {
+    font-weight: 700;
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 3px;
+    background-color: var(--primary-color);
+    color: transparent;
+    animation: blink 1s step-end infinite;
+    vertical-align: text-bottom;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .hero-actions {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    animation-delay: 0.6s;
+  }
+
+  @keyframes fadeUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  .btn-glow {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .btn-glow::after {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%; width: 200%; height: 200%;
+    background: rgba(255,255,255,0.3);
+    transform: rotate(45deg) translate(-50%, -50%);
+    animation: button-shine 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
+  @keyframes button-shine {
+    0% { transform: translateX(-150%) rotate(45deg); }
+    30%, 100% { transform: translateX(150%) rotate(45deg); }
+  }
+
+  /* Animated Terminal Window */
+  .hero-visual {
+    position: relative;
+    perspective: 1000px;
+    opacity: 0;
+    animation: fadeLeft 1s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+  }
+
+  @keyframes fadeLeft {
+    0% { opacity: 0; transform: translateX(50px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+
+  .terminal-window {
+    background-color: #1e1e1e;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    border: 1px solid #333;
+    transform: rotateY(-5deg) rotateX(5deg);
+    transition: transform 0.5s ease;
+  }
+
+  .terminal-window:hover {
+    transform: rotateY(0deg) rotateX(0deg);
+  }
+
+  .terminal-header {
+    background-color: #2d2d2d;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #1a1a1a;
+  }
+
+  .terminal-dots {
+    display: flex;
+    gap: 8px;
+  }
+
+  .dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+  }
+
+  .dot.red { background-color: #ff5f56; }
+  .dot.yellow { background-color: #ffbd2e; }
+  .dot.green { background-color: #27c93f; }
+
+  .terminal-title {
+    margin: 0 auto;
+    padding-right: 48px; /* Offset for dots */
+    color: #999;
+    font-size: 0.85rem;
+    font-family: monospace;
+  }
+
+  .terminal-body {
+    padding: 1.5rem;
+    font-family: 'Fira Code', 'Consolas', monospace;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #abb2bf;
+    background-color: #1e1e1e;
+    min-height: 300px;
+    text-align: left;
+  }
+
+  .code-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 1.2em;
+    background-color: #528bff;
+    vertical-align: middle;
+    animation: blink-cursor 1s step-end infinite;
+    margin-left: 2px;
+  }
+
+  @keyframes blink-cursor {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  /* --- Scroll Animations Base --- */
+  .scroll-reveal > *, .scroll-reveal .feature-card, .scroll-reveal .stat-card, .scroll-reveal .snippet-image, .scroll-reveal .snippet-content, .scroll-reveal .cta-box {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .scroll-reveal.in-view > *, .scroll-reveal.in-view .feature-card, .scroll-reveal.in-view .stat-card, .scroll-reveal.in-view .snippet-image, .scroll-reveal.in-view .snippet-content, .scroll-reveal.in-view .cta-box {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .delay-1 { transition-delay: 0.1s !important; }
+  .delay-2 { transition-delay: 0.25s !important; }
+  .delay-3 { transition-delay: 0.4s !important; }
+  .delay-4 { transition-delay: 0.55s !important; }
+
+
+
+  /* --- About Snippet Section --- */
+  .about-snippet {
+    background: linear-gradient(to bottom, transparent, rgba(0, 114, 206, 0.02), transparent);
+    padding: 8rem 0;
+  }
+
+  .snippet-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .img-placeholder {
+    width: 100%;
+    height: 450px;
+    background: linear-gradient(135deg, rgba(0, 114, 206, 0.1) 0%, rgba(0, 210, 255, 0.2) 100%);
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    font-weight: bold;
+    border: 1px solid rgba(0, 114, 206, 0.2);
+    position: relative;
+    transition: transform 0.5s ease;
+  }
+  
+  .snippet-image:hover .img-placeholder {
+    transform: rotate(2deg) scale(1.02);
+  }
+
+  .img-placeholder::after {
+    content: '';
+    position: absolute;
+    inset: -15px;
+    border: 2px dashed rgba(0, 114, 206, 0.2);
+    border-radius: 30px;
+    z-index: -1;
+    transition: all 0.5s ease;
+  }
+  
+  .snippet-image:hover .img-placeholder::after {
+    transform: rotate(-4deg);
+    border-color: rgba(0, 114, 206, 0.4);
+  }
+
+  .check-list {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-weight: 500;
+  }
+  
+  .check-icon {
+    margin-right: 0.5rem;
+    display: inline-block;
+  }
+
+  /* --- Leads Section --- */
+  .leads {
+    padding: 6rem 0 8rem;
+  }
+
+  .leads-grid {
+    display: flex;
+    overflow-x: auto;
+    gap: 2.5rem;
+    padding-bottom: 2rem;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+  }
+  
+  .leads-grid::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
+
+  .lead-card {
+    flex: 0 0 280px;
+    max-width: 85vw;
+    scroll-snap-align: start;
+    background: #fff;
+    border-radius: 20px;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    border: 1px solid rgba(0,0,0,0.03);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  }
+  
+  .lead-card:hover {
+    transform: translateY(-10px) !important;
+    box-shadow: 0 20px 40px rgba(0, 114, 206, 0.12);
+  }
+
+  .lead-photo {
+    width: 130px;
+    height: 130px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(0, 114, 206, 0.1) 0%, rgba(0, 210, 255, 0.2) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: var(--primary-color);
+    font-weight: 700;
+    border: 4px solid #fff;
+    box-shadow: 0 8px 25px rgba(0, 114, 206, 0.15);
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .lead-card:hover .lead-photo {
+    transform: scale(1.1) rotate(5deg);
+  }
+
+  .lead-name {
+    font-size: 1.35rem;
+    margin-bottom: 0.4rem;
+    color: #1a1a1a;
+  }
+
+  .lead-role {
+    font-size: 0.85rem;
+    color: var(--primary-color);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* --- CTA Section --- */
+  .cta-box {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #00d2ff 100%);
+    padding: 6rem 4rem;
+    border-radius: 30px;
+    color: white;
+    box-shadow: 0 20px 50px rgba(0, 114, 206, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .cta-box::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%; width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+    animation: rotate-bg 20s linear infinite;
+  }
+  
+  @keyframes rotate-bg {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .cta-box h2 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-box p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.2rem;
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-box .btn {
+    position: relative;
+    z-index: 1;
+    font-size: 1.1rem;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+  }
+
+  .cta-box .btn-primary {
+    background: white;
+    color: var(--primary-color);
+  }
+
+  .cta-box .btn-primary:hover {
+    background: #f8f9fa;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  }
+
+  /* Responsive */
+  @media (max-width: 992px) {
+    .hero { padding-top: 10rem; }
+    .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 3rem; }
+    .hero-content { text-align: center; }
+    .hero-actions { justify-content: center; }
+    .terminal-window { max-width: 100%; width: 100%; margin: 0 auto; }
+    .terminal-body { font-size: 0.85rem; padding: 1.25rem; overflow-x: auto; }
+    
+    .snippet-grid { grid-template-columns: 1fr; gap: 4rem; }
+    .snippet-image { order: 2; }
+    .snippet-content { order: 1; text-align: center; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    .hero { padding-top: 7rem; padding-bottom: 4rem; }
+    .hero-title { font-size: 3rem; }
+    .hero-subtitle { font-size: 1.1rem; margin-bottom: 2rem; }
+    .terminal-body { font-size: 0.75rem; padding: 1rem; min-height: 250px; }
+    
+    .hero-actions { flex-direction: column; gap: 1rem; width: 100%; }
+    .hero-actions .btn { width: 100%; }
+    
+    .stats-grid { grid-template-columns: 1fr; }
+    .cta-box { padding: 4rem 1.5rem; }
+    .cta-box h2 { font-size: 2.25rem; }
+    .img-placeholder { height: 300px; font-size: 1.2rem; }
+  }
+</style>

@@ -1,0 +1,131 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Our Team">
+  <div class="page-header">
+    <div class="container text-center">
+      <h1>Meet The <span class="text-primary">Team</span></h1>
+      <p>The dedicated individuals behind ACM VJIT.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="team-grid">
+        <!-- Team Member 1 -->
+        <div class="team-card">
+          <div class="member-image placeholder"></div>
+          <div class="member-info">
+            <h3>John Doe</h3>
+            <p class="role">Chairperson</p>
+            <p class="bio">Passionate about AI and building communities. Leading ACM VJIT to new heights.</p>
+          </div>
+        </div>
+        
+        <!-- Team Member 2 -->
+        <div class="team-card">
+          <div class="member-image placeholder"></div>
+          <div class="member-info">
+            <h3>Jane Smith</h3>
+            <p class="role">Vice Chairperson</p>
+            <p class="bio">Full-stack developer and open-source enthusiast. Focuses on technical operations.</p>
+          </div>
+        </div>
+
+        <!-- Team Member 3 -->
+        <div class="team-card">
+          <div class="member-image placeholder"></div>
+          <div class="member-info">
+            <h3>Alex Johnson</h3>
+            <p class="role">Events Head</p>
+            <p class="bio">Organizing impactful workshops and ensuring smooth execution of all activities.</p>
+          </div>
+        </div>
+
+        <!-- Team Member 4 -->
+        <div class="team-card">
+          <div class="member-image placeholder"></div>
+          <div class="member-info">
+            <h3>Sarah Williams</h3>
+            <p class="role">Design Lead</p>
+            <p class="bio">Creative mind behind our branding, UI/UX, and marketing materials.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-header {
+    background: var(--bg-secondary);
+    padding: 6rem 0 4rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+  }
+
+  .team-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    transition: transform 0.3s ease;
+  }
+
+  .team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 114, 206, 0.1);
+  }
+
+  .member-image {
+    width: 100%;
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .member-image.placeholder {
+    background: linear-gradient(45deg, #e5e7eb 0%, #f3f4f6 100%);
+    position: relative;
+  }
+  
+  .member-image.placeholder::after {
+    content: 'Photo';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #9ca3af;
+    font-weight: 500;
+  }
+
+  .member-info {
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .member-info h3 {
+    margin-bottom: 0.25rem;
+  }
+
+  .role {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .bio {
+    font-size: 0.95rem;
+    margin-bottom: 0;
+  }
+</style>
