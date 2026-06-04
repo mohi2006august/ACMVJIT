@@ -74,7 +74,7 @@ import leadsData from '../data/leads.json';
           leadsData.map((lead, index) => {
             const roleParts = lead.role.split(',');
             const primaryRole = roleParts[0];
-            const secondaryRole = roleParts.length > 1 ? roleParts[1].trim() : 'MEMBER';
+            const secondaryRole = roleParts.length > 1 ? roleParts[1].trim() : null;
             return (
               <div class={`lead-card delay-${(index % 4) + 1}`}>
                 <div class="card-corner"></div>
@@ -82,7 +82,7 @@ import leadsData from '../data/leads.json';
                   <svg viewBox="0 0 24 24" class="badge-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                   <div class="badge-text">
                     <span class="role-primary">{primaryRole}</span>
-                    <span class="role-secondary">{secondaryRole}</span>
+                    {secondaryRole && <span class="role-secondary">{secondaryRole}</span>}
                   </div>
                 </div>
                 <div class="card-photo-wrapper">
@@ -548,31 +548,28 @@ if (you.wantsToLearn()) {
   }
 
   .section.leads {
-    background-color: #0A0505;
     padding-top: 6rem;
     padding-bottom: 6rem;
   }
   
-  .section.leads h2 {
-    color: #fff;
-  }
-
   .lead-card {
     flex: 0 0 320px;
     max-width: 85vw;
     scroll-snap-align: start;
-    background: #110A0A;
+    background: #fff;
     border-radius: 20px;
     padding: 1.5rem;
     position: relative;
     display: flex;
     flex-direction: column;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: transform 0.4s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
   }
   
   .lead-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 114, 206, 0.12);
   }
 
   .card-corner {
@@ -581,8 +578,8 @@ if (you.wantsToLearn()) {
     left: 1.2rem;
     width: 25px;
     height: 25px;
-    border-top: 1px solid rgba(255, 255, 255, 0.4);
-    border-left: 1px solid rgba(255, 255, 255, 0.4);
+    border-top: 2px solid rgba(0, 114, 206, 0.3);
+    border-left: 2px solid rgba(0, 114, 206, 0.3);
   }
 
   .card-badge {
@@ -590,8 +587,8 @@ if (you.wantsToLearn()) {
     display: inline-flex;
     align-items: center;
     gap: 0.6rem;
-    background: rgba(30, 10, 10, 0.8);
-    border: 1px solid rgba(255, 50, 50, 0.2);
+    background: linear-gradient(135deg, rgba(0, 114, 206, 0.05) 0%, rgba(0, 210, 255, 0.1) 100%);
+    border: 1px solid rgba(0, 114, 206, 0.2);
     padding: 0.4rem 1rem 0.4rem 0.6rem;
     border-radius: 50px;
     margin-left: 1.2rem; 
@@ -603,7 +600,7 @@ if (you.wantsToLearn()) {
   .badge-icon {
     width: 18px;
     height: 18px;
-    color: #e0b0b0;
+    color: var(--primary-color);
   }
 
   .badge-text {
@@ -614,8 +611,8 @@ if (you.wantsToLearn()) {
 
   .role-primary {
     font-size: 0.7rem;
-    font-weight: 700;
-    color: #ffe0e0;
+    font-weight: 800;
+    color: #1a1a1a;
     letter-spacing: 1px;
     text-transform: uppercase;
     line-height: 1.2;
@@ -624,7 +621,7 @@ if (you.wantsToLearn()) {
   .role-secondary {
     font-size: 0.6rem;
     font-weight: 700;
-    color: #d08080;
+    color: var(--primary-color);
     letter-spacing: 2px;
     text-transform: uppercase;
     line-height: 1.2;
@@ -647,13 +644,14 @@ if (you.wantsToLearn()) {
     border-radius: 30px 30px 10px 40px; 
     overflow: hidden;
     transform: rotate(2deg);
-    background: #1a1515;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-    transition: transform 0.4s ease;
+    background: linear-gradient(135deg, rgba(0, 114, 206, 0.05) 0%, rgba(0, 210, 255, 0.1) 100%);
+    box-shadow: 0 10px 20px rgba(0, 114, 206, 0.08);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
   }
 
   .lead-card:hover .card-photo-inner {
     transform: rotate(0deg) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 114, 206, 0.15);
   }
 
   .card-photo-inner img {
@@ -670,17 +668,16 @@ if (you.wantsToLearn()) {
     align-items: center;
     justify-content: center;
     font-size: 6rem;
-    color: rgba(255,255,255,0.03);
+    color: rgba(0, 114, 206, 0.15);
     font-weight: bold;
     transform: rotate(-2deg);
-    background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
   }
 
   .lead-name {
-    font-size: 1.4rem;
-    color: #fff;
+    font-size: 1.35rem;
+    color: #1a1a1a;
     margin-top: auto;
-    font-weight: 600;
+    font-weight: 700;
     text-align: left;
     padding-left: 0.5rem;
   }
