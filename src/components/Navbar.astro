@@ -1,31 +1,35 @@
 ---
+import siteConfig from '../data/siteConfig.json';
 const currentPath = Astro.url.pathname;
 ---
-<header class="navbar">
-  <div class="container nav-container">
+<div class="navbar-wrapper">
+  <header class="navbar">
     <a href="/" class="logo">
-      <span class="logo-acm">ACM</span> VJIT
+      {siteConfig.logoUrl ? (
+        <img src={siteConfig.logoUrl} alt="ACM VJIT Logo" class="nav-logo-img" />
+      ) : null}
+      <span class="logo-text"><span class="logo-acm">ACM</span> VJIT</span>
     </a>
     
-    <button class="mobile-menu-btn" aria-label="Toggle menu">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </button>
-
     <nav class="nav-menu">
       <ul class="nav-links">
         <li><a href="/" class={currentPath === '/' ? 'active' : ''}>Home</a></li>
         <li><a href="/about" class={currentPath === '/about' ? 'active' : ''}>About</a></li>
         <li><a href="/events" class={currentPath === '/events' ? 'active' : ''}>Events</a></li>
+        <li><a href="/resources" class={currentPath === '/resources' ? 'active' : ''}>Resources</a></li>
         <li><a href="/gallery" class={currentPath === '/gallery' ? 'active' : ''}>Gallery</a></li>
         <li><a href="/team" class={currentPath === '/team' ? 'active' : ''}>Team</a></li>
-        <li><a href="/blog" class={currentPath === '/blog' ? 'active' : ''}>Blog</a></li>
         <li><a href="/contact" class={currentPath === '/contact' ? 'active' : ''}>Contact</a></li>
       </ul>
     </nav>
-  </div>
-</header>
+
+    <button class="mobile-menu-btn" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+  </header>
+</div>
 
 <script>
   function initNavbar() {
@@ -34,7 +38,6 @@ const currentPath = Astro.url.pathname;
     const links = document.querySelectorAll('.nav-links a');
 
     if (btn && menu) {
-      // Remove any existing listeners if Astro triggers multiple initializations
       const newBtn = btn.cloneNode(true);
       if(btn.parentNode) btn.parentNode.replaceChild(newBtn, btn);
       
@@ -65,47 +68,101 @@ const currentPath = Astro.url.pathname;
 </style>
 
 <style>
-  .navbar {
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border-color);
+  .navbar-wrapper {
     position: sticky;
-    top: 0;
+    top: 1.5rem;
     z-index: 1000;
-    padding: 1rem 0;
+    display: flex;
+    justify-content: center;
+    padding: 0 1rem;
+    pointer-events: none; /* Allows clicks to pass through empty space */
   }
-  
-  .nav-container {
+
+  .navbar {
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 114, 206, 0.15);
+    border-radius: 99px;
+    padding: 0.6rem 1.5rem;
+    box-shadow: 0 15px 40px rgba(0, 114, 206, 0.1), inset 0 0 15px rgba(255, 255, 255, 0.8);
+    width: 100%;
+    max-width: 1000px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    pointer-events: auto; /* Re-enable clicks */
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .navbar:hover {
+    box-shadow: 0 20px 50px rgba(0, 114, 206, 0.15), inset 0 0 15px rgba(255, 255, 255, 0.9);
   }
 
   .logo {
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-size: 1.35rem;
+    font-weight: 800;
     letter-spacing: -0.5px;
     position: relative;
-    z-index: 1001; /* Keep above mobile menu */
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    padding-left: 0.5rem;
+    text-decoration: none;
+  }
+
+  .nav-logo-img {
+    width: 38px;
+    height: 38px;
+    object-fit: contain;
+    margin-right: 0.6rem;
+    border-radius: 50%;
+  }
+
+  .logo-text {
+    display: flex;
+    align-items: center;
   }
 
   .logo-acm {
+    color: var(--primary-color);
+    margin-right: 0.3rem;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .nav-links a {
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 0.5rem 1.2rem;
+    border-radius: 99px;
+    color: #475569;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    background: rgba(0, 114, 206, 0.08);
     color: var(--primary-color);
   }
 
   .mobile-menu-btn {
     display: none;
     flex-direction: column;
-    gap: 6px;
+    gap: 5px;
     background: transparent;
     border: none;
     cursor: pointer;
-    z-index: 1001; /* Keep above mobile menu */
+    z-index: 1001;
     padding: 0.5rem;
   }
 
   .mobile-menu-btn .bar {
-    width: 25px;
+    width: 22px;
     height: 2px;
     background-color: #1a1a1a;
     transition: all 0.3s ease;
@@ -113,49 +170,32 @@ const currentPath = Astro.url.pathname;
 
   /* Hamburger to X Animation */
   .mobile-menu-btn.active .bar:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
+    transform: translateY(7px) rotate(45deg);
   }
   .mobile-menu-btn.active .bar:nth-child(2) {
     opacity: 0;
   }
   .mobile-menu-btn.active .bar:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
+    transform: translateY(-7px) rotate(-45deg);
   }
 
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-  }
-
-  .nav-links a {
-    font-weight: 500;
-    font-size: 0.95rem;
-    position: relative;
-    padding-bottom: 0.25rem;
-  }
-
-  .nav-links a:hover,
-  .nav-links a.active {
-    color: var(--primary-color);
-  }
-
-  .nav-links a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: var(--primary-color);
-    transition: width 0.3s ease;
-  }
-
-  .nav-links a:hover::after,
-  .nav-links a.active::after {
-    width: 100%;
+  @media (max-width: 900px) {
+    .nav-links a {
+      padding: 0.5rem 0.8rem;
+      font-size: 0.85rem;
+    }
   }
 
   @media (max-width: 768px) {
+    .navbar-wrapper {
+      top: 1rem;
+    }
+    
+    .navbar {
+      padding: 0.5rem 1.2rem;
+      border-radius: 20px;
+    }
+
     .mobile-menu-btn {
       display: flex;
     }
@@ -167,7 +207,8 @@ const currentPath = Astro.url.pathname;
       width: 100%;
       height: 100vh;
       background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -187,11 +228,12 @@ const currentPath = Astro.url.pathname;
     .nav-links {
       flex-direction: column;
       align-items: center;
-      gap: 2.5rem;
+      gap: 1.5rem;
     }
 
     .nav-links a {
       font-size: 1.5rem;
+      padding: 0.5rem 2rem;
     }
   }
 </style>

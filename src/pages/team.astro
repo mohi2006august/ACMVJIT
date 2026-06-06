@@ -1,17 +1,25 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import leadsData from '../data/chapterLeads.json';
+import membersData from '../data/members.json';
 ---
 
 <Layout title="Our Team">
-  <div class="page-header">
-    <div class="container text-center">
-      <h1>Meet The <span class="text-primary">Team</span></h1>
-      <p>The dedicated individuals driving ACM VJIT forward.</p>
-    </div>
+  <!-- Fixed Page Background with 3D Wave -->
+  <div class="page-background">
+    <canvas id="team-canvas"></canvas>
+    <div class="gradient-overlay"></div>
   </div>
 
-  <section class="section">
+  <div class="relative-z">
+    <div class="page-header">
+      <div class="container text-center animate-fade-up">
+        <h1 style="color: #1a1a1a;">Meet The <span class="text-primary">Team</span></h1>
+        <p>The dedicated individuals driving ACM VJIT forward.</p>
+      </div>
+    </div>
+
+    <section class="section">
     <div class="container">
       <div class="team-grid">
         {
@@ -45,14 +53,255 @@ import leadsData from '../data/chapterLeads.json';
         }
       </div>
     </div>
+
+    <!-- New Members Section (Full Screen Width) -->
+    <div class="members-section mt-16 animate-fade-up">
+      <div class="container">
+        <h2 class="text-center section-title">ACM <span class="text-primary">Members</span></h2>
+      </div>
+      <div class="members-line-container">
+          <div class="members-scroll">
+            {
+              membersData.map((member) => (
+                <div class="lead-card member-card">
+                  <div class="card-corner"></div>
+                  <div class="card-badge">
+                    <svg viewBox="0 0 24 24" class="badge-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    <div class="badge-text">
+                      <span class="role-primary">Member</span>
+                    </div>
+                  </div>
+                  <div class="card-photo-wrapper">
+                    <div class="card-photo-inner">
+                      {member.photo ? (
+                        <img src={member.photo} alt={member.name} />
+                      ) : (
+                        <div class="photo-placeholder">{member.name.charAt(0)}</div>
+                      )}
+                    </div>
+                  </div>
+                  <h3 class="lead-name">{member.name}</h3>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
   </section>
+  </div>
 </Layout>
 
+<script>
+  function init3DWave() {
+    const canvas = document.getElementById('team-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    
+    let width, height;
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+    
+    const rows = 45;
+    const cols = 75;
+    const spacing = 40;
+    const points = [];
+    
+    for (let z = 0; z < rows; z++) {
+      for (let x = 0; x < cols; x++) {
+        points.push({
+          x: (x - cols / 2) * spacing,
+          z: (z - rows / 2) * spacing,
+          y: 0
+        });
+      }
+    }
+    
+    let time = 0;
+    let targetRotationX = 1.1; 
+    let targetRotationY = 0;
+    let rotationX = 1.1;
+    let rotationY = 0;
+    
+    window.addEventListener('mousemove', (e) => {
+      const mouseX = e.clientX - width / 2;
+      const mouseY = e.clientY - height / 2;
+      targetRotationY = mouseX * 0.0002;
+      targetRotationX = 1.1 + mouseY * 0.0002;
+    });
+    
+    window.addEventListener('mouseleave', () => {
+      targetRotationY = 0;
+      targetRotationX = 1.1;
+    });
+    
+    let animationId;
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      time += 0.008; 
+      
+      rotationX += (targetRotationX - rotationX) * 0.02;
+      rotationY += (targetRotationY - rotationY) * 0.02;
+      
+      const cosX = Math.cos(rotationX);
+      const sinX = Math.sin(rotationX);
+      const cosY = Math.cos(rotationY);
+      const sinY = Math.sin(rotationY);
+      
+      const points2D = [];
+      
+      for (let z = 0; z < rows; z++) {
+        points2D[z] = [];
+        for (let x = 0; x < cols; x++) {
+          const index = z * cols + x;
+          const p = points[index];
+          
+          const y = Math.sin(p.x * 0.015 + time) * 60 + Math.cos(p.z * 0.02 + time) * 50;
+          
+          const x1 = p.x * cosY + p.z * sinY;
+          const z1 = -p.x * sinY + p.z * cosY;
+          
+          const y2 = y * cosX - z1 * sinX;
+          const z2 = y * sinX + z1 * cosX;
+          
+          const distance = 1200; 
+          const scale = 1000 / (distance + z2);
+          const x3 = x1 * scale + width / 2;
+          const y3 = y2 * scale + height / 2 + 150; 
+          
+          points2D[z].push({ x: x3, y: y3, z: z2, h: y });
+        }
+      }
+      
+      for (let z = 0; z < rows - 1; z++) {
+        for (let x = 0; x < cols - 1; x++) {
+          const p = points2D[z][x];
+          const right = points2D[z][x+1];
+          const down = points2D[z+1][x];
+          
+          const opacity = Math.max(0, 1 - (p.z / 800));
+          if (opacity <= 0.01) continue;
+          
+          const intensity = Math.max(0, Math.min(1, (p.h + 100) / 200));
+          const r = 0;
+          const g = Math.floor(114 + (210 - 114) * intensity);
+          const b = Math.floor(206 + (255 - 206) * intensity);
+          
+          ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${opacity * 0.6})`;
+          ctx.lineWidth = intensity > 0.6 ? 2 : 1;
+          
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(right.x, right.y);
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(down.x, down.y);
+          ctx.stroke();
+          
+          if (intensity > 0.8) {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(0, 255, 255, ${opacity})`;
+            ctx.fill();
+          }
+        }
+      }
+      
+      animationId = requestAnimationFrame(animate);
+    }
+    
+    animate();
+    
+    document.addEventListener('astro:before-swap', () => {
+      cancelAnimationFrame(animationId);
+      window.removeEventListener('resize', resize);
+    }, { once: true });
+  }
+
+  function initScrollAnimations() {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.animate-fade-up').forEach(el => {
+      observer.observe(el);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    init3DWave();
+    initScrollAnimations();
+  });
+  document.addEventListener('astro:page-load', () => {
+    init3DWave();
+    initScrollAnimations();
+  });
+</script>
+
 <style>
+  /* --- Fixed Page Background --- */
+  .page-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    pointer-events: none;
+  }
+
+  #team-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .gradient-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 0%, rgba(255,255,255,0.7) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .relative-z {
+    position: relative;
+    z-index: 10;
+  }
+
   .page-header {
-    background: var(--bg-secondary);
+    background: transparent;
     padding: 6rem 0 4rem;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: none;
+  }
+
+  .animate-fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  
+  .animate-fade-up.visible {
+    animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   .team-grid {
@@ -186,5 +435,42 @@ import leadsData from '../data/chapterLeads.json';
     font-weight: 700;
     text-align: left;
     padding-left: 0.5rem;
+  }
+
+  /* --- Members Line Section --- */
+  .mt-16 {
+    margin-top: 6rem;
+  }
+
+  .section-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    color: #1a1a1a;
+  }
+
+  .members-line-container {
+    width: 100%;
+    overflow-x: auto;
+    padding: 1rem 0 2rem 0;
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+  }
+  
+  .members-line-container::-webkit-scrollbar { 
+    display: none; 
+  }
+
+  .members-scroll {
+    display: flex;
+    gap: 2rem;
+    padding: 1rem 5vw 3rem 5vw;
+    width: max-content; 
+  }
+
+  .member-card {
+    min-width: 280px;
+    max-width: 280px;
+    flex-shrink: 0;
   }
 </style>
