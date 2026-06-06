@@ -3,67 +3,518 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="About Us">
-  <div class="page-header">
-    <div class="container text-center">
-      <h1>About <span class="text-primary">ACM VJIT</span></h1>
-      <p>Discover our mission, vision, and what drives us forward.</p>
+  <!-- Premium Hero Section -->
+  <div class="about-hero">
+    <div class="hero-background">
+      <canvas id="hero-canvas"></canvas>
+      <div class="gradient-overlay"></div>
+    </div>
+    <div class="container text-center relative-z">
+      <div class="badge animate-fade-up">Our Journey</div>
+      <h1 class="hero-title animate-fade-up delay-1">About <span class="text-gradient">ACM VJIT</span></h1>
+      <p class="hero-subtitle animate-fade-up delay-2">Discover our mission, vision, and the passion that drives us forward to innovate and inspire.</p>
     </div>
   </div>
 
-  <section class="section">
+  <!-- Content Section with Glassmorphism & premium layout -->
+  <section class="section about-content">
     <div class="container content-grid">
-      <div class="content-text">
-        <h2>Our Mission</h2>
-        <p>The ACM Student Chapter at Vidya Jyothi Institute of Technology is dedicated to promoting computing as a science and a profession. We strive to foster a culture of technical excellence, continuous learning, and innovation among students.</p>
+      
+      <div class="content-text animate-fade-right">
+        <div class="text-block">
+          <div class="icon-box">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="card-icon">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 0 0 6.16-12.12A14.98 14.98 0 0 0 9.631 8.41m5.96 5.96a14.926 14.926 0 0 1-5.841 2.58m-.119-8.54a6 6 0 0 0-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 0 0-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 0 1-2.448-2.45m.001 0c0-.093.003-.186.008-.28m0 0c.01-.19.025-.38.046-.569m0 0A14.93 14.93 0 0 1 12 3.69" />
+            </svg>
+          </div>
+          <h2>Our Mission</h2>
+          <p>The ACM Student Chapter at Vidya Jyothi Institute of Technology is dedicated to promoting computing as a science and a profession. We strive to foster a culture of technical excellence, continuous learning, and innovation among students.</p>
+        </div>
         
-        <h2>What We Do</h2>
-        <p>We organize a variety of events including coding competitions, hackathons, expert talks, and hands-on workshops. Our goal is to bridge the gap between academic learning and industry requirements, preparing our members for successful careers in technology.</p>
-      </div>
-      <div class="content-image">
-        <div class="image-placeholder">
-          <span>ACM Team Image Placeholder</span>
+        <div class="text-block mt-4">
+          <div class="icon-box">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="card-icon">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" />
+            </svg>
+          </div>
+          <h2>What We Do</h2>
+          <p>We organize a variety of events including coding competitions, hackathons, expert talks, and hands-on workshops. Our goal is to bridge the gap between academic learning and industry requirements, preparing our members for successful careers in technology.</p>
         </div>
       </div>
+
+      <div class="content-image animate-fade-left">
+        <div class="image-wrapper">
+          <div class="image-corner-accent"></div>
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2000&auto=format&fit=crop" alt="Students collaborating" class="real-image" />
+          <div class="glass-card-overlay">
+            <span class="stat-number">500+</span>
+            <span class="stat-label">Active Members</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 </Layout>
 
+<script>
+  function init3DWave() {
+    const canvas = document.getElementById('hero-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    
+    let width, height;
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = canvas.parentElement.offsetHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+    
+    const rows = 35;
+    const cols = 55;
+    const spacing = 55;
+    const points = [];
+    
+    for (let z = 0; z < rows; z++) {
+      for (let x = 0; x < cols; x++) {
+        points.push({
+          x: (x - cols / 2) * spacing,
+          z: (z - rows / 2) * spacing,
+          y: 0
+        });
+      }
+    }
+    
+    let time = 0;
+    // Base camera angles
+    let targetRotationX = 1.1; 
+    let targetRotationY = 0;
+    let rotationX = 1.1;
+    let rotationY = 0;
+    
+    canvas.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left - width / 2;
+      const mouseY = e.clientY - rect.top - height / 2;
+      // Parallax effect on mouse move
+      targetRotationY = mouseX * 0.0005;
+      targetRotationX = 1.1 + mouseY * 0.0005;
+    });
+    
+    canvas.addEventListener('mouseleave', () => {
+      targetRotationY = 0;
+      targetRotationX = 1.1;
+    });
+    
+    let animationId;
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      time += 0.015; // Speed of the wave
+      
+      // Smooth camera interpolation
+      rotationX += (targetRotationX - rotationX) * 0.05;
+      rotationY += (targetRotationY - rotationY) * 0.05;
+      
+      const cosX = Math.cos(rotationX);
+      const sinX = Math.sin(rotationX);
+      const cosY = Math.cos(rotationY);
+      const sinY = Math.sin(rotationY);
+      
+      const points2D = [];
+      
+      // 3D Projection Engine
+      for (let z = 0; z < rows; z++) {
+        points2D[z] = [];
+        for (let x = 0; x < cols; x++) {
+          const index = z * cols + x;
+          const p = points[index];
+          
+          // Generate 3D Wave heights using overlapping sine/cosine functions
+          const y = Math.sin(p.x * 0.015 + time) * 60 + Math.cos(p.z * 0.02 + time) * 50;
+          
+          // Rotate Y (Yaw)
+          const x1 = p.x * cosY + p.z * sinY;
+          const z1 = -p.x * sinY + p.z * cosY;
+          
+          // Rotate X (Pitch)
+          const y2 = y * cosX - z1 * sinX;
+          const z2 = y * sinX + z1 * cosX;
+          
+          // Perspective Projection
+          const distance = 1200; 
+          const scale = 1000 / (distance + z2);
+          const x3 = x1 * scale + width / 2;
+          const y3 = y2 * scale + height / 2 + 150; // Offset down
+          
+          points2D[z].push({ x: x3, y: y3, z: z2, h: y });
+        }
+      }
+      
+      // Draw 3D Wireframe Grid
+      for (let z = 0; z < rows - 1; z++) {
+        for (let x = 0; x < cols - 1; x++) {
+          const p = points2D[z][x];
+          const right = points2D[z][x+1];
+          const down = points2D[z+1][x];
+          
+          // Calculate opacity based on depth (z-index equivalent)
+          // Fade out towards the back
+          const opacity = Math.max(0, 1 - (p.z / 800));
+          if (opacity <= 0.01) continue;
+          
+          // Color mapping: Peaks are bright Cyan, valleys are dark Blue
+          const intensity = Math.max(0, Math.min(1, (p.h + 100) / 200));
+          const r = Math.floor(0);
+          const g = Math.floor(114 + (210 - 114) * intensity);
+          const b = Math.floor(206 + (255 - 206) * intensity);
+          
+          ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${opacity * 0.6})`;
+          ctx.lineWidth = intensity > 0.6 ? 2 : 1;
+          
+          ctx.beginPath();
+          // Draw horizontal line
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(right.x, right.y);
+          // Draw vertical line
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(down.x, down.y);
+          ctx.stroke();
+          
+          // Draw glowing dots on the highest peaks
+          if (intensity > 0.8) {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(0, 255, 255, ${opacity})`;
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = '#00ffff';
+            ctx.fill();
+            ctx.shadowBlur = 0;
+          }
+        }
+      }
+      
+      animationId = requestAnimationFrame(animate);
+    }
+    
+    animate();
+    
+    document.addEventListener('astro:before-swap', () => {
+      cancelAnimationFrame(animationId);
+      window.removeEventListener('resize', resize);
+    }, { once: true });
+  }
+
+  function initScrollAnimations() {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.animate-fade-up, .animate-fade-right, .animate-fade-left').forEach(el => {
+      observer.observe(el);
+    });
+  }
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    init3DWave();
+    initScrollAnimations();
+  });
+  
+  document.addEventListener('astro:page-load', () => {
+    init3DWave();
+    initScrollAnimations();
+  });
+</script>
+
 <style>
-  .page-header {
-    background: var(--bg-secondary);
-    padding: 6rem 0 4rem;
-    border-bottom: 1px solid var(--border-color);
+  /* --- Premium Hero Section --- */
+  .about-hero {
+    position: relative;
+    padding: 10rem 0 8rem;
+    background-color: #f8fafc;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(0, 114, 206, 0.1);
+  }
+
+  .hero-background {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f8f9fa 0%, #eef2ff 100%);
+  }
+
+  #hero-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .gradient-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 0%, #f8fafc 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .relative-z {
+    position: relative;
+    z-index: 10;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    background: rgba(0, 114, 206, 0.1);
+    color: var(--primary-color);
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(0, 114, 206, 0.2);
+  }
+
+  .hero-title {
+    font-size: 4.5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1.5px;
+    color: #1a1a1a;
+  }
+
+  .text-gradient {
+    background: linear-gradient(to right, #0072CE, #00d2ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    color: #555;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* --- Content Grid --- */
+  .about-content {
+    padding: 6rem 0;
   }
 
   .content-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    gap: 5rem;
     align-items: center;
   }
 
-  .content-text h2 {
-    margin-top: 2rem;
-  }
-  .content-text h2:first-child {
-    margin-top: 0;
+  .text-block {
+    background: #ffffff;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    border: 1px solid #f1f5f9;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
   }
 
-  .image-placeholder {
+  /* Subtle top gradient accent on hover */
+  .text-block::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 400px;
-    background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+    height: 4px;
+    background: linear-gradient(to right, #0072CE, #00d2ff);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+
+  .text-block:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px -5px rgba(0, 114, 206, 0.1), 0 10px 20px -5px rgba(0, 114, 206, 0.05);
+    border-color: rgba(0, 114, 206, 0.2);
+  }
+
+  .text-block:hover::before {
+    transform: scaleX(1);
+  }
+
+  .mt-4 { margin-top: 2rem; }
+
+  .text-block:hover .icon-box {
+    background: linear-gradient(135deg, rgba(0, 114, 206, 0.15) 0%, rgba(0, 210, 255, 0.15) 100%);
+    border-color: rgba(0, 114, 206, 0.3);
+    transform: scale(1.05) rotate(-5deg);
+  }
+
+  .icon-box {
+    width: 64px;
+    height: 64px;
+    background: rgba(241, 245, 249, 0.8);
+    border: 1px solid rgba(226, 232, 240, 0.8);
     border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 1.5rem;
+    transition: all 0.4s ease;
+  }
+
+  .card-icon {
+    width: 32px;
+    height: 32px;
     color: var(--primary-color);
-    font-weight: 600;
+  }
+
+  .text-block h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #1a1a1a;
+  }
+
+  .text-block p {
+    color: #555;
+    line-height: 1.7;
+    margin: 0;
+    font-size: 1.05rem;
+  }
+
+  /* --- Premium Image Wrapper --- */
+  .image-wrapper {
+    position: relative;
+    border-radius: 24px;
+    z-index: 1;
+  }
+
+  .image-corner-accent {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 150px;
+    height: 150px;
+    border-top: 4px solid var(--primary-color);
+    border-right: 4px solid var(--primary-color);
+    border-radius: 0 30px 0 0;
+    z-index: -1;
+    opacity: 0.5;
+  }
+
+  .real-image {
+    width: 100%;
+    height: 550px;
+    object-fit: cover;
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+  }
+
+  .glass-card-overlay {
+    position: absolute;
+    bottom: -30px;
+    left: -30px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(15px);
+    padding: 1.5rem 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255,255,255,0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .stat-number {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  .stat-label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #555;
+  }
+
+  /* --- Smooth Scroll Animations --- */
+  .animate-fade-up, .animate-fade-right, .animate-fade-left {
+    opacity: 0;
+  }
+  
+  .animate-fade-up.visible {
+    animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .animate-fade-right.visible {
+    animation: fadeRight 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .animate-fade-left.visible {
+    animation: fadeLeft 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .delay-1 { animation-delay: 0.2s; }
+  .delay-2 { animation-delay: 0.4s; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeRight {
+    from { opacity: 0; transform: translateX(-40px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes fadeLeft {
+    from { opacity: 0; transform: translateX(40px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  /* --- Responsive --- */
+  @media (max-width: 992px) {
+    .content-grid { gap: 3rem; }
+    .hero-title { font-size: 3.5rem; }
+    .real-image { height: 450px; }
   }
 
   @media (max-width: 768px) {
-    .content-grid {
-      grid-template-columns: 1fr;
+    .content-grid { grid-template-columns: 1fr; }
+    .hero-title { font-size: 2.5rem; }
+    .about-hero { padding: 6rem 1.5rem 4rem; }
+    .real-image { height: 350px; }
+    .image-corner-accent { display: none; }
+    .glass-card-overlay {
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 85%;
+      animation: none; /* Disable float on mobile to prevent clipping issues */
+      padding: 1.25rem;
     }
   }
 </style>
