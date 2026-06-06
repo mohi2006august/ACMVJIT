@@ -3,86 +3,279 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Events">
-  <div class="page-header relative overflow-hidden">
-    <div class="container text-center relative z-10 scroll-reveal">
-      <h1 class="text-4xl md:text-5xl font-bold mb-4">Upcoming <span class="text-primary">Events</span></h1>
-      <p class="text-lg text-muted delay-1">Join us in our latest activities, tech sessions, and massive hackathons.</p>
+  <!-- 3D Wave Hero Section (Same as About page) -->
+  <div class="hero-section">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-overlay"></div>
+    <div class="container hero-content text-center">
+      <h1 class="animate-fade-up">Our <span class="text-primary">Events</span></h1>
+      <p class="hero-subtitle animate-fade-up delay-2">Discover our upcoming activities, tech sessions, and massive hackathons, or browse through our past memories.</p>
     </div>
   </div>
 
   <section class="section py-16">
     <div class="container">
+      
+      <!-- Upcoming Events Section -->
+      <h2 class="section-title text-center scroll-reveal mb-12">Upcoming Events</h2>
       <div class="events-list">
-        <!-- Event Card 1 -->
-        <div class="event-card scroll-reveal delay-1">
-          <div class="event-date">
-            <span class="day">15</span>
-            <span class="month">OCT</span>
-          </div>
-          <div class="event-details">
-            <div class="event-badge">Bootcamp</div>
-            <h3>Web Development Bootcamp</h3>
-            <p>A 3-day intensive bootcamp covering React, Astro, and TailwindCSS to kickstart your frontend journey.</p>
-            <div class="event-meta">
-              <span>📍 Block A Auditorium</span>
-              <span class="meta-divider">•</span>
-              <span>⏰ 10:00 AM - 4:00 PM</span>
+        <!-- Placeholder for upcoming events -->
+        <div class="event-card scroll-reveal delay-1" style="justify-content: center; text-align: center; padding: 4rem;">
+          <div class="event-details" style="display: flex; flex-direction: column; align-items: center;">
+            <div class="icon-box" style="width: 80px; height: 80px; background: rgba(0,114,206,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; color: #0072ce;">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 40px; height: 40px;">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+              </svg>
             </div>
-          </div>
-          <div class="event-action">
-            <button class="btn btn-primary btn-glow">Register Now</button>
+            <h3 style="font-size: 2rem; margin-bottom: 0.5rem; font-weight: 800; color: #1a1a1a;">Stay Tuned!</h3>
+            <p style="font-size: 1.1rem; color: #555; max-width: 500px; margin: 0 auto;">We are currently brewing up some amazing new events, hackathons, and sessions. Check back soon for updates!</p>
           </div>
         </div>
-
-        <!-- Event Card 2 -->
-        <div class="event-card scroll-reveal delay-2">
-          <div class="event-date">
-            <span class="day">28</span>
-            <span class="month">OCT</span>
-          </div>
-          <div class="event-details">
-            <div class="event-badge hackathon">Hackathon</div>
-            <h3>Hack-a-thon VJIT 2026</h3>
-            <p>Our premier annual 24-hour hackathon. Build innovative solutions for real-world problems and win massive prizes.</p>
-            <div class="event-meta">
-              <span>📍 Main Library</span>
-              <span class="meta-divider">•</span>
-              <span>⏰ 9:00 AM (24 Hrs)</span>
-            </div>
-          </div>
-          <div class="event-action">
-            <button class="btn btn-outline">Learn More</button>
-          </div>
-        </div>
-
-        <!-- Event Card 3 -->
-        <div class="event-card scroll-reveal delay-3">
-          <div class="event-date">
-            <span class="day">05</span>
-            <span class="month">NOV</span>
-          </div>
-          <div class="event-details">
-            <div class="event-badge guest-lecture">Guest Lecture</div>
-            <h3>AI in Modern Web</h3>
-            <p>An exclusive talk by industry experts on integrating LLMs and generative AI into modern web applications.</p>
-            <div class="event-meta">
-              <span>📍 Virtual (Zoom)</span>
-              <span class="meta-divider">•</span>
-              <span>⏰ 6:00 PM - 8:00 PM</span>
-            </div>
-          </div>
-          <div class="event-action">
-            <button class="btn btn-outline">RSVP</button>
-          </div>
-        </div>
-
       </div>
+      
+      <!-- Past Events Section -->
+      <div class="mt-24">
+        <h2 class="section-title text-center scroll-reveal mb-12">Past Events</h2>
+        <div class="events-list">
+          
+          <!-- ACM Launchpad -->
+          <div class="event-card scroll-reveal delay-1">
+            <div class="event-date">
+              <span class="day">08</span>
+              <span class="month">APR '26</span>
+            </div>
+            <div class="event-details">
+              <div class="event-badge guest-lecture">Orientation & Ideathon</div>
+              <h3>ACM Launchpad</h3>
+              <p>Our flagship inaugural event welcoming the new batch to the ACM chapter!</p>
+              
+              <div class="event-expanded-content" style="display: none; margin-top: 1rem;">
+                <p>It featured an introductory ideathon where freshmen brainstormed tech solutions for campus problems. The energy was incredible with hundreds of new minds joining our community.</p>
+                <div class="event-meta" style="color: #0072ce; margin-top: 1rem; padding: 1rem; background: rgba(0, 114, 206, 0.05); border-radius: 12px; border: 1px solid rgba(0, 114, 206, 0.1);">
+                  <span>🏆 <strong>Winners:</strong><br/>🥇 Team Alpha (1st Place)<br/>🥈 Innovators (Runner Up)</span>
+                </div>
+              </div>
+            </div>
+            <div class="event-action">
+              <button class="btn btn-outline read-more-btn">Read More</button>
+            </div>
+          </div>
+
+          <!-- Codestorm -->
+          <div class="event-card scroll-reveal delay-2">
+            <div class="event-date">
+              <span class="day">08</span>
+              <span class="month">APR '26</span>
+            </div>
+            <div class="event-details">
+              <div class="event-badge hackathon">Competitive Coding</div>
+              <h3>Codestorm</h3>
+              <p>A grueling 24-hour coding marathon focused on advanced data structures and algorithms.</p>
+              
+              <div class="event-expanded-content" style="display: none; margin-top: 1rem;">
+                <p>Participants battled through progressive problem sets on HackerRank. Only the top 10% managed to solve the extreme graph theory challenges in the final round.</p>
+                <div class="event-meta" style="color: #0072ce; margin-top: 1rem; padding: 1rem; background: rgba(0, 114, 206, 0.05); border-radius: 12px; border: 1px solid rgba(0, 114, 206, 0.1);">
+                  <span>🏆 <strong>Winners:</strong><br/>🥇 John Doe (Winner)<br/>🥈 Jane Smith (Runner Up)</span>
+                </div>
+              </div>
+            </div>
+            <div class="event-action">
+              <button class="btn btn-outline read-more-btn">Read More</button>
+            </div>
+          </div>
+
+          <!-- Redesignx -->
+          <div class="event-card scroll-reveal delay-3">
+            <div class="event-date">
+              <span class="day">09</span>
+              <span class="month">APR '26</span>
+            </div>
+            <div class="event-details">
+              <div class="event-badge" style="background: rgba(233, 30, 99, 0.1); color: #e91e63;">UI/UX Challenge</div>
+              <h3>Redesignx</h3>
+              <p>A creative 12-hour design sprint where participants completely redesigned popular apps.</p>
+              
+              <div class="event-expanded-content" style="display: none; margin-top: 1rem;">
+                <p>Teams focused heavily on accessibility, dark mode aesthetics, and streamlining complex user journeys. The final prototypes were judged by industry design leads.</p>
+                <div class="event-meta" style="color: #e91e63; margin-top: 1rem; padding: 1rem; background: rgba(233, 30, 99, 0.05); border-radius: 12px; border: 1px solid rgba(233, 30, 99, 0.1);">
+                  <span>🏆 <strong>Winners:</strong><br/>🥇 Team Pixel Perfect (1st Place)<br/>🥈 The Grid (Runner Up)</span>
+                </div>
+              </div>
+            </div>
+            <div class="event-action">
+              <button class="btn btn-outline read-more-btn">Read More</button>
+            </div>
+          </div>
+
+          <!-- AI Battle -->
+          <div class="event-card scroll-reveal delay-1">
+            <div class="event-date">
+              <span class="day">09</span>
+              <span class="month">APR '26</span>
+            </div>
+            <div class="event-details">
+              <div class="event-badge" style="background: rgba(76, 175, 80, 0.1); color: #4caf50;">Machine Learning</div>
+              <h3>AI Battle</h3>
+              <p>An intense machine learning showdown to solve complex real-world datasets.</p>
+              
+              <div class="event-expanded-content" style="display: none; margin-top: 1rem;">
+                <p>Teams competed to build, train, and deploy predictive AI models under strict time limits, dealing with messy real-world data and deploying full-stack AI pipelines.</p>
+                <div class="event-meta" style="color: #4caf50; margin-top: 1rem; padding: 1rem; background: rgba(76, 175, 80, 0.05); border-radius: 12px; border: 1px solid rgba(76, 175, 80, 0.1);">
+                  <span>🏆 <strong>Winners:</strong><br/>🥇 Team Neural Ninjas (1st Place)<br/>🥈 Data Wizards (Runner Up)</span>
+                </div>
+              </div>
+            </div>
+            <div class="event-action">
+              <button class="btn btn-outline read-more-btn">Read More</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
     </div>
   </section>
 </Layout>
 
 <script>
-  function initEventsJS() {
+  // 3D Wave Engine (Identical to About page)
+  function init3DWave() {
+    const canvas = document.getElementById('hero-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    
+    let width, height;
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = canvas.parentElement.offsetHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+    
+    const rows = 35;
+    const cols = 55;
+    const spacing = 55;
+    const points = [];
+    
+    for (let z = 0; z < rows; z++) {
+      for (let x = 0; x < cols; x++) {
+        points.push({
+          x: (x - cols / 2) * spacing,
+          z: (z - rows / 2) * spacing,
+          y: 0
+        });
+      }
+    }
+    
+    let time = 0;
+    // Base camera angles
+    let targetRotationX = 1.1; 
+    let targetRotationY = 0;
+    let rotationX = 1.1;
+    let rotationY = 0;
+    
+    canvas.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left - width / 2;
+      const mouseY = e.clientY - rect.top - height / 2;
+      targetRotationY = mouseX * 0.0005;
+      targetRotationX = 1.1 + mouseY * 0.0005;
+    });
+    
+    canvas.addEventListener('mouseleave', () => {
+      targetRotationY = 0;
+      targetRotationX = 1.1;
+    });
+    
+    let animationId;
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      time += 0.015; // Speed of the wave
+      
+      // Smooth camera interpolation
+      rotationX += (targetRotationX - rotationX) * 0.05;
+      rotationY += (targetRotationY - rotationY) * 0.05;
+      
+      const cosX = Math.cos(rotationX);
+      const sinX = Math.sin(rotationX);
+      const cosY = Math.cos(rotationY);
+      const sinY = Math.sin(rotationY);
+      
+      const points2D = [];
+      
+      // 3D Projection Engine
+      for (let z = 0; z < rows; z++) {
+        points2D[z] = [];
+        for (let x = 0; x < cols; x++) {
+          const index = z * cols + x;
+          const p = points[index];
+          
+          const y = Math.sin(p.x * 0.015 + time) * 60 + Math.cos(p.z * 0.02 + time) * 50;
+          
+          const x1 = p.x * cosY + p.z * sinY;
+          const z1 = -p.x * sinY + p.z * cosY;
+          
+          const y2 = y * cosX - z1 * sinX;
+          const z2 = y * sinX + z1 * cosX;
+          
+          const distance = 1200; 
+          const scale = 1000 / (distance + z2);
+          const x3 = x1 * scale + width / 2;
+          const y3 = y2 * scale + height / 2 + 150;
+          
+          points2D[z].push({ x: x3, y: y3, z: z2, h: y });
+        }
+      }
+      
+      // Draw 3D Wireframe Grid
+      for (let z = 0; z < rows - 1; z++) {
+        for (let x = 0; x < cols - 1; x++) {
+          const p = points2D[z][x];
+          const right = points2D[z][x+1];
+          const down = points2D[z+1][x];
+          
+          const opacity = Math.max(0, 1 - (p.z / 800));
+          if (opacity <= 0.01) continue;
+          
+          const intensity = Math.max(0, Math.min(1, (p.h + 100) / 200));
+          const r = Math.floor(0);
+          const g = Math.floor(114 + (210 - 114) * intensity);
+          const b = Math.floor(206 + (255 - 206) * intensity);
+          
+          ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${opacity * 0.6})`;
+          ctx.lineWidth = intensity > 0.6 ? 2 : 1;
+          
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(right.x, right.y);
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(down.x, down.y);
+          ctx.stroke();
+          
+          if (intensity > 0.8) {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(0, 255, 255, ${opacity})`;
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = '#00ffff';
+            ctx.fill();
+            ctx.shadowBlur = 0;
+          }
+        }
+      }
+      
+      animationId = requestAnimationFrame(animate);
+    }
+    
+    animate();
+    
+    document.addEventListener('astro:before-swap', () => {
+      cancelAnimationFrame(animationId);
+      window.removeEventListener('resize', resize);
+    }, { once: true });
+  }
+
+  function initScrollAnimations() {
     const observerOptions = {
       root: null,
       rootMargin: '0px',
@@ -92,34 +285,139 @@ import Layout from '../layouts/Layout.astro';
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
+          entry.target.classList.add('in-view', 'visible');
           observer.unobserve(entry.target); 
         }
       });
     }, observerOptions);
 
-    const revealElements = document.querySelectorAll('.scroll-reveal');
+    const revealElements = document.querySelectorAll('.scroll-reveal, .animate-fade-up');
     revealElements.forEach(el => observer.observe(el));
   }
 
-  document.addEventListener('DOMContentLoaded', initEventsJS);
-  document.addEventListener('astro:page-load', initEventsJS);
+  function initReadMore() {
+    const readMoreBtns = document.querySelectorAll('.read-more-btn');
+    readMoreBtns.forEach(btn => {
+      // Remove old listeners to prevent duplicates on Astro page swaps
+      const newBtn = btn.cloneNode(true);
+      btn.parentNode.replaceChild(newBtn, btn);
+      
+      newBtn.addEventListener('click', (e) => {
+        const card = e.target.closest('.event-card');
+        const expandedContent = card.querySelector('.event-expanded-content');
+        
+        if (expandedContent.style.display === 'none') {
+          expandedContent.style.display = 'block';
+          newBtn.textContent = 'Read Less';
+        } else {
+          expandedContent.style.display = 'none';
+          newBtn.textContent = 'Read More';
+        }
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    init3DWave();
+    initScrollAnimations();
+    initReadMore();
+  });
+  
+  document.addEventListener('astro:page-load', () => {
+    init3DWave();
+    initScrollAnimations();
+    initReadMore();
+  });
 </script>
 
 <style>
-  .page-header {
-    background: linear-gradient(180deg, rgba(0, 114, 206, 0.05) 0%, transparent 100%);
-    padding: 8rem 0 5rem;
-    border-bottom: 1px solid rgba(0, 114, 206, 0.05);
+  /* --- Hero Section & 3D Wave --- */
+  .hero-section {
+    position: relative;
+    height: 45vh;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8fafc;
+    overflow: hidden;
   }
 
-  .text-4xl { font-size: 2.5rem; }
-  @media (min-width: 768px) { .text-4xl { font-size: 3.5rem; } }
-  .font-bold { font-weight: 800; letter-spacing: -1px; margin-bottom: 1rem; }
-  .text-lg { font-size: 1.125rem; }
-  .text-muted { color: var(--text-muted); }
-  .py-16 { padding-top: 4rem; padding-bottom: 8rem; }
+  #hero-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: auto; /* allows mouse interaction */
+  }
 
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, transparent 0%, #f8fafc 100%);
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  .hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 1rem;
+    color: #1a1a1a;
+  }
+
+  @media (min-width: 768px) {
+    .hero-content h1 {
+      font-size: 4.5rem;
+    }
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    color: #555;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    letter-spacing: -1px;
+  }
+
+  .py-16 { padding-top: 4rem; padding-bottom: 8rem; }
+  .mt-24 { margin-top: 6rem; }
+  .mb-12 { margin-bottom: 3rem; }
+
+  /* --- Simple Animations --- */
+  .animate-fade-up {
+    opacity: 0;
+  }
+  .animate-fade-up.visible {
+    animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .delay-2 { animation-delay: 0.2s; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* --- Event Cards --- */
   .events-list {
     display: flex;
     flex-direction: column;
@@ -285,8 +583,8 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .delay-1 { transition-delay: 0.1s; }
-  .delay-2 { transition-delay: 0.25s; }
-  .delay-3 { transition-delay: 0.4s; }
+  .delay-2 { transition-delay: 0.2s; }
+  .delay-3 { transition-delay: 0.3s; }
 
   @media (max-width: 768px) {
     .event-card {

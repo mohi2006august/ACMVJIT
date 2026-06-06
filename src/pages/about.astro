@@ -3,12 +3,14 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="About Us">
+  <!-- Fixed Page Background -->
+  <div class="page-background">
+    <canvas id="hero-canvas"></canvas>
+    <div class="gradient-overlay"></div>
+  </div>
+
   <!-- Premium Hero Section -->
   <div class="about-hero">
-    <div class="hero-background">
-      <canvas id="hero-canvas"></canvas>
-      <div class="gradient-overlay"></div>
-    </div>
     <div class="container text-center relative-z">
       <div class="badge animate-fade-up">Our Journey</div>
       <h1 class="hero-title animate-fade-up delay-1">About <span class="text-gradient">ACM VJIT</span></h1>
@@ -66,14 +68,14 @@ import Layout from '../layouts/Layout.astro';
     let width, height;
     function resize() {
       width = canvas.width = window.innerWidth;
-      height = canvas.height = canvas.parentElement.offsetHeight;
+      height = canvas.height = window.innerHeight;
     }
     window.addEventListener('resize', resize);
     resize();
     
-    const rows = 35;
-    const cols = 55;
-    const spacing = 55;
+    const rows = 45;
+    const cols = 75;
+    const spacing = 40;
     const points = [];
     
     for (let z = 0; z < rows; z++) {
@@ -93,16 +95,15 @@ import Layout from '../layouts/Layout.astro';
     let rotationX = 1.1;
     let rotationY = 0;
     
-    canvas.addEventListener('mousemove', (e) => {
-      const rect = canvas.getBoundingClientRect();
-      const mouseX = e.clientX - rect.left - width / 2;
-      const mouseY = e.clientY - rect.top - height / 2;
+    window.addEventListener('mousemove', (e) => {
+      const mouseX = e.clientX - width / 2;
+      const mouseY = e.clientY - height / 2;
       // Parallax effect on mouse move
-      targetRotationY = mouseX * 0.0005;
-      targetRotationX = 1.1 + mouseY * 0.0005;
+      targetRotationY = mouseX * 0.0002;
+      targetRotationX = 1.1 + mouseY * 0.0002;
     });
     
-    canvas.addEventListener('mouseleave', () => {
+    window.addEventListener('mouseleave', () => {
       targetRotationY = 0;
       targetRotationX = 1.1;
     });
@@ -110,11 +111,11 @@ import Layout from '../layouts/Layout.astro';
     let animationId;
     function animate() {
       ctx.clearRect(0, 0, width, height);
-      time += 0.015; // Speed of the wave
+      time += 0.008; // Slower, smoother rolling wave
       
       // Smooth camera interpolation
-      rotationX += (targetRotationX - rotationX) * 0.05;
-      rotationY += (targetRotationY - rotationY) * 0.05;
+      rotationX += (targetRotationX - rotationX) * 0.02;
+      rotationY += (targetRotationY - rotationY) * 0.02;
       
       const cosX = Math.cos(rotationX);
       const sinX = Math.sin(rotationX);
@@ -238,23 +239,17 @@ import Layout from '../layouts/Layout.astro';
 </script>
 
 <style>
-  /* --- Premium Hero Section --- */
-  .about-hero {
-    position: relative;
-    padding: 10rem 0 8rem;
-    background-color: #f8fafc;
+  /* --- Fixed Page Background --- */
+  .page-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
     overflow: hidden;
-    border-bottom: 1px solid rgba(0, 114, 206, 0.1);
-  }
-
-  .hero-background {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    overflow: hidden;
-    background: linear-gradient(135deg, #f8f9fa 0%, #eef2ff 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    pointer-events: none;
   }
 
   #hero-canvas {
@@ -266,9 +261,18 @@ import Layout from '../layouts/Layout.astro';
   .gradient-overlay {
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at center, transparent 0%, #f8fafc 100%);
+    background: radial-gradient(circle at center, transparent 0%, rgba(255,255,255,0.7) 100%);
     pointer-events: none;
     z-index: 1;
+  }
+
+  /* --- Premium Hero Section --- */
+  .about-hero {
+    position: relative;
+    padding: 10rem 0 8rem;
+    background-color: transparent;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(0, 114, 206, 0.1);
   }
 
   .relative-z {

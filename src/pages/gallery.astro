@@ -1,0 +1,451 @@
+---
+import Layout from '../layouts/Layout.astro';
+import galleryData from '../data/gallery.json';
+---
+
+<Layout title="3D Event Gallery">
+  <div class="gallery-container" id="gallery-container">
+    <!-- 3D Wave Background -->
+    <canvas id="gallery-canvas" class="bg-canvas"></canvas>
+    <div class="gradient-overlay"></div>
+    
+    <!-- Top Information -->
+    <div class="gallery-info text-center animate-fade-up">
+      <h1 class="text-4xl md:text-5xl font-bold" style="color: #1a1a1a;">Event <span class="text-primary">Gallery</span></h1>
+      <p class="text-muted mt-2" style="text-transform: uppercase; letter-spacing: 2px; font-weight: 700; color: #555;">Drag or swipe to explore our legacy</p>
+    </div>
+    
+    <!-- 3D Scene Wrapper -->
+    <div class="scene" id="scene">
+      <div class="carousel" id="carousel">
+        {galleryData.map((photo, index) => (
+          <div class="carousel-item" style={`--index: ${index};`}>
+            <div class="image-wrapper">
+              <img src={photo.url} alt={photo.caption} loading="lazy" draggable="false" />
+              <div class="glass-overlay"></div>
+            </div>
+            <!-- Floating 3D Caption -->
+            <div class="caption">
+               <span class="caption-text">{photo.caption}</span>
+               <div class="caption-glow"></div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  function initUltimateGallery() {
+    // --- 1. 3D Wave Background Engine (from About page) ---
+    const canvas = document.getElementById('gallery-canvas');
+    const ctx = canvas ? canvas.getContext('2d') : null;
+    let width, height;
+    
+    function resize() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      if (canvas) {
+        canvas.width = width;
+        canvas.height = height;
+      }
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    const rows = 45;
+    const cols = 75;
+    const spacing = 40;
+    const points = [];
+    
+    for (let z = 0; z < rows; z++) {
+      for (let x = 0; x < cols; x++) {
+        points.push({
+          x: (x - cols / 2) * spacing,
+          z: (z - rows / 2) * spacing,
+          y: 0
+        });
+      }
+    }
+    
+    let waveTime = 0;
+    let waveTargetRotX = 1.0; 
+    let waveTargetRotY = 0;
+    let waveRotX = 1.0;
+    let waveRotY = 0;
+
+    // --- 2. 3D Carousel Engine ---
+    const container = document.getElementById('gallery-container');
+    const scene = document.getElementById('scene');
+    const carousel = document.getElementById('carousel');
+    const items = document.querySelectorAll('.carousel-item');
+    if (!carousel) return;
+
+    let currAngle = 0;
+    let targetAngle = 0;
+    let isDragging = false;
+    let startX = 0;
+    let autoRotate = true;
+    
+    // Parallax Mouse tracking
+    let mouseX = 0;
+    let mouseY = 0;
+    let targetMouseX = 0;
+    let targetMouseY = 0;
+
+    // We can use the same mouse coordinates for the wave and the carousel
+    window.addEventListener('mousemove', (e) => {
+      // For Carousel Parallax (-1 to 1)
+      targetMouseX = (e.clientX / width - 0.5) * 2; 
+      targetMouseY = (e.clientY / height - 0.5) * 2;
+      
+      // For Wave Parallax
+      const waveMouseX = e.clientX - width / 2;
+      const waveMouseY = e.clientY - height / 2;
+      waveTargetRotY = waveMouseX * 0.0002;
+      waveTargetRotX = 1.0 + waveMouseY * 0.0002;
+
+      if (!isDragging) return;
+      const dx = e.clientX - startX;
+      targetAngle += dx * 0.25; 
+      startX = e.clientX;
+    });
+
+    container.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      startX = e.clientX;
+      autoRotate = false;
+      document.body.style.cursor = 'grabbing';
+    });
+
+    window.addEventListener('mouseup', () => {
+      if(isDragging) {
+        isDragging = false;
+        document.body.style.cursor = 'default';
+        targetAngle = Math.round(targetAngle / 24) * 24;
+        setTimeout(() => autoRotate = true, 4000);
+      }
+    });
+
+    // Touch events
+    container.addEventListener('touchstart', (e) => {
+      isDragging = true;
+      startX = e.touches[0].clientX;
+      autoRotate = false;
+    });
+    container.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      const dx = e.touches[0].clientX - startX;
+      targetAngle += dx * 0.35;
+      startX = e.touches[0].clientX;
+    });
+    container.addEventListener('touchend', () => {
+      if(isDragging) {
+        isDragging = false;
+        targetAngle = Math.round(targetAngle / 24) * 24;
+        setTimeout(() => autoRotate = true, 4000);
+      }
+    });
+
+    container.addEventListener('wheel', (e) => {
+      targetAngle += e.deltaY * 0.08;
+      autoRotate = false;
+      clearTimeout(window.wheelTimeout);
+      window.wheelTimeout = setTimeout(() => {
+        targetAngle = Math.round(targetAngle / 24) * 24;
+        autoRotate = true;
+      }, 1500);
+    });
+
+    let animationId;
+    function animate() {
+      // --- Draw 3D Wave ---
+      if (ctx) {
+        ctx.clearRect(0, 0, width, height);
+        waveTime += 0.008;
+        
+        waveRotX += (waveTargetRotX - waveRotX) * 0.02;
+        waveRotY += (waveTargetRotY - waveRotY) * 0.02;
+        
+        const cosX = Math.cos(waveRotX);
+        const sinX = Math.sin(waveRotX);
+        const cosY = Math.cos(waveRotY);
+        const sinY = Math.sin(waveRotY);
+        
+        const points2D = [];
+        
+        for (let z = 0; z < rows; z++) {
+          points2D[z] = [];
+          for (let x = 0; x < cols; x++) {
+            const index = z * cols + x;
+            const p = points[index];
+            
+            const y = Math.sin(p.x * 0.015 + waveTime) * 60 + Math.cos(p.z * 0.02 + waveTime) * 50;
+            const x1 = p.x * cosY + p.z * sinY;
+            const z1 = -p.x * sinY + p.z * cosY;
+            const y2 = y * cosX - z1 * sinX;
+            const z2 = y * sinX + z1 * cosX;
+            
+            const distance = 1200; 
+            const scale = 1000 / (distance + z2);
+            const x3 = x1 * scale + width / 2;
+            const y3 = y2 * scale + height / 2 + 100;
+            
+            points2D[z].push({ x: x3, y: y3, z: z2, h: y });
+          }
+        }
+        
+        for (let z = 0; z < rows - 1; z++) {
+          for (let x = 0; x < cols - 1; x++) {
+            const p = points2D[z][x];
+            const right = points2D[z][x+1];
+            const down = points2D[z+1][x];
+            
+            const opacity = Math.max(0, 1 - (p.z / 800));
+            if (opacity <= 0.01) continue;
+            
+            const intensity = Math.max(0, Math.min(1, (p.h + 100) / 200));
+            const r = 0;
+            const g = Math.floor(114 + (210 - 114) * intensity);
+            const b = Math.floor(206 + (255 - 206) * intensity);
+            
+            ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${opacity * 0.6})`;
+            ctx.lineWidth = intensity > 0.6 ? 2 : 1;
+            
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(right.x, right.y);
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(down.x, down.y);
+            ctx.stroke();
+            
+            if (intensity > 0.8) {
+              ctx.beginPath();
+              ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+              ctx.fillStyle = `rgba(0, 255, 255, ${opacity})`;
+              ctx.fill();
+            }
+          }
+        }
+      }
+
+      // --- Carousel Math ---
+      if (autoRotate && !isDragging) targetAngle -= 0.08; 
+      currAngle += (targetAngle - currAngle) * 0.08;
+      
+      mouseX += (targetMouseX - mouseX) * 0.05;
+      mouseY += (targetMouseY - mouseY) * 0.05;
+      
+      scene.style.transform = `rotateX(${-mouseY * 8}deg) rotateY(${mouseX * 12}deg)`;
+      carousel.style.transform = `translateZ(-800px) rotateX(-5deg) rotateY(${currAngle}deg)`;
+      
+      let normalizedAngle = (currAngle % 360 + 360) % 360;
+      let activeIndex = Math.round((360 - normalizedAngle) / 24) % 15;
+      
+      items.forEach((item, index) => {
+        if (index === activeIndex) {
+          item.classList.add('active');
+        } else {
+          item.classList.remove('active');
+        }
+      });
+      
+      animationId = requestAnimationFrame(animate);
+    }
+    animate();
+    
+    document.addEventListener('astro:before-swap', () => {
+      cancelAnimationFrame(animationId);
+      window.removeEventListener('resize', resize);
+    }, { once: true });
+  }
+
+  document.addEventListener('DOMContentLoaded', initUltimateGallery);
+  document.addEventListener('astro:page-load', initUltimateGallery);
+</script>
+
+<style>
+  .gallery-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    /* Light Theme */
+    background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .bg-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .gradient-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 0%, rgba(255,255,255,0.85) 100%);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .gallery-info {
+    position: absolute;
+    top: 10vh;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .gallery-info h1 { 
+    font-size: 4rem; 
+    font-weight: 900; 
+    letter-spacing: -1px; 
+    text-transform: uppercase;
+  }
+  @media (max-width: 768px) { .gallery-info h1 { font-size: 2.5rem; } }
+
+  .scene {
+    width: 100vw;
+    height: 100vh;
+    perspective: 1200px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-style: preserve-3d;
+    z-index: 5;
+    will-change: transform;
+  }
+
+  .carousel {
+    width: 380px;
+    height: 260px;
+    position: relative;
+    transform-style: preserve-3d;
+    will-change: transform; 
+  }
+
+  .carousel-item {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 16px;
+    transform-style: preserve-3d; 
+    transform: rotateY(calc(var(--index) * 24deg)) translateZ(850px);
+    -webkit-box-reflect: below 20px linear-gradient(transparent 20%, transparent 60%, rgba(255,255,255,0.6));
+    transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    will-change: filter, transform;
+  }
+
+  .image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.05);
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    opacity: 0.6;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .glass-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 100%);
+    pointer-events: none;
+    mix-blend-mode: overlay;
+  }
+
+  .carousel-item .caption {
+    position: absolute;
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%) translateZ(60px); 
+    color: #1a1a1a;
+    font-weight: 800;
+    font-size: 1.3rem;
+    text-align: center;
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .caption-text {
+    position: relative;
+    z-index: 2;
+    background: rgba(255,255,255,0.8);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,114,206,0.2);
+  }
+
+  /* --- ACTIVE STATE MAGIC --- */
+  .carousel-item.active {
+    transform: rotateY(calc(var(--index) * 24deg)) translateZ(920px) scale(1.15); 
+  }
+
+  .carousel-item.active .image-wrapper {
+    border: 3px solid #0072CE;
+    box-shadow: 0 20px 50px rgba(0, 114, 206, 0.25), inset 0 0 20px rgba(0, 114, 206, 0.1);
+  }
+
+  .carousel-item.active img {
+    opacity: 1;
+    transform: scale(1.05); 
+  }
+
+  .carousel-item.active .caption {
+    opacity: 1;
+    bottom: -40px;
+    transform: translateX(-50%) translateZ(80px); 
+  }
+
+  /* Dim non-active items heavily */
+  .carousel-item:not(.active) {
+    filter: saturate(0.2) blur(2px);
+    opacity: 0.6;
+  }
+
+  .animate-fade-up {
+    animation: fadeUp 1s ease forwards;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 768px) {
+    .carousel {
+      width: 260px;
+      height: 180px;
+    }
+    .carousel-item {
+      transform: rotateY(calc(var(--index) * 24deg)) translateZ(650px);
+    }
+    .carousel-item.active {
+      transform: rotateY(calc(var(--index) * 24deg)) translateZ(720px) scale(1.1);
+    }
+  }
+</style>
