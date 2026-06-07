@@ -262,13 +262,13 @@ import Layout from '../layouts/Layout.astro';
       btn.disabled = true;
       
       const formData = new FormData();
-      formData.append('Name', newForm.querySelector('#name').value);
+      formData.append('name', newForm.querySelector('#name').value);
       formData.append('Email', newForm.querySelector('#email').value);
       formData.append('Phone', newForm.querySelector('#phone').value);
       formData.append('Department', newForm.querySelector('#department').value);
       formData.append('Year', newForm.querySelector('#year').value);
       formData.append('Message', newForm.querySelector('#message').value);
-      formData.append('Submission Time (IST)', new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'long', timeStyle: 'medium' }));
+      formData.append('Submission Time', new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'long', timeStyle: 'medium' }));
       
       fetch("https://script.google.com/macros/s/AKfycbwgnB-e2j-AaD5rhDmmqvAqrxCMlNE7wkfN6tqAjWJBNOrKBLUyIfYg7v6xMkUawbXQ/exec", {
           method: "POST",
