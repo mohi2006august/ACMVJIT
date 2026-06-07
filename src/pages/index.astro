@@ -106,14 +106,6 @@ import leadsData from '../data/leads.json';
     </div>
   </section>
 
-  <!-- Call to Action -->
-  <section class="section cta scroll-reveal">
-    <div class="container text-center cta-box delay-1">
-      <h2>Ready to shape your future?</h2>
-      <p>Join ACM VJIT today and unlock a world of opportunities in computing and technology.</p>
-      <a href="/contact" class="btn btn-primary btn-glow-white">Become a Member</a>
-    </div>
-  </section>
 </Layout>
 
 <script>
@@ -682,66 +674,6 @@ if (you.wantsToLearn()) {
     text-align: left;
     padding-left: 0.5rem;
   }
-  /* --- CTA Section --- */
-  .cta-box {
-    background: linear-gradient(135deg, var(--primary-color) 0%, #00d2ff 100%);
-    padding: 6rem 4rem;
-    border-radius: 30px;
-    color: white;
-    box-shadow: 0 20px 50px rgba(0, 114, 206, 0.3);
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .cta-box::before {
-    content: '';
-    position: absolute;
-    top: -50%; left: -50%; width: 200%; height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
-    animation: rotate-bg 20s linear infinite;
-  }
-  
-  @keyframes rotate-bg {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-
-  .cta-box h2 {
-    font-size: 3rem;
-    margin-bottom: 1.5rem;
-    position: relative;
-    z-index: 1;
-  }
-
-  .cta-box p {
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 1.2rem;
-    margin-bottom: 2.5rem;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    z-index: 1;
-  }
-
-  .cta-box .btn {
-    position: relative;
-    z-index: 1;
-    font-size: 1.1rem;
-    padding: 1rem 2rem;
-    border-radius: 12px;
-  }
-
-  .cta-box .btn-primary {
-    background: white;
-    color: var(--primary-color);
-  }
-
-  .cta-box .btn-primary:hover {
-    background: #f8f9fa;
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-  }
 
   /* Responsive */
   @media (max-width: 992px) {
@@ -768,8 +700,6 @@ if (you.wantsToLearn()) {
     .hero-actions .btn { width: 100%; }
     
     .stats-grid { grid-template-columns: 1fr; }
-    .cta-box { padding: 4rem 1.5rem; }
-    .cta-box h2 { font-size: 2.25rem; }
     .img-placeholder { height: 300px; font-size: 1.2rem; }
   }
 </style>

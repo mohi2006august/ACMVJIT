@@ -261,25 +261,21 @@ import Layout from '../layouts/Layout.astro';
       btn.textContent = 'Sending...';
       btn.disabled = true;
       
-      fetch("https://formsubmit.co/ajax/acmvjit@gmail.com", {
+      const formData = new FormData();
+      formData.append('Name', newForm.querySelector('#name').value);
+      formData.append('Email', newForm.querySelector('#email').value);
+      formData.append('Phone', newForm.querySelector('#phone').value);
+      formData.append('Department', newForm.querySelector('#department').value);
+      formData.append('Year', newForm.querySelector('#year').value);
+      formData.append('Message', newForm.querySelector('#message').value);
+      formData.append('Submission Time (IST)', new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'long', timeStyle: 'medium' }));
+      
+      fetch("https://script.google.com/macros/s/AKfycbwgnB-e2j-AaD5rhDmmqvAqrxCMlNE7wkfN6tqAjWJBNOrKBLUyIfYg7v6xMkUawbXQ/exec", {
           method: "POST",
-          headers: { 
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-          },
-          body: JSON.stringify({
-              Name: newForm.querySelector('#name').value,
-              Email: newForm.querySelector('#email').value,
-              Phone: newForm.querySelector('#phone').value,
-              Department: newForm.querySelector('#department').value,
-              Year: newForm.querySelector('#year').value,
-              Message: newForm.querySelector('#message').value,
-              "Submission Time (IST)": new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'long', timeStyle: 'medium' })
-          })
+          body: formData
       })
-      .then(response => response.json())
-      .then(data => {
-          alert("Thank you! Your message has been sent successfully.");
+      .then(response => {
+          alert("Thank you! Your message has been saved to the database.");
           newForm.reset();
           btn.textContent = originalText;
           btn.disabled = false;
