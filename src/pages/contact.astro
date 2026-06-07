@@ -3,26 +3,25 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Contact Us">
-  <div class="page-header">
-    <div class="container text-center">
-      <h1>Get In <span class="text-primary">Touch</span></h1>
-      <p>Have a question or want to collaborate? We'd love to hear from you.</p>
-    </div>
+  <!-- Fixed Page Background with 3D Wave -->
+  <div class="page-background">
+    <canvas id="contact-canvas"></canvas>
+    <div class="gradient-overlay"></div>
   </div>
 
-  <section class="section">
+  <div class="relative-z">
+    <div class="page-header">
+      <div class="container text-center animate-fade-up">
+        <h1 style="color: #1a1a1a;">Get In <span class="text-primary">Touch</span></h1>
+        <p>Have a question or want to collaborate? We'd love to hear from you.</p>
+      </div>
+    </div>
+
+    <section class="section animate-fade-up" style="animation-delay: 0.1s;">
     <div class="container contact-container">
       <div class="contact-info">
         <h2>Contact Information</h2>
         <p>Reach out to us through any of the following channels or visit us on campus.</p>
-        
-        <div class="info-item">
-          <div class="icon">📍</div>
-          <div>
-            <h4>Address</h4>
-            <p>Vidya Jyothi Institute of Technology<br/>Aziz Nagar Gate, C.B. Post<br/>Hyderabad, Telangana 500075</p>
-          </div>
-        </div>
         
         <div class="info-item">
           <div class="icon">✉️</div>
@@ -39,10 +38,29 @@ import Layout from '../layouts/Layout.astro';
             <p>Follow us on <a href="#" class="text-primary">Instagram</a> and <a href="#" class="text-primary">LinkedIn</a></p>
           </div>
         </div>
+
+        <div class="info-item" style="margin-bottom: 0.5rem; margin-top: 1.5rem;">
+          <div class="icon">📍</div>
+          <div style="display: flex; align-items: center;">
+            <h4 style="margin: 0;">Address</h4>
+          </div>
+        </div>
+
+        <div class="map-container animate-fade-up" style="animation-delay: 0.3s; margin-top: 0.5rem;">
+          <iframe 
+            src="https://maps.google.com/maps?q=Vidya%20Jyothi%20Institute%20of%20Technology%2C%20Hyderabad&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+            width="100%" 
+            height="250" 
+            style="border:0; border-radius: 16px; box-shadow: 0 4px 30px rgba(0, 114, 206, 0.05); border: 1px solid rgba(0, 114, 206, 0.1);" 
+            allowfullscreen="" 
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
       </div>
       
       <div class="contact-form">
-        <form onsubmit="event.preventDefault(); alert('Message sent successfully!');">
+        <form id="contact-form">
           <div class="form-group">
             <label for="name">Full Name</label>
             <input type="text" id="name" required placeholder="John Doe">
@@ -52,8 +70,18 @@ import Layout from '../layouts/Layout.astro';
             <input type="email" id="email" required placeholder="john@example.com">
           </div>
           <div class="form-group">
-            <label for="subject">Subject</label>
-            <input type="text" id="subject" required placeholder="How can we help?">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" required placeholder="+91 9876543210">
+          </div>
+          <div class="form-group" style="display: flex; gap: 1rem;">
+            <div style="flex: 1;">
+              <label for="department">Department</label>
+              <input type="text" id="department" required placeholder="e.g. CSE (AI&ML)">
+            </div>
+            <div style="flex: 1;">
+              <label for="year">Year</label>
+              <input type="text" id="year" required placeholder="e.g. 2nd Year">
+            </div>
           </div>
           <div class="form-group">
             <label for="message">Message</label>
@@ -62,15 +90,271 @@ import Layout from '../layouts/Layout.astro';
           <button type="submit" class="btn btn-primary w-full">Send Message</button>
         </form>
       </div>
+      </div>
     </div>
   </section>
+  </div>
 </Layout>
 
+<script>
+  function init3DWave() {
+    const canvas = document.getElementById('contact-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    
+    let width, height;
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+    
+    const rows = 45;
+    const cols = 75;
+    const spacing = 40;
+    const points = [];
+    
+    for (let z = 0; z < rows; z++) {
+      for (let x = 0; x < cols; x++) {
+        points.push({
+          x: (x - cols / 2) * spacing,
+          z: (z - rows / 2) * spacing,
+          y: 0
+        });
+      }
+    }
+    
+    let time = 0;
+    let targetRotationX = 1.1; 
+    let targetRotationY = 0;
+    let rotationX = 1.1;
+    let rotationY = 0;
+    
+    window.addEventListener('mousemove', (e) => {
+      const mouseX = e.clientX - width / 2;
+      const mouseY = e.clientY - height / 2;
+      targetRotationY = mouseX * 0.0002;
+      targetRotationX = 1.1 + mouseY * 0.0002;
+    });
+    
+    window.addEventListener('mouseleave', () => {
+      targetRotationY = 0;
+      targetRotationX = 1.1;
+    });
+    
+    let animationId;
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      time += 0.008; 
+      
+      rotationX += (targetRotationX - rotationX) * 0.02;
+      rotationY += (targetRotationY - rotationY) * 0.02;
+      
+      const cosX = Math.cos(rotationX);
+      const sinX = Math.sin(rotationX);
+      const cosY = Math.cos(rotationY);
+      const sinY = Math.sin(rotationY);
+      
+      const points2D = [];
+      
+      for (let z = 0; z < rows; z++) {
+        points2D[z] = [];
+        for (let x = 0; x < cols; x++) {
+          const index = z * cols + x;
+          const p = points[index];
+          
+          const y = Math.sin(p.x * 0.015 + time) * 60 + Math.cos(p.z * 0.02 + time) * 50;
+          
+          const x1 = p.x * cosY + p.z * sinY;
+          const z1 = -p.x * sinY + p.z * cosY;
+          
+          const y2 = y * cosX - z1 * sinX;
+          const z2 = y * sinX + z1 * cosX;
+          
+          const distance = 1200; 
+          const scale = 1000 / (distance + z2);
+          const x3 = x1 * scale + width / 2;
+          const y3 = y2 * scale + height / 2 + 150; 
+          
+          points2D[z].push({ x: x3, y: y3, z: z2, h: y });
+        }
+      }
+      
+      for (let z = 0; z < rows - 1; z++) {
+        for (let x = 0; x < cols - 1; x++) {
+          const p = points2D[z][x];
+          const right = points2D[z][x+1];
+          const down = points2D[z+1][x];
+          
+          const opacity = Math.max(0, 1 - (p.z / 800));
+          if (opacity <= 0.01) continue;
+          
+          const intensity = Math.max(0, Math.min(1, (p.h + 100) / 200));
+          const r = 0;
+          const g = Math.floor(114 + (210 - 114) * intensity);
+          const b = Math.floor(206 + (255 - 206) * intensity);
+          
+          ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${opacity * 0.6})`;
+          ctx.lineWidth = intensity > 0.6 ? 2 : 1;
+          
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(right.x, right.y);
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(down.x, down.y);
+          ctx.stroke();
+          
+          if (intensity > 0.8) {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(0, 255, 255, ${opacity})`;
+            ctx.fill();
+          }
+        }
+      }
+      
+      animationId = requestAnimationFrame(animate);
+    }
+    
+    animate();
+    
+    document.addEventListener('astro:before-swap', () => {
+      cancelAnimationFrame(animationId);
+      window.removeEventListener('resize', resize);
+    }, { once: true });
+  }
+
+  function initScrollAnimations() {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.animate-fade-up').forEach(el => {
+      observer.observe(el);
+    });
+  }
+
+  function initContactForm() {
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+    
+    const newForm = form.cloneNode(true);
+    form.parentNode.replaceChild(newForm, form);
+    
+    newForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const btn = newForm.querySelector('button[type="submit"]');
+      const originalText = btn.textContent;
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      
+      fetch("https://formsubmit.co/ajax/acmvjit@gmail.com", {
+          method: "POST",
+          headers: { 
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+              Name: newForm.querySelector('#name').value,
+              Email: newForm.querySelector('#email').value,
+              Phone: newForm.querySelector('#phone').value,
+              Department: newForm.querySelector('#department').value,
+              Year: newForm.querySelector('#year').value,
+              Message: newForm.querySelector('#message').value
+          })
+      })
+      .then(response => response.json())
+      .then(data => {
+          alert("Message sent! (Note: Since this is the first time, please check acmvjit@gmail.com to activate the form)");
+          newForm.reset();
+          btn.textContent = originalText;
+          btn.disabled = false;
+      })
+      .catch(error => {
+          console.error(error);
+          alert("Oops! Something went wrong.");
+          btn.textContent = originalText;
+          btn.disabled = false;
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    init3DWave();
+    initScrollAnimations();
+    initContactForm();
+  });
+  document.addEventListener('astro:page-load', () => {
+    init3DWave();
+    initScrollAnimations();
+    initContactForm();
+  });
+</script>
+
 <style>
+  /* --- Fixed Page Background --- */
+  .page-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    pointer-events: none;
+  }
+
+  #contact-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .gradient-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 0%, rgba(255,255,255,0.7) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .relative-z {
+    position: relative;
+    z-index: 10;
+  }
+
+  .animate-fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  
+  .animate-fade-up.visible {
+    animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
   .page-header {
-    background: var(--bg-secondary);
+    background: transparent;
     padding: 6rem 0 4rem;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: none;
   }
 
   .contact-container {
@@ -95,7 +379,7 @@ import Layout from '../layouts/Layout.astro';
 
   .info-item .icon {
     font-size: 2rem;
-    background: var(--bg-secondary);
+    background: rgba(0, 114, 206, 0.08);
     width: 60px;
     height: 60px;
     display: flex;
@@ -103,6 +387,7 @@ import Layout from '../layouts/Layout.astro';
     justify-content: center;
     border-radius: 50%;
     color: var(--primary-color);
+    border: 1px solid rgba(0, 114, 206, 0.1);
   }
 
   .info-item h4 {
@@ -114,12 +399,35 @@ import Layout from '../layouts/Layout.astro';
     margin: 0;
   }
 
+  .address-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .address-link:hover {
+    color: var(--primary-color);
+  }
+
+  .map-container {
+    margin-top: 2.5rem;
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
   .contact-form {
-    background: #fff;
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     padding: 2.5rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    box-shadow: 0 4px 30px rgba(0, 114, 206, 0.05);
+    border: 1px solid rgba(0, 114, 206, 0.1);
   }
 
   .form-group {
@@ -136,19 +444,33 @@ import Layout from '../layouts/Layout.astro';
   .form-group input,
   .form-group textarea {
     width: 100%;
-    padding: 0.75rem 1rem;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
+    padding: 0.85rem 1rem;
+    border: 1px solid rgba(0, 114, 206, 0.2);
+    border-radius: 10px;
     font-family: inherit;
     font-size: 1rem;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    color: var(--text-main);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.4) 100%);
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.9), 0 4px 12px rgba(0, 0, 0, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, background 0.3s ease;
+  }
+
+  .form-group div label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
   }
 
   .form-group input:focus,
   .form-group textarea:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(0, 114, 206, 0.1);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.8) 100%);
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.9), 0 0 0 3px rgba(0, 114, 206, 0.15), 0 8px 20px rgba(0, 114, 206, 0.1);
+    transform: translateY(-2px);
   }
 
   .w-full {

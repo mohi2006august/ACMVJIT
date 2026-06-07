@@ -3,15 +3,19 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Events">
-  <!-- 3D Wave Hero Section (Same as About page) -->
-  <div class="hero-section">
+  <!-- Fixed Page Background with 3D Wave -->
+  <div class="page-background">
     <canvas id="hero-canvas"></canvas>
-    <div class="hero-overlay"></div>
-    <div class="container hero-content text-center">
-      <h1 class="animate-fade-up">Our <span class="text-primary">Events</span></h1>
-      <p class="hero-subtitle animate-fade-up delay-2">Discover our upcoming activities, tech sessions, and massive hackathons, or browse through our past memories.</p>
-    </div>
+    <div class="gradient-overlay"></div>
   </div>
+
+  <div class="relative-z">
+    <div class="hero-section">
+      <div class="container hero-content text-center">
+        <h1 class="animate-fade-up">Our <span class="text-primary">Events</span></h1>
+        <p class="hero-subtitle animate-fade-up delay-2">Discover our upcoming activities, tech sessions, and massive hackathons, or browse through our past memories.</p>
+      </div>
+    </div>
 
   <section class="section py-16">
     <div class="container">
@@ -135,6 +139,7 @@ import Layout from '../layouts/Layout.astro';
 
     </div>
   </section>
+  </div>
 </Layout>
 
 <script>
@@ -147,7 +152,7 @@ import Layout from '../layouts/Layout.astro';
     let width, height;
     function resize() {
       width = canvas.width = window.innerWidth;
-      height = canvas.height = canvas.parentElement.offsetHeight;
+      height = canvas.height = window.innerHeight;
     }
     window.addEventListener('resize', resize);
     resize();
@@ -331,37 +336,46 @@ import Layout from '../layouts/Layout.astro';
 </script>
 
 <style>
-  /* --- Hero Section & 3D Wave --- */
-  .hero-section {
-    position: relative;
-    height: 45vh;
-    min-height: 400px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f8fafc;
+  /* --- Fixed Page Background --- */
+  .page-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
     overflow: hidden;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    pointer-events: none;
   }
 
   #hero-canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1;
-    pointer-events: auto; /* allows mouse interaction */
+    display: block;
   }
 
-  .hero-overlay {
+  .gradient-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at center, transparent 0%, #f8fafc 100%);
-    z-index: 2;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 0%, rgba(255,255,255,0.7) 100%);
     pointer-events: none;
+    z-index: 1;
+  }
+
+  .relative-z {
+    position: relative;
+    z-index: 10;
+  }
+
+  /* --- Hero Section --- */
+  .hero-section {
+    position: relative;
+    padding: 6rem 0 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
   }
 
   .hero-content {
@@ -429,10 +443,12 @@ import Layout from '../layouts/Layout.astro';
   .event-card {
     display: flex;
     align-items: center;
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     padding: 2rem 2.5rem;
     border-radius: 24px;
-    border: 1px solid rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 114, 206, 0.1);
     box-shadow: 0 4px 20px rgba(0,0,0,0.03);
     position: relative;
     overflow: hidden;
