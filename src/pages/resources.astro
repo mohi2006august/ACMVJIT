@@ -536,12 +536,14 @@ import Layout from '../layouts/Layout.astro';
     border: 1px solid rgba(0, 114, 206, 0.15);
     border-radius: 16px;
     padding: 1.5rem;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     display: flex;
     flex-direction: column;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    /* Soft ambient backlighting */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03), 
+                0 0 20px rgba(0, 114, 206, 0.06);
   }
 
   .resource-card::before {
@@ -558,9 +560,13 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .resource-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 114, 206, 0.1);
-    border-color: rgba(0, 114, 206, 0.3);
+    transform: translateY(-6px) scale(1.02);
+    /* Premium glowing backlighting effect */
+    box-shadow: 0 20px 40px rgba(0, 114, 206, 0.15),
+                0 0 50px rgba(0, 114, 206, 0.25),
+                0 0 20px rgba(0, 114, 206, 0.1) inset;
+    border-color: rgba(0, 114, 206, 0.5);
+    z-index: 10;
   }
 
   .resource-card:hover::before {
