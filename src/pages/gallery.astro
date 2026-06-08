@@ -54,9 +54,10 @@ import galleryData from '../data/gallery.json';
     window.addEventListener('resize', resize);
     resize();
 
-    const rows = 45;
-    const cols = 75;
-    const spacing = 40;
+    const isMobile = window.innerWidth < 768;
+    const rows = isMobile ? 20 : 45;
+    const cols = isMobile ? 35 : 75;
+    const spacing = isMobile ? 60 : 40;
     const points = [];
     
     for (let z = 0; z < rows; z++) {
@@ -231,7 +232,7 @@ import galleryData from '../data/gallery.json';
       }
 
       // --- Carousel Math ---
-      if (autoRotate && !isDragging) targetAngle -= 0.08; 
+      if (autoRotate && !isDragging) targetAngle -= 0.04; 
       currAngle += (targetAngle - currAngle) * 0.08;
       
       mouseX += (targetMouseX - mouseX) * 0.05;
@@ -341,9 +342,14 @@ import galleryData from '../data/gallery.json';
     border-radius: 16px;
     transform-style: preserve-3d; 
     transform: rotateY(calc(var(--index) * 24deg)) translateZ(850px);
-    -webkit-box-reflect: below 20px linear-gradient(transparent 20%, transparent 60%, rgba(255,255,255,0.6));
     transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
     will-change: filter, transform;
+  }
+
+  @media (min-width: 768px) {
+    .carousel-item {
+      -webkit-box-reflect: below 20px linear-gradient(transparent 20%, transparent 60%, rgba(255,255,255,0.6));
+    }
   }
 
   .image-wrapper {
@@ -440,8 +446,14 @@ import galleryData from '../data/gallery.json';
 
   /* Dim non-active items heavily */
   .carousel-item:not(.active) {
-    filter: saturate(0.2) blur(2px);
+    filter: saturate(0.5); /* Less heavy filter for mobile */
     opacity: 0.6;
+  }
+
+  @media (min-width: 768px) {
+    .carousel-item:not(.active) {
+      filter: saturate(0.2) blur(2px);
+    }
   }
 
   .animate-fade-up {
