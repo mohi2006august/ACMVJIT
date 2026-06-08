@@ -1,14 +1,24 @@
 # ACM VJIT Student Chapter Website
 
-Welcome to the unofficial repository for the **ACM VJIT Student Chapter** website. This project is a modern, high-performance web application designed to showcase the community, events, and leadership of the chapter with premium UI aesthetics and fluid animations.
+Welcome to the unofficial repository for the **ACM VJIT Student Chapter** website. This project is a modern, high-performance web application designed to showcase the community, events, resources, and leadership of the chapter with premium UI aesthetics and fluid animations.
+
+Designed and developed by **MOHAMMED MOHIUDDIN**.
+
+## ✨ Key Features
+
+- **Premium UI/UX**: Custom design system featuring glassmorphism, dynamic fluid gradients, animated 3D network backgrounds, and responsive CSS grid/flex layouts.
+- **Learning Hub (Resources)**: 
+  - **Dev Tools & Cheatsheets**: Print-ready, interactive quick-reference guides for Git, Linux, Docker, SQL, JavaScript, React, Python, CSS, and Regex.
+  - **Comprehensive Roadmaps**: Detailed, multi-stage learning paths for DSA Mastery, Full Stack Development, AI/ML, DevOps & Cloud, and Competitive Programming.
+- **Data-Driven Architecture**: The Team (Executive Board, Core Committee, Web Masters), Events, and Gallery are powered by local JSON files for effortless content management.
+- **Maximum Performance**: Powered by Astro's Static Site Generation (SSG) and ViewTransitions API for seamless, SPA-like navigation without the heavy JavaScript overhead.
 
 ## 🚀 Tech Stack
 
 This project is built using a lightweight but incredibly fast stack:
-- **Framework**: [Astro](https://astro.build/) (Static Site Generation for maximum speed).
-- **Styling**: Pure Vanilla CSS. We use a custom, modern design system featuring glassmorphism, fluid gradients, and CSS grid/flexbox layouts. No heavy CSS frameworks (like Tailwind or Bootstrap) are used, keeping the bundle size tiny and the CSS highly customizable.
-- **Interactivity**: Vanilla JavaScript for scroll-reveals, terminal typing animations, and custom interactions.
-- **Page Transitions**: Powered by Astro's ViewTransitions API for seamless, SPA-like navigation between pages.
+- **Framework**: [Astro](https://astro.build/)
+- **Styling**: Pure Vanilla CSS. No heavy CSS frameworks (like Tailwind or Bootstrap) are used, keeping the bundle size tiny and the CSS highly customizable.
+- **Interactivity**: Vanilla JavaScript.
 
 ## 🛠️ Getting Started
 
@@ -40,9 +50,11 @@ Here is a quick breakdown of where everything lives so you can easily navigate t
 ├── public/                # Static assets like favicons, raw images, and global fonts.
 ├── src/
 │   ├── components/        # Reusable UI elements (e.g., Navbar.astro, Footer.astro)
-│   ├── data/              # JSON files for dynamic content (e.g., leads.json)
+│   ├── data/              # JSON files for dynamic content (e.g., leads.json, gallery.json)
 │   ├── layouts/           # Page wrappers. Layout.astro holds the global CSS and <head> tags.
 │   └── pages/             # Route files. Each .astro file here becomes a URL (e.g., index.astro -> /)
+│       ├── cheatsheets/   # Markdown pages for tech cheatsheets
+│       └── roadmaps/      # Astro pages containing the learning paths
 └── package.json           # Project metadata and scripts
 ```
 
@@ -50,14 +62,15 @@ Here is a quick breakdown of where everything lives so you can easily navigate t
 
 We have designed the architecture so that updating standard content is as frictionless as possible.
 
-### Updating Institution Leads (Team)
-The institution leads (shown on the home page) are powered by a JSON data file, meaning you **do not need to write HTML/CSS to update team members**.
-1. Open `src/data/leads.json`.
-2. Add, remove, or modify the objects in the array. 
-3. Available fields:
-   - `"name"`: The person's full name.
-   - `"role"`: Their position (e.g., "Chairperson").
-   - `"photo"`: An absolute URL or a relative path from the `public/` directory (e.g., `"/images/alex.jpg"`). If left empty `""`, the UI will automatically generate a colored fallback avatar using their first initial.
+### Updating Team Members
+The team pages are powered by JSON data files, meaning you **do not need to write HTML/CSS to update team members**.
+- Open `src/data/leads.json` to update the top-level Institution Leads.
+- Open `src/data/chapterLeads.json` to update the Executive Board, Core Committee, and Web Masters.
+- Available fields generally include `"name"`, `"role"`, `"photo"`, and social links. If a photo path is left empty `""`, the UI will automatically generate a colored fallback avatar using their first initial.
+
+### Updating the Gallery
+1. Open `src/data/gallery.json`.
+2. Add new objects to the array with an `"image"` URL and a `"caption"`.
 
 ### Modifying the Global Theme (Colors & Fonts)
 All global design tokens are stored as CSS variables (`--primary-color`, `--bg-color`, etc.) inside `src/layouts/Layout.astro`. To re-theme the entire website, simply adjust these root variables in the `<style is:global>` tag.
