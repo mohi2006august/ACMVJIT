@@ -23,27 +23,27 @@ import Layout from '../layouts/Layout.astro';
         </h2>
         <div class="divider"></div>
         <div class="list">
-          <a href="#" class="list-item">
+          <a href="/roadmaps/dsa" class="list-item">
             <span class="icon-arrow">›</span>
             <span class="text">DSA Mastery Roadmap</span>
             <span class="action">View</span>
           </a>
-          <a href="#" class="list-item">
+          <a href="/roadmaps/fullstack" class="list-item">
             <span class="icon-arrow">›</span>
             <span class="text">Full Stack Development</span>
             <span class="action">View</span>
           </a>
-          <a href="#" class="list-item">
+          <a href="/roadmaps/aiml" class="list-item">
             <span class="icon-arrow">›</span>
             <span class="text">AI/ML Fundamentals</span>
             <span class="action">View</span>
           </a>
-          <a href="#" class="list-item">
+          <a href="/roadmaps/devops" class="list-item">
             <span class="icon-arrow">›</span>
             <span class="text">DevOps & Cloud</span>
             <span class="action">View</span>
           </a>
-          <a href="#" class="list-item">
+          <a href="/roadmaps/cp" class="list-item">
             <span class="icon-arrow">›</span>
             <span class="text">Competitive Programming</span>
             <span class="action">View</span>
@@ -57,61 +57,130 @@ import Layout from '../layouts/Layout.astro';
           <span class="icon">🛠️</span> Dev Tools & Cheatsheets
         </h2>
         <div class="divider"></div>
-        <div class="list">
-          <div class="list-item">
-            <span class="icon-arrow">›</span>
-            <span class="text">Git Commands Cheatsheet</span>
-            <div class="action-group">
-              <a href="#" class="action">View</a>
-              <a href="#" class="action download">Download <span class="action-icon">↓</span></a>
+        <div class="grid-layout">
+          <div class="resource-card">
+            <div class="card-header">
+              <div class="card-icon" style="background: rgba(241, 80, 47, 0.1); color: #f1502f;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 14v4M15 14a2 2 0 100-4 2 2 0 000 4zM9 10a2 2 0 100-4 2 2 0 000 4zm0 0v8a2 2 0 100 4 2 2 0 000-4v-8z"></path></svg>
+              </div>
+              <h3 class="card-title">Git Commands</h3>
+            </div>
+            <p class="card-desc">Master version control with this quick reference for branches, merges, and remotes.</p>
+            <div class="card-actions">
+              <a href="/cheatsheets/git" class="action">View Guide</a>
+              <a href="/cheatsheets/git?print=true" class="action-icon" title="Download PDF">↓</a>
             </div>
           </div>
-          <div class="list-item">
-            <span class="icon-arrow">›</span>
-            <span class="text">Linux Terminal Guide</span>
-            <div class="action-group">
-              <a href="#" class="action">View</a>
-              <a href="#" class="action download">Download <span class="action-icon">↓</span></a>
+          
+          <div class="resource-card">
+            <div class="card-header">
+              <div class="card-icon" style="background: rgba(0, 0, 0, 0.1); color: #000;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+              </div>
+              <h3 class="card-title">Linux Terminal</h3>
+            </div>
+            <p class="card-desc">Essential bash commands for navigation, permissions, and process management.</p>
+            <div class="card-actions">
+              <a href="/cheatsheets/linux" class="action">View Guide</a>
+              <a href="/cheatsheets/linux?print=true" class="action-icon" title="Download PDF">↓</a>
             </div>
           </div>
-          <div class="list-item">
-            <span class="icon-arrow">›</span>
-            <span class="text">Docker Quick Reference</span>
-            <div class="action-group">
-              <a href="#" class="action">View</a>
-              <a href="#" class="action download">Download <span class="action-icon">↓</span></a>
+
+          <div class="resource-card">
+            <div class="card-header">
+              <div class="card-icon" style="background: rgba(36, 150, 237, 0.1); color: #2496ed;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+              </div>
+              <h3 class="card-title">Docker Reference</h3>
+            </div>
+            <p class="card-desc">Containers, images, and docker-compose commands for rapid deployment.</p>
+            <div class="card-actions">
+              <a href="/cheatsheets/docker" class="action">View Guide</a>
+              <a href="/cheatsheets/docker?print=true" class="action-icon" title="Download PDF">↓</a>
             </div>
           </div>
-          <div class="list-item">
-            <span class="icon-arrow">›</span>
-            <span class="text">SQL Query Patterns</span>
-            <div class="action-group">
-              <a href="#" class="action">View</a>
-              <a href="#" class="action download">Download <span class="action-icon">↓</span></a>
+
+          <div class="resource-card">
+            <div class="card-header">
+              <div class="card-icon" style="background: rgba(51, 103, 145, 0.1); color: #336791;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+              </div>
+              <h3 class="card-title">SQL Patterns</h3>
+            </div>
+            <p class="card-desc">Common queries, joins, and aggregations for relational database mastery.</p>
+            <div class="card-actions">
+              <a href="/cheatsheets/sql" class="action">View Guide</a>
+              <a href="/cheatsheets/sql?print=true" class="action-icon" title="Download PDF">↓</a>
             </div>
           </div>
-          <div class="list-item">
-            <span class="icon-arrow">›</span>
-            <span class="text">JavaScript (ES6+)</span>
-            <div class="action-group">
-              <a href="#" class="action">View</a>
-              <a href="#" class="action download">Download <span class="action-icon">↓</span></a>
+
+          <div class="resource-card">
+            <div class="card-header">
+              <div class="card-icon" style="background: rgba(247, 223, 30, 0.15); color: #d4b800;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+              </div>
+              <h3 class="card-title">JavaScript ES6+</h3>
+            </div>
+            <p class="card-desc">Modern JS features, array methods, promises, and destructuring.</p>
+            <div class="card-actions">
+              <a href="/cheatsheets/javascript" class="action">View Guide</a>
+              <a href="/cheatsheets/javascript?print=true" class="action-icon" title="Download PDF">↓</a>
             </div>
           </div>
-          <div class="list-item">
-            <span class="icon-arrow">›</span>
-            <span class="text">React.js Essentials</span>
-            <div class="action-group">
-              <a href="#" class="action">View</a>
-              <a href="#" class="action download">Download <span class="action-icon">↓</span></a>
+
+          <div class="resource-card">
+            <div class="card-header">
+              <div class="card-icon" style="background: rgba(97, 218, 251, 0.15); color: #00a4d3;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+              </div>
+              <h3 class="card-title">React.js Core</h3>
+            </div>
+            <p class="card-desc">Hooks, state management, context API, and component lifecycles.</p>
+            <div class="card-actions">
+              <a href="/cheatsheets/react" class="action">View Guide</a>
+              <a href="/cheatsheets/react?print=true" class="action-icon" title="Download PDF">↓</a>
             </div>
           </div>
-          <div class="list-item">
-            <span class="icon-arrow">›</span>
-            <span class="text">Python 3 Basics</span>
-            <div class="action-group">
-              <a href="#" class="action">View</a>
-              <a href="#" class="action download">Download <span class="action-icon">↓</span></a>
+
+          <div class="resource-card">
+            <div class="card-header">
+              <div class="card-icon" style="background: rgba(55, 118, 171, 0.1); color: #3776ab;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l4.5 3v6l-4.5 3-4.5-3V5z"></path><path d="M12 22l-4.5-3v-6l4.5-3 4.5 3v6z"></path></svg>
+              </div>
+              <h3 class="card-title">Python 3 Basics</h3>
+            </div>
+            <p class="card-desc">List comprehensions, dictionaries, and standard library essentials.</p>
+            <div class="card-actions">
+              <a href="/cheatsheets/python" class="action">View Guide</a>
+              <a href="/cheatsheets/python?print=true" class="action-icon" title="Download PDF">↓</a>
+            </div>
+          </div>
+          
+          <div class="resource-card">
+            <div class="card-header">
+              <div class="card-icon" style="background: rgba(228, 77, 38, 0.1); color: #e44d26;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+              </div>
+              <h3 class="card-title">CSS Grid & Flexbox</h3>
+            </div>
+            <p class="card-desc">Visual layouts, alignment, and responsive design properties.</p>
+            <div class="card-actions">
+              <a href="/cheatsheets/css" class="action">View Guide</a>
+              <a href="/cheatsheets/css?print=true" class="action-icon" title="Download PDF">↓</a>
+            </div>
+          </div>
+          
+          <div class="resource-card">
+            <div class="card-header">
+              <div class="card-icon" style="background: rgba(139, 92, 246, 0.1); color: #8b5cf6;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+              </div>
+              <h3 class="card-title">Regex Patterns</h3>
+            </div>
+            <p class="card-desc">Quickly craft regular expressions for validation and parsing.</p>
+            <div class="card-actions">
+              <a href="/cheatsheets/regex" class="action">View Guide</a>
+              <a href="/cheatsheets/regex?print=true" class="action-icon" title="Download PDF">↓</a>
             </div>
           </div>
         </div>
@@ -448,10 +517,88 @@ import Layout from '../layouts/Layout.astro';
     color: #0072CE;
   }
 
-  .action-group {
+  /* --- Card Grid Layout --- */
+  .grid-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .resource-card {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 114, 206, 0.15);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
-    gap: 0.75rem;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  }
+
+  .resource-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--primary-color);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: left;
+  }
+
+  .resource-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 114, 206, 0.1);
+    border-color: rgba(0, 114, 206, 0.3);
+  }
+
+  .resource-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .card-header {
+    display: flex;
     align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .card-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .card-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1.2;
+  }
+
+  .card-desc {
+    color: #64748b;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+  }
+
+  .card-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    padding-top: 1rem;
   }
 
   .action {
@@ -460,33 +607,33 @@ import Layout from '../layouts/Layout.astro';
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 1px;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    display: inline-block;
     transition: all 0.3s ease;
-    background: rgba(0, 114, 206, 0.1);
-    padding: 0.5rem 1rem;
-    border-radius: 99px;
     text-decoration: none;
   }
 
   .action:hover {
-    background: rgba(0, 114, 206, 0.2);
-    transform: translateY(-2px);
-  }
-
-  .action.download {
-    background: var(--primary-color);
-    color: #ffffff;
-  }
-
-  .action.download:hover {
-    box-shadow: 0 4px 15px rgba(0, 114, 206, 0.4);
-    background: #0060ad;
+    color: #005599;
   }
 
   .action-icon {
-    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(0, 114, 206, 0.1);
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: bold;
+  }
+
+  .action-icon:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
   }
 
   /* --- Animations --- */
