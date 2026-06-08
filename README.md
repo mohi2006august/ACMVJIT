@@ -1,6 +1,6 @@
 # ACM VJIT Student Chapter Website
 
-Welcome to the official repository for the **ACM VJIT Student Chapter** website. This project is a modern, high-performance web application designed to showcase the community, events, and leadership of the chapter with premium UI aesthetics and fluid animations.
+Welcome to the unofficial repository for the **ACM VJIT Student Chapter** website. This project is a modern, high-performance web application designed to showcase the community, events, and leadership of the chapter with premium UI aesthetics and fluid animations.
 
 ## 🚀 Tech Stack
 
