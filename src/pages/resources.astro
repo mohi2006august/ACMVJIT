@@ -371,18 +371,20 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .resource-card {
-    background: rgba(255, 255, 255, 0.95);
-    border: 1px solid rgba(0, 114, 206, 0.15);
-    border-radius: 16px;
-    padding: 1.5rem;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 24px;
+    padding: 2rem;
+    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
     display: flex;
     flex-direction: column;
     position: relative;
     overflow: hidden;
-    /* Soft ambient backlighting */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03), 
-                0 0 20px rgba(0, 114, 206, 0.06);
+    box-shadow: 
+      0 10px 30px rgba(0, 0, 0, 0.04), 
+      inset 0 0 0 1px rgba(255, 255, 255, 0.5);
   }
 
   .resource-card::before {
@@ -391,25 +393,33 @@ import Layout from '../layouts/Layout.astro';
     top: 0;
     left: 0;
     width: 100%;
-    height: 4px;
-    background: var(--primary-color);
+    height: 6px;
+    background: linear-gradient(90deg, var(--primary-color), #00d2ff, #8b5cf6, var(--primary-color));
+    background-size: 300% 100%;
     transform: scaleX(0);
-    transition: transform 0.3s ease;
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
     transform-origin: left;
   }
 
   .resource-card:hover {
-    transform: translateY(-6px) scale(1.02);
-    /* Premium glowing backlighting effect */
-    box-shadow: 0 20px 40px rgba(0, 114, 206, 0.15),
-                0 0 50px rgba(0, 114, 206, 0.25),
-                0 0 20px rgba(0, 114, 206, 0.1) inset;
-    border-color: rgba(0, 114, 206, 0.5);
+    transform: translateY(-10px) scale(1.02);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 
+      0 30px 60px rgba(0, 114, 206, 0.12),
+      0 10px 20px rgba(0, 0, 0, 0.05),
+      inset 0 0 0 1px rgba(255, 255, 255, 1);
+    border-color: rgba(0, 114, 206, 0.3);
     z-index: 10;
   }
 
   .resource-card:hover::before {
     transform: scaleX(1);
+    animation: gradientMove 3s linear infinite;
+  }
+
+  @keyframes gradientMove {
+    0% { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
   }
 
   .card-header {
@@ -420,13 +430,19 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .card-icon {
-    width: 45px;
-    height: 45px;
-    border-radius: 12px;
+    width: 55px;
+    height: 55px;
+    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.06);
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .resource-card:hover .card-icon {
+    transform: scale(1.1) rotate(-5deg);
   }
 
   .card-title {
@@ -472,20 +488,22 @@ import Layout from '../layouts/Layout.astro';
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     background: rgba(0, 114, 206, 0.1);
     color: var(--primary-color);
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
     font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 114, 206, 0.15);
   }
 
   .action-icon:hover {
     background: var(--primary-color);
     color: white;
-    transform: translateY(-2px);
+    transform: translateY(-4px) scale(1.1);
+    box-shadow: 0 10px 20px rgba(0, 114, 206, 0.3);
   }
 
   /* --- Designer Badge --- */
