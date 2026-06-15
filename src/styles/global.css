@@ -5,7 +5,7 @@
   --primary-color: #0072CE; /* ACM Blue */
   --secondary-color: #005A9C;
   --text-main: #1a1a1a;
-  --text-muted: #666666;
+  --text-muted: #4a5568;
   --bg-main: #ffffff;
   --bg-secondary: #f4f7f9;
   --border-color: #e5e7eb;
@@ -37,18 +37,21 @@ ul {
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 700;
   line-height: 1.2;
-  margin-bottom: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.25rem;
+  color: var(--text-main);
 }
 
-h1 { font-size: 3rem; }
-h2 { font-size: 2.25rem; }
-h3 { font-size: 1.75rem; }
+h1 { font-size: 3rem; font-weight: 800; letter-spacing: -0.02em; }
+h2 { font-size: 2.25rem; font-weight: 700; }
+h3 { font-size: 1.75rem; font-weight: 600; }
 
 p {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   color: var(--text-muted);
+  max-width: 70ch;
+  line-height: 1.6;
 }
 
 /* Layout Classes */
@@ -64,26 +67,31 @@ p {
 
 /* Buttons */
 .btn {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1.05rem;
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;
+  letter-spacing: 0.01em;
 }
 
 .btn-primary {
   background-color: var(--primary-color);
+  background-image: linear-gradient(135deg, var(--primary-color), #00d2ff);
   color: #fff;
   border: none;
-  box-shadow: 0 4px 6px rgba(0, 114, 206, 0.2);
+  box-shadow: 0 8px 15px rgba(0, 114, 206, 0.25);
 }
 
 .btn-primary:hover {
-  background-color: var(--secondary-color);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 114, 206, 0.3);
+  background-image: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+  transform: translateY(-3px);
+  box-shadow: 0 12px 20px rgba(0, 114, 206, 0.35);
 }
 
 .btn-outline {
@@ -99,6 +107,7 @@ p {
 
 /* Utils */
 .text-center { text-align: center; }
+.text-center p { margin-left: auto; margin-right: auto; }
 .mb-2 { margin-bottom: 0.5rem; }
 .mb-4 { margin-bottom: 1rem; }
 .mb-8 { margin-bottom: 2rem; }
