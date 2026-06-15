@@ -15,26 +15,32 @@ import Layout from '../layouts/Layout.astro';
   <section class="section py-16">
     <div class="container">
       
+      <!-- Event Tabs -->
+      <div class="event-tabs-container mb-12 scroll-reveal">
+        <button class="event-tab active" data-target="upcoming">Upcoming Events</button>
+        <button class="event-tab" data-target="past">Past Events</button>
+      </div>
+
       <!-- Upcoming Events Section -->
-      <h2 class="section-title text-center scroll-reveal mb-12">Upcoming Events</h2>
-      <div class="events-list">
-        <!-- Placeholder for upcoming events -->
-        <div class="event-card scroll-reveal delay-1" style="justify-content: center; text-align: center; padding: 4rem;">
-          <div class="event-details" style="display: flex; flex-direction: column; align-items: center;">
-            <div class="icon-box" style="width: 80px; height: 80px; background: rgba(0,114,206,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; color: #0072ce;">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 40px; height: 40px;">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-              </svg>
+      <div id="upcoming" class="event-section active">
+        <div class="events-list">
+          <!-- Placeholder for upcoming events -->
+          <div class="event-card" style="justify-content: center; text-align: center; padding: 4rem;">
+            <div class="event-details" style="display: flex; flex-direction: column; align-items: center;">
+              <div class="icon-box" style="width: 80px; height: 80px; background: rgba(0,114,206,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; color: #0072ce;">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 40px; height: 40px;">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                </svg>
+              </div>
+              <h3 style="font-size: 2rem; margin-bottom: 0.5rem; font-weight: 800; color: #1a1a1a;">Stay Tuned!</h3>
+              <p style="font-size: 1.1rem; color: #555; max-width: 500px; margin: 0 auto;">We are currently brewing up some amazing new events, hackathons, and sessions. Check back soon for updates!</p>
             </div>
-            <h3 style="font-size: 2rem; margin-bottom: 0.5rem; font-weight: 800; color: #1a1a1a;">Stay Tuned!</h3>
-            <p style="font-size: 1.1rem; color: #555; max-width: 500px; margin: 0 auto;">We are currently brewing up some amazing new events, hackathons, and sessions. Check back soon for updates!</p>
           </div>
         </div>
       </div>
       
       <!-- Past Events Section -->
-      <div class="mt-24">
-        <h2 class="section-title text-center scroll-reveal mb-12">Past Events</h2>
+      <div id="past" class="event-section">
         <div class="events-list">
           
           <!-- ACM Launchpad -->
@@ -181,14 +187,35 @@ import Layout from '../layouts/Layout.astro';
     });
   }
 
+  function initEventTabs() {
+    const tabs = document.querySelectorAll('.event-tab');
+    const sections = document.querySelectorAll('.event-section');
+
+    tabs.forEach(tab => {
+      const newTab = tab.cloneNode(true);
+      tab.parentNode.replaceChild(newTab, tab);
+
+      newTab.addEventListener('click', () => {
+        document.querySelectorAll('.event-tab').forEach(t => t.classList.remove('active'));
+        newTab.classList.add('active');
+
+        sections.forEach(s => s.classList.remove('active'));
+        const targetId = newTab.getAttribute('data-target');
+        document.getElementById(targetId).classList.add('active');
+      });
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     initScrollAnimations();
     initReadMore();
+    initEventTabs();
   });
   
   document.addEventListener('astro:page-load', () => {
     initScrollAnimations();
     initReadMore();
+    initEventTabs();
   });
 </script>
 
@@ -246,6 +273,47 @@ import Layout from '../layouts/Layout.astro';
   .py-16 { padding-top: 4rem; padding-bottom: 8rem; }
   .mt-24 { margin-top: 6rem; }
   .mb-12 { margin-bottom: 3rem; }
+
+  /* --- Event Tabs --- */
+  .event-tabs-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .event-tab {
+    padding: 0.75rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #555;
+    background: rgba(255, 255, 255, 0.6);
+    border: 2px solid transparent;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+  }
+
+  .event-tab:hover {
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--primary-color);
+  }
+
+  .event-tab.active {
+    background: linear-gradient(135deg, var(--primary-color), #00d2ff);
+    color: white;
+    box-shadow: 0 10px 20px rgba(0, 114, 206, 0.2);
+  }
+
+  .event-section {
+    display: none;
+    animation: fadeIn 0.5s ease forwards;
+  }
+
+  .event-section.active {
+    display: block;
+  }
 
   /* --- Simple Animations --- */
   .animate-fade-up {
