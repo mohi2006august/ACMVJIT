@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://acmvjit.vercel.app/sitemap.xml

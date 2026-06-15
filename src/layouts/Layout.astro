@@ -6,21 +6,48 @@ import '../styles/global.css';
 
 interface Props {
 	title: string;
+	description?: string;
+	image?: string;
 	isHome?: boolean;
 }
 
-const { title, isHome = false } = Astro.props;
+const { 
+	title, 
+	description = "The official ACM Student Chapter at Vidya Jyothi Institute of Technology, Dept of CSE(AI&ML). Discover hackathons, coding events, tech seminars, and a vibrant tech community.",
+	image = "https://res.cloudinary.com/dlz7901m4/image/upload/v1780600879/WhatsApp_Image_2026-06-05_at_00.37.57_qbqzp0.jpg",
+	isHome = false 
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://acmvjit.vercel.app');
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="ACM VJIT Student Chapter Website" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+		
+		<!-- Primary Meta Tags -->
 		<title>{title} | ACM VJIT</title>
+		<meta name="title" content={`${title} | ACM VJIT`} />
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalURL} />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:title" content={`${title} | ACM VJIT`} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={image} />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={canonicalURL} />
+		<meta property="twitter:title" content={`${title} | ACM VJIT`} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={image} />
 	</head>
 	<body>
 		{isHome ? (
