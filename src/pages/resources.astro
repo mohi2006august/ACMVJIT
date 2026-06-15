@@ -14,7 +14,10 @@ import Layout from '../layouts/Layout.astro';
       <!-- Learning Paths Container -->
       <div class="glow-container animate-fade-up delay-1">
         <h2 class="section-title">
-          <span class="icon">📚</span> Learning Paths
+          <div class="title-icon-box" style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(139, 92, 246, 0.05)); color: #8b5cf6;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path></svg>
+          </div>
+          Learning Paths
         </h2>
         <div class="divider"></div>
         <div class="list">
@@ -49,7 +52,10 @@ import Layout from '../layouts/Layout.astro';
       <!-- Dev Tools Container -->
       <div class="glow-container mt-12 animate-fade-up delay-2">
         <h2 class="section-title">
-          <span class="icon">🛠️</span> Dev Tools & Cheatsheets
+          <div class="title-icon-box" style="background: linear-gradient(135deg, rgba(0, 114, 206, 0.15), rgba(0, 114, 206, 0.05)); color: #0072ce;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+          </div>
+          Dev Tools & Cheatsheets
         </h2>
         <div class="divider"></div>
         <div class="grid-layout">
@@ -281,13 +287,20 @@ import Layout from '../layouts/Layout.astro';
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     text-transform: uppercase;
     letter-spacing: 1px;
   }
 
-  .section-title .icon {
-    font-size: 1.5rem;
+  .title-icon-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border: 1px solid rgba(255, 255, 255, 0.5);
   }
 
   .divider {
