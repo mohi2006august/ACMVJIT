@@ -2,7 +2,7 @@
 
 Welcome to the official repository for the **ACM VJIT Student Chapter** website. This project is a modern, high-performance web application designed to showcase the community, events, resources, and leadership of the chapter with premium UI aesthetics and fluid animations.
 
-Designed and developed by **MOHAMMED MOHIUDDIN**.
+Designed and developed by **TECH TEAM**.
 
 ## ✨ Key Features:
 
