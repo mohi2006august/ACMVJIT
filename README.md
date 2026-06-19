@@ -85,4 +85,4 @@ All global design tokens are stored as CSS variables (`--primary-color`, `--bg-c
 | `npm run preview`         | Previews your production build locally           |
 
 ---
-*Built with ❤️ for ACM VJIT.*
+*Built by ACM Tech Team.*
