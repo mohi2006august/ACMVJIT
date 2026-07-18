@@ -8,42 +8,25 @@ import leadsData from '../data/leads.json';
   isHome={true}
   description="Welcome to the official ACM VJIT Student Chapter. Join the ultimate CSE(AI&ML) community at Vidya Jyothi Institute of Technology. Explore coding hackathons, technical seminars, open-source projects, and industry networking."
 >
-  <!-- Hero Section (2-Column with Animated Terminal) -->
-  <section class="hero">
-    <div class="container hero-grid">
-      <!-- Left Column: Text -->
-      <div class="hero-content">
-        <div class="hero-glow-orb"></div>
-        <div class="hero-badge"><span class="badge-dot"></span> Advancing Computing Machinery & Research</div>
-        <h1 class="hero-title"><span class="hero-welcome">Welcome to</span><br/><span class="text-gradient-animated">ACM VJIT</span></h1>
-        <p class="hero-subtitle">
-          Empowering the next generation to <span class="text-primary font-bold" id="typewriter">Innovate</span><span class="cursor">|</span>
-          <br/><span class="subtitle-desc">The official ACM Student Chapter at Vidya Jyothi Institute of Technology.</span>
-        </p>
-        <div class="hero-actions">
-          <a href="/events" class="btn btn-primary btn-glow">Upcoming Events</a>
-          <a href="/about" class="btn btn-outline">Learn More</a>
-        </div>
-      </div>
-
-      <!-- Right Column: Animated Code Terminal -->
-      <div class="hero-visual">
-        <div class="terminal-window">
-          <div class="terminal-header">
-            <div class="terminal-dots">
-              <span class="dot red"></span>
-              <span class="dot yellow"></span>
-              <span class="dot green"></span>
-            </div>
-            <div class="terminal-title">join_acm.ts</div>
-          </div>
-          <div class="terminal-body">
-            <pre><code id="code-editor"></code><span class="code-cursor"></span></pre>
+    <!-- Hero Section (Centered Layout) -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <!-- Centered Hero Text Content -->
+        <div class="hero-content">
+          <div class="hero-glow-orb"></div>
+          <div class="hero-badge"><span class="badge-dot"></span> Advancing Computing Machinery & Research</div>
+          <h1 class="hero-title"><span class="hero-welcome">Welcome to</span><br/><span class="text-gradient-animated">ACM VJIT</span></h1>
+          <p class="hero-subtitle">
+            Empowering the next generation to <span class="text-primary font-bold" id="typewriter">Innovate</span><span class="cursor">|</span>
+            <br/><span class="subtitle-desc">The official ACM Student Chapter at Vidya Jyothi Institute of Technology.</span>
+          </p>
+          <div class="hero-actions">
+            <a href="/events" class="btn btn-primary btn-glow">Upcoming Events</a>
+            <a href="/about" class="btn btn-outline">Learn More</a>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
 
   <!-- About Snippet Section -->
@@ -187,65 +170,7 @@ import leadsData from '../data/leads.json';
       setTimeout(typeSubtitle, 1000);
     }
 
-    // 3. Animated Code Terminal Effect
-    const codeSnippet = `import { Student } from '@vjit/core';
-import { ACM } from './chapters';
-
-const you = new Student({
-  passion: 'technology',
-  goal: 'innovate',
-  coffee_cups: Infinity
-});
-
-if (you.wantsToLearn()) {
-  ACM.join(you);
-  console.log("Welcome to the community! 🚀");
-}`;
-    
-    const codeEditor = document.getElementById("code-editor");
-    if(codeEditor) {
-      codeEditor.innerHTML = "";
-      let codeIndex = 0;
-      
-      // Simple syntax highlighting regex (safe from HTML attribute collisions)
-      function highlight(text) {
-        return text
-          .replace(/\b(import|from|const|new|if)\b/g, '<span style="color: #c678dd;">$1</span>')
-          .replace(/({|})/g, '<span style="color: #abb2bf;">$1</span>')
-          .replace(/\b(Student|ACM)\b/g, '<span style="color: #e5c07b;">$1</span>')
-          .replace(/\b(passion|goal|coffee_cups)\b/g, '<span style="color: #e06c75;">$1</span>')
-          .replace(/\b(Infinity)\b/g, '<span style="color: #d19a66;">$1</span>')
-          .replace(/'technology'/g, '<span style="color: #98c379;">\'technology\'</span>')
-          .replace(/'innovate'/g, '<span style="color: #98c379;">\'innovate\'</span>')
-          .replace(/'@vjit\/core'/g, '<span style="color: #98c379;">\'@vjit/core\'</span>')
-          .replace(/'\.\/chapters'/g, '<span style="color: #98c379;">\'./chapters\'</span>')
-          .replace(/"Welcome to the community! 🚀"/g, '<span style="color: #98c379;">"Welcome to the community! 🚀"</span>')
-          .replace(/\b(wantsToLearn|join|log|console)\b/g, '<span style="color: #61afef;">$1</span>');
-      }
-
-      function typeCode() {
-        if(!codeEditor) return;
-        
-        // Add one character at a time, but highlight the whole substring
-        const currentText = codeSnippet.substring(0, codeIndex);
-        codeEditor.innerHTML = highlight(currentText);
-        
-        codeIndex++;
-        
-        if (codeIndex <= codeSnippet.length) {
-          // Randomize typing speed slightly for realism
-          const randomSpeed = Math.random() * 30 + 10;
-          
-          // Pause slightly longer at newlines
-          const char = codeSnippet.charAt(codeIndex - 1);
-          const speed = (char === '\n') ? 300 : randomSpeed;
-          
-          setTimeout(typeCode, speed);
-        }
-      }
-      
-      setTimeout(typeCode, 1500); // Start terminal after 1.5s
-    }
+    // Terminal script removed
   }
 
   document.addEventListener('DOMContentLoaded', initHomeJS);
@@ -261,26 +186,29 @@ if (you.wantsToLearn()) {
   }
 
   .hero-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
   }
 
   .hero-content {
-    text-align: left;
+    text-align: center;
     position: relative;
     z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
   }
 
   .hero-glow-orb {
     position: absolute;
-    top: -20%;
-    left: -20%;
-    width: 450px;
-    height: 450px;
-    background: radial-gradient(circle, rgba(0, 114, 206, 0.12) 0%, rgba(0, 210, 255, 0.04) 50%, rgba(255, 255, 255, 0) 70%);
-    filter: blur(60px);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0, 114, 206, 0.1) 0%, rgba(0, 210, 255, 0.04) 50%, rgba(255, 255, 255, 0) 70%);
+    filter: blur(75px);
     pointer-events: none;
     z-index: -1;
   }
@@ -389,7 +317,7 @@ if (you.wantsToLearn()) {
 
   .hero-actions {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     gap: 1.5rem;
     animation-delay: 0.6s;
   }
@@ -416,89 +344,6 @@ if (you.wantsToLearn()) {
   @keyframes button-shine {
     0% { transform: translateX(-150%) rotate(45deg); }
     30%, 100% { transform: translateX(150%) rotate(45deg); }
-  }
-
-  /* Animated Terminal Window */
-  .hero-visual {
-    position: relative;
-    perspective: 1000px;
-    opacity: 0;
-    animation: fadeLeft 1s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
-  }
-
-  @keyframes fadeLeft {
-    0% { opacity: 0; transform: translateX(50px); }
-    100% { opacity: 1; transform: translateX(0); }
-  }
-
-  .terminal-window {
-    background-color: #1e1e1e;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-    border: 1px solid #333;
-    transform: rotateY(-5deg) rotateX(5deg);
-    transition: transform 0.5s ease;
-  }
-
-  .terminal-window:hover {
-    transform: rotateY(0deg) rotateX(0deg);
-  }
-
-  .terminal-header {
-    background-color: #2d2d2d;
-    padding: 0.75rem 1rem;
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid #1a1a1a;
-  }
-
-  .terminal-dots {
-    display: flex;
-    gap: 8px;
-  }
-
-  .dot {
-    width: 12px; height: 12px;
-    border-radius: 50%;
-  }
-
-  .dot.red { background-color: #ff5f56; }
-  .dot.yellow { background-color: #ffbd2e; }
-  .dot.green { background-color: #27c93f; }
-
-  .terminal-title {
-    margin: 0 auto;
-    padding-right: 48px; /* Offset for dots */
-    color: #999;
-    font-size: 0.85rem;
-    font-family: monospace;
-  }
-
-  .terminal-body {
-    padding: 1.5rem;
-    font-family: 'Fira Code', 'Consolas', monospace;
-    font-size: 0.95rem;
-    line-height: 1.5;
-    color: #abb2bf;
-    background-color: #1e1e1e;
-    min-height: 300px;
-    text-align: left;
-  }
-
-  .code-cursor {
-    display: inline-block;
-    width: 8px;
-    height: 1.2em;
-    background-color: #528bff;
-    vertical-align: middle;
-    animation: blink-cursor 1s step-end infinite;
-    margin-left: 2px;
-  }
-
-  @keyframes blink-cursor {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
   }
 
   /* --- Scroll Animations Base --- */
@@ -739,13 +584,7 @@ if (you.wantsToLearn()) {
 
   /* Responsive */
   @media (max-width: 992px) {
-    .hero { padding-top: 10rem; }
-    .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 3rem; }
-    .hero-content { text-align: center; }
-    .hero-actions { justify-content: center; }
-    .terminal-window { max-width: 100%; width: 100%; margin: 0 auto; }
-    .terminal-body { font-size: 0.85rem; padding: 1.25rem; overflow-x: auto; }
-    
+    .hero { padding-top: 6rem; }
     .snippet-grid { grid-template-columns: 1fr; gap: 4rem; }
     .snippet-image { order: 2; }
     .snippet-content { order: 1; text-align: center; }
@@ -753,11 +592,10 @@ if (you.wantsToLearn()) {
   }
 
   @media (max-width: 768px) {
-    .hero { padding-top: 7rem; padding-bottom: 4rem; }
+    .hero { padding-top: 5rem; padding-bottom: 3rem; }
     .hero-welcome { font-size: 1.35rem; letter-spacing: 1px; }
     .hero-title { font-size: 3.25rem; letter-spacing: -1.5px; }
     .hero-subtitle { font-size: 1.1rem; margin-bottom: 2rem; }
-    .terminal-body { font-size: 0.75rem; padding: 1rem; min-height: 250px; }
     
     .hero-actions { flex-direction: column; gap: 1rem; width: 100%; }
     .hero-actions .btn { width: 100%; }
