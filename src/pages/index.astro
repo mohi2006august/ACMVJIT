@@ -114,10 +114,11 @@ import leadsData from '../data/leads.json';
   <section class="section join-cta scroll-reveal">
     <div class="container">
       <div class="cta-card">
-        <div class="cta-content">
-          <h2>Ready to <span class="text-gradient-animated">Innovate?</span></h2>
-          <p>Become a member of Vidya Jyothi Institute of Technology's premier computing community. Expand your skills, collaborate on projects, and lead the future of technology.</p>
+        <div class="cta-icon-badge">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         </div>
+        <h2>Ready to <span class="text-gradient-animated">Innovate?</span></h2>
+        <p class="cta-desc">Become a member of Vidya Jyothi Institute of Technology's premier computing community. Expand your skills, collaborate on projects, and lead the future of technology.</p>
         <div class="cta-action">
           <a href="/recruitment" class="btn btn-primary btn-glow btn-large">Join Us Now</a>
         </div>
@@ -724,81 +725,119 @@ if (you.wantsToLearn()) {
 
   /* --- Join CTA Section --- */
   .join-cta {
-    padding: 6rem 0 8rem;
+    padding: 4rem 0 6rem;
   }
 
   .cta-card {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.45) 100%);
+    max-width: 720px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(0, 114, 206, 0.03) 50%, rgba(255, 255, 255, 0.45) 100%);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    padding: 4rem;
-    border-radius: 24px;
+    padding: 3.5rem 3rem;
+    border-radius: 28px;
     border: 1px solid rgba(0, 114, 206, 0.15);
-    box-shadow: 0 20px 40px rgba(0, 114, 206, 0.05), inset 0 0 20px rgba(255, 255, 255, 0.6);
+    box-shadow: 0 30px 60px rgba(0, 114, 206, 0.06), inset 0 0 20px rgba(255, 255, 255, 0.6);
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    gap: 3rem;
+    text-align: center;
     position: relative;
     overflow: hidden;
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
   }
 
   .cta-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-6px);
     border-color: rgba(0, 114, 206, 0.3);
-    box-shadow: 0 30px 60px rgba(0, 114, 206, 0.12), inset 0 0 20px rgba(255, 255, 255, 0.7);
+    box-shadow: 0 40px 80px rgba(0, 114, 206, 0.12), inset 0 0 20px rgba(255, 255, 255, 0.7);
   }
 
-  .cta-content {
-    max-width: 650px;
-    text-align: left;
+  /* Decorative glowing orb background */
+  .cta-card::after {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(0, 210, 255, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
+    filter: blur(20px);
+    pointer-events: none;
+    z-index: 0;
   }
 
-  .cta-content h2 {
+  .cta-icon-badge {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, rgba(0, 114, 206, 0.08) 0%, rgba(0, 210, 255, 0.12) 100%);
+    border: 1px solid rgba(0, 114, 206, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    box-shadow: 0 10px 25px rgba(0, 114, 206, 0.05);
+    animation: cta-float 4s ease-in-out infinite;
+    z-index: 1;
+  }
+
+  @keyframes cta-float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-6px) scale(1.05); }
+  }
+
+  .cta-card h2 {
     font-size: 2.75rem;
     margin-top: 0;
     margin-bottom: 1rem;
     font-weight: 800;
+    line-height: 1.2;
+    z-index: 1;
   }
 
-  .cta-content p {
-    font-size: 1.15rem;
+  .cta-desc {
+    font-size: 1.1rem;
     color: var(--text-muted);
-    margin-bottom: 0;
+    margin-bottom: 2.25rem;
     line-height: 1.6;
+    max-width: 540px;
+    z-index: 1;
   }
 
   .cta-action {
-    flex-shrink: 0;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 
   .btn-large {
-    padding: 1.2rem 3rem;
-    font-size: 1.15rem;
-    border-radius: 14px;
+    padding: 1.1rem 3.5rem;
+    font-size: 1.1rem;
+    border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   @media (max-width: 768px) {
+    .join-cta {
+      padding: 3rem 0 5rem;
+    }
     .cta-card {
-      flex-direction: column;
-      padding: 3rem 2rem;
-      text-align: center;
-      gap: 2rem;
+      padding: 2.5rem 1.75rem;
+      border-radius: 20px;
     }
-    .cta-content {
-      text-align: center;
+    .cta-card h2 {
+      font-size: 2.1rem;
     }
-    .cta-content h2 {
-      font-size: 2.25rem;
+    .cta-desc {
+      font-size: 1rem;
+      margin-bottom: 1.75rem;
     }
-    .cta-content p {
-      font-size: 1.05rem;
-    }
-    .cta-action {
-      width: 100%;
-    }
-    .cta-action .btn {
+    .btn-large {
+      padding: 1rem 2.5rem;
+      font-size: 1rem;
       width: 100%;
     }
   }
