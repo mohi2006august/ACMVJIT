@@ -110,6 +110,21 @@ import leadsData from '../data/leads.json';
     </div>
   </section>
 
+  <!-- Join Us CTA Section -->
+  <section class="section join-cta scroll-reveal">
+    <div class="container">
+      <div class="cta-card">
+        <div class="cta-content">
+          <h2>Ready to <span class="text-gradient-animated">Innovate?</span></h2>
+          <p>Become a member of Vidya Jyothi Institute of Technology's premier computing community. Expand your skills, collaborate on projects, and lead the future of technology.</p>
+        </div>
+        <div class="cta-action">
+          <a href="/recruitment" class="btn btn-primary btn-glow btn-large">Join Us Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </Layout>
 
 <script>
@@ -705,5 +720,86 @@ if (you.wantsToLearn()) {
     
     .stats-grid { grid-template-columns: 1fr; }
     .img-placeholder { height: 300px; font-size: 1.2rem; }
+  }
+
+  /* --- Join CTA Section --- */
+  .join-cta {
+    padding: 6rem 0 8rem;
+  }
+
+  .cta-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.45) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 4rem;
+    border-radius: 24px;
+    border: 1px solid rgba(0, 114, 206, 0.15);
+    box-shadow: 0 20px 40px rgba(0, 114, 206, 0.05), inset 0 0 20px rgba(255, 255, 255, 0.6);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .cta-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 114, 206, 0.3);
+    box-shadow: 0 30px 60px rgba(0, 114, 206, 0.12), inset 0 0 20px rgba(255, 255, 255, 0.7);
+  }
+
+  .cta-content {
+    max-width: 650px;
+    text-align: left;
+  }
+
+  .cta-content h2 {
+    font-size: 2.75rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-weight: 800;
+  }
+
+  .cta-content p {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    margin-bottom: 0;
+    line-height: 1.6;
+  }
+
+  .cta-action {
+    flex-shrink: 0;
+  }
+
+  .btn-large {
+    padding: 1.2rem 3rem;
+    font-size: 1.15rem;
+    border-radius: 14px;
+  }
+
+  @media (max-width: 768px) {
+    .cta-card {
+      flex-direction: column;
+      padding: 3rem 2rem;
+      text-align: center;
+      gap: 2rem;
+    }
+    .cta-content {
+      text-align: center;
+    }
+    .cta-content h2 {
+      font-size: 2.25rem;
+    }
+    .cta-content p {
+      font-size: 1.05rem;
+    }
+    .cta-action {
+      width: 100%;
+    }
+    .cta-action .btn {
+      width: 100%;
+    }
   }
 </style>
