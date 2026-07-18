@@ -1,0 +1,484 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Join Us"
+  description="Apply to join the ACM VJIT Student Chapter. Become part of the premier computing community at Vidya Jyothi Institute of Technology and grow your tech career."
+>
+
+  <div class="relative-z">
+    <div class="page-header">
+      <div class="container text-center animate-fade-up">
+        <h1 style="color: #1a1a1a;">Join <span class="text-primary">ACM VJIT</span></h1>
+        <p>Apply to become a member of the official ACM Student Chapter and shape your computing future.</p>
+      </div>
+    </div>
+
+    <section class="section animate-fade-up" style="animation-delay: 0.1s;">
+      <div class="container recruitment-container">
+        <!-- Info Column -->
+        <div class="recruitment-info">
+          <h2>Why Join Us?</h2>
+          <p>ACM VJIT is more than a student chapter; it is a community of tech innovators, builders, and leaders. Here is what we offer our members:</p>
+          
+          <div class="benefit-card">
+            <div class="benefit-icon">🚀</div>
+            <div>
+              <h4>Advanced Skill Development</h4>
+              <p>Workshops on Web Dev, AI/ML, Competitive Coding, and Cloud Technologies led by experts.</p>
+            </div>
+          </div>
+          
+          <div class="benefit-card">
+            <div class="benefit-icon">🤝</div>
+            <div>
+              <h4>Mentorship & Collaboration</h4>
+              <p>Get guided by accomplished seniors and industry alumni. Collaborate on real-world projects.</p>
+            </div>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon">🌐</div>
+            <div>
+              <h4>Networking Opportunities</h4>
+              <p>Connect with a national and global network of professionals and fellow ACM student chapters.</p>
+            </div>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon">🏆</div>
+            <div>
+              <h4>Hackathons & Competitions</h4>
+              <p>Represent our chapter in national-level contests, ideathons, and coding sprints.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Form Column -->
+        <div class="recruitment-form-container">
+          <form id="recruitment-form">
+            <div class="form-group">
+              <label for="fullName">Full Name</label>
+              <input type="text" id="fullName" required placeholder="John Doe">
+            </div>
+
+            <div class="form-group">
+              <label for="emailAddress">Email Address</label>
+              <input type="email" id="emailAddress" required placeholder="john@example.com">
+            </div>
+
+            <div class="form-group">
+              <label for="phoneNumber">WhatsApp Number</label>
+              <input type="tel" id="phoneNumber" required placeholder="+91 9876543210">
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="rollNumber">Roll Number</label>
+                <input type="text" id="rollNumber" required placeholder="e.g. 24911A6601" style="text-transform: uppercase;">
+              </div>
+              <div class="form-group">
+                <label for="yearOfStudy">Year</label>
+                <select id="yearOfStudy" required>
+                  <option value="" disabled selected>Select Year</option>
+                  <option value="1st Year">1st Year</option>
+                  <option value="2nd Year">2nd Year</option>
+                  <option value="3rd Year">3rd Year</option>
+                  <option value="4th Year">4th Year</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="department">Department</label>
+              <select id="department" required>
+                <option value="" disabled selected>Select Department</option>
+                <option value="CSE (AI & ML)">CSE (AI & ML)</option>
+                <option value="CSE (Data Science)">CSE (Data Science)</option>
+                <option value="Computer Science & Engineering">CSE</option>
+                <option value="Information Technology">Information Technology</option>
+                <option value="Electronics & Communication">ECE</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Domains of Interest</label>
+              <div class="checkbox-group">
+                <label class="checkbox-container">
+                  <input type="checkbox" name="domain" value="Web & App Development">
+                  <span class="checkmark"></span>
+                  Web & App Development
+                </label>
+                <label class="checkbox-container">
+                  <input type="checkbox" name="domain" value="AI / ML & Data Science">
+                  <span class="checkmark"></span>
+                  AI / ML & Data Science
+                </label>
+                <label class="checkbox-container">
+                  <input type="checkbox" name="domain" value="Coding & Competitive Programming">
+                  <span class="checkmark"></span>
+                  Coding & CP
+                </label>
+                <label class="checkbox-container">
+                  <input type="checkbox" name="domain" value="UI/UX & Graphic Design">
+                  <span class="checkmark"></span>
+                  UI/UX & Graphic Design
+                </label>
+                <label class="checkbox-container">
+                  <input type="checkbox" name="domain" value="Event Management & PR">
+                  <span class="checkmark"></span>
+                  Event Management & PR
+                </label>
+                <label class="checkbox-container">
+                  <input type="checkbox" name="domain" value="Content & Social Media Management">
+                  <span class="checkmark"></span>
+                  Content & Social Media
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="motivation">Why do you want to join ACM VJIT?</label>
+              <textarea id="motivation" rows="4" required placeholder="Tell us about your interests, skills, or what you hope to achieve by joining..."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="profileLink">GitHub / LinkedIn / Portfolio Link (Optional)</label>
+              <input type="url" id="profileLink" placeholder="https://linkedin.com/in/username">
+            </div>
+
+            <button type="submit" class="btn btn-primary w-full">Submit Application</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<script>
+  function initScrollAnimations() {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.animate-fade-up').forEach(el => {
+      observer.observe(el);
+    });
+  }
+
+  function initRecruitmentForm() {
+    const form = document.getElementById('recruitment-form') as HTMLFormElement;
+    if (!form) return;
+    
+    // Avoid double bindings
+    const newForm = form.cloneNode(true) as HTMLFormElement;
+    form.parentNode?.replaceChild(newForm, form);
+    
+    newForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const btn = newForm.querySelector('button[type="submit"]') as HTMLButtonElement;
+      const originalText = btn.textContent || 'Submit Application';
+      btn.textContent = 'Submitting...';
+      btn.disabled = true;
+      
+      const selectedDomains: string[] = [];
+      newForm.querySelectorAll('input[name="domain"]:checked').forEach((cb) => {
+        selectedDomains.push((cb as HTMLInputElement).value);
+      });
+
+      const formData = new FormData();
+      formData.append('Name', (newForm.querySelector('#fullName') as HTMLInputElement).value);
+      formData.append('Email', (newForm.querySelector('#emailAddress') as HTMLInputElement).value);
+      formData.append('Phone', (newForm.querySelector('#phoneNumber') as HTMLInputElement).value);
+      formData.append('Roll Number', (newForm.querySelector('#rollNumber') as HTMLInputElement).value.toUpperCase());
+      formData.append('Year', (newForm.querySelector('#yearOfStudy') as HTMLSelectElement).value);
+      formData.append('Department', (newForm.querySelector('#department') as HTMLSelectElement).value);
+      formData.append('Domains of Interest', selectedDomains.join(', '));
+      formData.append('Motivation', (newForm.querySelector('#motivation') as HTMLTextAreaElement).value);
+      formData.append('Profile Link', (newForm.querySelector('#profileLink') as HTMLInputElement).value);
+      formData.append('Submission Time', new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'long', timeStyle: 'medium' }));
+      
+      // Post to the configured Google Web App script URL
+      fetch("https://script.google.com/macros/s/AKfycbwgnB-e2j-AaD5rhDmmqvAqrxCMlNE7wkfN6tqAjWJBNOrKBLUyIfYg7v6xMkUawbXQ/exec", {
+          method: "POST",
+          body: formData
+      })
+      .then(response => {
+          alert("Thank you! Your recruitment application has been successfully submitted.");
+          newForm.reset();
+          btn.textContent = originalText;
+          btn.disabled = false;
+      })
+      .catch(error => {
+          console.error(error);
+          alert("Oops! Something went wrong. Please check your network connection and try again.");
+          btn.textContent = originalText;
+          btn.disabled = false;
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initScrollAnimations();
+    initRecruitmentForm();
+  });
+  document.addEventListener('astro:page-load', () => {
+    initScrollAnimations();
+    initRecruitmentForm();
+  });
+</script>
+
+<style>
+  .relative-z {
+    position: relative;
+    z-index: 10;
+  }
+
+  .animate-fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  
+  .animate-fade-up.visible {
+    animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .page-header {
+    background: transparent;
+    padding: 6rem 0 3rem;
+    border-bottom: none;
+  }
+
+  .recruitment-container {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .recruitment-info h2 {
+    font-size: 2.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .recruitment-info > p {
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+    color: var(--text-muted);
+  }
+
+  .benefit-card {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 1.25rem;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 114, 206, 0.05);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+
+  .benefit-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(0, 114, 206, 0.2);
+    background: rgba(255, 255, 255, 0.7);
+  }
+
+  .benefit-icon {
+    font-size: 1.8rem;
+    background: rgba(0, 114, 206, 0.08);
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    color: var(--primary-color);
+    border: 1px solid rgba(0, 114, 206, 0.1);
+  }
+
+  .benefit-card h4 {
+    margin-top: 0;
+    margin-bottom: 0.3rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  .benefit-card p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+  }
+
+  .recruitment-form-container {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 3rem 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 4px 30px rgba(0, 114, 206, 0.05);
+    border: 1px solid rgba(0, 114, 206, 0.1);
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    color: var(--text-main);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 1px solid rgba(0, 114, 206, 0.2);
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--text-main);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.4) 100%);
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.9), 0 4px 12px rgba(0, 0, 0, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, background 0.3s ease;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.8) 100%);
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.9), 0 0 0 3px rgba(0, 114, 206, 0.15), 0 8px 20px rgba(0, 114, 206, 0.1);
+    transform: translateY(-2px);
+  }
+
+  /* Domains Checkbox Group styling */
+  .checkbox-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem 1rem;
+    margin-top: 0.5rem;
+  }
+
+  .checkbox-container {
+    display: block;
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 0;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    user-select: none;
+    line-height: 1.4;
+  }
+
+  .checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+
+  .checkmark {
+    position: absolute;
+    top: 2px;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.4) 100%);
+    border: 1px solid rgba(0, 114, 206, 0.3);
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+
+  .checkbox-container:hover input ~ .checkmark {
+    background-color: rgba(0, 114, 206, 0.05);
+    border-color: var(--primary-color);
+  }
+
+  .checkbox-container input:checked ~ .checkmark {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+  }
+
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+
+  .checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+  }
+
+  .checkbox-container .checkmark:after {
+    left: 5px;
+    top: 2px;
+    width: 5px;
+    height: 9px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  .w-full {
+    width: 100%;
+  }
+
+  @media (max-width: 992px) {
+    .recruitment-container {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .form-grid {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    .checkbox-group {
+      grid-template-columns: 1fr;
+    }
+    .recruitment-form-container {
+      padding: 2rem 1.5rem;
+    }
+  }
+</style>
