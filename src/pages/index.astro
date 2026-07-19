@@ -10,13 +10,8 @@ import leadsData from '../data/leads.json';
 >
   <!-- Hero Section -->
   <section class="hero">
-    <div class="aurora-container">
-      <div class="aurora-blob aurora-blob-1"></div>
-      <div class="aurora-blob aurora-blob-2"></div>
-      <div class="aurora-blob aurora-blob-3"></div>
-    </div>
     <div class="container hero-single" style="position: relative; z-index: 2;">
-      <div class="hero-badge"><span class="badge-dot"></span> <span id="typewriter"></span><span class="cursor">|</span></div>
+      <div class="hero-badge"><span id="typewriter"></span><span class="cursor">|</span></div>
       
       <div class="hero-outline-wrapper" style="margin: 1rem 0 2rem; height: auto;">
         <svg class="hero-svg-title" viewBox="0 0 1000 200" preserveAspectRatio="xMidYMid meet">
@@ -221,56 +216,6 @@ import leadsData from '../data/leads.json';
     justify-content: center;
   }
 
-  /* --- Aurora Glowing Orbs --- */
-  .aurora-container {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    overflow: hidden;
-    z-index: 0;
-    opacity: 0.6;
-    pointer-events: none;
-    mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
-    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
-  }
-
-  .aurora-blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.5;
-    animation: blob-float 20s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .aurora-blob-1 {
-    top: -10%; left: 10%;
-    width: 600px; height: 600px;
-    background: #00d2ff;
-    animation-delay: 0s;
-  }
-  
-  .aurora-blob-2 {
-    bottom: -10%; right: 5%;
-    width: 700px; height: 700px;
-    background: #0072ce;
-    animation-delay: -5s;
-    animation-duration: 25s;
-  }
-  
-  .aurora-blob-3 {
-    top: 20%; left: 50%;
-    width: 500px; height: 500px;
-    background: #60a5fa;
-    animation-delay: -10s;
-    animation-duration: 22s;
-  }
-
-  @keyframes blob-float {
-    0% { transform: translate(0, 0) scale(1); }
-    33% { transform: translate(40px, -40px) scale(1.1); }
-    66% { transform: translate(-30px, 30px) scale(0.9); }
-    100% { transform: translate(50px, 50px) scale(1.05); }
-  }
-
   .hero-single {
     display: flex;
     flex-direction: column;
@@ -318,21 +263,7 @@ import leadsData from '../data/leads.json';
     animation-delay: 0.1s;
   }
 
-  .badge-dot {
-    width: 8px;
-    height: 8px;
-    background-color: #00d2ff;
-    border-radius: 50%;
-    display: inline-block;
-    margin-right: 0.7rem;
-    box-shadow: 0 0 12px rgba(0, 210, 255, 0.9);
-    animation: badge-pulse 1.8s infinite alternate;
-  }
 
-  @keyframes badge-pulse {
-    0% { transform: scale(0.8); opacity: 0.5; }
-    100% { transform: scale(1.2); opacity: 1; }
-  }
 
   .cursor {
     display: inline-block;
