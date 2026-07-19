@@ -13,35 +13,16 @@ import leadsData from '../data/leads.json';
     <div class="container hero-single" style="position: relative; z-index: 2;">
       <div class="hero-badge"><span id="typewriter"></span><span class="cursor">|</span></div>
       
-      <div class="hero-outline-wrapper" style="margin: 1rem 0 2rem; height: auto;">
-        <svg class="hero-svg-title" viewBox="0 0 1000 200" preserveAspectRatio="xMidYMid meet">
-          <defs>
-            <linearGradient id="sweepGradient" x1="-100%" y1="0%" x2="0%" y2="0%">
-              <stop offset="0%" stop-color="rgba(0, 114, 206, 0)" />
-              <stop offset="25%" stop-color="#0072CE" /> <!-- dark blue color -->
-              <stop offset="85%" stop-color="#00d2ff" /> <!-- light colour -->
-              <stop offset="100%" stop-color="rgba(0, 114, 206, 0)" />
-              <animate attributeName="x1" values="-100%; 200%" dur="3s" repeatCount="indefinite" />
-              <animate attributeName="x2" values="0%; 300%" dur="3s" repeatCount="indefinite" />
-            </linearGradient>
-          </defs>
-          <!-- Faint base outline -->
-          <text x="50%" y="55%" text-anchor="middle" dominant-baseline="middle" class="hero-svg-text-base">
-            ACM VJIT
-          </text>
-          <!-- Glowing racing line -->
-          <text x="50%" y="55%" text-anchor="middle" dominant-baseline="middle" class="hero-svg-text-racing">
-            ACM VJIT
-          </text>
-        </svg>
-      </div>
+      <h1 class="hero-title-aesthetic">
+        ACM VJIT
+      </h1>
 
       <p class="hero-subtitle centered-subtitle">
-        ACM brings together students passionate about computing — from algorithms to applications. Through events, mentorship, and a strong community, it creates opportunities to move from concepts to real, working solutions.
+        We bring together students passionate about computing — from algorithms to applications. Through events, mentorship, and a strong community, we turn concepts into working solutions.
       </p>
       
       <div class="hero-actions centered-actions">
-        <a href="/recruitment" class="btn btn-primary btn-glow">Join ACM VJIT</a>
+        <a href="/recruitment" class="btn btn-primary">Join ACM VJIT</a>
         <a href="/events" class="btn btn-outline">Explore Events</a>
       </div>
     </div>
@@ -57,14 +38,10 @@ import leadsData from '../data/leads.json';
         </div>
       </div>
       <div class="snippet-content delay-2">
-        <h2>Cultivating Technical <span class="text-primary">Proficiency</span></h2>
-        <p>The ACM VJIT Student Chapter is a dedicated academic and professional organization. We facilitate the transition from theoretical computing principles to applied industry practices. Our initiatives provide members with comprehensive technical skill development, structured mentorship programs, and exposure to cutting-edge research.</p>
-        <ul class="check-list">
-          <li><span class="check-icon">✅</span> Advanced Technical Workshops</li>
-          <li><span class="check-icon">✅</span> Industry Expert Seminars</li>
-          <li><span class="check-icon">✅</span> Open Source & Research Initiatives</li>
-        </ul>
-        <a href="/about" class="btn btn-outline" style="margin-top: 1.5rem;">Read Our Story</a>
+        <h2 class="snippet-title">Cultivating Technical<br /><span class="text-primary">Proficiency</span></h2>
+        <p class="snippet-desc">The ACM VJIT Student Chapter is a dedicated academic and professional organization. We facilitate the transition from theoretical computing principles to applied industry practices. Our initiatives provide members with comprehensive technical skill development, structured mentorship programs, and exposure to cutting-edge research.</p>
+
+        <a href="/about" class="btn btn-outline btn-rect" style="margin-top: 1.5rem;">Read Our Story</a>
       </div>
     </div>
   </section>
@@ -73,8 +50,8 @@ import leadsData from '../data/leads.json';
   <section class="section leads scroll-reveal">
     <div class="container">
       <div class="text-center" style="margin-bottom: 4rem;">
-        <h2>Institution <span class="text-primary">Leads</span></h2>
-        <p style="color: var(--text-muted); font-size: 1.1rem;">Meet the distinguished leadership driving the strategic vision of ACM VJIT.</p>
+        <h2 class="snippet-title">Institution <span class="text-primary">Leads</span></h2>
+        <p class="snippet-desc" style="max-width: 600px; margin-left: auto; margin-right: auto;">Meet the distinguished leadership driving the strategic vision of ACM VJIT.</p>
       </div>
       <div class="leads-grid">
         {
@@ -116,10 +93,10 @@ import leadsData from '../data/leads.json';
         <div class="cta-icon-badge">
           <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         </div>
-        <h2>Ready to <span class="text-gradient-animated">Innovate?</span></h2>
+        <h2 class="cta-title-aesthetic">Ready to Innovate?</h2>
         <p class="cta-desc">Become a member of Vidya Jyothi Institute of Technology's premier computing community. Expand your skills, collaborate on projects, and lead the future of technology.</p>
         <div class="cta-action">
-          <a href="/recruitment" class="btn btn-primary btn-glow btn-large">Join Us Now</a>
+          <a href="/recruitment" class="btn btn-primary btn-large btn-rect">Join Us Now</a>
         </div>
       </div>
     </div>
@@ -219,7 +196,6 @@ import leadsData from '../data/leads.json';
     max-width: 900px;
     margin: 0 auto;
     width: 100%;
-    perspective: 1200px;
   }
   
   .centered-subtitle {
@@ -231,41 +207,44 @@ import leadsData from '../data/leads.json';
     justify-content: center;
   }
 
-  .hero-content {
-    text-align: left;
-    position: relative;
-    z-index: 2;
+  .hero-title-aesthetic {
+    font-size: clamp(4.5rem, 12vw, 9rem);
+    font-weight: 400;
+    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    color: #1a1a1a;
+    letter-spacing: -0.02em;
+    margin: 0 0 1.5rem 0;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: cinematicEnter 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.3s;
   }
 
   .hero-badge {
     display: inline-flex;
     align-items: center;
-    padding: 0.6rem 1.5rem;
-    background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.6));
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    color: #0f172a;
+    padding: 0.5rem 1.25rem;
+    background: #ffffff;
+    color: #1a1a1a;
     border-radius: 999px;
-    font-size: 0.85rem;
-    font-weight: 800;
+    font-size: 0.75rem;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
+    letter-spacing: 0.15em;
     margin-bottom: 2rem;
-    border: 1px solid rgba(0, 114, 206, 0.2);
-    box-shadow: 0 8px 30px rgba(0, 114, 206, 0.12), inset 0 2px 10px rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
     opacity: 0;
-    transform-origin: center bottom;
-    animation: cinematicEnter 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    animation-delay: 0.1s;
+    transform: translateY(20px);
+    animation: cinematicEnter 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
-
-
 
   .cursor {
     display: inline-block;
-    width: 2px;
-    background-color: var(--primary-color);
-    margin-left: 2px;
+    width: 1px;
+    height: 1.2em;
+    background-color: #a0aec0;
+    margin-left: 4px;
     animation: blink 1s infinite;
     vertical-align: middle;
   }
@@ -277,25 +256,18 @@ import leadsData from '../data/leads.json';
 
   .hero-subtitle, .hero-actions {
     opacity: 0;
-    transform-origin: center bottom;
+    transform: translateY(30px);
     animation: cinematicEnter 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
   .hero-subtitle {
-    font-size: 1.15rem;
-    margin-bottom: 2.5rem;
-    color: #1e293b;
-    font-weight: 500;
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    color: #1a1a1a;
+    font-weight: 400;
     animation-delay: 0.5s;
     line-height: 1.8;
-    max-width: 720px;
-    padding: 1.5rem 2.5rem;
-    background: rgba(255, 255, 255, 0.45);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 1px solid rgba(255, 255, 255, 0.9);
-    border-radius: 20px;
-    box-shadow: 0 15px 35px rgba(0, 114, 206, 0.08), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+    max-width: 680px;
   }
 
   .hero-actions {
@@ -306,90 +278,50 @@ import leadsData from '../data/leads.json';
     flex-wrap: wrap;
   }
 
+  .hero-actions .btn {
+    padding: 1rem 2.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 999px;
+    letter-spacing: 0.02em;
+    transition: all 0.4s ease;
+  }
+
+  .hero-actions .btn-primary {
+    background-color: #1a1a1a;
+    background-image: none;
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 10px 30px -10px rgba(0,0,0,0.15);
+  }
+  
+  .hero-actions .btn-primary:hover {
+    background-color: var(--primary-color, #0072CE);
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px -10px rgba(0, 114, 206, 0.3);
+  }
+
   .hero-actions .btn-outline {
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(0, 114, 206, 0.3);
-    color: var(--primary-color);
-    box-shadow: 0 8px 25px rgba(0, 114, 206, 0.06);
+    background: transparent;
+    border: 1px solid rgba(0,0,0,0.1);
+    color: #1a1a1a;
   }
   
   .hero-actions .btn-outline:hover {
-    background: rgba(255, 255, 255, 0.95);
-    border-color: var(--primary-color);
-    color: var(--primary-color) !important;
-    box-shadow: 0 12px 30px rgba(0, 114, 206, 0.15);
-  }
-
-  .hero-actions .btn {
-    padding: 1rem 2.5rem;
-    font-size: 1.1rem;
-    font-weight: 700;
-    border-radius: 999px;
-    box-shadow: 0 8px 25px rgba(0, 114, 206, 0.2);
-  }
-
-  /* --- SVG Line Drawing Text Effect --- */
-  .hero-outline-wrapper {
-    position: relative;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2;
-    opacity: 0;
-    transform-origin: center bottom;
-    animation: cinematicEnter 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    animation-delay: 0.3s;
-  }
-
-  .hero-svg-title {
-    width: 100%;
-    max-width: 1000px;
-    height: auto;
-    overflow: visible;
-  }
-
-  .hero-svg-text-base, .hero-svg-text-racing {
-    font-size: 165px;
-    font-weight: 900;
-    font-family: 'Segoe UI Black', 'Arial Black', sans-serif;
-    fill: transparent;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .hero-svg-text-base {
-    stroke: var(--primary-color);
-    stroke-width: 3px;
-    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 1));
-  }
-
-  .hero-svg-text-racing {
-    stroke: url(#sweepGradient);
-    stroke-width: 2.5px;
-    animation: svg-glow 2s infinite alternate;
-  }
-
-  @keyframes svg-glow {
-    from {
-      filter: drop-shadow(0 4px 10px rgba(0, 114, 206, 0.2));
-    }
-    to {
-      filter: drop-shadow(0 10px 25px rgba(0, 114, 206, 0.4));
-    }
+    background: #fdfdfd;
+    border-color: rgba(0,0,0,0.2);
+    color: #1a1a1a !important;
   }
 
   @keyframes cinematicEnter {
     0% { 
       opacity: 0; 
-      transform: translateY(80px) rotateX(-20deg) scale(0.9); 
-      filter: blur(10px); 
+      transform: translateY(40px); 
+      filter: blur(5px); 
     }
     100% { 
       opacity: 1; 
-      transform: translateY(0) rotateX(0deg) scale(1); 
+      transform: translateY(0); 
       filter: blur(0px); 
     }
   }
@@ -446,16 +378,32 @@ import leadsData from '../data/leads.json';
   .snippet-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 5rem;
+    gap: 6rem;
     align-items: center;
+  }
+
+  .snippet-title {
+    font-size: 2.6rem;
+    font-weight: 400;
+    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    color: #1a1a1a;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+
+  .snippet-desc {
+    color: #1a1a1a;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
   }
 
   .real-image-wrapper {
     width: 100%;
-    height: 450px;
+    height: 400px;
     position: relative;
     border-radius: 24px;
-    transition: transform 0.5s ease;
   }
   
   .real-image {
@@ -463,40 +411,30 @@ import leadsData from '../data/leads.json';
     height: 100%;
     object-fit: cover;
     border-radius: 24px;
-    box-shadow: 0 15px 40px rgba(0, 114, 206, 0.15);
-    border: 1px solid rgba(0, 114, 206, 0.1);
-  }
-
-  .snippet-image:hover .real-image-wrapper {
-    transform: rotate(1deg) scale(1.02);
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.1);
   }
 
   .real-image-wrapper::after {
     content: '';
     position: absolute;
     inset: -15px;
-    border: 2px dashed rgba(0, 114, 206, 0.2);
-    border-radius: 32px;
+    border: 1px dashed rgba(0, 114, 206, 0.3);
+    border-radius: 36px;
     z-index: -1;
-    transition: all 0.5s ease;
-  }
-  
-  .snippet-image:hover .real-image-wrapper::after {
-    transform: rotate(-2deg);
-    border-color: rgba(0, 114, 206, 0.4);
   }
 
-  .check-list {
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    font-weight: 500;
+
+
+  .btn-rect {
+    border-radius: 8px !important;
+    padding: 0.75rem 2rem !important;
+    font-weight: 600 !important;
+    border: 1px solid var(--primary-color) !important;
+    color: var(--primary-color) !important;
+    font-size: 0.95rem !important;
   }
-  
-  .check-icon {
-    margin-right: 0.5rem;
-    display: inline-block;
+  .btn-rect:hover {
+    background-color: rgba(0, 114, 206, 0.05) !important;
   }
 
   /* --- Leads Section --- */
@@ -597,7 +535,7 @@ import leadsData from '../data/leads.json';
     letter-spacing: 0.15em;
     text-transform: uppercase;
     font-weight: 500;
-    color: #8c8c8c;
+    color: #1a1a1a;
   }
 
   .role-primary, .role-secondary {
@@ -651,75 +589,60 @@ import leadsData from '../data/leads.json';
   .cta-card {
     max-width: 720px;
     margin: 0 auto;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(0, 114, 206, 0.03) 50%, rgba(255, 255, 255, 0.45) 100%);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: #ffffff;
     padding: 3.5rem 3rem;
     border-radius: 28px;
-    border: 1px solid rgba(0, 114, 206, 0.15);
-    box-shadow: 0 30px 60px rgba(0, 114, 206, 0.06), inset 0 0 20px rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    box-shadow: 0 20px 60px -10px rgba(0, 0, 0, 0.05);
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     position: relative;
     overflow: hidden;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
   }
 
   .cta-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(0, 114, 206, 0.3);
-    box-shadow: 0 40px 80px rgba(0, 114, 206, 0.12), inset 0 0 20px rgba(255, 255, 255, 0.7);
-  }
-
-  /* Decorative glowing orb background */
-  .cta-card::after {
-    content: '';
-    position: absolute;
-    top: -50px;
-    right: -50px;
-    width: 150px;
-    height: 150px;
-    background: radial-gradient(circle, rgba(0, 210, 255, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
-    filter: blur(20px);
-    pointer-events: none;
-    z-index: 0;
+    transform: translateY(-4px);
+    box-shadow: 0 30px 80px -15px rgba(0, 0, 0, 0.08);
   }
 
   .cta-icon-badge {
     width: 60px;
     height: 60px;
-    background: linear-gradient(135deg, rgba(0, 114, 206, 0.08) 0%, rgba(0, 210, 255, 0.12) 100%);
-    border: 1px solid rgba(0, 114, 206, 0.2);
+    background: #fdfdfd;
+    border: 1px solid rgba(0, 0, 0, 0.05);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--primary-color);
+    color: #1a1a1a;
     margin-bottom: 1.5rem;
-    box-shadow: 0 10px 25px rgba(0, 114, 206, 0.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
     animation: cta-float 4s ease-in-out infinite;
     z-index: 1;
   }
 
   @keyframes cta-float {
     0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-6px) scale(1.05); }
+    50% { transform: translateY(-4px) scale(1.02); }
   }
 
-  .cta-card h2 {
-    font-size: 2.75rem;
+  .cta-title-aesthetic {
+    font-size: 3rem;
     margin-top: 0;
     margin-bottom: 1rem;
-    font-weight: 800;
-    line-height: 1.2;
+    font-weight: 400;
+    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    color: #1a1a1a;
+    line-height: 1.1;
     z-index: 1;
   }
 
   .cta-desc {
     font-size: 1.1rem;
-    color: var(--text-muted);
+    color: #1a1a1a;
     margin-bottom: 2.25rem;
     line-height: 1.6;
     max-width: 540px;
@@ -736,8 +659,6 @@ import leadsData from '../data/leads.json';
   .btn-large {
     padding: 1.1rem 3.5rem;
     font-size: 1.1rem;
-    border-radius: 12px;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   @media (max-width: 768px) {

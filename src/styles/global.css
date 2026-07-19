@@ -5,7 +5,7 @@
   --primary-color: #0072CE; /* ACM Blue */
   --secondary-color: #005A9C;
   --text-main: #1a1a1a;
-  --text-muted: #4a5568;
+  --text-muted: #1a1a1a;
   --bg-main: #ffffff;
   --bg-secondary: #f4f7f9;
   --border-color: #e5e7eb;
@@ -111,4 +111,4 @@ p {
 .mb-2 { margin-bottom: 0.5rem; }
 .mb-4 { margin-bottom: 1rem; }
 .mb-8 { margin-bottom: 2rem; }
-.text-primary { color: var(--primary-color); }
+.text-primary { color: #1a1a1a !important; }
