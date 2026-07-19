@@ -10,6 +10,11 @@ import leadsData from '../data/leads.json';
 >
   <!-- Hero Section -->
   <section class="hero">
+    <div class="aurora-container">
+      <div class="aurora-blob aurora-blob-1"></div>
+      <div class="aurora-blob aurora-blob-2"></div>
+      <div class="aurora-blob aurora-blob-3"></div>
+    </div>
     <div class="container hero-single" style="position: relative; z-index: 2;">
       <div class="hero-badge"><span class="badge-dot"></span> <span id="typewriter"></span><span class="cursor">|</span></div>
       
@@ -214,6 +219,56 @@ import leadsData from '../data/leads.json';
     align-items: center;
     min-height: calc(100vh - 80px); /* 80px for header approx */
     justify-content: center;
+  }
+
+  /* --- Aurora Glowing Orbs --- */
+  .aurora-container {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    overflow: hidden;
+    z-index: 0;
+    opacity: 0.6;
+    pointer-events: none;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  }
+
+  .aurora-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.5;
+    animation: blob-float 20s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .aurora-blob-1 {
+    top: -10%; left: 10%;
+    width: 600px; height: 600px;
+    background: #00d2ff;
+    animation-delay: 0s;
+  }
+  
+  .aurora-blob-2 {
+    bottom: -10%; right: 5%;
+    width: 700px; height: 700px;
+    background: #0072ce;
+    animation-delay: -5s;
+    animation-duration: 25s;
+  }
+  
+  .aurora-blob-3 {
+    top: 20%; left: 50%;
+    width: 500px; height: 500px;
+    background: #60a5fa;
+    animation-delay: -10s;
+    animation-duration: 22s;
+  }
+
+  @keyframes blob-float {
+    0% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(40px, -40px) scale(1.1); }
+    66% { transform: translate(-30px, 30px) scale(0.9); }
+    100% { transform: translate(50px, 50px) scale(1.05); }
   }
 
   .hero-single {
