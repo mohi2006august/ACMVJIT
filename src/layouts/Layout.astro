@@ -50,30 +50,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://acmvjit.
 		<meta property="twitter:image" content={image} />
 	</head>
 	<body>
-		{isHome ? (
-			<div class="animated-bg">
-				<div class="particles"></div>
-			</div>
-		) : (
-			<WaveBackground />
-		)}
+		<WaveBackground />
 		<Navbar />
 		<main>
 			<slot />
 		</main>
 		<Footer />
-		<script>
-			// Interactive glowing background
-			document.addEventListener('mousemove', (e) => {
-				const bg = document.querySelector('.animated-bg') as HTMLElement;
-				if (bg) {
-					const x = (e.clientX / window.innerWidth) * 100;
-					const y = (e.clientY / window.innerHeight) * 100;
-					bg.style.setProperty('--mouse-x', `${x}%`);
-					bg.style.setProperty('--mouse-y', `${y}%`);
-				}
-			});
-		</script>
+
 	</body>
 </html>
 
@@ -81,111 +64,5 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://acmvjit.
 	main {
 		min-height: calc(100vh - 200px);
 	}
-	
-	/* Interactive Background Animation */
-	.animated-bg {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100vw;
-		height: 100vh;
-		z-index: -1;
-		background-color: #ffffff;
-		background-image: 
-			linear-gradient(rgba(0, 114, 206, 0.04) 1px, transparent 1px),
-			linear-gradient(90deg, rgba(0, 114, 206, 0.04) 1px, transparent 1px);
-		background-size: 40px 40px;
-		overflow: hidden;
-		pointer-events: none;
-		--mouse-x: 50%;
-		--mouse-y: 50%;
-	}
-	
-	/* Interactive radial mask */
-	.animated-bg::before {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background: radial-gradient(
-			circle 600px at var(--mouse-x) var(--mouse-y), 
-			rgba(255, 255, 255, 0), 
-			#ffffff 85%
-		);
-		z-index: 1;
-	}
 
-	/* Orbiting glow */
-	.animated-bg::after {
-		content: '';
-		position: absolute;
-		width: 50vw;
-		height: 50vw;
-		border-radius: 50%;
-		background: radial-gradient(circle, rgba(0, 114, 206, 0.12) 0%, rgba(0, 210, 255, 0) 70%);
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		filter: blur(60px);
-		animation: orbit 20s linear infinite;
-		z-index: 0;
-	}
-
-	@keyframes orbit {
-		0% { transform: translate(-50%, -50%) rotate(0deg) translateX(15vw) rotate(0deg); }
-		100% { transform: translate(-50%, -50%) rotate(360deg) translateX(15vw) rotate(-360deg); }
-	}
-
-	/* Floating Data Nodes (Particles) */
-	.particles {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		z-index: 0;
-	}
-
-	.particles::before, .particles::after {
-		content: '';
-		position: absolute;
-		width: 4px;
-		height: 4px;
-		border-radius: 50%;
-		background: var(--primary-color);
-		opacity: 0.4;
-		box-shadow: 
-			15vw 20vh 0 0 var(--primary-color),
-			80vw 10vh 0 1px #005A9C,
-			50vw 80vh 0 0.5px var(--primary-color),
-			70vw 60vh 0 2px #00d2ff,
-			20vw 80vh 0 1px var(--primary-color),
-			90vw 90vh 0 0 #005A9C,
-			10vw 40vh 0 1.5px #00d2ff,
-			40vw 30vh 0 0 var(--primary-color);
-		animation: float-nodes 30s linear infinite alternate;
-	}
-
-	.particles::after {
-		width: 3px;
-		height: 3px;
-		animation-direction: alternate-reverse;
-		animation-duration: 40s;
-		box-shadow: 
-			35vw 70vh 0 0 var(--primary-color),
-			60vw 20vh 0 1px #005A9C,
-			20vw 10vh 0 0.5px var(--primary-color),
-			80vw 40vh 0 1px #00d2ff,
-			40vw 90vh 0 0.5px var(--primary-color),
-			70vw 80vh 0 0 #005A9C,
-			90vw 30vh 0 1px #00d2ff,
-			10vw 60vh 0 0 var(--primary-color);
-	}
-
-	@keyframes float-nodes {
-		0% { transform: translateY(0) rotate(0deg); }
-		100% { transform: translateY(-15vh) rotate(5deg); }
-	}
 </style>
