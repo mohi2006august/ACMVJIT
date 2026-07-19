@@ -16,7 +16,22 @@ import leadsData from '../data/leads.json';
       
       <div class="hero-outline-wrapper" style="margin: 1rem 0 2rem; height: auto;">
         <svg class="hero-svg-title" viewBox="0 0 1000 200" preserveAspectRatio="xMidYMid meet">
-          <text x="50%" y="55%" text-anchor="middle" dominant-baseline="middle" class="hero-svg-text">
+          <defs>
+            <linearGradient id="sweepGradient" x1="-100%" y1="0%" x2="0%" y2="0%">
+              <stop offset="0%" stop-color="rgba(0, 114, 206, 0)" />
+              <stop offset="25%" stop-color="#0072CE" /> <!-- dark blue color -->
+              <stop offset="85%" stop-color="#00d2ff" /> <!-- light colour -->
+              <stop offset="100%" stop-color="rgba(0, 114, 206, 0)" />
+              <animate attributeName="x1" values="-100%; 200%" dur="3s" repeatCount="indefinite" />
+              <animate attributeName="x2" values="0%; 300%" dur="3s" repeatCount="indefinite" />
+            </linearGradient>
+          </defs>
+          <!-- Faint base outline -->
+          <text x="50%" y="55%" text-anchor="middle" dominant-baseline="middle" class="hero-svg-text-base">
+            ACM VJIT
+          </text>
+          <!-- Glowing racing line -->
+          <text x="50%" y="55%" text-anchor="middle" dominant-baseline="middle" class="hero-svg-text-racing">
             ACM VJIT
           </text>
         </svg>
@@ -338,32 +353,32 @@ import leadsData from '../data/leads.json';
     overflow: visible;
   }
 
-  .hero-svg-text {
+  .hero-svg-text-base, .hero-svg-text-racing {
     font-size: clamp(4rem, 15vw, 160px);
     font-weight: 900;
     font-family: 'Montserrat', 'Segoe UI Black', 'Arial Black', sans-serif;
     fill: transparent;
-    stroke: var(--primary-color);
-    stroke-width: 2.5px;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    stroke-dasharray: 2000;
-    stroke-dashoffset: 2000;
-    animation: draw-lines 6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards, svg-glow 4s 6s infinite alternate;
   }
 
-  @keyframes draw-lines {
-    0% { stroke-dashoffset: 2000; fill: transparent; }
-    70% { stroke-dashoffset: 0; fill: transparent; }
-    100% { stroke-dashoffset: 0; fill: rgba(0, 114, 206, 0.1); }
+  .hero-svg-text-base {
+    stroke: rgba(0, 114, 206, 0.15);
+    stroke-width: 2.5px;
+  }
+
+  .hero-svg-text-racing {
+    stroke: url(#sweepGradient);
+    stroke-width: 2.5px;
+    animation: svg-glow 2s infinite alternate;
   }
 
   @keyframes svg-glow {
     from {
-      filter: drop-shadow(0 0 8px rgba(0, 114, 206, 0.4));
+      filter: drop-shadow(0 4px 10px rgba(0, 114, 206, 0.2));
     }
     to {
-      filter: drop-shadow(0 0 35px rgba(0, 114, 206, 0.95)) drop-shadow(0 0 15px rgba(0, 210, 255, 0.7));
+      filter: drop-shadow(0 10px 25px rgba(0, 114, 206, 0.4));
     }
   }
 
