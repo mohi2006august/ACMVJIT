@@ -218,18 +218,144 @@ import leadsData from '../data/leads.json';
     </div>
   </section>
 
-  <!-- Join Us CTA Section -->
-  <section class="section join-cta scroll-reveal">
-    <div class="container">
-      <div class="cta-card">
-        <div class="cta-icon-badge">
-          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+  <!-- Contact Book Section -->
+  <section class="section contact-book-section scroll-reveal">
+    <div class="container text-center" style="margin-bottom: 2rem;">
+      <h2 class="snippet-title">Get In <span class="text-primary">Touch</span></h2>
+      <p class="snippet-desc" style="max-width: 600px; margin-left: auto; margin-right: auto;">Have a question or want to collaborate? Open our contact registry to send a message.</p>
+    </div>
+    
+    <div class="book-view-container">
+      <div class="book closed" id="contact-book">
+        
+        <!-- Book Pages Layer -->
+        <!-- Left Page (Page 1): Contact Information -->
+        <div class="book-page page-left" id="book-page-left">
+          <div class="page-content">
+            <div class="gold-corner top-left"></div>
+            <div class="gold-corner bottom-left"></div>
+            <h3 class="page-title">Contact Info</h3>
+            <p class="page-intro">Reach out to us directly or visit our campus branch.</p>
+            
+            <div class="book-info-list">
+              <div class="book-info-item">
+                <span class="info-icon">✉️</span>
+                <div class="info-details">
+                  <h5>Email</h5>
+                  <p><a href="mailto:acm@vjit.ac.in">acm@vjit.ac.in</a></p>
+                </div>
+              </div>
+              
+              <div class="book-info-item">
+                <span class="info-icon">📱</span>
+                <div class="info-details">
+                  <h5>Socials</h5>
+                  <p>
+                    <a href="https://instagram.com" target="_blank">Instagram</a> • 
+                    <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+                  </p>
+                </div>
+              </div>
+
+              <div class="book-info-item">
+                <span class="info-icon">📍</span>
+                <div class="info-details">
+                  <h5>Address</h5>
+                  <p>VJIT, Hyderabad, India</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="book-map">
+              <iframe 
+                src="https://maps.google.com/maps?q=Vidya%20Jyothi%20Institute%20of%20Technology%2C%20Hyderabad&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+                width="100%" 
+                height="140" 
+                style="border:0; border-radius: 12px; opacity: 0.85;" 
+                allowfullscreen="" 
+                loading="lazy">
+              </iframe>
+            </div>
+            
+            <!-- Mobile Navigation to Form -->
+            <button type="button" class="btn btn-outline mobile-page-nav-btn" id="nav-to-form-btn">
+              <span>Next: Send Message →</span>
+            </button>
+          </div>
         </div>
-        <h2 class="cta-title-aesthetic">Ready to Innovate?</h2>
-        <p class="cta-desc">Become a member of Vidya Jyothi Institute of Technology's premier computing community. Expand your skills, collaborate on projects, and lead the future of technology.</p>
-        <div class="cta-action">
-          <a href="/recruitment" class="btn btn-primary btn-large btn-rect">Join Us Now</a>
+        
+        <!-- Right Page (Page 2): Contact Form -->
+        <div class="book-page page-right" id="book-page-right">
+          <div class="page-content">
+            <div class="gold-corner top-right"></div>
+            <div class="gold-corner bottom-right"></div>
+            <h3 class="page-title">Send Message</h3>
+            <p class="page-intro mobile-only-text" style="display: none; font-size: 0.85rem; margin-bottom: 0.5rem; color: #777;">Fill in the form to contact ACM VJIT.</p>
+            <form id="contact-book-form">
+              <div class="book-form-group">
+                <input type="text" id="book-name" required placeholder="Full Name">
+              </div>
+              <div class="book-form-group">
+                <input type="email" id="book-email" required placeholder="Email Address">
+              </div>
+              <div class="book-form-group">
+                <input type="tel" id="book-phone" required placeholder="Phone Number">
+              </div>
+              <div class="book-form-grid">
+                <div class="book-form-group">
+                  <input type="text" id="book-department" required placeholder="Dept (e.g. AIML)">
+                </div>
+                <div class="book-form-group">
+                  <input type="text" id="book-year" required placeholder="Year (e.g. 2nd)">
+                </div>
+              </div>
+              <div class="book-form-group">
+                <textarea id="book-message" rows="3" required placeholder="Your message here..."></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary book-submit-btn">Send Message</button>
+            </form>
+            
+            <!-- Mobile Navigation Back -->
+            <button type="button" class="btn btn-outline mobile-page-nav-btn" id="nav-to-info-btn">
+              <span>← Back: Contact Info</span>
+            </button>
+            
+            <!-- Desktop Close Ribbon -->
+            <button type="button" class="close-book-ribbon" id="close-book-btn" aria-label="Close Book">
+              <span>Close Registry</span>
+            </button>
+          </div>
         </div>
+        
+        <!-- Book Cover -->
+        <div class="book-cover" id="book-cover">
+          <!-- Cover Front Face -->
+          <div class="cover-side cover-front">
+            <div class="cover-design">
+              <div class="gold-border"></div>
+              <div class="gold-accent top-left">+</div>
+              <div class="gold-accent top-right">+</div>
+              <div class="gold-accent bottom-left">+</div>
+              <div class="gold-accent bottom-right">+</div>
+              
+              <div class="emblem-container">
+                <svg viewBox="0 0 24 24" class="gold-emblem" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                </svg>
+              </div>
+              <h3 class="cover-title">ACM VJIT</h3>
+              <p class="cover-subtitle">Contact Registry</p>
+              <button type="button" class="open-book-btn" id="open-book-btn">Open Registry</button>
+            </div>
+          </div>
+          <!-- Cover Back Face -->
+          <div class="cover-side cover-back">
+            <div class="lining"></div>
+          </div>
+        </div>
+        
+        <!-- Binding/Crease Shadow -->
+        <div class="book-crease"></div>
       </div>
     </div>
   </section>
@@ -300,11 +426,134 @@ import leadsData from '../data/leads.json';
       }
       setTimeout(typeSubtitle, 1000);
     }
-
   }
 
-  document.addEventListener('DOMContentLoaded', initHomeJS);
-  document.addEventListener('astro:page-load', initHomeJS);
+  function initContactBook() {
+    const book = document.getElementById('contact-book');
+    const openBtn = document.getElementById('open-book-btn');
+    const closeBtn = document.getElementById('close-book-btn');
+    const cover = document.getElementById('book-cover');
+    
+    const navToFormBtn = document.getElementById('nav-to-form-btn');
+    const navToInfoBtn = document.getElementById('nav-to-info-btn');
+    
+    function isMobile() {
+      return window.innerWidth <= 768;
+    }
+
+    function openBook() {
+      if (!book) return;
+      if (isMobile()) {
+        book.classList.add('page-1');
+        book.classList.remove('closed', 'page-2');
+      } else {
+        book.classList.add('opened');
+        book.classList.remove('closed');
+      }
+    }
+
+    function closeBook() {
+      if (!book) return;
+      book.classList.add('closed');
+      book.classList.remove('opened', 'page-1', 'page-2');
+    }
+
+    if (cover) {
+      cover.addEventListener('click', (e) => {
+        if (book && book.classList.contains('closed')) {
+          e.stopPropagation();
+          openBook();
+        }
+      });
+    }
+
+    if (openBtn) {
+      openBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openBook();
+      });
+    }
+    
+    if (closeBtn) {
+      closeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeBook();
+      });
+    }
+
+    if (navToFormBtn) {
+      navToFormBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (book) {
+          book.classList.add('page-2');
+          book.classList.remove('page-1');
+        }
+      });
+    }
+
+    if (navToInfoBtn) {
+      navToInfoBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (book) {
+          book.classList.add('page-1');
+          book.classList.remove('page-2');
+        }
+      });
+    }
+
+    // Form submission
+    const form = document.getElementById('contact-book-form');
+    if (form) {
+      const newForm = form.cloneNode(true);
+      if (form.parentNode) {
+        form.parentNode.replaceChild(newForm, form);
+      }
+      
+      newForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const btn = newForm.querySelector('button[type="submit"]');
+        const originalText = btn.textContent;
+        btn.textContent = 'Sending...';
+        btn.disabled = true;
+        
+        const formData = new FormData();
+        formData.append('name', newForm.querySelector('#book-name').value);
+        formData.append('Email', newForm.querySelector('#book-email').value);
+        formData.append('Phone', newForm.querySelector('#book-phone').value);
+        formData.append('Department', newForm.querySelector('#book-department').value);
+        formData.append('Year', newForm.querySelector('#book-year').value);
+        formData.append('Message', newForm.querySelector('#book-message').value);
+        formData.append('Submission Time', new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'long', timeStyle: 'medium' }));
+        
+        fetch("https://script.google.com/macros/s/AKfycbwgnB-e2j-AaD5rhDmmqvAqrxCMlNE7wkfN6tqAjWJBNOrKBLUyIfYg7v6xMkUawbXQ/exec", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => {
+            alert("Thank you! Your message has been saved to the database.");
+            newForm.reset();
+            btn.textContent = originalText;
+            btn.disabled = false;
+            closeBook();
+        })
+        .catch(error => {
+            console.error(error);
+            alert("Oops! Something went wrong.");
+            btn.textContent = originalText;
+            btn.disabled = false;
+        });
+      });
+    }
+  }
+
+  function runHomeInit() {
+    initHomeJS();
+    initContactBook();
+  }
+
+  document.addEventListener('DOMContentLoaded', runHomeInit);
+  document.addEventListener('astro:page-load', runHomeInit);
 </script>
 
 <style>
@@ -1017,117 +1266,522 @@ import leadsData from '../data/leads.json';
     .img-placeholder { height: 300px; font-size: 1.2rem; }
   }
 
-  /* --- Join CTA Section --- */
-  .join-cta {
+  /* --- Contact Book Section --- */
+  .contact-book-section {
     padding: 4rem 0 6rem;
   }
 
-  .cta-card {
-    max-width: 720px;
-    margin: 0 auto;
-    background: #ffffff;
-    padding: 3.5rem 3rem;
-    border-radius: 28px;
-    border: 1px solid rgba(0, 0, 0, 0.04);
-    box-shadow: 0 20px 60px -10px rgba(0, 0, 0, 0.05);
+  .book-view-container {
+    perspective: 1500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 0;
+    min-height: 580px;
+    overflow: visible;
+  }
+
+  .book {
+    position: relative;
+    height: 500px;
+    background: #fdfdfc;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: width 0.75s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.75s ease;
+    transform-style: preserve-3d;
+    will-change: width, box-shadow;
+  }
+
+  /* Gold page corners */
+  .gold-corner {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border: 2px solid rgba(212, 175, 55, 0.35);
+    pointer-events: none;
+  }
+  .gold-corner.top-left { top: 1.25rem; left: 1.25rem; border-right: none; border-bottom: none; }
+  .gold-corner.top-right { top: 1.25rem; right: 1.25rem; border-left: none; border-bottom: none; }
+  .gold-corner.bottom-left { bottom: 1.25rem; left: 1.25rem; border-right: none; border-top: none; }
+  .gold-corner.bottom-right { bottom: 1.25rem; right: 1.25rem; border-left: none; border-top: none; }
+
+  /* Gold cover accents */
+  .gold-accent {
+    position: absolute;
+    font-size: 14px;
+    color: rgba(212, 175, 55, 0.5);
+    pointer-events: none;
+    font-family: monospace;
+  }
+  .gold-accent.top-left { top: 1.25rem; left: 1.25rem; }
+  .gold-accent.top-right { top: 1.25rem; right: 1.25rem; }
+  .gold-accent.bottom-left { bottom: 1.25rem; left: 1.25rem; }
+  .gold-accent.bottom-right { bottom: 1.25rem; right: 1.25rem; }
+
+  /* Desktop layout states */
+  @media (min-width: 769px) {
+    .book.closed {
+      width: 380px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    }
+
+    .book.opened {
+      width: 760px;
+      box-shadow: 0 25px 55px rgba(0, 0, 0, 0.18);
+    }
+
+    .book-cover {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 50%;
+      transform-origin: left center;
+      transition: transform 0.75s cubic-bezier(0.25, 1, 0.5, 1);
+      transform-style: preserve-3d;
+      z-index: 10;
+      will-change: transform;
+      cursor: pointer;
+    }
+
+    .book.closed .book-cover {
+      transform: rotateY(0deg);
+    }
+
+    .book.opened .book-cover {
+      transform: rotateY(-180deg);
+      pointer-events: none;
+    }
+
+    .book-page {
+      position: absolute;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      background: #fdfdfa;
+      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.02);
+      overflow: hidden;
+    }
+
+    .page-left {
+      left: 0;
+      border-radius: 16px 0 0 16px;
+      border-right: 1px solid rgba(0, 0, 0, 0.06);
+      transition: opacity 0.4s ease;
+      z-index: 3;
+    }
+
+    .book.closed .page-left {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .book.opened .page-left {
+      opacity: 1;
+      pointer-events: auto;
+      transition-delay: 0.35s;
+    }
+
+    .page-right {
+      right: 0;
+      border-radius: 0 16px 16px 0;
+      border-left: 1px solid rgba(0, 0, 0, 0.06);
+      z-index: 2;
+    }
+
+    .mobile-page-nav-btn {
+      display: none !important;
+    }
+
+    .close-book-ribbon {
+      display: block;
+    }
+  }
+
+  .cover-side {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 0 16px 16px 0;
+    overflow: hidden;
+  }
+
+  .cover-front {
+    background: linear-gradient(135deg, #091a24 0%, #152c3e 100%);
+    border-left: 5px solid #0f172a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+
+  .cover-back {
+    background: #111e29;
+    transform: rotateY(180deg);
+    border-radius: 16px 0 0 16px;
+    border-right: 5px solid #0f172a;
+  }
+
+  .cover-design {
+    border: 2px solid rgba(212, 175, 55, 0.35);
+    border-radius: 12px;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    text-align: center;
+    color: #f3e5ab;
+    padding: 1.5rem;
     position: relative;
+  }
+
+  .emblem-container {
+    width: 70px;
+    height: 70px;
+    border: 2px solid rgba(212, 175, 55, 0.45);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    color: #ffd700;
+  }
+
+  .gold-emblem {
+    width: 32px;
+    height: 32px;
+  }
+
+  .cover-title {
+    font-size: 2.2rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin: 0 0 0.5rem 0;
+    text-transform: uppercase;
+    color: #ffd700;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  }
+
+  .cover-subtitle {
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    margin-bottom: 2.5rem;
+    opacity: 0.8;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #f3e5ab;
+  }
+
+  .open-book-btn {
+    background: transparent;
+    border: 2px solid #ffd700;
+    color: #ffd700;
+    padding: 0.75rem 2rem;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+
+  .open-book-btn:hover {
+    background: #ffd700;
+    color: #0f172a;
+    box-shadow: 0 6px 15px rgba(255, 215, 0, 0.3);
+    transform: translateY(-2px);
+  }
+
+  .lining {
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255,255,255,0.05) 10%, transparent 11%),
+                radial-gradient(circle, rgba(255,255,255,0.05) 10%, transparent 11%);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+    opacity: 0.3;
+  }
+
+  .book-page {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: #fdfdfa;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.02);
     overflow: hidden;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
   }
 
-  .cta-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 30px 80px -15px rgba(0, 0, 0, 0.08);
+  .page-content {
+    padding: 2.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
   }
 
-  .cta-icon-badge {
-    width: 60px;
-    height: 60px;
-    background: #fdfdfd;
-    border: 1px solid rgba(0, 0, 0, 0.05);
+  .page-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    color: #1a1a1a;
+    border-bottom: 2px solid rgba(0, 114, 206, 0.1);
+    padding-bottom: 0.5rem;
+  }
+
+  .page-intro {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+  }
+
+  .book-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .book-info-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-align: left;
+  }
+
+  .info-icon {
+    font-size: 1.25rem;
+    width: 36px;
+    height: 36px;
+    background: rgba(0, 114, 206, 0.05);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .info-details h5 {
+    margin: 0;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #777;
+  }
+
+  .info-details p {
+    margin: 0;
+    font-size: 0.95rem;
     color: #1a1a1a;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
-    animation: cta-float 4s ease-in-out infinite;
-    z-index: 1;
   }
 
-  @keyframes cta-float {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-4px) scale(1.02); }
+  .info-details p a {
+    color: var(--primary-color);
   }
 
-  .cta-title-aesthetic {
-    font-size: 3rem;
-    margin-top: 0;
-    margin-bottom: 1rem;
-    font-weight: 400;
-    color: #1a1a1a;
-    line-height: 1.1;
-    z-index: 1;
+  .book-map {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.05);
   }
 
-  .cta-desc {
-    font-size: 1.1rem;
-    color: #1a1a1a;
-    margin-bottom: 2.25rem;
-    line-height: 1.6;
-    max-width: 540px;
-    z-index: 1;
+  .book-form-group {
+    margin-bottom: 0.75rem;
   }
 
-  .cta-action {
-    z-index: 1;
+  .book-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .book-form-group input,
+  .book-form-group textarea {
     width: 100%;
-    display: flex;
-    justify-content: center;
+    padding: 0.65rem 0.85rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-family: inherit;
+    background: #fdfdfc;
+    transition: all 0.3s ease;
   }
 
-  .btn-large {
-    padding: 1.1rem 3.5rem;
-    font-size: 1.1rem;
+  .book-form-group input:focus,
+  .book-form-group textarea:focus {
+    outline: none;
+    border-color: #1a1a1a;
+    box-shadow: 0 0 0 2px rgba(26,26,26,0.05);
   }
 
+  .book-submit-btn {
+    width: 100%;
+    padding: 0.75rem 1.5rem !important;
+    font-size: 0.95rem !important;
+    border-radius: 8px !important;
+    margin-top: 0.5rem;
+  }
+
+  .close-book-ribbon {
+    position: absolute;
+    bottom: 2rem;
+    right: 0;
+    background: #b22222;
+    color: white;
+    padding: 0.35rem 1.25rem 0.35rem 0.75rem;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: -2px 3px 5px rgba(0,0,0,0.15);
+    transition: all 0.2s ease;
+  }
+
+  .close-book-ribbon:hover {
+    padding-right: 1.75rem;
+    background: #8b0000;
+  }
+
+  .book-crease {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 24px;
+    transform: translateX(-50%);
+    background: linear-gradient(to right, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.08) 100%);
+    z-index: 8;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+  }
+
+  .book.closed .book-crease {
+    opacity: 0;
+  }
+
+  .book.opened .book-crease {
+    opacity: 1;
+  }
+
+  /* Mobile layout states (max-width: 768px) */
   @media (max-width: 768px) {
-    .hero {
-      padding: 5rem 0 3rem;
+    .book-view-container {
+      min-height: auto;
+      padding: 1.5rem 0;
+      overflow: hidden;
     }
-    .hero-outline-wrapper {
-      margin: 0.5rem 0 1rem;
+
+    .book {
+      width: 100% !important;
+      max-width: 340px !important;
+      height: 540px !important;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1) !important;
+      transition: box-shadow 0.75s ease;
+      margin: 0 auto;
+      overflow: hidden;
     }
-    .hero-svg-text-base, .hero-svg-text-racing {
-      font-size: 175px;
+
+    .book-cover {
+      position: absolute;
+      inset: 0;
+      width: 100% !important;
+      left: 0 !important;
+      right: auto !important;
+      transform-origin: left center;
+      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
+      transform-style: preserve-3d;
+      z-index: 10;
+      will-change: transform;
+      cursor: pointer;
     }
-    .hero-subtitle {
-      font-size: 1rem;
-      padding: 0 1rem;
+
+    .book.closed .book-cover {
+      transform: translateX(0);
+      opacity: 1;
+      pointer-events: auto;
     }
-    .join-cta {
-      padding: 3rem 0 5rem;
+
+    /* Cover slides left and fades out on mobile */
+    .book.page-1 .book-cover,
+    .book.page-2 .book-cover {
+      transform: translateX(-100%);
+      pointer-events: none;
+      opacity: 0;
     }
-    .cta-card {
-      padding: 2.5rem 1.75rem;
-      border-radius: 20px;
+
+    .book-page {
+      position: absolute;
+      inset: 0;
+      width: 100% !important;
+      height: 100% !important;
+      border-radius: 16px !important;
+      background: #fdfdfa;
+      overflow: hidden;
+      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;
+      will-change: transform, opacity;
+      transform-style: preserve-3d;
+      left: 0 !important;
+      right: auto !important;
     }
-    .cta-card h2 {
-      font-size: 2.1rem;
+
+    .page-left {
+      z-index: 5;
     }
-    .cta-desc {
-      font-size: 1rem;
-      margin-bottom: 1.75rem;
+
+    .page-right {
+      z-index: 4;
     }
-    .btn-large {
-      padding: 1rem 2.5rem;
-      font-size: 1rem;
-      width: 100%;
+
+    /* Mobile state: Page 1 active (Cover open) */
+    .book.closed .page-left {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .book.page-1 .page-left {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(0);
+    }
+
+    /* Mobile state: Page 2 active (Form visible, Page 1 slides left) */
+    .book.page-2 .page-left {
+      transform: translateX(-100%);
+      pointer-events: none;
+      opacity: 0;
+    }
+
+    .book.page-2 .page-right {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .book.page-1 .page-right {
+      pointer-events: none;
+    }
+
+    .mobile-page-nav-btn {
+      display: inline-flex !important;
+      margin-top: 1.25rem;
+      padding: 0.6rem 1.2rem !important;
+      font-size: 0.85rem !important;
+      border-radius: 8px !important;
+      align-self: center;
+    }
+
+    .close-book-ribbon {
+      display: none !important;
+    }
+
+    .book-crease {
+      display: none !important;
+    }
+
+    .page-content {
+      padding: 1.75rem !important;
     }
   }
 </style>
