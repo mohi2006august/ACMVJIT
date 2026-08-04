@@ -216,146 +216,116 @@ import leadsData from '../data/leads.json';
         <a href="/team" class="btn btn-outline">View Full Team</a>
       </div>
     </div>
-  </section>
-
-  <!-- Contact Book Section -->
-  <section class="section contact-book-section scroll-reveal">
+  </section>  <!-- Glowing Screen Tab Section -->
+  <section class="section glowing-screen-section scroll-reveal">
     <div class="container text-center" style="margin-bottom: 2rem;">
       <h2 class="snippet-title">Get In <span class="text-primary">Touch</span></h2>
-      <p class="snippet-desc" style="max-width: 600px; margin-left: auto; margin-right: auto;">Have a question or want to collaborate? Open our contact registry to send a message.</p>
+      <p class="snippet-desc" style="max-width: 600px; margin-left: auto; margin-right: auto;">Have a question or want to collaborate? Connect with us through our digital portal.</p>
     </div>
     
-    <div class="book-view-container">
-      <div class="book closed" id="contact-book">
-        
-        <!-- Book Pages Layer -->
-        <!-- Left Page (Page 1): Contact Information -->
-        <div class="book-page page-left" id="book-page-left">
-          <div class="page-content">
-            <div class="gold-corner top-left"></div>
-            <div class="gold-corner bottom-left"></div>
-            <h3 class="page-title">Contact Info</h3>
-            <p class="page-intro">Reach out to us directly or visit our campus branch.</p>
-            
-            <div class="book-info-list">
-              <div class="book-info-item">
-                <span class="info-icon">✉️</span>
-                <div class="info-details">
-                  <h5>Email</h5>
-                  <p><a href="mailto:acm@vjit.ac.in">acm@vjit.ac.in</a></p>
-                </div>
-              </div>
+    
+    <div class="ipad-pro-wrapper" id="glowing-contact-tab">
+      <div class="ipad-pro-inner">
+        <div class="ipad-power-btn" id="ipad-power-btn"></div>
+        <div class="ipad-notch">
+          <div class="ipad-camera"></div>
+        </div>
+        <div class="ipad-screen off" id="ipad-screen">
+          <!-- Boot Screen Overlay -->
+          <div class="ipad-boot-screen" id="ipad-boot-screen">
+            <svg class="boot-logo" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 128 128">
+              <path fill="#fff" d="M50.4 78.5a75.1 75.1 0 0 0-28.5 6.9l24.2-65.7c.7-2 1.9-3.2 3.4-3.2h29c1.5 0 2.7 1.2 3.4 3.2l24.2 65.7s-11.6-7-28.5-7L67 45.5c-.4-1.7-1.6-2.8-2.9-2.8-1.3 0-2.5 1.1-2.9 2.7L50.4 78.5Zm-1.1 28.2Zm-4.2-20.2c-2 6.6-.6 15.8 4.2 20.2a17.5 17.5 0 0 1 .2-.7 5.5 5.5 0 0 1 5.7-4.5c2.8.1 4.3 1.5 4.7 4.7.2 1.1.2 2.3.2 3.5v.4c0 2.7.7 5.2 2.2 7.4a13 13 0 0 0 5.7 4.9v-.3l-.2-.3c-1.8-5.6-.5-9.5 4.4-12.8l1.5-1a73 73 0 0 0 3.2-2.2 16 16 0 0 0 6.8-11.4c.3-2 .1-4-.6-6l-.8.6-1.6 1a37 37 0 0 1-22.4 2.7c-5-.7-9.7-2-13.2-6.2Z" />
+            </svg>
+            <div class="boot-progress-bar">
+              <div class="boot-progress-fill"></div>
+            </div>
+          </div>
+          
+          <div class="glowing-tab-wrapper off" id="ipad-main-ui">
+      <div class="glowing-tab-border">
+        <div class="glowing-tab-content">
+          
+          <div class="glowing-grid">
+            <!-- Left Pane: Info & Map -->
+            <div class="glowing-pane info-pane">
+              <h3 class="pane-title">Contact Info</h3>
+              <p class="pane-intro">Reach out directly or visit our campus branch.</p>
               
-              <div class="book-info-item">
-                <span class="info-icon">📱</span>
-                <div class="info-details">
-                  <h5>Socials</h5>
-                  <p>
-                    <a href="https://instagram.com" target="_blank">Instagram</a> • 
-                    <a href="https://linkedin.com" target="_blank">LinkedIn</a>
-                  </p>
+              <div class="info-list">
+                <div class="info-item">
+                  <div class="info-icon-wrapper"><span class="info-icon">✉️</span></div>
+                  <div class="info-details">
+                    <h5>Email</h5>
+                    <p><a href="mailto:acm@vjit.ac.in">acm@vjit.ac.in</a></p>
+                  </div>
                 </div>
-              </div>
+                
+                <div class="info-item">
+                  <div class="info-icon-wrapper"><span class="info-icon">📱</span></div>
+                  <div class="info-details">
+                    <h5>Socials</h5>
+                    <p>
+                      <a href="https://instagram.com" target="_blank">Instagram</a> • 
+                      <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+                    </p>
+                  </div>
+                </div>
 
-              <div class="book-info-item">
-                <span class="info-icon">📍</span>
-                <div class="info-details">
-                  <h5>Address</h5>
-                  <p>VJIT, Hyderabad, India</p>
+                <div class="info-item">
+                  <div class="info-icon-wrapper"><span class="info-icon">📍</span></div>
+                  <div class="info-details">
+                    <h5>Address</h5>
+                    <p>VJIT, Hyderabad, India</p>
+                  </div>
                 </div>
               </div>
-            </div>
-            
-            <div class="book-map">
-              <iframe 
-                src="https://maps.google.com/maps?q=Vidya%20Jyothi%20Institute%20of%20Technology%2C%20Hyderabad&t=&z=14&ie=UTF8&iwloc=&output=embed" 
-                width="100%" 
-                height="140" 
-                style="border:0; border-radius: 12px; opacity: 0.85;" 
-                allowfullscreen="" 
-                loading="lazy">
-              </iframe>
-            </div>
-            
-            <!-- Mobile Navigation to Form -->
-            <button type="button" class="btn btn-outline mobile-page-nav-btn" id="nav-to-form-btn">
-              <span>Next: Send Message →</span>
-            </button>
-          </div>
-        </div>
-        
-        <!-- Right Page (Page 2): Contact Form -->
-        <div class="book-page page-right" id="book-page-right">
-          <div class="page-content">
-            <div class="gold-corner top-right"></div>
-            <div class="gold-corner bottom-right"></div>
-            <h3 class="page-title">Send Message</h3>
-            <p class="page-intro mobile-only-text" style="display: none; font-size: 0.85rem; margin-bottom: 0.5rem; color: #777;">Fill in the form to contact ACM VJIT.</p>
-            <form id="contact-book-form">
-              <div class="book-form-group">
-                <input type="text" id="book-name" required placeholder="Full Name">
-              </div>
-              <div class="book-form-group">
-                <input type="email" id="book-email" required placeholder="Email Address">
-              </div>
-              <div class="book-form-group">
-                <input type="tel" id="book-phone" required placeholder="Phone Number">
-              </div>
-              <div class="book-form-grid">
-                <div class="book-form-group">
-                  <input type="text" id="book-department" required placeholder="Dept (e.g. AIML)">
-                </div>
-                <div class="book-form-group">
-                  <input type="text" id="book-year" required placeholder="Year (e.g. 2nd)">
-                </div>
-              </div>
-              <div class="book-form-group">
-                <textarea id="book-message" rows="3" required placeholder="Your message here..."></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary book-submit-btn">Send Message</button>
-            </form>
-            
-            <!-- Mobile Navigation Back -->
-            <button type="button" class="btn btn-outline mobile-page-nav-btn" id="nav-to-info-btn">
-              <span>← Back: Contact Info</span>
-            </button>
-            
-            <!-- Desktop Close Ribbon -->
-            <button type="button" class="close-book-ribbon" id="close-book-btn" aria-label="Close Book">
-              <span>Close Registry</span>
-            </button>
-          </div>
-        </div>
-        
-        <!-- Book Cover -->
-        <div class="book-cover" id="book-cover">
-          <!-- Cover Front Face -->
-          <div class="cover-side cover-front">
-            <div class="cover-design">
-              <div class="gold-border"></div>
-              <div class="gold-accent top-left">+</div>
-              <div class="gold-accent top-right">+</div>
-              <div class="gold-accent bottom-left">+</div>
-              <div class="gold-accent bottom-right">+</div>
               
-              <div class="emblem-container">
-                <svg viewBox="0 0 24 24" class="gold-emblem" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                </svg>
+              <div class="tab-map">
+                <iframe 
+                  src="https://maps.google.com/maps?q=Vidya%20Jyothi%20Institute%20of%20Technology%2C%20Hyderabad&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+                  width="100%" 
+                  height="140" 
+                  style="border:0; border-radius: 12px; filter: grayscale(100%) invert(90%) contrast(1.2);" 
+                  allowfullscreen="" 
+                  loading="lazy">
+                </iframe>
               </div>
-              <h3 class="cover-title">ACM VJIT</h3>
-              <p class="cover-subtitle">Contact Registry</p>
-              <button type="button" class="open-book-btn" id="open-book-btn">Open Registry</button>
             </div>
-          </div>
-          <!-- Cover Back Face -->
-          <div class="cover-side cover-back">
-            <div class="lining"></div>
-          </div>
+            
+            <!-- Right Pane: Form -->
+            <div class="glowing-pane form-pane">
+              <h3 class="pane-title">Send Message</h3>
+              <form id="contact-tab-form">
+                <div class="tab-form-group">
+                  <input type="text" id="tab-name" required placeholder="Full Name">
+                </div>
+                <div class="tab-form-group">
+                  <input type="email" id="tab-email" required placeholder="Email Address">
+                </div>
+                <div class="tab-form-group">
+                  <input type="tel" id="tab-phone" required placeholder="Phone Number">
+                </div>
+                <div class="tab-form-grid-inner">
+                  <div class="tab-form-group">
+                    <input type="text" id="tab-department" required placeholder="Dept (e.g. AIML)">
+                  </div>
+                  <div class="tab-form-group">
+                    <input type="text" id="tab-year" required placeholder="Year (e.g. 2nd)">
+                  </div>
+                </div>
+                <div class="tab-form-group">
+                  <textarea id="tab-message" rows="3" required placeholder="Your message here..."></textarea>
+                </div>
+                <button type="submit" class="glowing-submit-btn">
+                  <span>Send Message</span>
+                  <div class="btn-glow"></div>
+                </button>
+              </form>
+            </div>
+                    </div>
         </div>
-        
-        <!-- Binding/Crease Shadow -->
-        <div class="book-crease"></div>
+      </div>
+        </div>
       </div>
     </div>
   </section>
@@ -428,129 +398,107 @@ import leadsData from '../data/leads.json';
     }
   }
 
-  function initContactBook() {
-    const book = document.getElementById('contact-book');
-    const openBtn = document.getElementById('open-book-btn');
-    const closeBtn = document.getElementById('close-book-btn');
-    const cover = document.getElementById('book-cover');
+  
+  function initIPadBoot() {
+    const bootScreen = document.getElementById('ipad-boot-screen');
+    const mainUI = document.getElementById('ipad-main-ui');
+    const ipadScreen = document.getElementById('ipad-screen');
+    const ipadWrapper = document.getElementById('glowing-contact-tab');
     
-    const navToFormBtn = document.getElementById('nav-to-form-btn');
-    const navToInfoBtn = document.getElementById('nav-to-info-btn');
-    
-    function isMobile() {
-      return window.innerWidth <= 768;
-    }
+    let isBooted = false;
+    let isBooting = false;
 
-    function openBook() {
-      if (!book) return;
-      if (isMobile()) {
-        book.classList.add('page-1');
-        book.classList.remove('closed', 'page-2');
-      } else {
-        book.classList.add('opened');
-        book.classList.remove('closed');
-      }
-    }
+    if (!bootScreen || !ipadWrapper) return;
 
-    function closeBook() {
-      if (!book) return;
-      book.classList.add('closed');
-      book.classList.remove('opened', 'page-1', 'page-2');
-    }
-
-    if (cover) {
-      cover.addEventListener('click', (e) => {
-        if (book && book.classList.contains('closed')) {
-          e.stopPropagation();
-          openBook();
-        }
-      });
-    }
-
-    if (openBtn) {
-      openBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        openBook();
-      });
-    }
-    
-    if (closeBtn) {
-      closeBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        closeBook();
-      });
-    }
-
-    if (navToFormBtn) {
-      navToFormBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if (book) {
-          book.classList.add('page-2');
-          book.classList.remove('page-1');
-        }
-      });
-    }
-
-    if (navToInfoBtn) {
-      navToInfoBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if (book) {
-          book.classList.add('page-1');
-          book.classList.remove('page-2');
-        }
-      });
-    }
-
-    // Form submission
-    const form = document.getElementById('contact-book-form');
-    if (form) {
-      const newForm = form.cloneNode(true);
-      if (form.parentNode) {
-        form.parentNode.replaceChild(newForm, form);
-      }
+    function startBoot() {
+      if (isBooted || isBooting) return;
+      isBooting = true;
       
-      newForm.addEventListener('submit', function(e) {
-        e.preventDefault();
+      // Turn on backlight (allow wallpaper to show later, but keep boot screen black for now)
+      ipadScreen.classList.remove('off');
+      
+      // Start boot sequence
+      bootScreen.classList.add('booting');
+      
+      // After progress bar finishes (2.5s + 0.5s delay)
+      setTimeout(() => {
+        bootScreen.classList.remove('booting');
+        bootScreen.classList.add('hidden');
         
-        const btn = newForm.querySelector('button[type="submit"]');
-        const originalText = btn.textContent;
-        btn.textContent = 'Sending...';
-        btn.disabled = true;
+        mainUI.classList.remove('off');
+        mainUI.classList.add('on');
         
-        const formData = new FormData();
-        formData.append('name', newForm.querySelector('#book-name').value);
-        formData.append('Email', newForm.querySelector('#book-email').value);
-        formData.append('Phone', newForm.querySelector('#book-phone').value);
-        formData.append('Department', newForm.querySelector('#book-department').value);
-        formData.append('Year', newForm.querySelector('#book-year').value);
-        formData.append('Message', newForm.querySelector('#book-message').value);
-        formData.append('Submission Time', new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'long', timeStyle: 'medium' }));
-        
-        fetch("https://script.google.com/macros/s/AKfycbwgnB-e2j-AaD5rhDmmqvAqrxCMlNE7wkfN6tqAjWJBNOrKBLUyIfYg7v6xMkUawbXQ/exec", {
-            method: "POST",
-            body: formData
-        })
-        .then(response => {
-            alert("Thank you! Your message has been saved to the database.");
-            newForm.reset();
-            btn.textContent = originalText;
-            btn.disabled = false;
-            closeBook();
-        })
-        .catch(error => {
-            console.error(error);
-            alert("Oops! Something went wrong.");
-            btn.textContent = originalText;
-            btn.disabled = false;
-        });
-      });
+        isBooted = true;
+        isBooting = false;
+      }, 3000);
     }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          startBoot();
+          observer.disconnect(); // Only boot once
+        }
+      });
+    }, { threshold: 0.3 });
+
+    observer.observe(ipadWrapper);
+  }
+
+  function initContactTab() {
+    const form = document.getElementById('contact-tab-form');
+    if (!form) return;
+
+    // Clone to remove old listeners
+    const newForm = form.cloneNode(true);
+    if (form.parentNode) {
+      form.parentNode.replaceChild(newForm, form);
+    }
+
+    newForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const btn = newForm.querySelector('button[type="submit"]');
+      if (!btn) return;
+
+      const originalText = btn.querySelector('span').textContent;
+      btn.querySelector('span').textContent = 'Sending...';
+      btn.disabled = true;
+      
+      const formData = new FormData();
+      formData.append('name', newForm.querySelector('#tab-name').value);
+      formData.append('Email', newForm.querySelector('#tab-email').value);
+      formData.append('Phone', newForm.querySelector('#tab-phone').value);
+      formData.append('Department', newForm.querySelector('#tab-department').value);
+      formData.append('Year', newForm.querySelector('#tab-year').value);
+      formData.append('Message', newForm.querySelector('#tab-message').value);
+      formData.append('Submission Time', new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'long', timeStyle: 'medium' }));
+      
+      fetch("https://script.google.com/macros/s/AKfycbwgnB-e2j-AaD5rhDmmqvAqrxCMlNE7wkfN6tqAjWJBNOrKBLUyIfYg7v6xMkUawbXQ/exec", {
+          method: "POST",
+          body: formData
+      })
+      .then(response => {
+          alert("Thank you! Your message has been sent successfully.");
+          newForm.reset();
+          btn.querySelector('span').textContent = originalText;
+          btn.disabled = false;
+      })
+      .catch(error => {
+          console.error(error);
+          alert("Oops! Something went wrong.");
+          btn.querySelector('span').textContent = originalText;
+          btn.disabled = false;
+      });
+    });
   }
 
   function runHomeInit() {
     initHomeJS();
-    initContactBook();
+    initContactTab();
+    initIPadBoot();
   }
+
 
   document.addEventListener('DOMContentLoaded', runHomeInit);
   document.addEventListener('astro:page-load', runHomeInit);
@@ -1266,522 +1214,456 @@ import leadsData from '../data/leads.json';
     .img-placeholder { height: 300px; font-size: 1.2rem; }
   }
 
-  /* --- Contact Book Section --- */
-  .contact-book-section {
-    padding: 4rem 0 6rem;
-  }
 
-  .book-view-container {
-    perspective: 1500px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 3rem 0;
-    min-height: 580px;
-    overflow: visible;
-  }
-
-  .book {
-    position: relative;
-    height: 500px;
-    background: #fdfdfc;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    transition: width 0.75s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.75s ease;
-    transform-style: preserve-3d;
-    will-change: width, box-shadow;
-  }
-
-  /* Gold page corners */
-  .gold-corner {
+  
+  
+  /* --- iPad Power Button & Boot Sequence --- */
+  .ipad-power-btn {
     position: absolute;
-    width: 12px;
-    height: 12px;
-    border: 2px solid rgba(212, 175, 55, 0.35);
-    pointer-events: none;
-  }
-  .gold-corner.top-left { top: 1.25rem; left: 1.25rem; border-right: none; border-bottom: none; }
-  .gold-corner.top-right { top: 1.25rem; right: 1.25rem; border-left: none; border-bottom: none; }
-  .gold-corner.bottom-left { bottom: 1.25rem; left: 1.25rem; border-right: none; border-top: none; }
-  .gold-corner.bottom-right { bottom: 1.25rem; right: 1.25rem; border-left: none; border-top: none; }
-
-  /* Gold cover accents */
-  .gold-accent {
-    position: absolute;
-    font-size: 14px;
-    color: rgba(212, 175, 55, 0.5);
-    pointer-events: none;
-    font-family: monospace;
-  }
-  .gold-accent.top-left { top: 1.25rem; left: 1.25rem; }
-  .gold-accent.top-right { top: 1.25rem; right: 1.25rem; }
-  .gold-accent.bottom-left { bottom: 1.25rem; left: 1.25rem; }
-  .gold-accent.bottom-right { bottom: 1.25rem; right: 1.25rem; }
-
-  /* Desktop layout states */
-  @media (min-width: 769px) {
-    .book.closed {
-      width: 380px;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
-    }
-
-    .book.opened {
-      width: 760px;
-      box-shadow: 0 25px 55px rgba(0, 0, 0, 0.18);
-    }
-
-    .book-cover {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      width: 50%;
-      transform-origin: left center;
-      transition: transform 0.75s cubic-bezier(0.25, 1, 0.5, 1);
-      transform-style: preserve-3d;
-      z-index: 10;
-      will-change: transform;
-      cursor: pointer;
-    }
-
-    .book.closed .book-cover {
-      transform: rotateY(0deg);
-    }
-
-    .book.opened .book-cover {
-      transform: rotateY(-180deg);
-      pointer-events: none;
-    }
-
-    .book-page {
-      position: absolute;
-      top: 0;
-      width: 50%;
-      height: 100%;
-      background: #fdfdfa;
-      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.02);
-      overflow: hidden;
-    }
-
-    .page-left {
-      left: 0;
-      border-radius: 16px 0 0 16px;
-      border-right: 1px solid rgba(0, 0, 0, 0.06);
-      transition: opacity 0.4s ease;
-      z-index: 3;
-    }
-
-    .book.closed .page-left {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .book.opened .page-left {
-      opacity: 1;
-      pointer-events: auto;
-      transition-delay: 0.35s;
-    }
-
-    .page-right {
-      right: 0;
-      border-radius: 0 16px 16px 0;
-      border-left: 1px solid rgba(0, 0, 0, 0.06);
-      z-index: 2;
-    }
-
-    .mobile-page-nav-btn {
-      display: none !important;
-    }
-
-    .close-book-ribbon {
-      display: block;
-    }
-  }
-
-  .cover-side {
-    position: absolute;
-    inset: 0;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    border-radius: 0 16px 16px 0;
-    overflow: hidden;
-  }
-
-  .cover-front {
-    background: linear-gradient(135deg, #091a24 0%, #152c3e 100%);
-    border-left: 5px solid #0f172a;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-  }
-
-  .cover-back {
-    background: #111e29;
-    transform: rotateY(180deg);
-    border-radius: 16px 0 0 16px;
-    border-right: 5px solid #0f172a;
-  }
-
-  .cover-design {
-    border: 2px solid rgba(212, 175, 55, 0.35);
-    border-radius: 12px;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: #f3e5ab;
-    padding: 1.5rem;
-    position: relative;
-  }
-
-  .emblem-container {
-    width: 70px;
-    height: 70px;
-    border: 2px solid rgba(212, 175, 55, 0.45);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 1.5rem;
-    color: #ffd700;
-  }
-
-  .gold-emblem {
-    width: 32px;
-    height: 32px;
-  }
-
-  .cover-title {
-    font-size: 2.2rem;
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    letter-spacing: 2px;
-    margin: 0 0 0.5rem 0;
-    text-transform: uppercase;
-    color: #ffd700;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-  }
-
-  .cover-subtitle {
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-    margin-bottom: 2.5rem;
-    opacity: 0.8;
-    text-transform: uppercase;
-    font-weight: 500;
-    color: #f3e5ab;
-  }
-
-  .open-book-btn {
-    background: transparent;
-    border: 2px solid #ffd700;
-    color: #ffd700;
-    padding: 0.75rem 2rem;
-    border-radius: 30px;
-    font-size: 0.95rem;
-    font-weight: 600;
+    top: -3px;
+    left: 80px;
+    width: 40px;
+    height: 3px;
+    background: #a0a0a5;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: background 0.2s, transform 0.1s;
+    z-index: 50;
   }
 
-  .open-book-btn:hover {
-    background: #ffd700;
-    color: #0f172a;
-    box-shadow: 0 6px 15px rgba(255, 215, 0, 0.3);
-    transform: translateY(-2px);
+  .ipad-power-btn:hover {
+    background: #fff;
+  }
+  
+  .ipad-power-btn:active {
+    transform: translateY(2px);
   }
 
-  .lining {
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, rgba(255,255,255,0.05) 10%, transparent 11%),
-                radial-gradient(circle, rgba(255,255,255,0.05) 10%, transparent 11%);
-    background-size: 20px 20px;
-    background-position: 0 0, 10px 10px;
-    opacity: 0.3;
-  }
-
-  .book-page {
+  .ipad-boot-screen {
     position: absolute;
-    top: 0;
-    width: 50%;
-    height: 100%;
-    background: #fdfdfa;
-    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.02);
-    overflow: hidden;
-  }
-
-  .page-content {
-    padding: 2.5rem;
-    height: 100%;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #000;
+    z-index: 15;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-  }
-
-  .page-title {
-    font-size: 1.6rem;
-    font-weight: 700;
-    margin: 0 0 0.5rem 0;
-    color: #1a1a1a;
-    border-bottom: 2px solid rgba(0, 114, 206, 0.1);
-    padding-bottom: 0.5rem;
-  }
-
-  .page-intro {
-    font-size: 0.9rem;
-    color: #555;
-    margin-bottom: 1.5rem;
-  }
-
-  .book-info-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .book-info-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    text-align: left;
-  }
-
-  .info-icon {
-    font-size: 1.25rem;
-    width: 36px;
-    height: 36px;
-    background: rgba(0, 114, 206, 0.05);
-    border-radius: 50%;
-    display: flex;
     align-items: center;
     justify-content: center;
-  }
-
-  .info-details h5 {
-    margin: 0;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: #777;
-  }
-
-  .info-details p {
-    margin: 0;
-    font-size: 0.95rem;
-    color: #1a1a1a;
-  }
-
-  .info-details p a {
-    color: var(--primary-color);
-  }
-
-  .book-map {
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid rgba(0,0,0,0.05);
-  }
-
-  .book-form-group {
-    margin-bottom: 0.75rem;
-  }
-
-  .book-form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.75rem;
-  }
-
-  .book-form-group input,
-  .book-form-group textarea {
-    width: 100%;
-    padding: 0.65rem 0.85rem;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    font-size: 0.9rem;
-    font-family: inherit;
-    background: #fdfdfc;
-    transition: all 0.3s ease;
-  }
-
-  .book-form-group input:focus,
-  .book-form-group textarea:focus {
-    outline: none;
-    border-color: #1a1a1a;
-    box-shadow: 0 0 0 2px rgba(26,26,26,0.05);
-  }
-
-  .book-submit-btn {
-    width: 100%;
-    padding: 0.75rem 1.5rem !important;
-    font-size: 0.95rem !important;
-    border-radius: 8px !important;
-    margin-top: 0.5rem;
-  }
-
-  .close-book-ribbon {
-    position: absolute;
-    bottom: 2rem;
-    right: 0;
-    background: #b22222;
-    color: white;
-    padding: 0.35rem 1.25rem 0.35rem 0.75rem;
-    border: none;
-    border-radius: 4px 0 0 4px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: -2px 3px 5px rgba(0,0,0,0.15);
-    transition: all 0.2s ease;
-  }
-
-  .close-book-ribbon:hover {
-    padding-right: 1.75rem;
-    background: #8b0000;
-  }
-
-  .book-crease {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    width: 24px;
-    transform: translateX(-50%);
-    background: linear-gradient(to right, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.08) 100%);
-    z-index: 8;
+    opacity: 0; /* Initially off (black screen is achieved by ipad-screen bg) */
     pointer-events: none;
     transition: opacity 0.5s ease;
   }
-
-  .book.closed .book-crease {
+  
+  /* When booting state is active */
+  .ipad-boot-screen.booting {
+    opacity: 1;
+  }
+  
+  /* When boot is done, hide it */
+  .ipad-boot-screen.hidden {
     opacity: 0;
+    visibility: hidden;
   }
 
-  .book.opened .book-crease {
+  .boot-logo {
+    width: 60px;
+    height: 60px;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+  
+  .ipad-boot-screen.booting .boot-logo {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .boot-progress-bar {
+    width: 120px;
+    height: 3px;
+    background: #333;
+    border-radius: 2px;
+    margin-top: 30px;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease 0.5s;
+  }
+  
+  .ipad-boot-screen.booting .boot-progress-bar {
     opacity: 1;
   }
 
-  /* Mobile layout states (max-width: 768px) */
+  .boot-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: #fff;
+    border-radius: 2px;
+    transition: width 2.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .ipad-boot-screen.booting .boot-progress-fill {
+    width: 100%;
+  }
+
+  /* Main UI State */
+  #ipad-main-ui {
+    transition: opacity 0.8s ease 0.2s, filter 0.8s ease;
+  }
+  
+  #ipad-main-ui.off {
+    opacity: 0;
+    filter: blur(10px);
+    pointer-events: none;
+  }
+  
+  #ipad-main-ui.on {
+    opacity: 1;
+    filter: blur(0px);
+    pointer-events: all;
+  }
+  
+  /* Initially the screen is totally black, so we need to hide the wallpaper gradient */
+  .ipad-screen.off {
+    background: #000 !important;
+  }
+  
+  .ipad-screen.off::before {
+    opacity: 0 !important;
+  }
+  /* --- End Boot CSS --- */
+
+  /* --- iPad Pro Wrapper --- */
+  .ipad-pro-wrapper {
+    max-width: 1024px;
+    margin: 0 auto;
+    background: #d1d1d6; /* Silver edge */
+    border-radius: 38px;
+    padding: 3px; 
+    box-shadow: 
+      inset 0 0 2px rgba(255, 255, 255, 0.8),
+      inset 0 0 6px rgba(0, 0, 0, 0.2),
+      0 20px 40px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(0, 0, 0, 0.1);
+    position: relative;
+    /* Optional 3D tilt effect */
+    transform: perspective(1200px) rotateX(4deg);
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .ipad-pro-wrapper:hover {
+    transform: perspective(1200px) rotateX(0deg);
+  }
+
+  .ipad-pro-inner {
+    background: #0f0f11; /* Deep black bezel */
+    border-radius: 35px;
+    padding: 24px; /* Bezel thickness */
+    position: relative;
+    box-shadow: inset 0 0 0 2px #000, inset 0 0 8px rgba(0,0,0,0.8);
+  }
+
+  .ipad-notch {
+    position: absolute;
+    top: 23px; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 130px;
+    height: 28px;
+    background: #000;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+    z-index: 20; /* Ensure it stays above the screen content */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 -1px 3px rgba(255,255,255,0.1), 0 5px 10px rgba(0,0,0,0.5);
+  }
+
+  .ipad-camera {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    background: #050505;
+    border-radius: 50%;
+    border: 1px solid #222;
+    box-shadow: inset 0 0 3px #000, 0 0 2px rgba(255,255,255,0.05);
+  }
+
+  .ipad-camera::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 3px;
+    height: 3px;
+    background: rgba(30, 80, 200, 0.7);
+    border-radius: 50%;
+    filter: blur(0.5px);
+  }
+
+  .ipad-screen {
+    background: #000;
+    border-radius: 14px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 0 10px rgba(0,0,0,1);
+    display: flex;
+    /* iPad aesthetic wallpaper */
+    background: radial-gradient(circle at top left, #1a0b2e 0%, #000000 60%),
+                radial-gradient(circle at bottom right, #0d1b2a 0%, transparent 50%);
+  }
+  
+  .ipad-screen::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url('https://www.transparenttextures.com/patterns/stardust.png');
+    opacity: 0.2;
+    z-index: 0;
+  }
+
   @media (max-width: 768px) {
-    .book-view-container {
-      min-height: auto;
-      padding: 1.5rem 0;
-      overflow: hidden;
+    .ipad-pro-wrapper {
+      margin: 0 1rem;
+      border-radius: 28px;
+      padding: 2px;
     }
-
-    .book {
-      width: 100% !important;
-      max-width: 340px !important;
-      height: 540px !important;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.1) !important;
-      transition: box-shadow 0.75s ease;
-      margin: 0 auto;
-      overflow: hidden;
+    .ipad-pro-inner {
+      border-radius: 26px;
+      padding: 16px;
     }
-
-    .book-cover {
-      position: absolute;
-      inset: 0;
-      width: 100% !important;
-      left: 0 !important;
-      right: auto !important;
-      transform-origin: left center;
-      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
-      transform-style: preserve-3d;
-      z-index: 10;
-      will-change: transform;
-      cursor: pointer;
-    }
-
-    .book.closed .book-cover {
-      transform: translateX(0);
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    /* Cover slides left and fades out on mobile */
-    .book.page-1 .book-cover,
-    .book.page-2 .book-cover {
-      transform: translateX(-100%);
-      pointer-events: none;
-      opacity: 0;
-    }
-
-    .book-page {
-      position: absolute;
-      inset: 0;
-      width: 100% !important;
-      height: 100% !important;
-      border-radius: 16px !important;
-      background: #fdfdfa;
-      overflow: hidden;
-      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;
-      will-change: transform, opacity;
-      transform-style: preserve-3d;
-      left: 0 !important;
-      right: auto !important;
-    }
-
-    .page-left {
-      z-index: 5;
-    }
-
-    .page-right {
-      z-index: 4;
-    }
-
-    /* Mobile state: Page 1 active (Cover open) */
-    .book.closed .page-left {
-      opacity: 0;
-      pointer-events: none;
-    }
-    
-    .book.page-1 .page-left {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translateX(0);
-    }
-
-    /* Mobile state: Page 2 active (Form visible, Page 1 slides left) */
-    .book.page-2 .page-left {
-      transform: translateX(-100%);
-      pointer-events: none;
-      opacity: 0;
-    }
-
-    .book.page-2 .page-right {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .book.page-1 .page-right {
-      pointer-events: none;
-    }
-
-    .mobile-page-nav-btn {
-      display: inline-flex !important;
-      margin-top: 1.25rem;
-      padding: 0.6rem 1.2rem !important;
-      font-size: 0.85rem !important;
-      border-radius: 8px !important;
-      align-self: center;
-    }
-
-    .close-book-ribbon {
-      display: none !important;
-    }
-
-    .book-crease {
-      display: none !important;
-    }
-
-    .page-content {
-      padding: 1.75rem !important;
+    .ipad-notch {
+      top: 50%;
+      left: 16px; /* Touch the left screen edge */
+      transform: translateY(-50%);
+      width: 25px;
+      height: 100px;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 16px;
+      border-bottom-right-radius: 16px;
+      box-shadow: inset -2px 0 5px rgba(0,0,0,0.5);
     }
   }
+
+  /* --- Glowing Screen Tab Section --- */
+  .glowing-screen-section {
+    padding: 4rem 0 6rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Animated Conic Gradient for the Border */
+  @property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  .glowing-tab-wrapper {
+    width: 100%;
+    padding: 2px;
+    border-radius: 16px;
+    background: conic-gradient(from var(--angle), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.1));
+    animation: rotate-gradient 4s linear infinite;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2), inset 0 0 20px rgba(255, 255, 255, 0.1);
+    position: relative;
+  }
+
+  @keyframes rotate-gradient {
+    0% { --angle: 0deg; }
+    100% { --angle: 360deg; }
+  }
+
+  .glowing-tab-border {
+    background-color: rgba(10, 10, 15, 0.4); /* Much more transparent */
+    border-radius: 14px;
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.05);
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    position: relative;
+  }
+
+  .glowing-tab-content {
+    position: relative;
+    z-index: 2;
+    padding: 3rem;
+  }
+
+  .glowing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+
+  .pane-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #fff, #aaa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .pane-intro {
+    color: #a0a0a0;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+  }
+
+  /* Info Pane Styles */
+  .info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .info-icon-wrapper {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .info-details h5 {
+    font-size: 1rem;
+    margin: 0 0 0.25rem 0;
+    color: #ddd;
+  }
+
+  .info-details p, .info-details a {
+    margin: 0;
+    color: #888;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .info-details a:hover {
+    color: #fff;
+  }
+
+  /* Form Pane Styles */
+  .tab-form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .tab-form-grid-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .tab-form-group input,
+  .tab-form-group textarea {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+  }
+
+  .tab-form-group input::placeholder,
+  .tab-form-group textarea::placeholder {
+    color: #666;
+  }
+
+  .tab-form-group input:focus,
+  .tab-form-group textarea:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+  }
+
+  .glowing-submit-btn {
+    width: 100%;
+    padding: 1rem;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .glowing-submit-btn span {
+    position: relative;
+    z-index: 2;
+  }
+
+  .glowing-submit-btn .btn-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150%;
+    height: 150%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.5s cubic-bezier(0.1, 0, 0.3, 1);
+    z-index: 1;
+    border-radius: 50%;
+  }
+
+  .glowing-submit-btn:hover {
+    border-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  }
+
+  .glowing-submit-btn:hover .btn-glow {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 900px) {
+    .glowing-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    
+    .glowing-tab-content {
+      padding: 2rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .tab-form-grid-inner {
+      grid-template-columns: 1fr;
+    }
+    
+    .glowing-tab-wrapper {
+      border-radius: 12px;
+      margin: 0 1rem;
+    }
+    
+    .glowing-tab-content {
+      padding: 1.5rem;
+    }
+  }
+
 </style>
