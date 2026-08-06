@@ -1,0 +1,966 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import eventsData from '../../data/events.json';
+
+export function getStaticPaths() {
+  return eventsData.map((event) => ({
+    params: { slug: event.slug },
+    props: { event },
+  }));
+}
+
+const { event } = Astro.props;
+const isUpcoming = event.status === 'upcoming' || event.status === 'live';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{event.title} | ACM VJIT Events</title>
+    <meta name="description" content={event.shortDesc} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <style define:vars={{
+      accentColor: event.accentColor,
+      accentColorLight: event.accentColorLight,
+      accentGlow: event.accentGlow,
+      bgFrom: event.posterBgFrom,
+      bgTo: event.posterBgTo,
+      photoUrl: event.photo ? `url(${event.photo})` : 'none',
+    }}>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: var(--bgFrom);
+        color: #fff;
+        min-height: 100vh;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* ── Immersive Background ── */
+      .event-bg {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        background: linear-gradient(160deg, var(--bgFrom) 0%, var(--bgTo) 100%);
+      }
+
+      .event-bg-image {
+        position: absolute;
+        inset: 0;
+        background-image: var(--photoUrl);
+        background-size: cover;
+        background-position: center;
+        opacity: 0.35; /* Blends the colors and light of the poster background directly into the page backdrop */
+        filter: blur(40px) brightness(0.5);
+        transform: scale(1.15);
+        pointer-events: none;
+      }
+
+      .event-bg-dots {
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+        background-size: 32px 32px;
+        mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+        pointer-events: none;
+      }
+
+      /* Floating orbs */
+      .orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        animation: float-orb 8s ease-in-out infinite alternate;
+        pointer-events: none;
+      }
+      .orb-1 {
+        width: 500px; height: 500px;
+        background: var(--accentGlow);
+        top: -100px; left: -100px;
+        opacity: 0.5;
+      }
+      .orb-2 {
+        width: 300px; height: 300px;
+        background: rgba(255,255,255,0.04);
+        bottom: 100px; right: -50px;
+        animation-delay: -4s;
+        opacity: 0.6;
+      }
+      .orb-3 {
+        width: 200px; height: 200px;
+        background: var(--accentGlow);
+        bottom: 200px; left: 30%;
+        animation-delay: -2s;
+        opacity: 0.25;
+      }
+      @keyframes float-orb {
+        from { transform: translate(0, 0) scale(1); }
+        to   { transform: translate(30px, -30px) scale(1.1); }
+      }
+
+      /* ── Page Layout ── */
+      .page-wrapper {
+        position: relative;
+        z-index: 1;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* ── Top Nav Bar ── */
+      .top-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.5rem 2rem;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+        backdrop-filter: blur(10px);
+        background: rgba(0,0,0,0.2);
+      }
+
+      .back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: rgba(255,255,255,0.7);
+        font-size: 0.95rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        padding: 0.5rem 1rem;
+        border-radius: 99px;
+        border: 1px solid rgba(255,255,255,0.12);
+      }
+      .back-btn:hover {
+        color: #fff;
+        background: rgba(255,255,255,0.08);
+        border-color: rgba(255,255,255,0.25);
+        transform: translateX(-3px);
+      }
+      .back-btn svg { width: 16px; height: 16px; }
+
+      .top-bar-brand {
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: rgba(255,255,255,0.5);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+
+      /* ── Main Content ── */
+      .content {
+        flex: 1;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 3rem 2rem 6rem;
+        width: 100%;
+      }
+
+      /* ── Category Badge ── */
+      .category-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.4rem 1rem;
+        border-radius: 99px;
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        margin-bottom: 1.5rem;
+        border: 1px solid;
+        animation: badge-in 0.6s cubic-bezier(0.16,1,0.3,1) forwards;
+        opacity: 0;
+      }
+      @keyframes badge-in {
+        from { opacity: 0; transform: translateY(-10px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+
+      /* ── Title ── */
+      .event-title {
+        font-size: clamp(2.8rem, 7vw, 5rem);
+        font-weight: 900;
+        line-height: 1.05;
+        letter-spacing: -2px;
+        color: #fff;
+        margin-bottom: 1rem;
+        animation: title-in 0.7s cubic-bezier(0.16,1,0.3,1) 0.1s forwards;
+        opacity: 0;
+      }
+      .event-title .accent { color: var(--accentColorLight); }
+
+      @keyframes title-in {
+        from { opacity: 0; transform: translateY(30px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+
+      /* ── Date & Status ── */
+      .event-meta-row {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        margin-bottom: 2.5rem;
+        flex-wrap: wrap;
+        animation: fade-in 0.6s ease 0.2s forwards;
+        opacity: 0;
+      }
+      .meta-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: rgba(255,255,255,0.55);
+        font-size: 0.95rem;
+        font-weight: 500;
+      }
+      .meta-item svg { width: 16px; height: 16px; opacity: 0.7; }
+      .status-badge-live {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.3rem 0.8rem;
+        background: rgba(255,75,75,0.15);
+        border: 1px solid rgba(255,75,75,0.4);
+        border-radius: 99px;
+        color: #ff6b6b;
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .live-dot {
+        width: 7px; height: 7px;
+        background: #ff4b4b;
+        border-radius: 50%;
+        animation: pulse-dot 1.5s ease-in-out infinite;
+      }
+      @keyframes pulse-dot {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.5; transform: scale(0.7); }
+      }
+      @keyframes fade-in {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      /* ── Event Photo ── */
+      .event-photo-wrapper {
+        position: relative;
+        width: 100%;
+        border-radius: 24px;
+        overflow: hidden;
+        margin-bottom: 2.5rem;
+        border: 1px solid rgba(255,255,255,0.08);
+        box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04);
+        animation: photo-in 0.8s cubic-bezier(0.16,1,0.3,1) 0.3s forwards;
+        opacity: 0;
+        transform: scale(0.97);
+      }
+      @keyframes photo-in {
+        from { opacity: 0; transform: scale(0.97) translateY(20px); }
+        to   { opacity: 1; transform: scale(1) translateY(0); }
+      }
+      .event-photo-wrapper::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.4) 100%);
+        pointer-events: none;
+      }
+      .event-photo {
+        width: 100%;
+        aspect-ratio: 16/7;
+        object-fit: cover;
+        display: block;
+      }
+      .photo-placeholder {
+        width: 100%;
+        aspect-ratio: 16/7;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
+        font-size: 5rem;
+      }
+
+      /* ── Glassmorphism Info Cards ── */
+      .info-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        margin-bottom: 2.5rem;
+        animation: fade-in 0.6s ease 0.5s forwards;
+        opacity: 0;
+      }
+      .info-card {
+        background: rgba(255,255,255,0.04);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 20px;
+        padding: 1.75rem 2rem;
+        transition: border-color 0.3s ease, background 0.3s ease;
+      }
+      .info-card:hover {
+        border-color: rgba(255,255,255,0.16);
+        background: rgba(255,255,255,0.07);
+      }
+      .info-card.full-width { grid-column: 1 / -1; }
+
+      .info-card-label {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.35);
+        margin-bottom: 1.2rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .info-card-label::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: rgba(255,255,255,0.08);
+      }
+
+      /* Description */
+      .event-description {
+        color: rgba(255,255,255,0.75);
+        font-size: 1.05rem;
+        line-height: 1.85;
+        white-space: pre-line;
+      }
+
+      /* Stats */
+      .stats-row {
+        display: flex;
+        gap: 2rem;
+        flex-wrap: wrap;
+      }
+      .stat-item { text-align: center; }
+      .stat-value {
+        font-size: 2rem;
+        font-weight: 900;
+        color: var(--accentColorLight);
+        line-height: 1;
+        display: block;
+        margin-bottom: 0.3rem;
+      }
+      .stat-label {
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: rgba(255,255,255,0.4);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      /* Winners */
+      .winners-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.85rem;
+      }
+      .winner-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.5rem 0;
+        background: none;
+        border-radius: 0;
+        border: none;
+        transition: none;
+      }
+      .winner-item:hover {
+        background: none;
+        transform: none;
+      }
+      .winner-emoji { font-size: 1.5rem; line-height: 1; }
+      .winner-place {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.4);
+      }
+      .winner-name {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #fff;
+      }
+
+      /* ── CTA Button ── */
+      .cta-section {
+        text-align: center;
+        padding-top: 1rem;
+        animation: fade-in 0.6s ease 0.7s forwards;
+        opacity: 0;
+      }
+      .register-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 1rem 2.5rem;
+        background: linear-gradient(135deg, var(--accentColor), var(--accentColorLight));
+        color: #fff;
+        font-weight: 800;
+        font-size: 1.05rem;
+        border-radius: 14px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 30px var(--accentGlow);
+        border: none;
+        cursor: pointer;
+        letter-spacing: 0.3px;
+      }
+      .register-btn:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 50px var(--accentGlow);
+      }
+
+      /* ── Mobile ── */
+      @media (max-width: 640px) {
+        .content { padding: 2rem 1.25rem 4rem; }
+        .event-title { font-size: 2.5rem; letter-spacing: -1px; }
+        .info-grid { grid-template-columns: 1fr; }
+        .stats-row { gap: 1.25rem; }
+        .top-bar { padding: 1rem 1.25rem; }
+        .top-bar-brand { display: none; }
+      }
+
+      /* ── Registration Overlay (No Bounding Boxes) ── */
+      .registration-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1);
+      }
+      .registration-overlay.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .registration-bg-video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -2;
+      }
+
+      .registration-overlay-tint {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(4px);
+        z-index: -1;
+      }
+
+      .close-registration-btn {
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        background: none;
+        border: none;
+        color: rgba(255,255,255,0.6);
+        cursor: pointer;
+        padding: 0.5rem;
+        transition: all 0.3s ease;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .close-registration-btn:hover {
+        color: #fff;
+        transform: rotate(90deg);
+      }
+      .close-registration-btn svg {
+        width: 32px;
+        height: 32px;
+      }
+
+      .registration-content {
+        max-width: 500px;
+        width: 90%;
+        text-align: center;
+        color: #fff;
+        animation: form-slide-up 0.6s cubic-bezier(0.16,1,0.3,1) forwards;
+      }
+
+      @keyframes form-slide-up {
+        from { opacity: 0; transform: translateY(40px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .registration-title {
+        font-size: 2.2rem;
+        font-weight: 900;
+        letter-spacing: -1px;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+        background: linear-gradient(135deg, #fff, rgba(255,255,255,0.7));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .registration-subtitle {
+        font-size: 0.95rem;
+        color: rgba(255,255,255,0.6);
+        margin-bottom: 2.5rem;
+        font-weight: 500;
+      }
+
+      /* Form inputs - removing all bounding boxes */
+      .registration-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.75rem;
+        text-align: left;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+      }
+
+      .form-group label {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.4);
+      }
+
+      .form-group input {
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        color: #fff;
+        font-size: 1rem;
+        padding: 0.6rem 0;
+        font-weight: 500;
+        outline: none;
+        transition: border-color 0.3s ease;
+        border-radius: 0;
+      }
+
+      .form-group input::placeholder {
+        color: rgba(255, 255, 255, 0.25);
+      }
+
+      .form-group input:focus {
+        border-bottom-color: var(--accentColorLight);
+      }
+
+      .submit-registration-btn {
+        margin-top: 1.5rem;
+        padding: 1rem 2rem;
+        background: linear-gradient(135deg, var(--accentColor), var(--accentColorLight));
+        color: #fff;
+        font-weight: 800;
+        font-size: 1rem;
+        border-radius: 12px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-align: center;
+        box-shadow: 0 10px 30px var(--accentGlow);
+      }
+
+      .submit-registration-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 15px 40px var(--accentGlow);
+      }
+
+      /* Success State styles */
+      .registration-success-message {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 0;
+      }
+      .success-icon {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+      }
+      .registration-success-message h3 {
+        font-size: 1.8rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+      }
+      .registration-success-message p {
+        color: rgba(255,255,255,0.7);
+        font-size: 1rem;
+        margin-bottom: 2rem;
+        line-height: 1.6;
+        text-align: center;
+      }
+      .success-close-btn {
+        padding: 0.75rem 2rem;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #fff;
+        font-weight: 700;
+        font-size: 0.95rem;
+        border-radius: 99px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .success-close-btn:hover {
+        background: #fff;
+        color: #000;
+      }
+
+      /* ── Theme Light overrides for Upcoming Events ── */
+      .theme-light {
+        color: #1a1a1a;
+      }
+      .theme-light .event-title {
+        color: #050b14;
+      }
+      .theme-light .meta-item {
+        color: rgba(0, 0, 0, 0.65);
+      }
+      .theme-light .meta-item svg {
+        color: rgba(0, 0, 0, 0.45);
+      }
+      .theme-light .event-description {
+        color: #262626;
+        font-weight: 550;
+      }
+      .theme-light .info-card-label {
+        color: rgba(0, 0, 0, 0.5);
+        font-weight: 800;
+      }
+      .theme-light .info-card-label::after {
+        background: rgba(0, 0, 0, 0.15);
+      }
+      .theme-light .stat-value {
+        color: var(--accentColor);
+        text-shadow: 0 2px 10px rgba(0, 114, 206, 0.1);
+      }
+      .theme-light .stat-label {
+        color: rgba(0, 0, 0, 0.6);
+        font-weight: 700;
+      }
+      .theme-light .back-btn {
+        color: #1a1a1a;
+        background: rgba(0, 0, 0, 0.06);
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        backdrop-filter: blur(10px);
+      }
+      .theme-light .back-btn:hover {
+        background: rgba(0, 0, 0, 0.12);
+        color: #000;
+      }
+      .theme-light .top-bar-brand {
+        color: rgba(0, 0, 0, 0.7);
+      }
+      .theme-light .info-card {
+        background: rgba(255, 255, 255, 0.38);
+        backdrop-filter: blur(24px) saturate(190%);
+        -webkit-backdrop-filter: blur(24px) saturate(190%);
+        border: 1px solid rgba(255, 255, 255, 0.55);
+        border-radius: 24px;
+        padding: 2rem;
+        box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.05),
+                    inset 0 1px 1px rgba(255, 255, 255, 0.6);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .theme-light .info-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 15px 45px -10px rgba(0, 0, 0, 0.09),
+                    inset 0 1px 1px rgba(255, 255, 255, 0.7);
+      }
+      .theme-light .info-card-label::after {
+        background: rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Immersive Background -->
+    <div class="event-bg" style={isUpcoming ? "background: #eae9e4;" : ""}>
+      {isUpcoming ? (
+        <!-- ASCII Art Video as Page Background for Upcoming Events -->
+        <video
+          class="registration-bg-video"
+          src="https://assets.21st.dev/ascii-recipes/videos/user_3GPTiAnC9sbzHhxwSKYXvQdPCa1/e60d8d3d-e665-4ef9-b7de-68b26b4d94f2.mp4"
+          poster="https://assets.21st.dev/ascii-recipes/thumbnails/user_3GPTiAnC9sbzHhxwSKYXvQdPCa1/08bbdd00-25f5-4f38-84f9-c05482d745e1.webp"
+          autoplay
+          loop
+          muted
+          playsinline
+          style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2;"
+        ></video>
+      ) : (
+        <!-- Default Background for Past Events -->
+        <div class="event-bg-image"></div>
+        <div class="event-bg-dots"></div>
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+      )}
+    </div>
+
+    <div class={`page-wrapper ${isUpcoming ? 'theme-light' : ''}`}>
+      <!-- Top Nav -->
+      <nav class="top-bar">
+        <a href="/events" class="back-btn" id="back-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+          </svg>
+          All Events
+        </a>
+        <span class="top-bar-brand">{event.title}</span>
+        <div style="width: 110px;"></div>
+      </nav>
+
+      <!-- Main Content -->
+      <main class="content">
+
+        <!-- Category Badge -->
+        <div class="category-badge" style={`background: ${event.categoryBg}; color: ${event.accentColorLight}; border-color: ${event.accentColor}44;`}>
+          {event.category}
+        </div>
+
+        <!-- Live Status -->
+        {event.status === 'live' && (
+          <div class="status-badge-live" style="margin-bottom: 1rem; display: inline-flex;">
+            <span class="live-dot"></span>
+            Live Now
+          </div>
+        )}
+
+        <!-- Title -->
+        {!isUpcoming && <h1 class="event-title">{event.title}</h1>}
+
+        <!-- Meta Row -->
+        <div class="event-meta-row">
+          <span class="meta-item">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+            </svg>
+            {event.dateDisplay}
+          </span>
+          {event.status === 'past' && (
+            <span class="meta-item">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+              </svg>
+              Completed
+            </span>
+          )}
+          {event.status === 'upcoming' && (
+            <span class="meta-item">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+              </svg>
+              Upcoming
+            </span>
+          )}
+        </div>
+
+        <!-- Event Photo -->
+        {event.photo && (
+          <div class="event-photo-wrapper">
+            <img class="event-photo" src={event.photo} alt={event.title} loading="eager" />
+          </div>
+        )}
+
+        <!-- Info Grid -->
+        <div class="info-grid">
+
+          <!-- Description -->
+          <div class="info-card full-width">
+            <div class="info-card-label">About this Event</div>
+            <p class="event-description">{event.fullDesc}</p>
+          </div>
+
+          <!-- Stats -->
+          {event.stats && event.stats.length > 0 && (
+            <div class="info-card">
+              <div class="info-card-label">By the Numbers</div>
+              <div class="stats-row">
+                {event.stats.map((stat) => (
+                  <div class="stat-item">
+                    <span class="stat-value">{stat.value}</span>
+                    <span class="stat-label">{stat.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- Winners -->
+          {event.winners && event.winners.length > 0 && (
+            <div class="info-card">
+              <div class="info-card-label">Winners</div>
+              <div class="winners-list">
+                {event.winners.map((w) => (
+                  <div class="winner-item">
+                    <span class="winner-emoji">{w.emoji}</span>
+                    <div>
+                      <div class="winner-place">{w.place}</div>
+                      <div class="winner-name">{w.name}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+        </div>
+
+        <!-- CTA Button -->
+        {isUpcoming && (
+          <div class="cta-section">
+            <button id="register-trigger-btn" class="register-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:18px;height:18px;">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 0 1 0 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a3 3 0 0 1 0-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375Z" />
+              </svg>
+              Register Now
+            </button>
+          </div>
+        )}
+
+      </main>
+
+      <!-- Full-Screen Registration Overlay (No Bounding Boxes) -->
+      <div id="registration-overlay" class="registration-overlay">
+        <!-- Background ASCII Art Video -->
+        <video
+          class="registration-bg-video"
+          src="https://assets.21st.dev/ascii-recipes/videos/user_3GPTiAnC9sbzHhxwSKYXvQdPCa1/e60d8d3d-e665-4ef9-b7de-68b26b4d94f2.mp4"
+          poster="https://assets.21st.dev/ascii-recipes/thumbnails/user_3GPTiAnC9sbzHhxwSKYXvQdPCa1/08bbdd00-25f5-4f38-84f9-c05482d745e1.webp"
+          autoplay
+          loop
+          muted
+          playsinline
+        ></video>
+        <div class="registration-overlay-tint"></div>
+
+        <!-- Close Button -->
+        <button id="close-registration-btn" class="close-registration-btn" aria-label="Close registration">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        <!-- Registration Form Content -->
+        <div class="registration-content">
+          <h2 class="registration-title">Register for {event.title}</h2>
+          <p class="registration-subtitle">Join us on {event.dateDisplay} · {event.venue}</p>
+
+          <form id="registration-form" class="registration-form">
+            <div class="form-group">
+              <label for="reg-name">Full Name</label>
+              <input type="text" id="reg-name" required placeholder="Enter your full name" />
+            </div>
+
+            <div class="form-group">
+              <label for="reg-email">Email Address</label>
+              <input type="email" id="reg-email" required placeholder="Enter your college email" />
+            </div>
+
+            <div class="form-group">
+              <label for="reg-roll">Roll Number / Student ID</label>
+              <input type="text" id="reg-roll" required placeholder="Enter your roll number" />
+            </div>
+
+            <div class="form-group">
+              <label for="reg-dept">Department & Year</label>
+              <input type="text" id="reg-dept" required placeholder="e.g. CSE-AIML 2nd Year" />
+            </div>
+
+            <div class="form-group">
+              <label for="reg-phone">Phone Number</label>
+              <input type="tel" id="reg-phone" required placeholder="Enter your WhatsApp number" />
+            </div>
+
+            <button type="submit" class="submit-registration-btn">
+              Complete Registration
+            </button>
+          </form>
+
+          <!-- Success Message -->
+          <div id="registration-success" class="registration-success-message" style="display: none;">
+            <div class="success-icon">🎉</div>
+            <h3>Registration Successful!</h3>
+            <p>You have successfully registered for {event.title}. We have sent a confirmation email to you.</p>
+            <button id="success-close-btn" class="success-close-btn">Done</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const initRegistration = () => {
+        const triggerBtn = document.getElementById('register-trigger-btn');
+        const overlay = document.getElementById('registration-overlay');
+        const closeBtn = document.getElementById('close-registration-btn');
+        const regForm = document.getElementById('registration-form');
+        const successMessage = document.getElementById('registration-success');
+        const successCloseBtn = document.getElementById('success-close-btn');
+
+        if (triggerBtn && overlay) {
+          triggerBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            overlay.classList.add('active');
+          });
+        }
+
+        const closeOverlay = () => {
+          if (overlay) {
+            overlay.classList.remove('active');
+            setTimeout(() => {
+              if (regForm && successMessage) {
+                regForm.style.display = 'flex';
+                successMessage.style.display = 'none';
+                (regForm as HTMLFormElement).reset();
+              }
+            }, 500);
+          }
+        };
+
+        if (closeBtn) {
+          closeBtn.addEventListener('click', closeOverlay);
+        }
+
+        if (successCloseBtn) {
+          successCloseBtn.addEventListener('click', closeOverlay);
+        }
+
+        if (regForm && successMessage) {
+          regForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            regForm.style.display = 'none';
+            successMessage.style.display = 'flex';
+          });
+        }
+      };
+
+      // Run on initial load and view transition swap
+      document.addEventListener('DOMContentLoaded', initRegistration);
+      document.addEventListener('astro:after-swap', initRegistration);
+    </script>
+  </body>
+</html>
+

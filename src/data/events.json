@@ -1,0 +1,57 @@
+[
+  {
+    "slug": "acm-launchpad-2026",
+    "title": "ACM Launchpad",
+    "status": "past",
+    "category": "Orientation & Ideathon",
+    "categoryColor": "#00b4d8",
+    "categoryBg": "rgba(0, 180, 216, 0.15)",
+    "date": "2026-04-08",
+    "dateDisplay": "08 APR '26",
+    "shortDesc": "Our flagship inaugural event welcoming the new batch to the ACM VJIT chapter — featuring a freshmen ideathon to spark innovation from day one.",
+    "fullDesc": "ACM Launchpad was our flagship inaugural event that officially welcomed the new batch of CSE(AI&ML) students into the ACM VJIT family. The event began with an electrifying orientation session where chapter leads introduced the vision, mission, and opportunities that ACM VJIT offers throughout the year.\n\nThe highlight of the day was an introductory Ideathon where freshmen, many attending their very first college event, were challenged to brainstorm tech-driven solutions for real campus problems. Teams presented their ideas with raw enthusiasm, and the energy in the auditorium was absolutely electric.\n\nWith hundreds of new minds joining our community, ACM Launchpad set the tone for a year of innovation, collaboration, and technical excellence.",
+    "venue": "Main Auditorium",
+    "photo": "/images/acm-launchpad.png",
+    "posterBgFrom": "#020813",
+    "posterBgTo": "#0b1528",
+    "accentColor": "#0072ce",
+    "accentColorLight": "#38bdf8",
+    "accentGlow": "rgba(56, 189, 248, 0.25)",
+    "registerLink": null,
+    "winners": [
+      { "place": "1st Place", "emoji": "🥇", "name": "Team Alpha" },
+      { "place": "Runner Up", "emoji": "🥈", "name": "Innovators" }
+    ],
+    "stats": [
+      { "value": "200+", "label": "Participants" },
+      { "value": "40+", "label": "Teams" },
+      { "value": "1 Day", "label": "Duration" }
+    ]
+  },
+  {
+    "slug": "sih-info-session-git-github-2026",
+    "title": "SIH Info Session + Git & GitHub",
+    "status": "upcoming",
+    "category": "Workshop & Info Session",
+    "categoryColor": "#00d2ff",
+    "categoryBg": "rgba(0, 210, 255, 0.15)",
+    "date": "2026-08-25",
+    "dateDisplay": "25 AUG '26",
+    "shortDesc": "Gear up for Smart India Hackathon (SIH) with an exclusive info session combined with a hands-on workshop on Git and GitHub basics.",
+    "fullDesc": "Are you ready to crack the Smart India Hackathon (SIH)? Join us for an exclusive, comprehensive Info Session combined with a hands-on Git & GitHub bootcamp designed to set you up for hackathon success.\n\nIn this session, we will cover:\n- Everything about Smart India Hackathon: Rules, team formation, and problem statement selection.\n- Ideation Strategies: How to craft high-impact solutions that stand out to the judges.\n- Git & GitHub Bootcamp: A beginner-friendly, hands-on guide to version control, branching, committing, and collaborating on repositories live.\n\nWhether you are a seasoned coder or a first-year student eager to participate, this event will give you the technical skills and tactical insights you need to dominate SIH.",
+    "venue": "E-Block Seminar Hall",
+    "photo": null,
+    "posterBgFrom": "#050b14",
+    "posterBgTo": "#0a192f",
+    "accentColor": "#0072ce",
+    "accentColorLight": "#00d2ff",
+    "accentGlow": "rgba(0, 114, 206, 0.25)",
+    "registerLink": "https://forms.gle/sample-sih-git",
+    "winners": [],
+    "stats": [
+      { "value": "150+", "label": "Seats Available" },
+      { "value": "2 Hours", "label": "Duration" },
+      { "value": "100%", "label": "Hands-on" }
+    ]
+  }
+]
