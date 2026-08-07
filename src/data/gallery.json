@@ -73,5 +73,11 @@
     "id": 15,
     "url": "https://images.unsplash.com/photo-1531496730074-83b638c0a7ac?w=800&q=80",
     "caption": "ACM Core Team"
+  },
+  {
+    "id": 16,
+    "url": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80",
+    "caption": "ACM Innovation Lab",
+    "_note": "Note: You can add as many photo items as you want to this JSON array."
   }
 ]
