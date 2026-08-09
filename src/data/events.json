@@ -29,29 +29,30 @@
     ]
   },
   {
-    "slug": "sih-info-session-git-github-2026",
-    "title": "SIH Info Session + Git & GitHub",
+    "slug": "3d-website-workshop-2026",
+    "title": "Build & Deploy $5,000 3D Animated Website",
     "status": "upcoming",
-    "category": "Workshop & Info Session",
-    "categoryColor": "#00d2ff",
-    "categoryBg": "rgba(0, 210, 255, 0.15)",
+    "category": "Hands-on Workshop",
+    "categoryColor": "#a855f7",
+    "categoryBg": "rgba(168, 85, 247, 0.15)",
     "date": "2026-08-25",
     "dateDisplay": "25 AUG '26",
-    "shortDesc": "Gear up for Smart India Hackathon (SIH) with an exclusive info session combined with a hands-on workshop on Git and GitHub basics.",
-    "fullDesc": "Are you ready to crack the Smart India Hackathon (SIH)? Join us for an exclusive, comprehensive Info Session combined with a hands-on Git & GitHub bootcamp designed to set you up for hackathon success.\n\nIn this session, we will cover:\n- Everything about Smart India Hackathon: Rules, team formation, and problem statement selection.\n- Ideation Strategies: How to craft high-impact solutions that stand out to the judges.\n- Git & GitHub Bootcamp: A beginner-friendly, hands-on guide to version control, branching, committing, and collaborating on repositories live.\n\nWhether you are a seasoned coder or a first-year student eager to participate, this event will give you the technical skills and tactical insights you need to dominate SIH.",
+    "shortDesc": "Learn to build and deploy a $5,000-worth 3D animated website in one day using Google Flow, Google Antigravity, Google Stitch, and modern deployment tools.",
+    "fullDesc": "Ready to build websites that clients pay $5,000+ for? Join us for the most ambitious workshop ACM VJIT has ever hosted — a full-day, hands-on deep dive into creating stunning 3D animated websites from scratch.\n\nWhat you'll learn:\n• 3D Web Design with Google Flow — Create breathtaking 3D scenes and animations directly in your browser.\n• AI-Powered Development with Google Antigravity — Leverage the most advanced AI coding assistant to write production-grade code at lightning speed.\n• Component Stitching with Google Stitch — Seamlessly combine UI components and 3D assets into cohesive, professional layouts.\n• External UI Libraries — Master premium component libraries that make your sites look world-class.\n• Deploy Like a Pro — Push your finished site live using GitHub and Vercel in minutes.\n\nBy the end of this workshop, you'll walk out with a fully deployed, portfolio-worthy 3D animated website that you built yourself. No prior 3D experience required — just bring your laptop and your ambition.",
     "venue": "E-Block Seminar Hall",
     "photo": null,
-    "posterBgFrom": "#050b14",
-    "posterBgTo": "#0a192f",
-    "accentColor": "#0072ce",
-    "accentColorLight": "#00d2ff",
-    "accentGlow": "rgba(0, 114, 206, 0.25)",
-    "registerLink": "https://forms.gle/sample-sih-git",
+    "posterBgFrom": "#050510",
+    "posterBgTo": "#0a0520",
+    "accentColor": "#8b5cf6",
+    "accentColorLight": "#c084fc",
+    "accentGlow": "rgba(139, 92, 246, 0.3)",
+    "registerLink": null,
     "winners": [],
     "stats": [
-      { "value": "150+", "label": "Seats Available" },
-      { "value": "2 Hours", "label": "Duration" },
-      { "value": "100%", "label": "Hands-on" }
+      { "value": "100+", "label": "Seats Available" },
+      { "value": "1 Day", "label": "Duration" },
+      { "value": "100%", "label": "Hands-on" },
+      { "value": "6", "label": "Pro Tools" }
     ]
   }
 ]

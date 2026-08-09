@@ -1,15 +1,8 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import eventsData from '../../data/events.json';
+import Layout from '../../../layouts/Layout.astro';
+import eventsData from '../../../data/events.json';
 
-export function getStaticPaths() {
-  return eventsData.map((event) => ({
-    params: { slug: event.slug },
-    props: { event },
-  }));
-}
-
-const { event } = Astro.props;
+const event = eventsData.find((e) => e.slug === 'acm-launchpad-2026')!;
 const isUpcoming = event.status === 'upcoming' || event.status === 'live';
 ---
 
@@ -963,4 +956,3 @@ const isUpcoming = event.status === 'upcoming' || event.status === 'live';
     </script>
   </body>
 </html>
-
