@@ -1364,7 +1364,7 @@ const tools = [
     <!-- ═══════════════════════════════════════
          Three.js 3D Virtual Setup
     ═══════════════════════════════════════ -->
-    <script type="module">
+    <script is:inline type="module">
       import * as THREE from 'https://esm.sh/three@0.170.0';
       import { CSS3DRenderer, CSS3DObject } from 'https://esm.sh/three@0.170.0/examples/jsm/renderers/CSS3DRenderer.js';
 
@@ -1445,16 +1445,16 @@ const tools = [
       scene.add(backWall);
 
       // ── Desk ──
-      // Table top
-      const deskTop = new THREE.Mesh(new THREE.BoxGeometry(80, 2, 40), deskMat);
-      deskTop.position.set(0, -12, 0);
+      // Table top (raised higher)
+      const deskTop = new THREE.Mesh(new THREE.BoxGeometry(80, 2.5, 40), deskMat);
+      deskTop.position.set(0, -5, 0);
       deskTop.castShadow = true;
       deskTop.receiveShadow = true;
       scene.add(deskTop);
 
-      // Desk legs (4 corners)
-      const legGeo = new THREE.BoxGeometry(2, 12, 2);
-      [[-38, -19, 18], [38, -19, 18], [-38, -19, -18], [38, -19, -18]].forEach(([x,y,z]) => {
+      // Desk legs (4 metal tube legs)
+      const legGeo = new THREE.CylinderGeometry(1, 1, 19, 8);
+      [[-38, -15, 18], [38, -15, 18], [-38, -15, -18], [38, -15, -18]].forEach(([x,y,z]) => {
         const leg = new THREE.Mesh(legGeo, deskLegMat);
         leg.position.set(x, y, z);
         leg.castShadow = true;
@@ -1462,31 +1462,35 @@ const tools = [
       });
 
       // Right-side drawer unit
-      const drawerUnit = new THREE.Mesh(new THREE.BoxGeometry(18, 11, 36), deskMat);
-      drawerUnit.position.set(30, -18, 0);
+      const drawerUnit = new THREE.Mesh(new THREE.BoxGeometry(18, 17, 36), deskMat);
+      drawerUnit.position.set(30, -14, 0);
       drawerUnit.castShadow = true;
       scene.add(drawerUnit);
-      // Drawer lines
-      [-15, -19, -23].forEach(y => {
-        const drawerLine = new THREE.Mesh(new THREE.BoxGeometry(16, 0.3, 0.3), deskLegMat);
+      // Drawer handle lines
+      [-8, -13, -18].forEach(y => {
+        const drawerLine = new THREE.Mesh(new THREE.BoxGeometry(10, 0.4, 0.4), deskLegMat);
         drawerLine.position.set(30, y, 18.2);
         scene.add(drawerLine);
       });
 
       // ── PC Base Unit (CPU tower lying flat) ──
       const pcBase = new THREE.Mesh(new THREE.BoxGeometry(22, 5, 18), retroBeige);
-      pcBase.position.set(0, -9.5, 0);
+      pcBase.position.set(0, -2, 0);
       pcBase.castShadow = true;
       pcBase.receiveShadow = true;
       scene.add(pcBase);
       // Floppy slot
       const floppySlot = new THREE.Mesh(new THREE.BoxGeometry(8, 0.8, 0.3), screenBlack);
-      floppySlot.position.set(-3, -8, 9.2);
+      floppySlot.position.set(-3, -1, 9.2);
       scene.add(floppySlot);
+      // CD drive slot
+      const cdSlot = new THREE.Mesh(new THREE.BoxGeometry(6, 1.2, 0.3), new THREE.MeshStandardMaterial({color: 0xc0b8a8}));
+      cdSlot.position.set(-3, -3, 9.2);
+      scene.add(cdSlot);
       // Power button
       const powerBtn = new THREE.Mesh(new THREE.CylinderGeometry(0.6, 0.6, 0.3, 16), new THREE.MeshStandardMaterial({color: 0x444444}));
       powerBtn.rotation.x = Math.PI / 2;
-      powerBtn.position.set(6, -9, 9.2);
+      powerBtn.position.set(6, -2, 9.2);
       scene.add(powerBtn);
 
       // ── Monitor ──
@@ -1494,26 +1498,31 @@ const tools = [
 
       // Monitor body (chunky CRT)
       const monitorBody = new THREE.Mesh(new THREE.BoxGeometry(26, 22, 20), retroBeige);
-      monitorBody.position.set(0, 5, -2);
+      monitorBody.position.set(0, 12, -2);
       monitorBody.castShadow = true;
       monitorBody.receiveShadow = true;
       monitorGroup.add(monitorBody);
 
+      // Monitor stand/neck
+      const monitorStand = new THREE.Mesh(new THREE.BoxGeometry(10, 2, 8), retroBeige);
+      monitorStand.position.set(0, 0.5, -2);
+      monitorGroup.add(monitorStand);
+
       // Screen bezel
       const bezel = new THREE.Mesh(new THREE.BoxGeometry(22, 17, 0.5), screenBlack);
-      bezel.position.set(0, 5.5, 8.3);
+      bezel.position.set(0, 12.5, 8.3);
       monitorGroup.add(bezel);
 
       // Green power LED
       const led = new THREE.Mesh(new THREE.SphereGeometry(0.3, 8, 8), new THREE.MeshStandardMaterial({color: 0x00ff00, emissive: 0x00ff00, emissiveIntensity: 0.5}));
-      led.position.set(8, -2, 8.5);
+      led.position.set(8, 4, 8.5);
       monitorGroup.add(led);
 
-      // Brand label
+      // Brand label area
       const labelGeo = new THREE.BoxGeometry(8, 1.5, 0.2);
-      const labelMat = new THREE.MeshStandardMaterial({color: 0xa09888});
-      const label = new THREE.Mesh(labelGeo, labelMat);
-      label.position.set(0, -3, 8.5);
+      const labelMat2 = new THREE.MeshStandardMaterial({color: 0xa09888});
+      const label = new THREE.Mesh(labelGeo, labelMat2);
+      label.position.set(0, 3, 8.5);
       monitorGroup.add(label);
 
       // Screen click target
@@ -1521,33 +1530,113 @@ const tools = [
         new THREE.PlaneGeometry(22, 17),
         new THREE.MeshBasicMaterial({ visible: false })
       );
-      screenTarget.position.set(0, 5.5, 8.6);
+      screenTarget.position.set(0, 12.5, 8.6);
       screenTarget.userData.isScreen = true;
       monitorGroup.add(screenTarget);
 
-      monitorGroup.position.set(0, -7, -5);
+      monitorGroup.position.set(0, -4, -5);
       scene.add(monitorGroup);
 
-      // ── Keyboard ──
+      // ── Keyboard (realistic layout with key labels) ──
       const kbGroup = new THREE.Group();
-      kbGroup.position.set(0, -11, 14);
+      kbGroup.position.set(0, -3.8, 16);
+      kbGroup.rotation.x = -0.04;
 
-      const kbBase = new THREE.Mesh(new THREE.BoxGeometry(28, 1, 10), retroBeige);
+      // Keyboard base
+      const kbBase = new THREE.Mesh(new THREE.BoxGeometry(30, 0.8, 11), retroBeige);
       kbBase.castShadow = true;
       kbGroup.add(kbBase);
 
+      // Keyboard layout rows (realistic key sizes and positions)
+      const keyRows = [
+        // Row 0: Esc, F1-F12
+        { z: -4.2, keys: [
+          {w:1.2,code:'Escape'},{w:0.4,code:null},
+          {w:1.2,code:'F1'},{w:1.2,code:'F2'},{w:1.2,code:'F3'},{w:1.2,code:'F4'},
+          {w:0.4,code:null},
+          {w:1.2,code:'F5'},{w:1.2,code:'F6'},{w:1.2,code:'F7'},{w:1.2,code:'F8'},
+          {w:0.4,code:null},
+          {w:1.2,code:'F9'},{w:1.2,code:'F10'},{w:1.2,code:'F11'},{w:1.2,code:'F12'}
+        ]},
+        // Row 1: Number row
+        { z: -2.8, keys: [
+          {w:1.2,code:'Backquote'},{w:1.2,code:'Digit1'},{w:1.2,code:'Digit2'},{w:1.2,code:'Digit3'},
+          {w:1.2,code:'Digit4'},{w:1.2,code:'Digit5'},{w:1.2,code:'Digit6'},{w:1.2,code:'Digit7'},
+          {w:1.2,code:'Digit8'},{w:1.2,code:'Digit9'},{w:1.2,code:'Digit0'},{w:1.2,code:'Minus'},
+          {w:1.2,code:'Equal'},{w:2.4,code:'Backspace'}
+        ]},
+        // Row 2: QWERTY
+        { z: -1.5, keys: [
+          {w:1.8,code:'Tab'},{w:1.2,code:'KeyQ'},{w:1.2,code:'KeyW'},{w:1.2,code:'KeyE'},
+          {w:1.2,code:'KeyR'},{w:1.2,code:'KeyT'},{w:1.2,code:'KeyY'},{w:1.2,code:'KeyU'},
+          {w:1.2,code:'KeyI'},{w:1.2,code:'KeyO'},{w:1.2,code:'KeyP'},{w:1.2,code:'BracketLeft'},
+          {w:1.2,code:'BracketRight'},{w:1.6,code:'Backslash'}
+        ]},
+        // Row 3: ASDF
+        { z: -0.2, keys: [
+          {w:2.0,code:'CapsLock'},{w:1.2,code:'KeyA'},{w:1.2,code:'KeyS'},{w:1.2,code:'KeyD'},
+          {w:1.2,code:'KeyF'},{w:1.2,code:'KeyG'},{w:1.2,code:'KeyH'},{w:1.2,code:'KeyJ'},
+          {w:1.2,code:'KeyK'},{w:1.2,code:'KeyL'},{w:1.2,code:'Semicolon'},{w:1.2,code:'Quote'},
+          {w:2.4,code:'Enter'}
+        ]},
+        // Row 4: ZXCV
+        { z: 1.1, keys: [
+          {w:2.8,code:'ShiftLeft'},{w:1.2,code:'KeyZ'},{w:1.2,code:'KeyX'},{w:1.2,code:'KeyC'},
+          {w:1.2,code:'KeyV'},{w:1.2,code:'KeyB'},{w:1.2,code:'KeyN'},{w:1.2,code:'KeyM'},
+          {w:1.2,code:'Comma'},{w:1.2,code:'Period'},{w:1.2,code:'Slash'},{w:2.8,code:'ShiftRight'}
+        ]},
+        // Row 5: Space bar row
+        { z: 2.4, keys: [
+          {w:1.5,code:'ControlLeft'},{w:1.5,code:'AltLeft'},{w:8.0,code:'Space'},{w:1.5,code:'AltRight'},{w:1.5,code:'ControlRight'}
+        ]}
+      ];
+
       const keys = [];
-      for (let r = 0; r < 5; r++) {
-        for (let c = 0; c < 18; c++) {
-          const kw = c === 17 ? 2.4 : 1.2;
-          const key = new THREE.Mesh(new THREE.BoxGeometry(kw, 0.35, 1.1), keyMat);
-          key.position.set(-12 + c * 1.4, 0.65, -3.5 + r * 1.3);
-          key.castShadow = true;
-          keys.push(key);
-          kbGroup.add(key);
-        }
-      }
+      const keyMap = {}; // code -> mesh for animation
+      const pressedKeyMat = new THREE.MeshStandardMaterial({ color: 0x888880, roughness: 0.5, emissive: 0x06b6d4, emissiveIntensity: 0.3 });
+
+      keyRows.forEach(row => {
+        let xOffset = -14;
+        row.keys.forEach(k => {
+          if (k.code === null) {
+            xOffset += k.w;
+            return;
+          }
+          const keyMesh = new THREE.Mesh(
+            new THREE.BoxGeometry(k.w - 0.15, 0.4, 1.0),
+            keyMat.clone()
+          );
+          keyMesh.position.set(xOffset + k.w / 2, 0.6, row.z);
+          keyMesh.castShadow = true;
+          keyMesh.userData.code = k.code;
+          keyMesh.userData.origY = 0.6;
+          keys.push(keyMesh);
+          keyMap[k.code] = keyMesh;
+          kbGroup.add(keyMesh);
+          xOffset += k.w + 0.1;
+        });
+      });
       scene.add(kbGroup);
+
+      // ── Keyboard Interaction ──
+      document.addEventListener('keydown', (e) => {
+        const mesh = keyMap[e.code];
+        if (mesh) {
+          mesh.position.y = mesh.userData.origY - 0.25;
+          mesh.material.color.setHex(0x888880);
+          mesh.material.emissive = new THREE.Color(0x06b6d4);
+          mesh.material.emissiveIntensity = 0.4;
+        }
+      });
+      document.addEventListener('keyup', (e) => {
+        const mesh = keyMap[e.code];
+        if (mesh) {
+          mesh.position.y = mesh.userData.origY;
+          mesh.material.color.setHex(0xc8c0b0);
+          mesh.material.emissive = new THREE.Color(0x000000);
+          mesh.material.emissiveIntensity = 0;
+        }
+      });
 
       // ── Mouse ──
       const mouse3D = new THREE.Group();
@@ -1560,36 +1649,26 @@ const tools = [
       const mouseBtn2 = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.2, 2), keyMat);
       mouseBtn2.position.set(0.5, 0.7, -0.8);
       mouse3D.add(mouseBtn2);
-      mouse3D.position.set(18, -11, 14);
+      mouse3D.position.set(20, -3.8, 16);
       scene.add(mouse3D);
 
       // ── Paper Tray (left side) ──
       const trayGroup = new THREE.Group();
-      trayGroup.position.set(-30, -11, 5);
-      // Bottom tray
-      const tray1 = new THREE.Mesh(new THREE.BoxGeometry(14, 1, 10), deskLegMat);
-      tray1.position.set(0, 0, 0);
+      trayGroup.position.set(-30, -3.8, 5);
+      const tray1 = new THREE.Mesh(new THREE.BoxGeometry(14, 0.6, 10), deskLegMat);
       tray1.castShadow = true;
       trayGroup.add(tray1);
-      // Paper stack 1
       const paper1 = new THREE.Mesh(new THREE.BoxGeometry(12, 2, 8), whitePaper);
-      paper1.position.set(0, 1.5, 0);
+      paper1.position.set(0, 1.3, 0);
       paper1.castShadow = true;
       trayGroup.add(paper1);
-      // Top tray (elevated)
-      const traySupport1 = new THREE.Mesh(new THREE.BoxGeometry(0.5, 3, 0.5), deskLegMat);
-      traySupport1.position.set(-6, 3, -4);
-      trayGroup.add(traySupport1);
-      const traySupport2 = new THREE.Mesh(new THREE.BoxGeometry(0.5, 3, 0.5), deskLegMat);
-      traySupport2.position.set(6, 3, -4);
-      trayGroup.add(traySupport2);
-      const traySupport3 = new THREE.Mesh(new THREE.BoxGeometry(0.5, 3, 0.5), deskLegMat);
-      traySupport3.position.set(-6, 3, 4);
-      trayGroup.add(traySupport3);
-      const traySupport4 = new THREE.Mesh(new THREE.BoxGeometry(0.5, 3, 0.5), deskLegMat);
-      traySupport4.position.set(6, 3, 4);
-      trayGroup.add(traySupport4);
-      const tray2 = new THREE.Mesh(new THREE.BoxGeometry(14, 1, 10), deskLegMat);
+      // Top tray supports
+      [[-6,-4],[6,-4],[-6,4],[6,4]].forEach(([x,z]) => {
+        const sup = new THREE.Mesh(new THREE.BoxGeometry(0.4, 3, 0.4), deskLegMat);
+        sup.position.set(x, 3, z);
+        trayGroup.add(sup);
+      });
+      const tray2 = new THREE.Mesh(new THREE.BoxGeometry(14, 0.6, 10), deskLegMat);
       tray2.position.set(0, 4.5, 0);
       tray2.castShadow = true;
       trayGroup.add(tray2);
@@ -1599,100 +1678,104 @@ const tools = [
       trayGroup.add(paper2);
       scene.add(trayGroup);
 
-      // ── Loose paper on desk ──
+      // ── Loose paper ──
       const loosePaper = new THREE.Mesh(new THREE.BoxGeometry(8, 0.1, 6), whitePaper);
-      loosePaper.position.set(-28, -10.9, 16);
+      loosePaper.position.set(-28, -3.6, 17);
       loosePaper.rotation.y = 0.15;
       loosePaper.castShadow = true;
       scene.add(loosePaper);
 
       // ── Binders/Folders (right side) ──
       const binder1 = new THREE.Mesh(new THREE.BoxGeometry(3, 14, 10), brownMat);
-      binder1.position.set(35, -4, -5);
+      binder1.position.set(35, 3, -5);
       binder1.castShadow = true;
       scene.add(binder1);
 
       const binder2 = new THREE.Mesh(new THREE.BoxGeometry(4, 14, 10), darkBrownMat);
-      binder2.position.set(31, -4, -5);
+      binder2.position.set(31, 3, -5);
       binder2.castShadow = true;
       scene.add(binder2);
 
       const binder3 = new THREE.Mesh(new THREE.BoxGeometry(2.5, 12, 10), new THREE.MeshStandardMaterial({color: 0x2c3e6b, roughness: 0.7}));
-      binder3.position.set(27.5, -5, -5);
+      binder3.position.set(27.5, 2, -5);
       binder3.castShadow = true;
       scene.add(binder3);
 
       // ── Mug ──
       const mugGroup = new THREE.Group();
-      mugGroup.position.set(35, -11, 12);
+      mugGroup.position.set(35, -3.8, 12);
       const mugBody = new THREE.Mesh(new THREE.CylinderGeometry(2, 1.8, 5, 16), mugMat);
       mugBody.position.set(0, 2.5, 0);
       mugBody.castShadow = true;
       mugGroup.add(mugBody);
-      // Handle (simple torus segment)
       const handleGeo = new THREE.TorusGeometry(1.2, 0.25, 8, 12, Math.PI);
       const handle = new THREE.Mesh(handleGeo, mugMat);
       handle.position.set(2, 2.5, 0);
       handle.rotation.z = Math.PI / 2;
       mugGroup.add(handle);
-      // Coffee inside
       const coffee = new THREE.Mesh(new THREE.CylinderGeometry(1.7, 1.7, 0.3, 16), new THREE.MeshStandardMaterial({color: 0x3b1f0a, roughness: 0.3}));
       coffee.position.set(0, 4.7, 0);
       mugGroup.add(coffee);
       scene.add(mugGroup);
 
-      // ── Office Chair ──
+      // ── Office Chair (realistic, like reference) ──
       const chairGroup = new THREE.Group();
-      chairGroup.position.set(45, -25, 20);
-      chairGroup.rotation.y = -0.8;
+      chairGroup.position.set(48, -25, 15);
+      chairGroup.rotation.y = -0.6;
 
-      // Chair base (5-star)
-      const chairPole = new THREE.Mesh(new THREE.CylinderGeometry(0.8, 0.8, 8, 8), metalMat);
-      chairPole.position.set(0, 4, 0);
+      // Gas lift cylinder
+      const chairPole = new THREE.Mesh(new THREE.CylinderGeometry(0.6, 0.6, 10, 8), metalMat);
+      chairPole.position.set(0, 5, 0);
       chairPole.castShadow = true;
       chairGroup.add(chairPole);
 
-      // Star legs
+      // 5-star base
       for (let i = 0; i < 5; i++) {
         const angle = (i / 5) * Math.PI * 2;
-        const legArm = new THREE.Mesh(new THREE.BoxGeometry(1, 0.8, 6), metalMat);
-        legArm.position.set(Math.sin(angle) * 3, 0.4, Math.cos(angle) * 3);
-        legArm.rotation.y = -angle;
+        const legArm = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.4, 7, 6), metalMat);
+        legArm.position.set(Math.sin(angle) * 3.5, 0.5, Math.cos(angle) * 3.5);
+        legArm.rotation.z = Math.PI / 2;
+        legArm.rotation.y = -angle + Math.PI / 2;
         chairGroup.add(legArm);
-        // Wheel
-        const wheel = new THREE.Mesh(new THREE.SphereGeometry(0.6, 8, 8), new THREE.MeshStandardMaterial({color: 0x222222}));
-        wheel.position.set(Math.sin(angle) * 5.5, 0.3, Math.cos(angle) * 5.5);
+        // Caster wheel
+        const wheel = new THREE.Mesh(new THREE.SphereGeometry(0.5, 8, 6), new THREE.MeshStandardMaterial({color: 0x1a1a1a, roughness: 0.4}));
+        wheel.position.set(Math.sin(angle) * 6, 0.3, Math.cos(angle) * 6);
         chairGroup.add(wheel);
       }
 
-      // Seat
-      const seat = new THREE.Mesh(new THREE.BoxGeometry(12, 2, 12), chairBrown);
-      seat.position.set(0, 9, 0);
-      seat.castShadow = true;
-      chairGroup.add(seat);
+      // Seat cushion (slightly rounded)
+      const seatShape = new THREE.Mesh(new THREE.BoxGeometry(11, 2.5, 11), chairBrown);
+      seatShape.position.set(0, 11, 0);
+      seatShape.castShadow = true;
+      chairGroup.add(seatShape);
+      // Seat cushion front curve
+      const seatFront = new THREE.Mesh(new THREE.CylinderGeometry(5.5, 5.5, 2.5, 16, 1, false, 0, Math.PI), chairBrown);
+      seatFront.rotation.y = Math.PI;
+      seatFront.position.set(0, 11, 5.5);
+      chairGroup.add(seatFront);
 
-      // Backrest
-      const backrest = new THREE.Mesh(new THREE.BoxGeometry(12, 14, 2), chairBrown);
-      backrest.position.set(0, 17, -6);
-      backrest.castShadow = true;
-      chairGroup.add(backrest);
+      // Back frame (metal tube frame with rounded top)
+      const backFrame = new THREE.Group();
+      // Two vertical metal tubes
+      const frameTubeL = new THREE.Mesh(new THREE.CylinderGeometry(0.35, 0.35, 14, 8), metalMat);
+      frameTubeL.position.set(-5, 19, -5);
+      backFrame.add(frameTubeL);
+      const frameTubeR = new THREE.Mesh(new THREE.CylinderGeometry(0.35, 0.35, 14, 8), metalMat);
+      frameTubeR.position.set(5, 19, -5);
+      backFrame.add(frameTubeR);
+      // Top curved bar
+      const topBar = new THREE.Mesh(new THREE.CylinderGeometry(0.35, 0.35, 10.5, 8), metalMat);
+      topBar.rotation.z = Math.PI / 2;
+      topBar.position.set(0, 26, -5);
+      backFrame.add(topBar);
 
-      // Armrests
-      const armrestGeo = new THREE.BoxGeometry(1.5, 1, 8);
-      const armL = new THREE.Mesh(armrestGeo, metalMat);
-      armL.position.set(-6, 12, -1);
-      chairGroup.add(armL);
-      const armR = new THREE.Mesh(armrestGeo, metalMat);
-      armR.position.set(6, 12, -1);
-      chairGroup.add(armR);
-      // Armrest supports
-      const armSupportGeo = new THREE.BoxGeometry(1, 3, 1);
-      const armSL = new THREE.Mesh(armSupportGeo, metalMat);
-      armSL.position.set(-6, 10.5, 2);
-      chairGroup.add(armSL);
-      const armSR = new THREE.Mesh(armSupportGeo, metalMat);
-      armSR.position.set(6, 10.5, 2);
-      chairGroup.add(armSR);
+      // Backrest cushion (leather-brown padded area)
+      const backCushion = new THREE.Mesh(new THREE.BoxGeometry(10, 11, 1.5), chairBrown);
+      backCushion.position.set(0, 19.5, -5);
+      backCushion.castShadow = true;
+      backFrame.add(backCushion);
+
+      chairGroup.add(backFrame);
 
       scene.add(chairGroup);
 
@@ -1742,7 +1825,7 @@ const tools = [
       const cssObject = new CSS3DObject(screenEl);
       const cssScale = 22 / 1024;
       cssObject.scale.set(cssScale, cssScale, cssScale);
-      cssObject.position.set(0, -1.5, 3.6);
+      cssObject.position.set(0, 8.5, 3.6);
       scene.add(cssObject);
 
       // ── State Machine ──
@@ -1751,11 +1834,11 @@ const tools = [
       const OVERVIEW_POS = new THREE.Vector3(120, 60, 130);
       const OVERVIEW_TARGET = new THREE.Vector3(0, -10, 0);
 
-      const DESK_POS = new THREE.Vector3(0, 8, 45);
-      const DESK_TARGET = new THREE.Vector3(0, -5, 0);
+      const DESK_POS = new THREE.Vector3(0, 12, 50);
+      const DESK_TARGET = new THREE.Vector3(0, 0, 0);
 
-      const SCREEN_POS = new THREE.Vector3(0, -1.5, 28);
-      const SCREEN_TARGET = new THREE.Vector3(0, -1.5, 3.6);
+      const SCREEN_POS = new THREE.Vector3(0, 8.5, 30);
+      const SCREEN_TARGET = new THREE.Vector3(0, 8.5, 3.6);
 
       camera.position.copy(OVERVIEW_POS);
       camera.lookAt(OVERVIEW_TARGET);
@@ -1849,13 +1932,13 @@ const tools = [
           camera.lookAt(DESK_TARGET);
         } else if (currentState === 'SCREEN') {
           // Subtle parallax
-          camera.position.x = SCREEN_POS.x + mousePos.x * 1.5;
-          camera.position.y = SCREEN_POS.y - mousePos.y * 1.0;
+          camera.position.x = SCREEN_POS.x + mousePos.x * 1.2;
+          camera.position.y = SCREEN_POS.y - mousePos.y * 0.8;
           camera.lookAt(SCREEN_TARGET);
 
           // Move virtual mouse
-          mouse3D.position.x = 18 + mousePos.x * 4;
-          mouse3D.position.z = 14 + mousePos.y * 3;
+          mouse3D.position.x = 20 + mousePos.x * 4;
+          mouse3D.position.z = 16 + mousePos.y * 3;
         }
 
         renderer.render(scene, camera);
