@@ -1786,15 +1786,24 @@ const tools = [
       // 5-star base (simple tubes)
       for (let i = 0; i < 5; i++) {
         const angle = (i / 5) * Math.PI * 2;
+        const legPivot = new THREE.Group();
+        legPivot.position.set(0, 0.5, 0);
+        legPivot.rotation.y = angle;
+        
+        // Leg tube
         const legArm = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.5, 8, 6), metalMat);
-        legArm.position.set(Math.sin(angle) * 4, 0.5, Math.cos(angle) * 4);
-        legArm.rotation.z = Math.PI / 2;
-        legArm.rotation.y = -angle + Math.PI / 2;
-        chairGroup.add(legArm);
+        legArm.rotation.x = Math.PI / 2;
+        legArm.position.set(0, 0, 4);
+        legArm.castShadow = true;
+        legPivot.add(legArm);
+        
         // Caster wheel
         const wheel = new THREE.Mesh(new THREE.SphereGeometry(0.7, 8, 6), new THREE.MeshStandardMaterial({color: 0x1a1a1a, roughness: 0.4}));
-        wheel.position.set(Math.sin(angle) * 7.5, 0.5, Math.cos(angle) * 7.5);
-        chairGroup.add(wheel);
+        wheel.position.set(0, -0.2, 7.5);
+        wheel.castShadow = true;
+        legPivot.add(wheel);
+        
+        chairGroup.add(legPivot);
       }
 
       // Seat cushion (Flat rectangular box)
