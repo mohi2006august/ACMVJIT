@@ -1431,7 +1431,7 @@ const tools = [
       const whitePaper = new THREE.MeshStandardMaterial({ color: 0xf5f5f0, roughness: 0.95 });
       const brownMat = new THREE.MeshStandardMaterial({ color: 0x654321, roughness: 0.8 });
       const darkBrownMat = new THREE.MeshStandardMaterial({ color: 0x3b2010, roughness: 0.7 });
-      const chairBrown = new THREE.MeshStandardMaterial({ color: 0x8b6914, roughness: 0.6 });
+      const chairBrown = new THREE.MeshStandardMaterial({ color: 0x7e4a28, roughness: 0.4, metalness: 0.1 });
       const metalMat = new THREE.MeshStandardMaterial({ color: 0x444444, roughness: 0.3, metalness: 0.6 });
       const mugMat = new THREE.MeshStandardMaterial({ color: 0xe8e8e0, roughness: 0.4 });
       const plantGreen = new THREE.MeshStandardMaterial({ color: 0x2d7a3a, roughness: 0.7 });
@@ -1772,18 +1772,18 @@ const tools = [
       mugGroup.add(coffee);
       scene.add(mugGroup);
 
-      // ── Office Chair (Flat geometric, matching reference) ──
+      // ── Office Chair (Premium ergonomic look) ──
       const chairGroup = new THREE.Group();
       chairGroup.position.set(48, -25, 15);
       chairGroup.rotation.y = -0.6;
 
       // Gas lift cylinder
-      const chairPole = new THREE.Mesh(new THREE.CylinderGeometry(0.8, 0.8, 12, 12), metalMat);
+      const chairPole = new THREE.Mesh(new THREE.CylinderGeometry(0.6, 0.6, 12, 12), metalMat);
       chairPole.position.set(0, 6, 0);
       chairPole.castShadow = true;
       chairGroup.add(chairPole);
 
-      // 5-star base (simple tubes)
+      // 5-star base (sleek tubes)
       for (let i = 0; i < 5; i++) {
         const angle = (i / 5) * Math.PI * 2;
         const legPivot = new THREE.Group();
@@ -1791,66 +1791,90 @@ const tools = [
         legPivot.rotation.y = angle;
         
         // Leg tube
-        const legArm = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.5, 8, 6), metalMat);
+        const legArm = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.4, 8, 6), metalMat);
         legArm.rotation.x = Math.PI / 2;
         legArm.position.set(0, 0, 4);
         legArm.castShadow = true;
         legPivot.add(legArm);
         
-        // Caster wheel
-        const wheel = new THREE.Mesh(new THREE.SphereGeometry(0.7, 8, 6), new THREE.MeshStandardMaterial({color: 0x1a1a1a, roughness: 0.4}));
-        wheel.position.set(0, -0.2, 7.5);
+        // Caster wheel housing & wheel
+        const wheelGroup = new THREE.Group();
+        wheelGroup.position.set(0, -0.4, 7.5);
+        const wheel = new THREE.Mesh(new THREE.CylinderGeometry(0.7, 0.7, 0.6, 12), new THREE.MeshStandardMaterial({color: 0x111111, roughness: 0.3}));
+        wheel.rotation.z = Math.PI / 2;
         wheel.castShadow = true;
-        legPivot.add(wheel);
+        wheelGroup.add(wheel);
+        legPivot.add(wheelGroup);
         
         chairGroup.add(legPivot);
       }
 
-      // Seat cushion (Flat rectangular box)
-      const seatShape = new THREE.Mesh(new THREE.BoxGeometry(12, 2.5, 12), chairBrown);
-      seatShape.position.set(0, 12.5, 0);
-      seatShape.castShadow = true;
-      chairGroup.add(seatShape);
+      // Seat assembly
+      const seatGroup = new THREE.Group();
+      seatGroup.position.set(0, 12.5, 0);
+      chairGroup.add(seatGroup);
 
-      // Back frame (black tube that wraps behind and sides of the backrest)
-      const backFrame = new THREE.Group();
-      
-      // Main central support tube under seat, bending up
-      const supportTubeH = new THREE.Mesh(new THREE.CylinderGeometry(0.6, 0.6, 6, 8), metalMat);
-      supportTubeH.rotation.x = Math.PI / 2;
-      supportTubeH.position.set(0, 11, -3);
-      backFrame.add(supportTubeH);
-      
-      const supportTubeV = new THREE.Mesh(new THREE.CylinderGeometry(0.6, 0.6, 12, 8), metalMat);
-      supportTubeV.position.set(0, 16, -6);
-      backFrame.add(supportTubeV);
+      // Seat shell (dark rigid bottom)
+      const seatShell = new THREE.Mesh(new THREE.BoxGeometry(12, 0.8, 11), metalMat);
+      seatShell.position.set(0, -0.8, 0);
+      seatShell.castShadow = true;
+      seatGroup.add(seatShell);
 
-      // Frame around the backrest
-      const frameTubeL = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.4, 15, 8), metalMat);
-      frameTubeL.position.set(-6, 23.5, -6);
-      backFrame.add(frameTubeL);
-      
-      const frameTubeR = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.4, 15, 8), metalMat);
-      frameTubeR.position.set(6, 23.5, -6);
-      backFrame.add(frameTubeR);
-      
-      const topBar = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.4, 12.8, 8), metalMat);
-      topBar.rotation.z = Math.PI / 2;
-      topBar.position.set(0, 31, -6);
-      backFrame.add(topBar);
-      
-      const bottomBar = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.4, 12.8, 8), metalMat);
-      bottomBar.rotation.z = Math.PI / 2;
-      bottomBar.position.set(0, 16, -6);
-      backFrame.add(bottomBar);
+      // Seat cushion (plush leather top)
+      const seatCushion = new THREE.Mesh(new THREE.BoxGeometry(11.6, 2.5, 11.2), chairBrown);
+      seatCushion.position.set(0, 0.8, 0.5);
+      seatCushion.castShadow = true;
+      seatGroup.add(seatCushion);
 
-      // Backrest cushion (flat rectangular box)
-      const backCushion = new THREE.Mesh(new THREE.BoxGeometry(11, 14, 1.5), chairBrown);
-      backCushion.position.set(0, 23.5, -5.5);
+      // Armrests
+      const armrestGeo = new THREE.BoxGeometry(1.5, 0.8, 8);
+      const armSupportGeo = new THREE.CylinderGeometry(0.3, 0.3, 6, 8);
+      // Left armrest
+      const armL = new THREE.Group();
+      const armSL = new THREE.Mesh(armSupportGeo, metalMat);
+      armSL.position.set(-6.5, 2.5, 0);
+      armL.add(armSL);
+      const armPadL = new THREE.Mesh(armrestGeo, chairBrown);
+      armPadL.position.set(-6.5, 5.5, 2);
+      armPadL.castShadow = true;
+      armL.add(armPadL);
+      seatGroup.add(armL);
+      
+      // Right armrest
+      const armR = new THREE.Group();
+      const armSR = new THREE.Mesh(armSupportGeo, metalMat);
+      armSR.position.set(6.5, 2.5, 0);
+      armR.add(armSR);
+      const armPadR = new THREE.Mesh(armrestGeo, chairBrown);
+      armPadR.position.set(6.5, 5.5, 2);
+      armPadR.castShadow = true;
+      armR.add(armPadR);
+      seatGroup.add(armR);
+
+      // Backrest assembly (tilted slightly for comfort)
+      const backGroup = new THREE.Group();
+      backGroup.position.set(0, 13, -5.5);
+      backGroup.rotation.x = -0.15; // ergonomic tilt
+      chairGroup.add(backGroup);
+
+      // Main central support strut from seat to back
+      const strut = new THREE.Mesh(new THREE.BoxGeometry(2, 8, 1), metalMat);
+      strut.position.set(0, 2, -1);
+      strut.castShadow = true;
+      backGroup.add(strut);
+
+      // Backrest shell (rigid plastic back)
+      const backShell = new THREE.Mesh(new THREE.BoxGeometry(11, 14, 0.8), metalMat);
+      backShell.position.set(0, 10, -1.2);
+      backShell.castShadow = true;
+      backGroup.add(backShell);
+
+      // Backrest cushion (leather pad)
+      const backCushion = new THREE.Mesh(new THREE.BoxGeometry(10.6, 13.6, 2), chairBrown);
+      backCushion.position.set(0, 10, 0);
       backCushion.castShadow = true;
-      backFrame.add(backCushion);
+      backGroup.add(backCushion);
 
-      chairGroup.add(backFrame);
       scene.add(chairGroup);
 
       // ── Plant ──
