@@ -422,8 +422,7 @@ const tools = [
         opacity: 0;
       }
       .stats-row {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        display: flex;
         gap: 1px;
         background: var(--border);
         border-radius: 20px;
@@ -431,7 +430,8 @@ const tools = [
         border: 1px solid var(--border);
       }
       .stat-cell {
-        background: rgba(10, 5, 32, 0.8);
+        flex: 1;
+        background: var(--surface);
         backdrop-filter: blur(10px);
         padding: 2rem 1.5rem;
         text-align: center;
@@ -791,7 +791,7 @@ const tools = [
         font-family: 'Space Grotesk', sans-serif;
         font-size: 1.5rem;
         font-weight: 700;
-        color: #fff;
+        color: var(--text-primary);
         margin-bottom: 0.5rem;
       }
       .form-success p {
@@ -804,7 +804,7 @@ const tools = [
         padding: 0.7rem 1.5rem;
         background: var(--surface);
         border: 1px solid var(--border);
-        color: #fff;
+        color: var(--text-primary);
         font-weight: 700;
         font-size: 0.9rem;
         border-radius: 99px;
@@ -813,8 +813,8 @@ const tools = [
         font-family: 'Inter', sans-serif;
       }
       .success-done-btn:hover {
-        background: #fff;
-        color: #000;
+        background: var(--accent);
+        color: #fff;
       }
 
       /* ═══════════════════════════════════════
@@ -896,7 +896,7 @@ const tools = [
         .hero-price { letter-spacing: -2px; }
         .floating-badge { display: none; }
         .tools-grid { grid-template-columns: repeat(2, 1fr); }
-        .stats-row { grid-template-columns: repeat(2, 1fr); }
+        .stats-row { display: grid; grid-template-columns: repeat(2, 1fr); }
         .register-card { padding: 2.5rem 1.75rem; }
         .register-card-inner { grid-template-columns: 1fr; gap: 2.5rem; }
         .section { padding: 0 1.5rem 4rem; }
@@ -909,7 +909,7 @@ const tools = [
 
       @media (max-width: 480px) {
         .tools-grid { grid-template-columns: 1fr; }
-        .stats-row { grid-template-columns: repeat(2, 1fr); }
+        .stats-row { display: grid; grid-template-columns: repeat(2, 1fr); }
         .hero-cta-group { flex-direction: column; }
         .cta-primary, .cta-secondary { width: 100%; justify-content: center; }
         .register-info h3 { font-size: 1.6rem; }
@@ -1207,9 +1207,9 @@ const tools = [
         
         <div style="margin-top: 50px; display: flex; gap: 30px; font-family: 'Times New Roman', Times, serif; font-size: 1.1rem; font-weight: bold;">
           <a href="#about" style="color: #660099; text-decoration: underline;">ABOUT</a>
-          <a href="#agenda" style="color: #660099; text-decoration: underline;">EXPERIENCE</a>
-          <a href="#tools" style="color: #660099; text-decoration: underline;">PROJECTS</a>
-          <a href="#register" style="color: #660099; text-decoration: underline;">CONTACT</a>
+          <a href="#agenda" style="color: #660099; text-decoration: underline;">AGENDA</a>
+          <a href="#tools" style="color: #660099; text-decoration: underline;">TOOLS</a>
+          <a href="#register" style="color: #660099; text-decoration: underline;">REGISTER</a>
         </div>
       </section>
 
@@ -1343,8 +1343,8 @@ const tools = [
                   <input type="text" id="reg-roll" required placeholder="Enter your roll number" />
                 </div>
                 <div class="form-field">
-                  <label for="reg-dept">Department & Year</label>
-                  <input type="text" id="reg-dept" required placeholder="e.g. CSE-AIML 2nd Year" />
+                  <label for="reg-year-section">Year & Section</label>
+                  <input type="text" id="reg-year-section" required placeholder="e.g. 2nd Year Section A" />
                 </div>
                 <div class="form-field">
                   <label for="reg-phone">WhatsApp Number</label>
@@ -2287,11 +2287,70 @@ const tools = [
         const success = document.getElementById('form-success');
         const doneBtn = document.getElementById('success-done');
 
+        // Note: To make this work, create a Google Apps Script attached to a Google Sheet:
+        // 1. Create a Google Sheet, add headers: timestamp, name, email, roll, yearSection, phone
+        // 2. Extensions -> Apps Script
+        // 3. Paste the following code:
+        /*
+          function doPost(e) {
+            const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+            const row = [
+              new Date(),
+              e.parameter.name,
+              e.parameter.email,
+              e.parameter.roll,
+              e.parameter.yearSection,
+              e.parameter.phone
+            ];
+            sheet.appendRow(row);
+            return ContentService.createTextOutput(JSON.stringify({result: 'success'})).setMimeType(ContentService.MimeType.JSON);
+          }
+        */
+        // 4. Deploy -> New Deployment -> Select "Web app" -> Execute as "Me", Who has access "Anyone"
+        // 5. Copy the Web App URL and paste it below:
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwdhEfl3s5FOmUC0W7U1O9qen9U2wwWlk5dmkU5PV3Gpn9-JQSdxzLT9i7dXvl5NTnq/exec';
+
         if (form && success) {
-          form.addEventListener('submit', (e) => {
+          form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            form.style.display = 'none';
-            success.classList.add('active');
+            
+            const submitBtn = form.querySelector('.submit-btn');
+            if (submitBtn) {
+              submitBtn.innerHTML = 'Submitting...';
+              (submitBtn as HTMLButtonElement).disabled = true;
+            }
+
+            const formData = new FormData();
+            formData.append('name', (document.getElementById('reg-name') as HTMLInputElement).value);
+            formData.append('email', (document.getElementById('reg-email') as HTMLInputElement).value);
+            formData.append('roll', (document.getElementById('reg-roll') as HTMLInputElement).value);
+            formData.append('yearSection', (document.getElementById('reg-year-section') as HTMLInputElement).value);
+            formData.append('phone', (document.getElementById('reg-phone') as HTMLInputElement).value);
+
+            try {
+              if (GOOGLE_SCRIPT_URL !== 'YOUR_GOOGLE_SCRIPT_WEB_APP_URL') {
+                await fetch(GOOGLE_SCRIPT_URL, {
+                  method: 'POST',
+                  body: formData,
+                  mode: 'no-cors' // Google Apps Script requires no-cors if not handling preflight
+                });
+              } else {
+                console.log('Simulating form submission (Google Script URL not set)');
+                // simulate network delay
+                await new Promise(resolve => setTimeout(resolve, 800));
+              }
+              
+              form.style.display = 'none';
+              success.classList.add('active');
+            } catch (error) {
+              console.error('Error submitting form:', error);
+              alert('There was an error submitting your registration. Please try again.');
+            } finally {
+              if (submitBtn) {
+                submitBtn.innerHTML = 'Complete Registration &rarr;';
+                (submitBtn as HTMLButtonElement).disabled = false;
+              }
+            }
           });
         }
 

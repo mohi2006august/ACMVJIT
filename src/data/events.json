@@ -19,13 +19,30 @@
     "accentGlow": "rgba(56, 189, 248, 0.25)",
     "registerLink": null,
     "winners": [
-      { "place": "1st Place", "emoji": "🥇", "name": "Team Alpha" },
-      { "place": "Runner Up", "emoji": "🥈", "name": "Innovators" }
+      {
+        "place": "1st Place",
+        "emoji": "🥇",
+        "name": "Team Alpha"
+      },
+      {
+        "place": "Runner Up",
+        "emoji": "🥈",
+        "name": "Innovators"
+      }
     ],
     "stats": [
-      { "value": "200+", "label": "Participants" },
-      { "value": "40+", "label": "Teams" },
-      { "value": "1 Day", "label": "Duration" }
+      {
+        "value": "200+",
+        "label": "Participants"
+      },
+      {
+        "value": "40+",
+        "label": "Teams"
+      },
+      {
+        "value": "1 Day",
+        "label": "Duration"
+      }
     ]
   },
   {
@@ -35,8 +52,8 @@
     "category": "Hands-on Workshop",
     "categoryColor": "#a855f7",
     "categoryBg": "rgba(168, 85, 247, 0.15)",
-    "date": "2026-10-15",
-    "dateDisplay": "15 OCT '26",
+    "date": "2026-08-22",
+    "dateDisplay": "22 AUG '26",
     "shortDesc": "Learn to build and deploy a $5,000-worth 3D animated website in one day using Google Flow, Google Antigravity, Google Stitch, and modern deployment tools.",
     "fullDesc": "Join us for the most ambitious workshop ACM VJIT has ever hosted — a full-day, hands-on deep dive into creating stunning 3D animated websites from scratch.\n\nTools covered: Google Flow, Google Antigravity, Google Stitch, External UI Libraries, Github and Vercel.",
     "venue": "C-Block Lab 3",
@@ -49,8 +66,14 @@
     "registerLink": null,
     "winners": [],
     "stats": [
-      { "value": "140", "label": "Seats Available" },
-      { "value": "1 Day", "label": "Duration" }
+      {
+        "value": "140",
+        "label": "Seats Available"
+      },
+      {
+        "value": "1 Day",
+        "label": "Duration"
+      }
     ]
   }
 ]
