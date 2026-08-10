@@ -54,5 +54,30 @@
       { "value": "100%", "label": "Hands-on" },
       { "value": "6", "label": "Pro Tools" }
     ]
+  },
+  {
+    "slug": "retro-computer-workshop",
+    "title": "Retro Computing Workshop 2026",
+    "status": "upcoming",
+    "category": "Interactive Session",
+    "categoryColor": "#008080",
+    "categoryBg": "rgba(0, 128, 128, 0.15)",
+    "date": "2026-10-15",
+    "dateDisplay": "15 OCT '26",
+    "shortDesc": "Explore the evolution of retro computing with hands-on labs and a vintage 3D desktop experience.",
+    "fullDesc": "Join us for a nostalgic journey back to the golden era of computing! The Retro Computing Workshop 2026 brings you an immersive experience inside a vintage Windows 95 environment. \n\nWe will explore retro hardware architecture, early operating systems, and even write some code in classic languages. Our brand new 3D isometric event page gives you a sneak peek into the workshop vibes.",
+    "venue": "C-Block Lab 3",
+    "photo": null,
+    "posterBgFrom": "#004040",
+    "posterBgTo": "#c0c0c0",
+    "accentColor": "#008080",
+    "accentColorLight": "#00b3b3",
+    "accentGlow": "rgba(0, 128, 128, 0.3)",
+    "registerLink": null,
+    "winners": [],
+    "stats": [
+      { "value": "50", "label": "Seats Available" },
+      { "value": "3 Hours", "label": "Duration" }
+    ]
   }
 ]
