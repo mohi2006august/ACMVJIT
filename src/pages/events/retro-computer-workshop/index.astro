@@ -940,10 +940,10 @@ const tools = [
 
       .win95-window {
         position: absolute;
-        top: 30px;
-        left: 40px;
-        width: 940px;
-        height: 680px;
+        top: 20px;
+        left: 110px;
+        width: 880px;
+        height: 700px;
         background: #c0c0c0;
         border: 2px solid;
         border-color: #dfdfdf #000000 #000000 #dfdfdf;
@@ -967,25 +967,43 @@ const tools = [
       .win95-content {
         flex: 1;
         overflow-y: auto;
-        padding: 16px;
+        padding: 0;
         background: #ffffff;
         border: 2px solid;
         border-color: #808080 #ffffff #ffffff #808080;
         margin: 4px;
         color: #000;
+        position: relative;
       }
 
       .win95-content h1, .win95-content h2, .win95-content p {
-        color: #000;
         text-shadow: none;
       }
-      .win95-content .gradient-text {
-        background: none;
-        -webkit-text-fill-color: #000;
-        color: #000;
+
+      .desktop-icon {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 80px;
+        cursor: pointer;
       }
-      .win95-content .hero-subtitle { color: #333; }
-      .win95-content .hero-badge { display: none; }
+      .desktop-icon img {
+        width: 32px;
+        height: 32px;
+        margin-bottom: 4px;
+        image-rendering: pixelated;
+      }
+      .desktop-icon span {
+        font-family: 'Tahoma', sans-serif;
+        font-size: 11px;
+        color: white;
+        text-align: center;
+        padding: 2px;
+      }
+      .desktop-icon:active span {
+        background: #000080;
+        outline: 1px dotted white;
+      }
 
       .win95-taskbar {
         position: absolute;
@@ -1105,9 +1123,30 @@ const tools = [
     </div>
 
     <div class="page-wrapper">
+      
+      <!-- Desktop Icons -->
+      <div style="position:absolute; top:20px; left:15px; display:flex; flex-direction:column; gap:25px; z-index:5;">
+        <div class="desktop-icon">
+          <img src="https://win98icons.alexmeub.com/icons/png/computer_explorer-5.png" alt="My Computer" />
+          <span>My Showcase</span>
+        </div>
+        <div class="desktop-icon">
+          <img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd_a-4.png" alt="CD" />
+          <span>The Oregon Trail</span>
+        </div>
+        <div class="desktop-icon">
+          <img src="https://win98icons.alexmeub.com/icons/png/game_mine_1-0.png" alt="Game" />
+          <span>Doom</span>
+        </div>
+        <div class="desktop-icon">
+          <img src="https://win98icons.alexmeub.com/icons/png/font_truetype-1.png" alt="Game" />
+          <span>Scrabble</span>
+        </div>
+      </div>
+
       <div class="win95-window">
         <div class="win95-titlebar">
-          <span>📁 EventInfo.exe</span>
+          <span>📁 Retro Computing Workshop 2026</span>
           <div style="display:flex;gap:2px;">
             <span style="background:#c0c0c0;color:black;border:2px solid;border-color:#dfdfdf #000 #000 #dfdfdf;width:16px;height:16px;display:inline-flex;justify-content:center;align-items:center;font-size:10px;cursor:pointer;">_</span>
             <span style="background:#c0c0c0;color:black;border:2px solid;border-color:#dfdfdf #000 #000 #dfdfdf;width:16px;height:16px;display:inline-flex;justify-content:center;align-items:center;font-size:10px;cursor:pointer;">□</span>
@@ -1131,60 +1170,20 @@ const tools = [
         </button>
       </nav>
 
-      <!-- ── Hero Section ── -->
-      <section class="hero">
-        <div class="hero-badge">
-          <span class="dot"></span>
-          {event.category} · {event.dateDisplay}
-        </div>
-
-        <div class="hero-price">$5,000</div>
-
-        <h1 class="hero-title">
-          Build & Deploy a<br/>
-          <span class="gradient-text">3D Animated Website</span><br/>
-          in One Day
+      <!-- ── Hero Section (Portfolio Style) ── -->
+      <section class="hero" style="background: white; min-height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0;">
+        <h1 style="font-family: 'Times New Roman', Times, serif; font-size: 4rem; font-weight: 900; color: #222; margin: 0; letter-spacing: -1.5px; line-height: 1.1;">
+          Retro Computing
         </h1>
-
-        <p class="hero-subtitle">
-          Learn to create the kind of stunning 3D websites that agencies charge thousands for — using cutting-edge AI tools, 3D frameworks, and modern deployment pipelines.
-        </p>
-
-        <div class="hero-meta">
-          <span class="hero-meta-item">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
-            </svg>
-            <span class="meta-accent">{event.dateDisplay}</span>
-          </span>
-          <span class="hero-meta-item">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
-            </svg>
-            {event.venue}
-          </span>
-          <span class="hero-meta-item">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-            </svg>
-            Full Day Workshop
-          </span>
-        </div>
-
-        <div class="hero-cta-group">
-          <button class="cta-primary" data-scroll-to="register">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 0 1 0 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a3 3 0 0 1 0-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375Z" />
-            </svg>
-            Register Now — It's Free
-          </button>
-          <a href="#about" class="cta-secondary">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-            </svg>
-            Learn More
-          </a>
+        <h2 style="font-family: 'Times New Roman', Times, serif; font-size: 1.5rem; font-weight: 600; color: #444; margin: 15px 0 0 0;">
+          Workshop 2026
+        </h2>
+        
+        <div style="margin-top: 50px; display: flex; gap: 30px; font-family: 'Times New Roman', Times, serif; font-size: 1.1rem; font-weight: bold;">
+          <a href="#about" style="color: #660099; text-decoration: underline;">ABOUT</a>
+          <a href="#agenda" style="color: #660099; text-decoration: underline;">EXPERIENCE</a>
+          <a href="#tools" style="color: #660099; text-decoration: underline;">PROJECTS</a>
+          <a href="#register" style="color: #660099; text-decoration: underline;">CONTACT</a>
         </div>
       </section>
 
@@ -1557,45 +1556,65 @@ const tools = [
 
       // Keyboard layout rows (realistic key sizes and positions)
       const keyRows = [
-        // Row 0: Esc, F1-F12
+        // Row 0: Esc, F1-F12, PrintScreen, ScrollLock, Pause
         { z: -4.2, keys: [
           {w:1.2,code:'Escape'},{w:0.4,code:null},
           {w:1.2,code:'F1'},{w:1.2,code:'F2'},{w:1.2,code:'F3'},{w:1.2,code:'F4'},
           {w:0.4,code:null},
           {w:1.2,code:'F5'},{w:1.2,code:'F6'},{w:1.2,code:'F7'},{w:1.2,code:'F8'},
           {w:0.4,code:null},
-          {w:1.2,code:'F9'},{w:1.2,code:'F10'},{w:1.2,code:'F11'},{w:1.2,code:'F12'}
+          {w:1.2,code:'F9'},{w:1.2,code:'F10'},{w:1.2,code:'F11'},{w:1.2,code:'F12'},
+          {w:0.4,code:null},
+          {w:1.2,code:'PrintScreen'},{w:1.2,code:'ScrollLock'},{w:1.2,code:'Pause'}
         ]},
-        // Row 1: Number row
+        // Row 1: Number row, Insert/Home/PgUp, NumLock/Divide/Multiply/Subtract
         { z: -2.8, keys: [
           {w:1.2,code:'Backquote'},{w:1.2,code:'Digit1'},{w:1.2,code:'Digit2'},{w:1.2,code:'Digit3'},
           {w:1.2,code:'Digit4'},{w:1.2,code:'Digit5'},{w:1.2,code:'Digit6'},{w:1.2,code:'Digit7'},
           {w:1.2,code:'Digit8'},{w:1.2,code:'Digit9'},{w:1.2,code:'Digit0'},{w:1.2,code:'Minus'},
-          {w:1.2,code:'Equal'},{w:2.4,code:'Backspace'}
+          {w:1.2,code:'Equal'},{w:2.4,code:'Backspace'},
+          {w:0.4,code:null},
+          {w:1.2,code:'Insert'},{w:1.2,code:'Home'},{w:1.2,code:'PageUp'},
+          {w:0.4,code:null},
+          {w:1.2,code:'NumLock'},{w:1.2,code:'NumpadDivide'},{w:1.2,code:'NumpadMultiply'},{w:1.2,code:'NumpadSubtract'}
         ]},
-        // Row 2: QWERTY
+        // Row 2: QWERTY, Del/End/PgDn, 7/8/9/Add
         { z: -1.5, keys: [
           {w:1.8,code:'Tab'},{w:1.2,code:'KeyQ'},{w:1.2,code:'KeyW'},{w:1.2,code:'KeyE'},
           {w:1.2,code:'KeyR'},{w:1.2,code:'KeyT'},{w:1.2,code:'KeyY'},{w:1.2,code:'KeyU'},
           {w:1.2,code:'KeyI'},{w:1.2,code:'KeyO'},{w:1.2,code:'KeyP'},{w:1.2,code:'BracketLeft'},
-          {w:1.2,code:'BracketRight'},{w:1.6,code:'Backslash'}
+          {w:1.2,code:'BracketRight'},{w:1.6,code:'Backslash'},
+          {w:0.4,code:null},
+          {w:1.2,code:'Delete'},{w:1.2,code:'End'},{w:1.2,code:'PageDown'},
+          {w:0.4,code:null},
+          {w:1.2,code:'Numpad7'},{w:1.2,code:'Numpad8'},{w:1.2,code:'Numpad9'},{w:1.2,code:'NumpadAdd', d: 2.3, z_offset: 0.65}
         ]},
-        // Row 3: ASDF
+        // Row 3: ASDF, 4/5/6
         { z: -0.2, keys: [
           {w:2.0,code:'CapsLock'},{w:1.2,code:'KeyA'},{w:1.2,code:'KeyS'},{w:1.2,code:'KeyD'},
           {w:1.2,code:'KeyF'},{w:1.2,code:'KeyG'},{w:1.2,code:'KeyH'},{w:1.2,code:'KeyJ'},
           {w:1.2,code:'KeyK'},{w:1.2,code:'KeyL'},{w:1.2,code:'Semicolon'},{w:1.2,code:'Quote'},
-          {w:2.4,code:'Enter'}
+          {w:2.4,code:'Enter'},
+          {w:4.0,code:null},
+          {w:1.2,code:'Numpad4'},{w:1.2,code:'Numpad5'},{w:1.2,code:'Numpad6'}, {w:1.2,code:null}
         ]},
-        // Row 4: ZXCV
+        // Row 4: ZXCV, ArrowUp, 1/2/3/Enter
         { z: 1.1, keys: [
           {w:2.8,code:'ShiftLeft'},{w:1.2,code:'KeyZ'},{w:1.2,code:'KeyX'},{w:1.2,code:'KeyC'},
           {w:1.2,code:'KeyV'},{w:1.2,code:'KeyB'},{w:1.2,code:'KeyN'},{w:1.2,code:'KeyM'},
-          {w:1.2,code:'Comma'},{w:1.2,code:'Period'},{w:1.2,code:'Slash'},{w:2.8,code:'ShiftRight'}
+          {w:1.2,code:'Comma'},{w:1.2,code:'Period'},{w:1.2,code:'Slash'},{w:2.8,code:'ShiftRight'},
+          {w:1.7,code:null},
+          {w:1.2,code:'ArrowUp'},
+          {w:1.1,code:null},
+          {w:1.2,code:'Numpad1'},{w:1.2,code:'Numpad2'},{w:1.2,code:'Numpad3'},{w:1.2,code:'NumpadEnter', d: 2.3, z_offset: 0.65}
         ]},
-        // Row 5: Space bar row
+        // Row 5: Space bar row, ArrowLeft/Down/Right, 0/.
         { z: 2.4, keys: [
-          {w:1.5,code:'ControlLeft'},{w:1.5,code:'AltLeft'},{w:8.0,code:'Space'},{w:1.5,code:'AltRight'},{w:1.5,code:'ControlRight'}
+          {w:1.5,code:'ControlLeft'},{w:1.5,code:'AltLeft'},{w:8.0,code:'Space'},{w:1.5,code:'AltRight'},{w:1.5,code:'ControlRight'},
+          {w:0.4,code:null},
+          {w:1.2,code:'ArrowLeft'},{w:1.2,code:'ArrowDown'},{w:1.2,code:'ArrowRight'},
+          {w:0.4,code:null},
+          {w:2.5,code:'Numpad0'},{w:1.2,code:'NumpadDecimal'}
         ]}
       ];
 
@@ -1617,7 +1636,7 @@ const tools = [
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         
-        let display = code.replace('Key', '').replace('Digit', '');
+        let display = code.replace('Key', '').replace('Digit', '').replace('Numpad', '');
         if (code === 'Escape') display = 'Esc';
         else if (code.includes('Control')) display = 'Ctrl';
         else if (code.includes('Shift')) display = 'Shift';
@@ -1638,6 +1657,26 @@ const tools = [
         else if (code === 'Period') display = '.';
         else if (code === 'Slash') display = '/';
         else if (code === 'Backquote') display = '`';
+        else if (code === 'ArrowUp') display = '↑';
+        else if (code === 'ArrowDown') display = '↓';
+        else if (code === 'ArrowLeft') display = '←';
+        else if (code === 'ArrowRight') display = '→';
+        else if (code === 'PageUp') display = 'PgUp';
+        else if (code === 'PageDown') display = 'PgDn';
+        else if (code === 'PrintScreen') display = 'PrtScn';
+        else if (code === 'ScrollLock') display = 'ScrLk';
+        else if (code === 'Insert') display = 'Ins';
+        else if (code === 'Delete') display = 'Del';
+        else if (code === 'Home') display = 'Home';
+        else if (code === 'End') display = 'End';
+        else if (code === 'Pause') display = 'Pause';
+        else if (code === 'NumLock') display = 'NumLk';
+        else if (code === 'NumpadDivide') display = '/';
+        else if (code === 'NumpadMultiply') display = '*';
+        else if (code === 'NumpadSubtract') display = '-';
+        else if (code === 'NumpadAdd') display = '+';
+        else if (code === 'NumpadDecimal') display = '.';
+        else if (code === 'NumpadEnter') display = 'Ent';
         
         ctx.fillText(display, canvas.width/2, canvas.height/2);
         const texture = new THREE.CanvasTexture(canvas);
@@ -1659,11 +1698,12 @@ const tools = [
             return;
           }
           const kMat = createKeyMat(k.code, k.w);
+          const depth = k.d || 1.0;
           const keyMesh = new THREE.Mesh(
-            new THREE.BoxGeometry(k.w - 0.15, 0.4, 1.0),
+            new THREE.BoxGeometry(k.w - 0.15, 0.4, depth),
             kMat
           );
-          keyMesh.position.set(xOffset + k.w / 2, 0.6, row.z);
+          keyMesh.position.set(xOffset + k.w / 2, 0.6, row.z + (k.z_offset || 0));
           keyMesh.castShadow = true;
           keyMesh.userData.code = k.code;
           keyMesh.userData.origY = 0.6;
