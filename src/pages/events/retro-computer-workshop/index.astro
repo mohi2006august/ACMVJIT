@@ -1364,9 +1364,17 @@ const tools = [
     <!-- ═══════════════════════════════════════
          Three.js 3D Virtual Setup
     ═══════════════════════════════════════ -->
+    <script is:inline type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.170.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.170.0/examples/jsm/"
+        }
+      }
+    </script>
     <script is:inline type="module">
-      import * as THREE from 'https://esm.sh/three@0.170.0';
-      import { CSS3DRenderer, CSS3DObject } from 'https://esm.sh/three@0.170.0/examples/jsm/renderers/CSS3DRenderer.js';
+      import * as THREE from 'three';
+      import { CSS3DRenderer, CSS3DObject } from 'three/addons/renderers/CSS3DRenderer.js';
 
       // ── Setup ──
       const canvas = document.getElementById('three-canvas');
@@ -1595,6 +1603,54 @@ const tools = [
       const keyMap = {}; // code -> mesh for animation
       const pressedKeyMat = new THREE.MeshStandardMaterial({ color: 0x888880, roughness: 0.5, emissive: 0x06b6d4, emissiveIntensity: 0.3 });
 
+      function createKeyMat(code, width) {
+        if (!code) return keyMat;
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.max(32, width * 32);
+        canvas.height = 32;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#c8c0b0';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.fillStyle = '#444444';
+        ctx.font = 'bold 12px monospace';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        
+        let display = code.replace('Key', '').replace('Digit', '');
+        if (code === 'Escape') display = 'Esc';
+        else if (code.includes('Control')) display = 'Ctrl';
+        else if (code.includes('Shift')) display = 'Shift';
+        else if (code.includes('Alt')) display = 'Alt';
+        else if (code === 'Enter') display = 'Enter';
+        else if (code === 'Backspace') display = 'Back';
+        else if (code === 'Space') display = '';
+        else if (code === 'Tab') display = 'Tab';
+        else if (code === 'CapsLock') display = 'Caps';
+        else if (code === 'Minus') display = '-';
+        else if (code === 'Equal') display = '=';
+        else if (code === 'BracketLeft') display = '[';
+        else if (code === 'BracketRight') display = ']';
+        else if (code === 'Backslash') display = '\\';
+        else if (code === 'Semicolon') display = ';';
+        else if (code === 'Quote') display = "'";
+        else if (code === 'Comma') display = ',';
+        else if (code === 'Period') display = '.';
+        else if (code === 'Slash') display = '/';
+        else if (code === 'Backquote') display = '`';
+        
+        ctx.fillText(display, canvas.width/2, canvas.height/2);
+        const texture = new THREE.CanvasTexture(canvas);
+        texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+        
+        // Materials array: sides use plain color, top uses texture
+        return [
+          keyMat, keyMat, 
+          new THREE.MeshStandardMaterial({ map: texture, roughness: 0.6 }), // top
+          keyMat, keyMat, keyMat
+        ];
+      }
+
       keyRows.forEach(row => {
         let xOffset = -14;
         row.keys.forEach(k => {
@@ -1602,14 +1658,16 @@ const tools = [
             xOffset += k.w;
             return;
           }
+          const kMat = createKeyMat(k.code, k.w);
           const keyMesh = new THREE.Mesh(
             new THREE.BoxGeometry(k.w - 0.15, 0.4, 1.0),
-            keyMat.clone()
+            kMat
           );
           keyMesh.position.set(xOffset + k.w / 2, 0.6, row.z);
           keyMesh.castShadow = true;
           keyMesh.userData.code = k.code;
           keyMesh.userData.origY = 0.6;
+          keyMesh.userData.origMat = kMat;
           keys.push(keyMesh);
           keyMap[k.code] = keyMesh;
           kbGroup.add(keyMesh);
@@ -1623,18 +1681,14 @@ const tools = [
         const mesh = keyMap[e.code];
         if (mesh) {
           mesh.position.y = mesh.userData.origY - 0.25;
-          mesh.material.color.setHex(0x888880);
-          mesh.material.emissive = new THREE.Color(0x06b6d4);
-          mesh.material.emissiveIntensity = 0.4;
+          mesh.material = pressedKeyMat;
         }
       });
       document.addEventListener('keyup', (e) => {
         const mesh = keyMap[e.code];
         if (mesh) {
           mesh.position.y = mesh.userData.origY;
-          mesh.material.color.setHex(0xc8c0b0);
-          mesh.material.emissive = new THREE.Color(0x000000);
-          mesh.material.emissiveIntensity = 0;
+          mesh.material = mesh.userData.origMat;
         }
       });
 
@@ -1718,65 +1772,76 @@ const tools = [
       mugGroup.add(coffee);
       scene.add(mugGroup);
 
-      // ── Office Chair (realistic, like reference) ──
+      // ── Office Chair (Flat geometric, matching reference) ──
       const chairGroup = new THREE.Group();
       chairGroup.position.set(48, -25, 15);
       chairGroup.rotation.y = -0.6;
 
       // Gas lift cylinder
-      const chairPole = new THREE.Mesh(new THREE.CylinderGeometry(0.6, 0.6, 10, 8), metalMat);
-      chairPole.position.set(0, 5, 0);
+      const chairPole = new THREE.Mesh(new THREE.CylinderGeometry(0.8, 0.8, 12, 12), metalMat);
+      chairPole.position.set(0, 6, 0);
       chairPole.castShadow = true;
       chairGroup.add(chairPole);
 
-      // 5-star base
+      // 5-star base (simple tubes)
       for (let i = 0; i < 5; i++) {
         const angle = (i / 5) * Math.PI * 2;
-        const legArm = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.4, 7, 6), metalMat);
-        legArm.position.set(Math.sin(angle) * 3.5, 0.5, Math.cos(angle) * 3.5);
+        const legArm = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.5, 8, 6), metalMat);
+        legArm.position.set(Math.sin(angle) * 4, 0.5, Math.cos(angle) * 4);
         legArm.rotation.z = Math.PI / 2;
         legArm.rotation.y = -angle + Math.PI / 2;
         chairGroup.add(legArm);
         // Caster wheel
-        const wheel = new THREE.Mesh(new THREE.SphereGeometry(0.5, 8, 6), new THREE.MeshStandardMaterial({color: 0x1a1a1a, roughness: 0.4}));
-        wheel.position.set(Math.sin(angle) * 6, 0.3, Math.cos(angle) * 6);
+        const wheel = new THREE.Mesh(new THREE.SphereGeometry(0.7, 8, 6), new THREE.MeshStandardMaterial({color: 0x1a1a1a, roughness: 0.4}));
+        wheel.position.set(Math.sin(angle) * 7.5, 0.5, Math.cos(angle) * 7.5);
         chairGroup.add(wheel);
       }
 
-      // Seat cushion (slightly rounded)
-      const seatShape = new THREE.Mesh(new THREE.BoxGeometry(11, 2.5, 11), chairBrown);
-      seatShape.position.set(0, 11, 0);
+      // Seat cushion (Flat rectangular box)
+      const seatShape = new THREE.Mesh(new THREE.BoxGeometry(12, 2.5, 12), chairBrown);
+      seatShape.position.set(0, 12.5, 0);
       seatShape.castShadow = true;
       chairGroup.add(seatShape);
-      // Seat cushion front curve
-      const seatFront = new THREE.Mesh(new THREE.CylinderGeometry(5.5, 5.5, 2.5, 16, 1, false, 0, Math.PI), chairBrown);
-      seatFront.rotation.y = Math.PI;
-      seatFront.position.set(0, 11, 5.5);
-      chairGroup.add(seatFront);
 
-      // Back frame (metal tube frame with rounded top)
+      // Back frame (black tube that wraps behind and sides of the backrest)
       const backFrame = new THREE.Group();
-      // Two vertical metal tubes
-      const frameTubeL = new THREE.Mesh(new THREE.CylinderGeometry(0.35, 0.35, 14, 8), metalMat);
-      frameTubeL.position.set(-5, 19, -5);
-      backFrame.add(frameTubeL);
-      const frameTubeR = new THREE.Mesh(new THREE.CylinderGeometry(0.35, 0.35, 14, 8), metalMat);
-      frameTubeR.position.set(5, 19, -5);
-      backFrame.add(frameTubeR);
-      // Top curved bar
-      const topBar = new THREE.Mesh(new THREE.CylinderGeometry(0.35, 0.35, 10.5, 8), metalMat);
-      topBar.rotation.z = Math.PI / 2;
-      topBar.position.set(0, 26, -5);
-      backFrame.add(topBar);
+      
+      // Main central support tube under seat, bending up
+      const supportTubeH = new THREE.Mesh(new THREE.CylinderGeometry(0.6, 0.6, 6, 8), metalMat);
+      supportTubeH.rotation.x = Math.PI / 2;
+      supportTubeH.position.set(0, 11, -3);
+      backFrame.add(supportTubeH);
+      
+      const supportTubeV = new THREE.Mesh(new THREE.CylinderGeometry(0.6, 0.6, 12, 8), metalMat);
+      supportTubeV.position.set(0, 16, -6);
+      backFrame.add(supportTubeV);
 
-      // Backrest cushion (leather-brown padded area)
-      const backCushion = new THREE.Mesh(new THREE.BoxGeometry(10, 11, 1.5), chairBrown);
-      backCushion.position.set(0, 19.5, -5);
+      // Frame around the backrest
+      const frameTubeL = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.4, 15, 8), metalMat);
+      frameTubeL.position.set(-6, 23.5, -6);
+      backFrame.add(frameTubeL);
+      
+      const frameTubeR = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.4, 15, 8), metalMat);
+      frameTubeR.position.set(6, 23.5, -6);
+      backFrame.add(frameTubeR);
+      
+      const topBar = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.4, 12.8, 8), metalMat);
+      topBar.rotation.z = Math.PI / 2;
+      topBar.position.set(0, 31, -6);
+      backFrame.add(topBar);
+      
+      const bottomBar = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.4, 12.8, 8), metalMat);
+      bottomBar.rotation.z = Math.PI / 2;
+      bottomBar.position.set(0, 16, -6);
+      backFrame.add(bottomBar);
+
+      // Backrest cushion (flat rectangular box)
+      const backCushion = new THREE.Mesh(new THREE.BoxGeometry(11, 14, 1.5), chairBrown);
+      backCushion.position.set(0, 23.5, -5.5);
       backCushion.castShadow = true;
       backFrame.add(backCushion);
 
       chairGroup.add(backFrame);
-
       scene.add(chairGroup);
 
       // ── Plant ──
