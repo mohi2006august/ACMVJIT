@@ -49,7 +49,7 @@
     "registerLink": null,
     "winners": [],
     "stats": [
-      { "value": "100+", "label": "Seats Available" },
+      { "value": "140", "label": "Seats Available" },
       { "value": "1 Day", "label": "Duration" }
     ]
   }

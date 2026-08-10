@@ -487,7 +487,7 @@ const tools = [
         font-weight: 700;
         letter-spacing: -1.5px;
         line-height: 1.15;
-        color: #fff;
+        color: var(--text-primary);
         margin-bottom: 3rem;
       }
       .section-title .highlight {
@@ -532,9 +532,9 @@ const tools = [
       .tool-card:hover::before { opacity: 1; }
       .tool-card:hover {
         background: var(--surface-hover);
-        border-color: rgba(255,255,255,0.12);
+        border-color: var(--border);
         transform: translateY(-8px) rotateX(2deg);
-        box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 40px rgba(139, 92, 246, 0.06);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.1), 0 0 40px rgba(139, 92, 246, 0.06);
       }
 
       .tool-icon {
@@ -549,7 +549,7 @@ const tools = [
         font-family: 'Space Grotesk', sans-serif;
         font-size: 1.1rem;
         font-weight: 700;
-        color: #fff;
+        color: var(--text-primary);
         margin-bottom: 0.35rem;
       }
       .tool-desc {
@@ -609,7 +609,7 @@ const tools = [
       }
       .agenda-item:hover {
         background: var(--surface-hover);
-        border-color: rgba(255,255,255,0.1);
+        border-color: var(--border);
         transform: translateX(8px);
       }
       .agenda-step {
@@ -625,7 +625,7 @@ const tools = [
         font-family: 'Space Grotesk', sans-serif;
         font-size: 1.1rem;
         font-weight: 700;
-        color: #fff;
+        color: var(--text-primary);
         margin-bottom: 0.35rem;
       }
       .agenda-content p {
@@ -684,7 +684,7 @@ const tools = [
         font-size: 2.2rem;
         font-weight: 700;
         letter-spacing: -1px;
-        color: #fff;
+        color: var(--text-primary);
         margin-bottom: 1rem;
         line-height: 1.15;
       }
@@ -738,10 +738,10 @@ const tools = [
         color: var(--text-muted);
       }
       .form-field input {
-        background: rgba(255, 255, 255, 0.04);
+        background: var(--surface);
         border: 1px solid var(--border);
         border-radius: 12px;
-        color: #fff;
+        color: var(--text-primary);
         font-size: 0.95rem;
         padding: 0.85rem 1rem;
         font-weight: 500;
@@ -974,6 +974,18 @@ const tools = [
         margin: 4px;
         color: #000;
         position: relative;
+        /* Force light theme portfolio style */
+        --surface: #f9f9fa;
+        --surface-hover: #f1f1f3;
+        --border: #e4e4e7;
+        --text-primary: #111111;
+        --text-secondary: #555555;
+        --text-muted: #888888;
+        --accent: #222222;
+        --accent-light: #444444;
+        --accent-glow: rgba(0,0,0,0.05);
+        --cyan: #1084d0;
+        --pink: #a855f7;
       }
 
       .win95-content h1, .win95-content h2, .win95-content p {
