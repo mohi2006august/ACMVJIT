@@ -1,16 +1,46 @@
 ---
-import eventsData from '../../../data/events.json';
+import eventsData from "../../../data/events.json";
 
-const event = eventsData.find((e) => e.slug === 'retro-computer-workshop')!;
-const isUpcoming = event.status === 'upcoming' || event.status === 'live';
+const event = eventsData.find((e) => e.slug === "retro-computer-workshop")!;
+const isUpcoming = event.status === "upcoming" || event.status === "live";
 
 const tools = [
-  { name: 'Google Flow', icon: '🌊', desc: '3D Design & Animation', color: '#8b5cf6' },
-  { name: 'Google Antigravity', icon: '🚀', desc: 'AI Coding Assistant', color: '#06b6d4' },
-  { name: 'Google Stitch', icon: '🧵', desc: 'Component Stitching', color: '#f59e0b' },
-  { name: 'UI Libraries', icon: '📦', desc: 'Premium Components', color: '#ec4899' },
-  { name: 'GitHub', icon: '🐙', desc: 'Version Control', color: '#6366f1' },
-  { name: 'Vercel', icon: '▲', desc: 'Deploy & Host', color: '#10b981' },
+  {
+    name: "Google Flow",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:32px;height:32px;color:#8b5cf6;"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>`,
+    desc: "3D Design & Animation",
+    color: "#8b5cf6",
+  },
+  {
+    name: "Google Antigravity",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:32px;height:32px;color:#06b6d4;"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>`,
+    desc: "AI Coding Assistant",
+    color: "#06b6d4",
+  },
+  {
+    name: "Google Stitch",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:32px;height:32px;color:#f59e0b;"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>`,
+    desc: "Component Stitching",
+    color: "#f59e0b",
+  },
+  {
+    name: "UI Libraries",
+    icon: `<svg viewBox="-11.5 -10.23174 23 20.46348" style="width:32px;height:32px;color:#ec4899;" fill="#ec4899"><circle cx="0" cy="0" r="2.05"/><g stroke="#ec4899" stroke-width="1" fill="none"><ellipse rx="11" ry="4.2"/><ellipse rx="11" ry="4.2" transform="rotate(60)"/><ellipse rx="11" ry="4.2" transform="rotate(120)"/></g></svg>`,
+    desc: "Premium Components",
+    color: "#ec4899",
+  },
+  { 
+    name: "GitHub", 
+    icon: `<svg viewBox="0 0 24 24" fill="currentColor" stroke="none" style="width:32px;height:32px;color:#6366f1;"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>`, 
+    desc: "Version Control", 
+    color: "#6366f1" 
+  },
+  { 
+    name: "Vercel", 
+    icon: `<svg viewBox="0 0 1155 1000" fill="currentColor" stroke="none" style="width:32px;height:32px;color:#10b981;"><path d="M577.3 0L1154.6 1000H0L577.3 0Z" /></svg>`, 
+    desc: "Deploy & Host", 
+    color: "#10b981" 
+  },
 ];
 ---
 
@@ -24,7 +54,10 @@ const tools = [
     <meta name="description" content={event.shortDesc} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
     <style>
       /* ═══════════════════════════════════════
@@ -50,12 +83,23 @@ const tools = [
       /* ═══════════════════════════════════════
          Reset & Base
       ═══════════════════════════════════════ */
-      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-      html { scroll-behavior: smooth; }
+      html {
+        scroll-behavior: smooth;
+      }
 
       body {
-        font-family: 'Inter', -apple-system, sans-serif;
+        font-family:
+          "Inter",
+          -apple-system,
+          sans-serif;
         background: #c8c0b8;
         color: var(--text-primary);
         min-height: 100vh;
@@ -120,13 +164,16 @@ const tools = [
       .back-link:hover {
         color: #fff;
         background: var(--surface-hover);
-        border-color: rgba(255,255,255,0.15);
+        border-color: rgba(255, 255, 255, 0.15);
         transform: translateX(-3px);
       }
-      .back-link svg { width: 16px; height: 16px; }
+      .back-link svg {
+        width: 16px;
+        height: 16px;
+      }
 
       .nav-brand {
-        font-family: 'Space Grotesk', sans-serif;
+        font-family: "Space Grotesk", sans-serif;
         font-size: 0.85rem;
         font-weight: 700;
         color: var(--text-muted);
@@ -180,65 +227,85 @@ const tools = [
         background: rgba(139, 92, 246, 0.1);
         border: 1px solid rgba(139, 92, 246, 0.25);
         margin-bottom: 2rem;
-        animation: hero-badge-in 0.8s cubic-bezier(0.16,1,0.3,1) forwards;
+        animation: hero-badge-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         opacity: 0;
       }
       .hero-badge .dot {
-        width: 6px; height: 6px;
+        width: 6px;
+        height: 6px;
         background: var(--accent-light);
         border-radius: 50%;
         animation: pulse-dot 2s ease-in-out infinite;
       }
 
       @keyframes hero-badge-in {
-        from { opacity: 0; transform: translateY(-15px) scale(0.95); }
-        to   { opacity: 1; transform: translateY(0) scale(1); }
+        from {
+          opacity: 0;
+          transform: translateY(-15px) scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
       }
 
       .hero-price {
-        font-family: 'Space Grotesk', sans-serif;
+        font-family: "Space Grotesk", sans-serif;
         font-size: clamp(4rem, 12vw, 8rem);
         font-weight: 700;
         line-height: 1;
         letter-spacing: -4px;
         margin-bottom: 0.5rem;
-        animation: hero-price-in 0.9s cubic-bezier(0.16,1,0.3,1) 0.1s forwards;
+        animation: hero-price-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s
+          forwards;
         opacity: 0;
-        background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.75) 50%, var(--accent-light) 100%);
+        background: linear-gradient(
+          135deg,
+          #fff 0%,
+          rgba(255, 255, 255, 0.75) 50%,
+          var(--accent-light) 100%
+        );
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        filter: drop-shadow(0 10px 20px rgba(0,0,0,0.8));
+        filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.8));
       }
 
       @keyframes hero-price-in {
-        from { opacity: 0; transform: translateY(40px); }
-        to   { opacity: 1; transform: translateY(0); }
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       .hero-title {
-        font-family: 'Space Grotesk', sans-serif;
+        font-family: "Space Grotesk", sans-serif;
         font-size: clamp(1.8rem, 5vw, 3.2rem);
         font-weight: 700;
         line-height: 1.15;
         letter-spacing: -1.5px;
         color: #fff;
         margin-bottom: 1.5rem;
-        text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
         perspective: 1000px;
         transition: transform 0.1s ease-out;
       }
-      
+
       .hero-title .word {
         display: inline-block;
         opacity: 0;
         transform: translateY(24px) translateZ(0);
         filter: blur(8px);
-        transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
-                    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
-                    filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        transition:
+          opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+          filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
       }
-      
+
       .hero-title .word.reveal-in {
         opacity: 1;
         transform: translateY(0) translateZ(0);
@@ -246,7 +313,12 @@ const tools = [
       }
 
       .hero-title .gradient-text {
-        background: linear-gradient(120deg, var(--accent-light) 0%, var(--cyan) 50%, var(--accent-light) 100%);
+        background: linear-gradient(
+          120deg,
+          var(--accent-light) 0%,
+          var(--cyan) 50%,
+          var(--accent-light) 100%
+        );
         background-size: 200% auto;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -256,8 +328,12 @@ const tools = [
       }
 
       @keyframes textShimmer {
-        0% { background-position: 0% center; }
-        100% { background-position: 200% center; }
+        0% {
+          background-position: 0% center;
+        }
+        100% {
+          background-position: 200% center;
+        }
       }
 
       .hero-subtitle {
@@ -268,18 +344,25 @@ const tools = [
         line-height: 1.8;
         opacity: 0;
         transform: translateY(20px);
-        transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1) 0.5s, 
-                    transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.5s;
+        transition:
+          opacity 1s cubic-bezier(0.16, 1, 0.3, 1) 0.5s,
+          transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.5s;
       }
-      
+
       .hero-subtitle.reveal-in {
         opacity: 1;
         transform: translateY(0);
       }
 
       @keyframes fade-up {
-        from { opacity: 0; transform: translateY(20px); }
-        to   { opacity: 1; transform: translateY(0); }
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       .hero-meta {
@@ -300,7 +383,11 @@ const tools = [
         font-size: 0.92rem;
         font-weight: 500;
       }
-      .hero-meta-item svg { width: 16px; height: 16px; opacity: 0.6; }
+      .hero-meta-item svg {
+        width: 16px;
+        height: 16px;
+        opacity: 0.6;
+      }
       .hero-meta-item .meta-accent {
         color: var(--accent-light);
         font-weight: 700;
@@ -320,7 +407,12 @@ const tools = [
         align-items: center;
         gap: 0.6rem;
         padding: 1.1rem 2.5rem;
-        background: linear-gradient(135deg, var(--accent), #a855f7, var(--cyan));
+        background: linear-gradient(
+          135deg,
+          var(--accent),
+          #a855f7,
+          var(--cyan)
+        );
         background-size: 200% 200%;
         animation: gradient-shift 4s ease infinite;
         color: #fff;
@@ -331,16 +423,23 @@ const tools = [
         border: none;
         cursor: pointer;
         transition: all 0.3s ease;
-        box-shadow: 0 10px 40px var(--accent-glow), 0 0 0 1px rgba(139, 92, 246, 0.3);
+        box-shadow:
+          0 10px 40px var(--accent-glow),
+          0 0 0 1px rgba(139, 92, 246, 0.3);
         letter-spacing: 0.3px;
         position: relative;
         overflow: hidden;
       }
       .cta-primary::before {
-        content: '';
+        content: "";
         position: absolute;
         inset: 0;
-        background: linear-gradient(135deg, transparent 30%, rgba(255,255,255,0.15) 50%, transparent 70%);
+        background: linear-gradient(
+          135deg,
+          transparent 30%,
+          rgba(255, 255, 255, 0.15) 50%,
+          transparent 70%
+        );
         transform: translateX(-100%);
         transition: transform 0.6s ease;
       }
@@ -349,14 +448,25 @@ const tools = [
       }
       .cta-primary:hover {
         transform: translateY(-4px) scale(1.02);
-        box-shadow: 0 20px 60px var(--accent-glow), 0 0 0 1px rgba(139, 92, 246, 0.5);
+        box-shadow:
+          0 20px 60px var(--accent-glow),
+          0 0 0 1px rgba(139, 92, 246, 0.5);
       }
-      .cta-primary svg { width: 18px; height: 18px; }
+      .cta-primary svg {
+        width: 18px;
+        height: 18px;
+      }
 
       @keyframes gradient-shift {
-        0%   { background-position: 0% 50%; }
-        50%  { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
       }
 
       .cta-secondary {
@@ -377,19 +487,22 @@ const tools = [
       .cta-secondary:hover {
         color: #fff;
         background: var(--surface-hover);
-        border-color: rgba(255,255,255,0.15);
+        border-color: rgba(255, 255, 255, 0.15);
         transform: translateY(-2px);
       }
-      .cta-secondary svg { width: 16px; height: 16px; }
+      .cta-secondary svg {
+        width: 16px;
+        height: 16px;
+      }
 
       /* ═══════════════════════════════════════
          Floating 3D Badge
       ═══════════════════════════════════════ */
       .floating-badge {
         position: absolute;
-        background: rgba(255,255,255,0.05);
+        background: rgba(255, 255, 255, 0.05);
         backdrop-filter: blur(10px);
-        border: 1px solid rgba(255,255,255,0.08);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 16px;
         padding: 0.75rem 1.25rem;
         font-size: 0.82rem;
@@ -399,16 +512,42 @@ const tools = [
         pointer-events: none;
         white-space: nowrap;
       }
-      .floating-badge .badge-emoji { font-size: 1.2rem; margin-right: 0.4rem; }
-      .fb-1 { top: 25%; left: -2%; animation-delay: 0s; }
-      .fb-2 { top: 20%; right: -2%; animation-delay: -2s; }
-      .fb-3 { bottom: 10%; left: 5%; animation-delay: -4s; }
-      .fb-4 { bottom: 15%; right: 5%; animation-delay: -1s; }
+      .floating-badge .badge-emoji {
+        font-size: 1.2rem;
+        margin-right: 0.4rem;
+      }
+      .fb-1 {
+        top: 25%;
+        left: -2%;
+        animation-delay: 0s;
+      }
+      .fb-2 {
+        top: 20%;
+        right: -2%;
+        animation-delay: -2s;
+      }
+      .fb-3 {
+        bottom: 10%;
+        left: 5%;
+        animation-delay: -4s;
+      }
+      .fb-4 {
+        bottom: 15%;
+        right: 5%;
+        animation-delay: -1s;
+      }
 
       @keyframes float {
-        0%, 100% { transform: translateY(0) rotate(0deg); }
-        25% { transform: translateY(-12px) rotate(1deg); }
-        75% { transform: translateY(8px) rotate(-1deg); }
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        25% {
+          transform: translateY(-12px) rotate(1deg);
+        }
+        75% {
+          transform: translateY(8px) rotate(-1deg);
+        }
       }
 
       /* ═══════════════════════════════════════
@@ -437,9 +576,11 @@ const tools = [
         text-align: center;
         transition: background 0.3s ease;
       }
-      .stat-cell:hover { background: var(--surface-hover); }
+      .stat-cell:hover {
+        background: var(--surface-hover);
+      }
       .stat-value {
-        font-family: 'Space Grotesk', sans-serif;
+        font-family: "Space Grotesk", sans-serif;
         font-size: 2rem;
         font-weight: 700;
         color: var(--accent-light);
@@ -475,14 +616,14 @@ const tools = [
         margin-bottom: 1rem;
       }
       .section-label::before {
-        content: '';
+        content: "";
         width: 20px;
         height: 1px;
         background: var(--accent);
       }
 
       .section-title {
-        font-family: 'Space Grotesk', sans-serif;
+        font-family: "Space Grotesk", sans-serif;
         font-size: clamp(2rem, 4vw, 2.75rem);
         font-weight: 700;
         letter-spacing: -1.5px;
@@ -512,14 +653,14 @@ const tools = [
         border: 1px solid var(--border);
         border-radius: 20px;
         padding: 2rem 1.75rem;
-        transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         cursor: default;
         overflow: hidden;
         transform-style: preserve-3d;
         perspective: 800px;
       }
       .tool-card::before {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
         left: 0;
@@ -529,24 +670,30 @@ const tools = [
         opacity: 0;
         transition: opacity 0.3s ease;
       }
-      .tool-card:hover::before { opacity: 1; }
+      .tool-card:hover::before {
+        opacity: 1;
+      }
       .tool-card:hover {
         background: var(--surface-hover);
         border-color: var(--border);
         transform: translateY(-8px) rotateX(2deg);
-        box-shadow: 0 20px 60px rgba(0,0,0,0.1), 0 0 40px rgba(139, 92, 246, 0.06);
+        box-shadow:
+          0 20px 60px rgba(0, 0, 0, 0.1),
+          0 0 40px rgba(139, 92, 246, 0.06);
       }
 
       .tool-icon {
         font-size: 2.2rem;
         margin-bottom: 1.25rem;
         display: block;
-        transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       }
-      .tool-card:hover .tool-icon { transform: scale(1.15) translateY(-3px); }
+      .tool-card:hover .tool-icon {
+        transform: scale(1.15) translateY(-3px);
+      }
 
       .tool-name {
-        font-family: 'Space Grotesk', sans-serif;
+        font-family: "Space Grotesk", sans-serif;
         font-size: 1.1rem;
         font-weight: 700;
         color: var(--text-primary);
@@ -570,13 +717,17 @@ const tools = [
         overflow: hidden;
       }
       .about-card::before {
-        content: '';
+        content: "";
         position: absolute;
         top: -50%;
         right: -20%;
         width: 400px;
         height: 400px;
-        background: radial-gradient(circle, rgba(139, 92, 246, 0.08), transparent 70%);
+        background: radial-gradient(
+          circle,
+          rgba(139, 92, 246, 0.08),
+          transparent 70%
+        );
         pointer-events: none;
       }
 
@@ -604,7 +755,7 @@ const tools = [
         background: var(--surface);
         border: 1px solid var(--border);
         border-radius: 20px;
-        transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         align-items: flex-start;
       }
       .agenda-item:hover {
@@ -613,7 +764,7 @@ const tools = [
         transform: translateX(8px);
       }
       .agenda-step {
-        font-family: 'Space Grotesk', sans-serif;
+        font-family: "Space Grotesk", sans-serif;
         font-size: 2rem;
         font-weight: 700;
         color: var(--accent);
@@ -622,7 +773,7 @@ const tools = [
         min-width: 40px;
       }
       .agenda-content h4 {
-        font-family: 'Space Grotesk', sans-serif;
+        font-family: "Space Grotesk", sans-serif;
         font-size: 1.1rem;
         font-weight: 700;
         color: var(--text-primary);
@@ -647,18 +798,28 @@ const tools = [
         position: relative;
         border-radius: 28px;
         overflow: hidden;
-        background: linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(6, 182, 212, 0.05));
+        background: linear-gradient(
+          135deg,
+          rgba(139, 92, 246, 0.08),
+          rgba(6, 182, 212, 0.05)
+        );
         border: 1px solid rgba(139, 92, 246, 0.15);
         padding: 4rem;
       }
       .register-card::before {
-        content: '';
+        content: "";
         position: absolute;
         top: -2px;
         left: -2px;
         right: -2px;
         bottom: -2px;
-        background: linear-gradient(135deg, var(--accent), var(--cyan), var(--pink), var(--accent));
+        background: linear-gradient(
+          135deg,
+          var(--accent),
+          var(--cyan),
+          var(--pink),
+          var(--accent)
+        );
         background-size: 300% 300%;
         border-radius: 30px;
         z-index: -1;
@@ -667,9 +828,15 @@ const tools = [
       }
 
       @keyframes gradient-border {
-        0%   { background-position: 0% 50%; }
-        50%  { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
       }
 
       .register-card-inner {
@@ -680,7 +847,7 @@ const tools = [
       }
 
       .register-info h3 {
-        font-family: 'Space Grotesk', sans-serif;
+        font-family: "Space Grotesk", sans-serif;
         font-size: 2.2rem;
         font-weight: 700;
         letter-spacing: -1px;
@@ -747,9 +914,11 @@ const tools = [
         font-weight: 500;
         outline: none;
         transition: all 0.3s ease;
-        font-family: 'Inter', sans-serif;
+        font-family: "Inter", sans-serif;
       }
-      .form-field input::placeholder { color: rgba(255,255,255,0.2); }
+      .form-field input::placeholder {
+        color: rgba(255, 255, 255, 0.2);
+      }
       .form-field input:focus {
         border-color: var(--accent);
         background: rgba(139, 92, 246, 0.05);
@@ -768,7 +937,7 @@ const tools = [
         cursor: pointer;
         transition: all 0.3s ease;
         box-shadow: 0 8px 24px var(--accent-glow);
-        font-family: 'Inter', sans-serif;
+        font-family: "Inter", sans-serif;
         letter-spacing: 0.3px;
       }
       .submit-btn:hover {
@@ -785,10 +954,15 @@ const tools = [
         text-align: center;
         padding: 2rem 0;
       }
-      .form-success.active { display: flex; }
-      .success-emoji { font-size: 4rem; margin-bottom: 1rem; }
+      .form-success.active {
+        display: flex;
+      }
+      .success-emoji {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+      }
       .form-success h4 {
-        font-family: 'Space Grotesk', sans-serif;
+        font-family: "Space Grotesk", sans-serif;
         font-size: 1.5rem;
         font-weight: 700;
         color: var(--text-primary);
@@ -810,7 +984,7 @@ const tools = [
         border-radius: 99px;
         cursor: pointer;
         transition: all 0.3s ease;
-        font-family: 'Inter', sans-serif;
+        font-family: "Inter", sans-serif;
       }
       .success-done-btn:hover {
         background: var(--accent);
@@ -838,7 +1012,12 @@ const tools = [
         left: 0;
         height: 3px;
         width: 0%;
-        background: linear-gradient(90deg, var(--accent), var(--cyan), var(--pink));
+        background: linear-gradient(
+          90deg,
+          var(--accent),
+          var(--cyan),
+          var(--pink)
+        );
         z-index: 999;
         transition: width 0.1s linear;
         box-shadow: 0 0 10px var(--accent-glow);
@@ -847,72 +1026,201 @@ const tools = [
       /* ═══════════════════════════════════════
          Scroll Reveal Animations & Variants
       ═══════════════════════════════════════ */
-      .reveal, .scroll-fade-up, .scroll-fade-left, .scroll-fade-right, .scroll-scale-in, .scroll-blur-in, .scroll-rotate-in {
+      .reveal,
+      .scroll-fade-up,
+      .scroll-fade-left,
+      .scroll-fade-right,
+      .scroll-scale-in,
+      .scroll-blur-in,
+      .scroll-rotate-in {
         opacity: 0;
         will-change: transform, opacity, filter;
-        transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1),
-                    transform 0.8s cubic-bezier(0.16,1,0.3,1),
-                    filter 0.8s cubic-bezier(0.16,1,0.3,1);
+        transition:
+          opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+          filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
       }
 
-      .reveal, .scroll-fade-up { transform: translateY(50px); }
-      .scroll-fade-left { transform: translateX(60px); }
-      .scroll-fade-right { transform: translateX(-60px); }
-      .scroll-scale-in { transform: scale(0.85) translateY(30px); }
-      .scroll-blur-in { transform: translateY(20px); filter: blur(10px); }
-      .scroll-rotate-in { transform: translateY(40px) rotateX(15deg); perspective: 1000px; }
+      .reveal,
+      .scroll-fade-up {
+        transform: translateY(50px);
+      }
+      .scroll-fade-left {
+        transform: translateX(60px);
+      }
+      .scroll-fade-right {
+        transform: translateX(-60px);
+      }
+      .scroll-scale-in {
+        transform: scale(0.85) translateY(30px);
+      }
+      .scroll-blur-in {
+        transform: translateY(20px);
+        filter: blur(10px);
+      }
+      .scroll-rotate-in {
+        transform: translateY(40px) rotateX(15deg);
+        perspective: 1000px;
+      }
 
-      .reveal.in-view, 
-      .scroll-fade-up.in-view, 
-      .scroll-fade-left.in-view, 
-      .scroll-fade-right.in-view, 
-      .scroll-scale-in.in-view, 
-      .scroll-blur-in.in-view, 
+      .reveal.in-view,
+      .scroll-fade-up.in-view,
+      .scroll-fade-left.in-view,
+      .scroll-fade-right.in-view,
+      .scroll-scale-in.in-view,
+      .scroll-blur-in.in-view,
       .scroll-rotate-in.in-view {
         opacity: 1;
         transform: translate(0, 0) scale(1) rotateX(0deg);
         filter: blur(0px);
       }
 
-      .reveal-delay-1 { transition-delay: 0.1s; }
-      .reveal-delay-2 { transition-delay: 0.2s; }
-      .reveal-delay-3 { transition-delay: 0.3s; }
-      .reveal-delay-4 { transition-delay: 0.4s; }
-      .reveal-delay-5 { transition-delay: 0.5s; }
+      .reveal-delay-1 {
+        transition-delay: 0.1s;
+      }
+      .reveal-delay-2 {
+        transition-delay: 0.2s;
+      }
+      .reveal-delay-3 {
+        transition-delay: 0.3s;
+      }
+      .reveal-delay-4 {
+        transition-delay: 0.4s;
+      }
+      .reveal-delay-5 {
+        transition-delay: 0.5s;
+      }
 
       /* ═══════════════════════════════════════
          Utility Animations
       ═══════════════════════════════════════ */
       @keyframes pulse-dot {
-        0%, 100% { opacity: 1; transform: scale(1); }
-        50% { opacity: 0.5; transform: scale(0.7); }
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.5;
+          transform: scale(0.7);
+        }
       }
 
       /* ═══════════════════════════════════════
          Mobile Responsive
       ═══════════════════════════════════════ */
       @media (max-width: 768px) {
-        .hero { padding: 8rem 1.5rem 4rem; }
-        .hero-price { letter-spacing: -2px; }
-        .floating-badge { display: none; }
-        .tools-grid { grid-template-columns: repeat(2, 1fr); }
-        .stats-row { display: grid; grid-template-columns: repeat(2, 1fr); }
-        .register-card { padding: 2.5rem 1.75rem; }
-        .register-card-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-        .section { padding: 0 1.5rem 4rem; }
-        .register-section { padding: 0 1.5rem 5rem; }
-        .agenda-item { padding: 1.25rem 1.5rem; gap: 1rem; }
-        .nav-brand { display: none; }
-        .top-nav { padding: 1rem 1.25rem; }
-        .about-card { padding: 2rem 1.5rem; }
+        body,
+        html {
+          overflow-x: hidden;
+        }
+        #three-canvas,
+        #start-screen,
+        .info-hud,
+        .desktop-icon,
+        .win95-taskbar,
+        .win95-titlebar {
+          display: none !important;
+        }
+
+        #css-renderer,
+        #css-renderer > div,
+        #css-renderer > div > div {
+          position: static !important;
+          transform: none !important;
+          width: 100% !important;
+          height: auto !important;
+        }
+
+        .page-wrapper {
+          width: 100vw !important;
+          height: auto !important;
+          min-height: 100vh !important;
+          border: none !important;
+          transform: none !important;
+          position: relative !important;
+          top: 0 !important;
+          left: 0 !important;
+        }
+
+        .win95-window {
+          position: relative !important;
+          width: 100% !important;
+          height: 100% !important;
+          top: 0 !important;
+          left: 0 !important;
+          border: none !important;
+          box-shadow: none !important;
+        }
+
+        .win95-content {
+          border: none !important;
+          margin: 0 !important;
+        }
+
+        .hero {
+          padding: 8rem 1.5rem 4rem;
+        }
+        .hero-price {
+          letter-spacing: -2px;
+        }
+        .floating-badge {
+          display: none;
+        }
+        .tools-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .stats-row {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .register-card {
+          padding: 2.5rem 1.75rem;
+        }
+        .register-card-inner {
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
+        }
+        .section {
+          padding: 0 1.5rem 4rem;
+        }
+        .register-section {
+          padding: 0 1.5rem 5rem;
+        }
+        .agenda-item {
+          padding: 1.25rem 1.5rem;
+          gap: 1rem;
+        }
+        .nav-brand {
+          display: none;
+        }
+        .top-nav {
+          padding: 1rem 1.25rem;
+        }
+        .about-card {
+          padding: 2rem 1.5rem;
+        }
       }
 
       @media (max-width: 480px) {
-        .tools-grid { grid-template-columns: 1fr; }
-        .stats-row { display: grid; grid-template-columns: repeat(2, 1fr); }
-        .hero-cta-group { flex-direction: column; }
-        .cta-primary, .cta-secondary { width: 100%; justify-content: center; }
-        .register-info h3 { font-size: 1.6rem; }
+        .tools-grid {
+          grid-template-columns: 1fr;
+        }
+        .stats-row {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .hero-cta-group {
+          flex-direction: column;
+        }
+        .cta-primary,
+        .cta-secondary {
+          width: 100%;
+          justify-content: center;
+        }
+        .register-info h3 {
+          font-size: 1.6rem;
+        }
       }
       /* ═══════════════════════════════════════
          Virtual Windows 95 Screen Styles
@@ -935,7 +1243,7 @@ const tools = [
         border: 2px solid #000;
         pointer-events: auto;
         position: relative;
-        font-family: 'Courier New', Courier, monospace;
+        font-family: "Courier New", Courier, monospace;
       }
 
       .win95-window {
@@ -947,7 +1255,7 @@ const tools = [
         background: #c0c0c0;
         border: 2px solid;
         border-color: #dfdfdf #000000 #000000 #dfdfdf;
-        box-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+        box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
         display: flex;
         flex-direction: column;
       }
@@ -983,12 +1291,14 @@ const tools = [
         --text-muted: #888888;
         --accent: #222222;
         --accent-light: #444444;
-        --accent-glow: rgba(0,0,0,0.05);
+        --accent-glow: rgba(0, 0, 0, 0.05);
         --cyan: #1084d0;
         --pink: #a855f7;
       }
 
-      .win95-content h1, .win95-content h2, .win95-content p {
+      .win95-content h1,
+      .win95-content h2,
+      .win95-content p {
         text-shadow: none;
       }
 
@@ -1006,7 +1316,7 @@ const tools = [
         image-rendering: pixelated;
       }
       .desktop-icon span {
-        font-family: 'Tahoma', sans-serif;
+        font-family: "Tahoma", sans-serif;
         font-size: 11px;
         color: white;
         text-align: center;
@@ -1052,11 +1362,22 @@ const tools = [
         content: " ";
         display: block;
         position: absolute;
-        top: 0; left: 0; bottom: 0; right: 0;
-        background: linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,0.15) 50%),
-                    linear-gradient(90deg, rgba(255,0,0,0.04), rgba(0,255,0,0.015), rgba(0,0,255,0.04));
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background:
+          linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%),
+          linear-gradient(
+            90deg,
+            rgba(255, 0, 0, 0.04),
+            rgba(0, 255, 0, 0.015),
+            rgba(0, 0, 255, 0.04)
+          );
         z-index: 9999;
-        background-size: 100% 3px, 3px 100%;
+        background-size:
+          100% 3px,
+          3px 100%;
         pointer-events: none;
       }
 
@@ -1066,7 +1387,7 @@ const tools = [
         top: 20px;
         left: 20px;
         z-index: 50;
-        font-family: 'Courier New', monospace;
+        font-family: "Courier New", monospace;
         display: flex;
         flex-direction: column;
         gap: 4px;
@@ -1085,31 +1406,37 @@ const tools = [
       #start-screen {
         position: fixed;
         inset: 0;
-        background: #c8c0b8;
+        background: #0a0a0a;
         z-index: 100000;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        color: #1a1a1a;
+        color: #00ff41;
+        text-shadow: 0 0 8px rgba(0, 255, 65, 0.4);
         transition: opacity 1.5s ease;
         cursor: pointer;
       }
       #start-screen h1 {
         font-size: 2rem;
         margin-bottom: 1.5rem;
-        font-family: 'Courier New', monospace;
+        font-family: "Courier New", monospace;
         font-weight: bold;
       }
       #start-screen p {
-        font-family: 'Courier New', monospace;
+        font-family: "Courier New", monospace;
         font-size: 0.9rem;
         opacity: 0.6;
         animation: blink 1.5s infinite;
       }
       @keyframes blink {
-        0%, 100% { opacity: 0.6; }
-        50% { opacity: 0.2; }
+        0%,
+        100% {
+          opacity: 0.6;
+        }
+        50% {
+          opacity: 0.2;
+        }
       }
     </style>
   </head>
@@ -1135,23 +1462,36 @@ const tools = [
     </div>
 
     <div class="page-wrapper">
-      
       <!-- Desktop Icons -->
-      <div style="position:absolute; top:20px; left:15px; display:flex; flex-direction:column; gap:25px; z-index:5;">
+      <div
+        style="position:absolute; top:20px; left:15px; display:flex; flex-direction:column; gap:25px; z-index:5;"
+      >
         <div class="desktop-icon">
-          <img src="https://win98icons.alexmeub.com/icons/png/computer_explorer-5.png" alt="My Computer" />
+          <img
+            src="https://win98icons.alexmeub.com/icons/png/computer_explorer-5.png"
+            alt="My Computer"
+          />
           <span>My Showcase</span>
         </div>
         <div class="desktop-icon">
-          <img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd_a-4.png" alt="CD" />
+          <img
+            src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd_a-4.png"
+            alt="CD"
+          />
           <span>The Oregon Trail</span>
         </div>
         <div class="desktop-icon">
-          <img src="https://win98icons.alexmeub.com/icons/png/game_mine_1-0.png" alt="Game" />
+          <img
+            src="https://win98icons.alexmeub.com/icons/png/game_mine_1-0.png"
+            alt="Game"
+          />
           <span>Doom</span>
         </div>
         <div class="desktop-icon">
-          <img src="https://win98icons.alexmeub.com/icons/png/font_truetype-1.png" alt="Game" />
+          <img
+            src="https://win98icons.alexmeub.com/icons/png/font_truetype-1.png"
+            alt="Game"
+          />
           <span>Scrabble</span>
         </div>
       </div>
@@ -1160,231 +1500,351 @@ const tools = [
         <div class="win95-titlebar">
           <span>📁 3D Animated Website Workshop</span>
           <div style="display:flex;gap:2px;">
-            <span style="background:#c0c0c0;color:black;border:2px solid;border-color:#dfdfdf #000 #000 #dfdfdf;width:16px;height:16px;display:inline-flex;justify-content:center;align-items:center;font-size:10px;cursor:pointer;">_</span>
-            <span style="background:#c0c0c0;color:black;border:2px solid;border-color:#dfdfdf #000 #000 #dfdfdf;width:16px;height:16px;display:inline-flex;justify-content:center;align-items:center;font-size:10px;cursor:pointer;">□</span>
-            <span style="background:#c0c0c0;color:black;border:2px solid;border-color:#dfdfdf #000 #000 #dfdfdf;width:16px;height:16px;display:inline-flex;justify-content:center;align-items:center;font-size:10px;cursor:pointer;">✕</span>
+            <span
+              style="background:#c0c0c0;color:black;border:2px solid;border-color:#dfdfdf #000 #000 #dfdfdf;width:16px;height:16px;display:inline-flex;justify-content:center;align-items:center;font-size:10px;cursor:pointer;"
+              >_</span
+            >
+            <span
+              style="background:#c0c0c0;color:black;border:2px solid;border-color:#dfdfdf #000 #000 #dfdfdf;width:16px;height:16px;display:inline-flex;justify-content:center;align-items:center;font-size:10px;cursor:pointer;"
+              >□</span
+            >
+            <span
+              style="background:#c0c0c0;color:black;border:2px solid;border-color:#dfdfdf #000 #000 #dfdfdf;width:16px;height:16px;display:inline-flex;justify-content:center;align-items:center;font-size:10px;cursor:pointer;"
+              >✕</span
+            >
           </div>
         </div>
         <div class="win95-content">
+          <!-- ── Top Nav ── -->
+          <nav class="top-nav">
+            <a href="/events" class="back-link">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2.5"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"></path>
+              </svg>
+              Events
+            </a>
+            <span class="nav-brand">ACM VJIT</span>
+            <button class="nav-register-btn" data-scroll-to="register">
+              Register →
+            </button>
+          </nav>
 
-
-      <!-- ── Top Nav ── -->
-      <nav class="top-nav">
-        <a href="/events" class="back-link">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
-          </svg>
-          Events
-        </a>
-        <span class="nav-brand">ACM VJIT</span>
-        <button class="nav-register-btn" data-scroll-to="register">
-          Register →
-        </button>
-      </nav>
-
-      <!-- ── Hero Section (Portfolio Style) ── -->
-      <section class="hero" style="background: white; min-height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0; text-align: center;">
-        
-        <!-- Collaboration Logos -->
-        <div style="display:flex; flex-direction:column; align-items:center; margin-bottom:50px;">
-          <span style="font-family: 'Courier New', Courier, monospace; font-size: 0.85rem; font-weight: bold; color: #999; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 25px;">
-            In Collaboration With
-          </span>
-          <div style="display:flex; align-items:center; justify-content:center; gap:40px;">
-            <img src="/images/acm-logo.png" alt="ACM Logo" style="height:90px; width:90px; object-fit:contain; drop-shadow: 0 4px 12px rgba(0,0,0,0.05);"/>
-            <div style="height:60px; width:1px; background: #ccc; transform: rotate(20deg);"></div>
-            <img src="/images/gwd-logo.png" alt="GWD Logo" style="height:75px; width:auto; object-fit:contain;"/>
-          </div>
-        </div>
-
-
-        <h1 style="font-family: 'Times New Roman', Times, serif; font-size: 3.5rem; font-weight: 900; color: #222; margin: 0; letter-spacing: -1px; line-height: 1.1;">
-          Build & Deploy $5,000<br/>3D Animated Website
-        </h1>
-        <h2 style="font-family: 'Times New Roman', Times, serif; font-size: 1.5rem; font-weight: 600; color: #444; margin: 15px 0 0 0;">
-          in one day
-        </h2>
-        
-        <div style="margin-top: 50px; display: flex; gap: 30px; font-family: 'Times New Roman', Times, serif; font-size: 1.1rem; font-weight: bold;">
-          <a href="#about" style="color: #660099; text-decoration: underline;">ABOUT</a>
-          <a href="#agenda" style="color: #660099; text-decoration: underline;">AGENDA</a>
-          <a href="#tools" style="color: #660099; text-decoration: underline;">TOOLS</a>
-          <a href="#register" style="color: #660099; text-decoration: underline;">REGISTER</a>
-        </div>
-      </section>
-
-      <!-- ── Stats Bar ── -->
-      <div class="stats-bar">
-        <div class="stats-row">
-          {event.stats.map((stat, i) => (
-            <div class={`stat-cell scroll-rotate-in reveal-delay-${(i % 4) + 1}`}>
-              <div class="stat-value" data-counter-target={stat.value}>{stat.value}</div>
-              <div class="stat-label">{stat.label}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <!-- ── Tools Section ── -->
-      <section class="section" id="tools">
-        <div class="section-label scroll-blur-in">Your Toolkit</div>
-        <h2 class="section-title scroll-fade-up reveal-delay-1">
-          6 Tools. 1 Day.<br/><span class="highlight">Infinite Possibilities.</span>
-        </h2>
-
-        <div class="tools-grid">
-          {tools.map((tool, i) => (
-            <div class="tool-card scroll-scale-in" style={`--tool-color: ${tool.color}; transition-delay: ${0.1 * (i + 1)}s;`}>
-              <span class="tool-icon">{tool.icon}</span>
-              <div class="tool-name">{tool.name}</div>
-              <div class="tool-desc">{tool.desc}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <!-- ── About Section ── -->
-      <section class="section" id="about">
-        <div class="section-label scroll-blur-in">About This Workshop</div>
-        <h2 class="section-title scroll-fade-up reveal-delay-1">
-          From Zero to <span class="highlight">Deployed</span>
-        </h2>
-
-        <div class="about-card scroll-scale-in reveal-delay-2">
-          <p class="about-text">{event.fullDesc}</p>
-        </div>
-      </section>
-
-      <!-- ── Agenda Section ── -->
-      <section class="section" id="agenda">
-        <div class="section-label scroll-blur-in">Workshop Agenda</div>
-        <h2 class="section-title scroll-fade-up reveal-delay-1">
-          What You'll <span class="highlight">Build</span>
-        </h2>
-
-        <div class="agenda-list">
-          <div class="agenda-item scroll-fade-right reveal-delay-1">
-            <div class="agenda-step">01</div>
-            <div class="agenda-content">
-              <h4>Setup & Introduction</h4>
-              <p>Get your environment ready. Install tools, create accounts, and understand the project architecture we'll be building.</p>
-            </div>
-          </div>
-          <div class="agenda-item scroll-fade-left reveal-delay-2">
-            <div class="agenda-step">02</div>
-            <div class="agenda-content">
-              <h4>3D Scene Design with Google Flow</h4>
-              <p>Create stunning 3D scenes, animations, and interactive elements using Google Flow's visual editor.</p>
-            </div>
-          </div>
-          <div class="agenda-item scroll-fade-right reveal-delay-3">
-            <div class="agenda-step">03</div>
-            <div class="agenda-content">
-              <h4>AI-Powered Development with Antigravity</h4>
-              <p>Use Google's most powerful AI coding assistant to generate production-ready code, layouts, and interactions at lightning speed.</p>
-            </div>
-          </div>
-          <div class="agenda-item scroll-fade-left reveal-delay-4">
-            <div class="agenda-step">04</div>
-            <div class="agenda-content">
-              <h4>Stitching It All Together</h4>
-              <p>Combine your 3D assets, UI components, and custom code into a polished, cohesive website using Google Stitch and premium UI libraries.</p>
-            </div>
-          </div>
-          <div class="agenda-item scroll-fade-right reveal-delay-5">
-            <div class="agenda-step">05</div>
-            <div class="agenda-content">
-              <h4>Deploy to the World</h4>
-              <p>Push your masterpiece live using GitHub and Vercel. Walk out with a real, deployed website in your portfolio.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ── Registration Section ── -->
-      <section class="register-section" id="register">
-        <div class="register-card scroll-scale-in">
-          <div class="register-card-inner">
-            <div class="register-info scroll-fade-right">
-              <h3>Secure Your<br/>Spot Now</h3>
-              <p>Limited seats available. Register today and join the most ambitious workshop ACM VJIT has ever hosted.</p>
-              <div class="register-perks">
-                <div class="perk-item">
-                  <span class="perk-icon">💻</span>
-                  Hands-on, project-based learning
+          <!-- ── Hero Section (Portfolio Style) ── -->
+          <section
+            class="hero"
+            style="background: white; min-height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0; text-align: center;"
+          >
+            <!-- Collaboration Logos -->
+            <div
+              style="display:flex; flex-direction:column; align-items:center; margin-bottom:50px;"
+            >
+              <span
+                style="font-family: 'Courier New', Courier, monospace; font-size: 0.85rem; font-weight: bold; color: #999; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 25px;"
+              >
+                In Collaboration With
+              </span>
+              <div
+                style="display:flex; align-items:center; justify-content:center; gap:40px;"
+              >
+                <img
+                  src="/images/acm-logo.png"
+                  alt="ACM Logo"
+                  style="height:90px; width:90px; object-fit:contain; drop-shadow: 0 4px 12px rgba(0,0,0,0.05);"
+                />
+                <div
+                  style="height:60px; width:1px; background: #ccc; transform: rotate(20deg);"
+                >
                 </div>
-                <div class="perk-item">
-                  <span class="perk-icon">🎯</span>
-                  Take home a deployed portfolio site
-                </div>
-                <div class="perk-item">
-                  <span class="perk-icon">🏆</span>
-                  Certificate of completion
-                </div>
-                <div class="perk-item">
-                  <span class="perk-icon">🤝</span>
-                  Network with like-minded builders
-                </div>
-                </div>
-            </div>
-
-            <div class="scroll-fade-left reveal-delay-2">
-              <form id="register-form" class="register-form">
-                <div class="form-field">
-                  <label for="reg-name">Full Name</label>
-                  <input type="text" id="reg-name" required placeholder="Enter your full name" />
-                </div>
-                <div class="form-field">
-                  <label for="reg-email">Email Address</label>
-                  <input type="email" id="reg-email" required placeholder="Enter your college email" />
-                </div>
-                <div class="form-field">
-                  <label for="reg-roll">Roll Number</label>
-                  <input type="text" id="reg-roll" required placeholder="Enter your roll number" />
-                </div>
-                <div class="form-field">
-                  <label for="reg-year-section">Year & Section</label>
-                  <input type="text" id="reg-year-section" required placeholder="e.g. 2nd Year Section A" />
-                </div>
-                <div class="form-field">
-                  <label for="reg-phone">WhatsApp Number</label>
-                  <input type="tel" id="reg-phone" required placeholder="Enter your WhatsApp number" />
-                </div>
-                <button type="submit" class="submit-btn">
-                  Complete Registration →
-                </button>
-              </form>
-
-              <div id="form-success" class="form-success">
-                <div class="success-emoji">🎉</div>
-                <h4>You're In!</h4>
-                <p>Registration successful! We'll send you all the details via email. See you on {event.dateDisplay}!</p>
-                <button id="success-done" class="success-done-btn">Done</button>
+                <img
+                  src="/images/gwd-logo.png"
+                  alt="GWD Logo"
+                  style="height:75px; width:auto; object-fit:contain;"
+                />
               </div>
             </div>
+
+            <h1
+              style="font-family: 'Times New Roman', Times, serif; font-size: 3.5rem; font-weight: 900; color: #222; margin: 0; letter-spacing: -1px; line-height: 1.1;"
+            >
+              Build & Deploy $5,000<br />3D Animated Website
+            </h1>
+            <h2
+              style="font-family: 'Times New Roman', Times, serif; font-size: 1.5rem; font-weight: 600; color: #444; margin: 15px 0 0 0;"
+            >
+              in one day
+            </h2>
+
+            <div
+              style="margin-top: 50px; display: flex; gap: 30px; font-family: 'Times New Roman', Times, serif; font-size: 1.1rem; font-weight: bold;"
+            >
+              <a
+                href="#about"
+                style="color: #660099; text-decoration: underline;">ABOUT</a
+              >
+              <a
+                href="#agenda"
+                style="color: #660099; text-decoration: underline;">AGENDA</a
+              >
+              <a
+                href="#tools"
+                style="color: #660099; text-decoration: underline;">TOOLS</a
+              >
+              <a
+                href="#register"
+                style="color: #660099; text-decoration: underline;">REGISTER</a
+              >
+            </div>
+          </section>
+
+          <!-- ── Stats Bar ── -->
+          <div class="stats-bar">
+            <div class="stats-row">
+              {
+                event.stats.map((stat, i) => (
+                  <div
+                    class={`stat-cell scroll-rotate-in reveal-delay-${(i % 4) + 1}`}
+                  >
+                    <div class="stat-value" data-counter-target={stat.value}>
+                      {stat.value}
+                    </div>
+                    <div class="stat-label">{stat.label}</div>
+                  </div>
+                ))
+              }
+            </div>
           </div>
-        </div>
-      </section>
 
-      <!-- ── Footer ── -->
-      <footer class="page-footer">
-        ACM VJIT Student Chapter · {event.dateDisplay} · {event.venue}
-      </footer>
+          <!-- ── Tools Section ── -->
+          <section class="section" id="tools">
+            <div class="section-label scroll-blur-in">Your Toolkit</div>
+            <h2 class="section-title scroll-fade-up reveal-delay-1">
+              6 Tools. 1 Day.<br /><span class="highlight"
+                >Infinite Possibilities.</span
+              >
+            </h2>
 
-    
+            <div class="tools-grid">
+              {
+                tools.map((tool, i) => (
+                  <div
+                    class="tool-card scroll-scale-in"
+                    style={`--tool-color: ${tool.color}; transition-delay: ${0.1 * (i + 1)}s;`}
+                  >
+                    <span class="tool-icon" set:html={tool.icon}></span>
+                    <div class="tool-name">{tool.name}</div>
+                    <div class="tool-desc">{tool.desc}</div>
+                  </div>
+                ))
+              }
+            </div>
+          </section>
+
+          <!-- ── About Section ── -->
+          <section class="section" id="about">
+            <div class="section-label scroll-blur-in">About This Workshop</div>
+            <h2 class="section-title scroll-fade-up reveal-delay-1">
+              From Zero to <span class="highlight">Deployed</span>
+            </h2>
+
+            <div class="about-card scroll-scale-in reveal-delay-2">
+              <p class="about-text">{event.fullDesc}</p>
+            </div>
+          </section>
+
+          <!-- ── Agenda Section ── -->
+          <section class="section" id="agenda">
+            <div class="section-label scroll-blur-in">Workshop Agenda</div>
+            <h2 class="section-title scroll-fade-up reveal-delay-1">
+              What You'll <span class="highlight">Build</span>
+            </h2>
+
+            <div class="agenda-list">
+              <div class="agenda-item scroll-fade-right reveal-delay-1">
+                <div class="agenda-step">01</div>
+                <div class="agenda-content">
+                  <h4>Setup & Introduction</h4>
+                  <p>
+                    Get your environment ready. Install tools, create accounts,
+                    and understand the project architecture we'll be building.
+                  </p>
+                </div>
+              </div>
+              <div class="agenda-item scroll-fade-left reveal-delay-2">
+                <div class="agenda-step">02</div>
+                <div class="agenda-content">
+                  <h4>3D Scene Design with Google Flow</h4>
+                  <p>
+                    Create stunning 3D scenes, animations, and interactive
+                    elements using Google Flow's visual editor.
+                  </p>
+                </div>
+              </div>
+              <div class="agenda-item scroll-fade-right reveal-delay-3">
+                <div class="agenda-step">03</div>
+                <div class="agenda-content">
+                  <h4>AI-Powered Development with Antigravity</h4>
+                  <p>
+                    Use Google's most powerful AI coding assistant to generate
+                    production-ready code, layouts, and interactions at
+                    lightning speed.
+                  </p>
+                </div>
+              </div>
+              <div class="agenda-item scroll-fade-left reveal-delay-4">
+                <div class="agenda-step">04</div>
+                <div class="agenda-content">
+                  <h4>Stitching It All Together</h4>
+                  <p>
+                    Combine your 3D assets, UI components, and custom code into
+                    a polished, cohesive website using Google Stitch and premium
+                    UI libraries.
+                  </p>
+                </div>
+              </div>
+              <div class="agenda-item scroll-fade-right reveal-delay-5">
+                <div class="agenda-step">05</div>
+                <div class="agenda-content">
+                  <h4>Deploy to the World</h4>
+                  <p>
+                    Push your masterpiece live using GitHub and Vercel. Walk out
+                    with a real, deployed website in your portfolio.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ── Registration Section ── -->
+          <section class="register-section" id="register">
+            <div class="register-card scroll-scale-in">
+              <div class="register-card-inner">
+                <div class="register-info scroll-fade-right">
+                  <h3>Secure Your<br />Spot Now</h3>
+                  <p>
+                    Limited seats available. Register today and join the most
+                    ambitious workshop ACM VJIT has ever hosted.
+                  </p>
+                  <div class="register-perks">
+                    <div class="perk-item">
+                      <span class="perk-icon">💻</span>
+                      Hands-on, project-based learning
+                    </div>
+                    <div class="perk-item">
+                      <span class="perk-icon">🎯</span>
+                      Take home a deployed portfolio site
+                    </div>
+                    <div class="perk-item">
+                      <span class="perk-icon">🏆</span>
+                      Certificate of completion
+                    </div>
+                    <div class="perk-item">
+                      <span class="perk-icon">🤝</span>
+                      Network with like-minded builders
+                    </div>
+                  </div>
+                </div>
+
+                <div class="scroll-fade-left reveal-delay-2">
+                  <form id="register-form" class="register-form">
+                    <div class="form-field">
+                      <label for="reg-name">Full Name</label>
+                      <input
+                        type="text"
+                        id="reg-name"
+                        required
+                        placeholder="Enter your full name"
+                      />
+                    </div>
+                    <div class="form-field">
+                      <label for="reg-email">Email Address</label>
+                      <input
+                        type="email"
+                        id="reg-email"
+                        required
+                        placeholder="Enter your college email"
+                      />
+                    </div>
+                    <div class="form-field">
+                      <label for="reg-roll">Roll Number</label>
+                      <input
+                        type="text"
+                        id="reg-roll"
+                        required
+                        placeholder="Enter your roll number"
+                      />
+                    </div>
+                    <div class="form-field">
+                      <label for="reg-year-section">Year & Section</label>
+                      <input
+                        type="text"
+                        id="reg-year-section"
+                        required
+                        placeholder="e.g. 2nd Year Section A"
+                      />
+                    </div>
+                    <div class="form-field">
+                      <label for="reg-phone">WhatsApp Number</label>
+                      <input
+                        type="tel"
+                        id="reg-phone"
+                        required
+                        placeholder="Enter your WhatsApp number"
+                      />
+                    </div>
+                    <button type="submit" class="submit-btn">
+                      Complete Registration →
+                    </button>
+                  </form>
+
+                  <div id="form-success" class="form-success">
+                    <div class="success-emoji">🎉</div>
+                    <h4>You're In!</h4>
+                    <p>
+                      Registration successful! We'll send you all the details
+                      via email. See you on {event.dateDisplay}!
+                    </p>
+                    <button id="success-done" class="success-done-btn"
+                      >Done</button
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ── Footer ── -->
+          <footer class="page-footer">
+            ACM VJIT Student Chapter · {event.dateDisplay} · {event.venue}
+          </footer>
         </div>
       </div>
       <div class="win95-taskbar">
         <div class="win95-start-btn">
-          <img src="https://win98icons.alexmeub.com/icons/png/windows-0.png" width="18" height="18" alt="start"/>
+          <img
+            src="https://win98icons.alexmeub.com/icons/png/windows-0.png"
+            width="18"
+            height="18"
+            alt="start"
+          />
           Start
         </div>
-        <div style="margin-left:auto;border:2px inset #dfdfdf;padding:2px 8px;font-size:12px;font-family:Tahoma,sans-serif;" id="taskbar-clock">
+        <div
+          style="margin-left:auto;border:2px inset #dfdfdf;padding:2px 8px;font-size:12px;font-family:Tahoma,sans-serif;"
+          id="taskbar-clock"
+        >
           4:20 PM
         </div>
       </div>
     </div>
-
 
     <!-- ═══════════════════════════════════════
          Three.js 3D Virtual Setup
@@ -1398,768 +1858,1384 @@ const tools = [
       }
     </script>
     <script is:inline type="module">
-      import * as THREE from 'three';
-      import { CSS3DRenderer, CSS3DObject } from 'three/addons/renderers/CSS3DRenderer.js';
+      import * as THREE from "three";
+      import {
+        CSS3DRenderer,
+        CSS3DObject,
+      } from "three/addons/renderers/CSS3DRenderer.js";
+      import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
 
-      // ── Setup ──
-      const canvas = document.getElementById('three-canvas');
-      const cssContainer = document.getElementById('css-renderer');
-      const scene = new THREE.Scene();
-      scene.background = new THREE.Color(0xc8c0b8);
+      if (window.innerWidth > 768) {
+        // ── Setup ──
+        const canvas = document.getElementById("three-canvas");
+        const cssContainer = document.getElementById("css-renderer");
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xead9c1);
 
-      const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 2000);
+        const camera = new THREE.PerspectiveCamera(
+          35,
+          window.innerWidth / window.innerHeight,
+          0.1,
+          2000,
+        );
 
-      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-      renderer.shadowMap.enabled = true;
-      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-      renderer.toneMapping = THREE.ACESFilmicToneMapping;
-      renderer.toneMappingExposure = 1.1;
+        const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.1;
 
-      const cssRenderer = new CSS3DRenderer();
-      cssRenderer.setSize(window.innerWidth, window.innerHeight);
-      cssContainer.appendChild(cssRenderer.domElement);
+        const cssRenderer = new CSS3DRenderer();
+        cssRenderer.setSize(window.innerWidth, window.innerHeight);
+        cssContainer.appendChild(cssRenderer.domElement);
 
-      // ── Lighting (studio-style) ──
-      const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 0.8);
-      scene.add(hemiLight);
+        // ── 90s Room Lighting ──
+        const hemiLight = new THREE.HemisphereLight(0xfff0dd, 0x555544, 0.7);
+        scene.add(hemiLight);
 
-      const mainLight = new THREE.DirectionalLight(0xffffff, 1.8);
-      mainLight.position.set(15, 30, 20);
-      mainLight.castShadow = true;
-      mainLight.shadow.mapSize.width = 2048;
-      mainLight.shadow.mapSize.height = 2048;
-      mainLight.shadow.camera.left = -50;
-      mainLight.shadow.camera.right = 50;
-      mainLight.shadow.camera.top = 50;
-      mainLight.shadow.camera.bottom = -50;
-      mainLight.shadow.camera.near = 0.5;
-      mainLight.shadow.camera.far = 100;
-      mainLight.shadow.bias = -0.001;
-      scene.add(mainLight);
+        const mainLight = new THREE.DirectionalLight(0xfffaf0, 1.5);
+        mainLight.position.set(15, 35, 20);
+        mainLight.castShadow = true;
+        mainLight.shadow.mapSize.width = 2048;
+        mainLight.shadow.mapSize.height = 2048;
+        mainLight.shadow.camera.left = -50;
+        mainLight.shadow.camera.right = 50;
+        mainLight.shadow.camera.top = 50;
+        mainLight.shadow.camera.bottom = -50;
+        mainLight.shadow.camera.near = 0.5;
+        mainLight.shadow.camera.far = 100;
+        mainLight.shadow.bias = -0.001;
+        scene.add(mainLight);
 
-      const fillLight = new THREE.DirectionalLight(0xd0d8e8, 0.4);
-      fillLight.position.set(-15, 10, -10);
-      scene.add(fillLight);
+        const fillLight = new THREE.DirectionalLight(0xddeeff, 0.4);
+        fillLight.position.set(-15, 10, -10);
+        scene.add(fillLight);
 
-      const rimLight = new THREE.DirectionalLight(0xffeedd, 0.3);
-      rimLight.position.set(0, 5, -20);
-      scene.add(rimLight);
+        // ── Materials ──
+        const retroBeige = new THREE.MeshStandardMaterial({
+          color: 0xd4cbb8,
+          roughness: 0.7,
+          metalness: 0.05,
+        });
+        const deskMat = new THREE.MeshStandardMaterial({
+          color: 0x5c4033,
+          roughness: 0.8,
+          metalness: 0.1,
+        });
+        const deskLegMat = new THREE.MeshStandardMaterial({
+          color: 0x555555,
+          roughness: 0.5,
+          metalness: 0.3,
+        });
+        const keyMat = new THREE.MeshStandardMaterial({
+          color: 0xc8c0b0,
+          roughness: 0.6,
+        });
+        const screenBlack = new THREE.MeshStandardMaterial({
+          color: 0x0a0a0a,
+          roughness: 0.3,
+        });
+        const whitePaper = new THREE.MeshStandardMaterial({
+          color: 0xf5f5f0,
+          roughness: 0.95,
+        });
+        const brownMat = new THREE.MeshStandardMaterial({
+          color: 0x654321,
+          roughness: 0.8,
+        });
+        const darkBrownMat = new THREE.MeshStandardMaterial({
+          color: 0x3b2010,
+          roughness: 0.7,
+        });
+        const chairBrown = new THREE.MeshStandardMaterial({
+          color: 0x7e4a28,
+          roughness: 0.4,
+          metalness: 0.1,
+        });
+        const metalMat = new THREE.MeshStandardMaterial({
+          color: 0x444444,
+          roughness: 0.3,
+          metalness: 0.6,
+        });
+        const mugMat = new THREE.MeshStandardMaterial({
+          color: 0xe8e8e0,
+          roughness: 0.4,
+        });
+        const plantGreen = new THREE.MeshStandardMaterial({
+          color: 0x2d7a3a,
+          roughness: 0.7,
+        });
+        const potMat = new THREE.MeshStandardMaterial({
+          color: 0xc87533,
+          roughness: 0.7,
+        });
+        // 90s Carpet Floor
+        const floorMat = new THREE.MeshStandardMaterial({
+          color: 0x6e8a9f, // Dusty blue carpet
+          roughness: 1.0,
+        });
 
-      // ── Materials ──
-      const retroBeige = new THREE.MeshStandardMaterial({ color: 0xd4cbb8, roughness: 0.7, metalness: 0.05 });
-      const deskMat = new THREE.MeshStandardMaterial({ color: 0x3a3a3a, roughness: 0.8, metalness: 0.1 });
-      const deskLegMat = new THREE.MeshStandardMaterial({ color: 0x555555, roughness: 0.5, metalness: 0.3 });
-      const keyMat = new THREE.MeshStandardMaterial({ color: 0xc8c0b0, roughness: 0.6 });
-      const screenBlack = new THREE.MeshStandardMaterial({ color: 0x0a0a0a, roughness: 0.3 });
-      const whitePaper = new THREE.MeshStandardMaterial({ color: 0xf5f5f0, roughness: 0.95 });
-      const brownMat = new THREE.MeshStandardMaterial({ color: 0x654321, roughness: 0.8 });
-      const darkBrownMat = new THREE.MeshStandardMaterial({ color: 0x3b2010, roughness: 0.7 });
-      const chairBrown = new THREE.MeshStandardMaterial({ color: 0x7e4a28, roughness: 0.4, metalness: 0.1 });
-      const metalMat = new THREE.MeshStandardMaterial({ color: 0x444444, roughness: 0.3, metalness: 0.6 });
-      const mugMat = new THREE.MeshStandardMaterial({ color: 0xe8e8e0, roughness: 0.4 });
-      const plantGreen = new THREE.MeshStandardMaterial({ color: 0x2d7a3a, roughness: 0.7 });
-      const potMat = new THREE.MeshStandardMaterial({ color: 0xc87533, roughness: 0.7 });
-      const floorMat = new THREE.MeshStandardMaterial({ color: 0xb8b0a8, roughness: 0.95 });
+        // ── Floor ──
+        const floor = new THREE.Mesh(
+          new THREE.PlaneGeometry(300, 300),
+          floorMat,
+        );
+        floor.rotation.x = -Math.PI / 2;
+        floor.position.y = -25;
+        floor.receiveShadow = true;
+        scene.add(floor);
 
-      // ── Floor ──
-      const floor = new THREE.Mesh(new THREE.PlaneGeometry(300, 300), floorMat);
-      floor.rotation.x = -Math.PI / 2;
-      floor.position.y = -25;
-      floor.receiveShadow = true;
-      scene.add(floor);
+        // ── Back Wall ──
+        const wallMat = new THREE.MeshStandardMaterial({
+          color: 0xead9c1, // Warm beige 90s wall
+          roughness: 1.0,
+        });
+        const backWall = new THREE.Mesh(
+          new THREE.PlaneGeometry(300, 150),
+          wallMat,
+        );
+        backWall.position.set(0, 50, -60);
+        backWall.receiveShadow = true;
+        scene.add(backWall);
 
-      // ── Back Wall ──
-      const wallMat = new THREE.MeshStandardMaterial({ color: 0xccc4bc, roughness: 0.95 });
-      const backWall = new THREE.Mesh(new THREE.PlaneGeometry(300, 150), wallMat);
-      backWall.position.set(0, 50, -60);
-      backWall.receiveShadow = true;
-      scene.add(backWall);
-
-      // ── Desk ──
-      // Table top (raised higher)
-      const deskTop = new THREE.Mesh(new THREE.BoxGeometry(80, 2.5, 40), deskMat);
-      deskTop.position.set(0, -5, 0);
-      deskTop.castShadow = true;
-      deskTop.receiveShadow = true;
-      scene.add(deskTop);
-
-      // Desk legs (4 metal tube legs)
-      const legGeo = new THREE.CylinderGeometry(1, 1, 19, 8);
-      [[-38, -15, 18], [38, -15, 18], [-38, -15, -18], [38, -15, -18]].forEach(([x,y,z]) => {
-        const leg = new THREE.Mesh(legGeo, deskLegMat);
-        leg.position.set(x, y, z);
-        leg.castShadow = true;
-        scene.add(leg);
-      });
-
-      // Right-side drawer unit
-      const drawerUnit = new THREE.Mesh(new THREE.BoxGeometry(18, 17, 36), deskMat);
-      drawerUnit.position.set(30, -14, 0);
-      drawerUnit.castShadow = true;
-      scene.add(drawerUnit);
-      // Drawer handle lines
-      [-8, -13, -18].forEach(y => {
-        const drawerLine = new THREE.Mesh(new THREE.BoxGeometry(10, 0.4, 0.4), deskLegMat);
-        drawerLine.position.set(30, y, 18.2);
-        scene.add(drawerLine);
-      });
-
-      // ── PC Base Unit (CPU tower lying flat) ──
-      const pcBase = new THREE.Mesh(new THREE.BoxGeometry(22, 5, 18), retroBeige);
-      pcBase.position.set(0, -2, 0);
-      pcBase.castShadow = true;
-      pcBase.receiveShadow = true;
-      scene.add(pcBase);
-      // Floppy slot
-      const floppySlot = new THREE.Mesh(new THREE.BoxGeometry(8, 0.8, 0.3), screenBlack);
-      floppySlot.position.set(-3, -1, 9.2);
-      scene.add(floppySlot);
-      // CD drive slot
-      const cdSlot = new THREE.Mesh(new THREE.BoxGeometry(6, 1.2, 0.3), new THREE.MeshStandardMaterial({color: 0xc0b8a8}));
-      cdSlot.position.set(-3, -3, 9.2);
-      scene.add(cdSlot);
-      // Power button
-      const powerBtn = new THREE.Mesh(new THREE.CylinderGeometry(0.6, 0.6, 0.3, 16), new THREE.MeshStandardMaterial({color: 0x444444}));
-      powerBtn.rotation.x = Math.PI / 2;
-      powerBtn.position.set(6, -2, 9.2);
-      scene.add(powerBtn);
-
-      // ── Monitor ──
-      const monitorGroup = new THREE.Group();
-
-      // Monitor body (chunky CRT)
-      const monitorBody = new THREE.Mesh(new THREE.BoxGeometry(26, 22, 20), retroBeige);
-      monitorBody.position.set(0, 12, -2);
-      monitorBody.castShadow = true;
-      monitorBody.receiveShadow = true;
-      monitorGroup.add(monitorBody);
-
-      // Monitor stand/neck
-      const monitorStand = new THREE.Mesh(new THREE.BoxGeometry(10, 2, 8), retroBeige);
-      monitorStand.position.set(0, 0.5, -2);
-      monitorGroup.add(monitorStand);
-
-      // Screen bezel
-      const bezel = new THREE.Mesh(new THREE.BoxGeometry(22, 17, 0.5), screenBlack);
-      bezel.position.set(0, 12.5, 8.3);
-      monitorGroup.add(bezel);
-
-      // Green power LED
-      const led = new THREE.Mesh(new THREE.SphereGeometry(0.3, 8, 8), new THREE.MeshStandardMaterial({color: 0x00ff00, emissive: 0x00ff00, emissiveIntensity: 0.5}));
-      led.position.set(8, 4, 8.5);
-      monitorGroup.add(led);
-
-      // Brand label area
-      const labelGeo = new THREE.BoxGeometry(8, 1.5, 0.2);
-      const labelMat2 = new THREE.MeshStandardMaterial({color: 0xa09888});
-      const label = new THREE.Mesh(labelGeo, labelMat2);
-      label.position.set(0, 3, 8.5);
-      monitorGroup.add(label);
-
-      // Screen click target
-      const screenTarget = new THREE.Mesh(
-        new THREE.PlaneGeometry(22, 17),
-        new THREE.MeshBasicMaterial({ visible: false })
-      );
-      screenTarget.position.set(0, 12.5, 8.6);
-      screenTarget.userData.isScreen = true;
-      monitorGroup.add(screenTarget);
-
-      monitorGroup.position.set(0, -4, -5);
-      scene.add(monitorGroup);
-
-      // ── Keyboard (realistic layout with key labels) ──
-      const kbGroup = new THREE.Group();
-      kbGroup.position.set(0, -3.8, 16);
-      kbGroup.rotation.x = -0.04;
-
-      // Keyboard base
-      const kbBase = new THREE.Mesh(new THREE.BoxGeometry(30, 0.8, 11), retroBeige);
-      kbBase.castShadow = true;
-      kbGroup.add(kbBase);
-
-      // Keyboard layout rows (realistic key sizes and positions)
-      const keyRows = [
-        // Row 0: Esc, F1-F12, PrintScreen, ScrollLock, Pause
-        { z: -4.2, keys: [
-          {w:1.2,code:'Escape'},{w:0.4,code:null},
-          {w:1.2,code:'F1'},{w:1.2,code:'F2'},{w:1.2,code:'F3'},{w:1.2,code:'F4'},
-          {w:0.4,code:null},
-          {w:1.2,code:'F5'},{w:1.2,code:'F6'},{w:1.2,code:'F7'},{w:1.2,code:'F8'},
-          {w:0.4,code:null},
-          {w:1.2,code:'F9'},{w:1.2,code:'F10'},{w:1.2,code:'F11'},{w:1.2,code:'F12'},
-          {w:0.4,code:null},
-          {w:1.2,code:'PrintScreen'},{w:1.2,code:'ScrollLock'},{w:1.2,code:'Pause'}
-        ]},
-        // Row 1: Number row, Insert/Home/PgUp, NumLock/Divide/Multiply/Subtract
-        { z: -2.8, keys: [
-          {w:1.2,code:'Backquote'},{w:1.2,code:'Digit1'},{w:1.2,code:'Digit2'},{w:1.2,code:'Digit3'},
-          {w:1.2,code:'Digit4'},{w:1.2,code:'Digit5'},{w:1.2,code:'Digit6'},{w:1.2,code:'Digit7'},
-          {w:1.2,code:'Digit8'},{w:1.2,code:'Digit9'},{w:1.2,code:'Digit0'},{w:1.2,code:'Minus'},
-          {w:1.2,code:'Equal'},{w:2.4,code:'Backspace'},
-          {w:0.4,code:null},
-          {w:1.2,code:'Insert'},{w:1.2,code:'Home'},{w:1.2,code:'PageUp'},
-          {w:0.4,code:null},
-          {w:1.2,code:'NumLock'},{w:1.2,code:'NumpadDivide'},{w:1.2,code:'NumpadMultiply'},{w:1.2,code:'NumpadSubtract'}
-        ]},
-        // Row 2: QWERTY, Del/End/PgDn, 7/8/9/Add
-        { z: -1.5, keys: [
-          {w:1.8,code:'Tab'},{w:1.2,code:'KeyQ'},{w:1.2,code:'KeyW'},{w:1.2,code:'KeyE'},
-          {w:1.2,code:'KeyR'},{w:1.2,code:'KeyT'},{w:1.2,code:'KeyY'},{w:1.2,code:'KeyU'},
-          {w:1.2,code:'KeyI'},{w:1.2,code:'KeyO'},{w:1.2,code:'KeyP'},{w:1.2,code:'BracketLeft'},
-          {w:1.2,code:'BracketRight'},{w:1.6,code:'Backslash'},
-          {w:0.4,code:null},
-          {w:1.2,code:'Delete'},{w:1.2,code:'End'},{w:1.2,code:'PageDown'},
-          {w:0.4,code:null},
-          {w:1.2,code:'Numpad7'},{w:1.2,code:'Numpad8'},{w:1.2,code:'Numpad9'},{w:1.2,code:'NumpadAdd', d: 2.3, z_offset: 0.65}
-        ]},
-        // Row 3: ASDF, 4/5/6
-        { z: -0.2, keys: [
-          {w:2.0,code:'CapsLock'},{w:1.2,code:'KeyA'},{w:1.2,code:'KeyS'},{w:1.2,code:'KeyD'},
-          {w:1.2,code:'KeyF'},{w:1.2,code:'KeyG'},{w:1.2,code:'KeyH'},{w:1.2,code:'KeyJ'},
-          {w:1.2,code:'KeyK'},{w:1.2,code:'KeyL'},{w:1.2,code:'Semicolon'},{w:1.2,code:'Quote'},
-          {w:2.4,code:'Enter'},
-          {w:4.0,code:null},
-          {w:1.2,code:'Numpad4'},{w:1.2,code:'Numpad5'},{w:1.2,code:'Numpad6'}, {w:1.2,code:null}
-        ]},
-        // Row 4: ZXCV, ArrowUp, 1/2/3/Enter
-        { z: 1.1, keys: [
-          {w:2.8,code:'ShiftLeft'},{w:1.2,code:'KeyZ'},{w:1.2,code:'KeyX'},{w:1.2,code:'KeyC'},
-          {w:1.2,code:'KeyV'},{w:1.2,code:'KeyB'},{w:1.2,code:'KeyN'},{w:1.2,code:'KeyM'},
-          {w:1.2,code:'Comma'},{w:1.2,code:'Period'},{w:1.2,code:'Slash'},{w:2.8,code:'ShiftRight'},
-          {w:1.7,code:null},
-          {w:1.2,code:'ArrowUp'},
-          {w:1.1,code:null},
-          {w:1.2,code:'Numpad1'},{w:1.2,code:'Numpad2'},{w:1.2,code:'Numpad3'},{w:1.2,code:'NumpadEnter', d: 2.3, z_offset: 0.65}
-        ]},
-        // Row 5: Space bar row, ArrowLeft/Down/Right, 0/.
-        { z: 2.4, keys: [
-          {w:1.5,code:'ControlLeft'},{w:1.5,code:'AltLeft'},{w:8.0,code:'Space'},{w:1.5,code:'AltRight'},{w:1.5,code:'ControlRight'},
-          {w:0.4,code:null},
-          {w:1.2,code:'ArrowLeft'},{w:1.2,code:'ArrowDown'},{w:1.2,code:'ArrowRight'},
-          {w:0.4,code:null},
-          {w:2.5,code:'Numpad0'},{w:1.2,code:'NumpadDecimal'}
-        ]}
-      ];
-
-      const keys = [];
-      const keyMap = {}; // code -> mesh for animation
-      const pressedKeyMat = new THREE.MeshStandardMaterial({ color: 0x888880, roughness: 0.5, emissive: 0x06b6d4, emissiveIntensity: 0.3 });
-
-      function createKeyMat(code, width) {
-        if (!code) return keyMat;
-        const canvas = document.createElement('canvas');
-        canvas.width = Math.max(32, width * 32);
-        canvas.height = 32;
-        const ctx = canvas.getContext('2d');
-        ctx.fillStyle = '#c8c0b0';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        // 90s Corkboard on wall
+        const corkMat = new THREE.MeshStandardMaterial({ color: 0xc49d70, roughness: 0.9 });
+        const frameMat = new THREE.MeshStandardMaterial({ color: 0x4a3219, roughness: 0.7 });
+        const boardGroup = new THREE.Group();
+        boardGroup.position.set(-35, 25, -59);
+        const board = new THREE.Mesh(new THREE.BoxGeometry(30, 20, 0.5), corkMat);
+        const frameT = new THREE.Mesh(new THREE.BoxGeometry(31, 1, 1), frameMat);
+        frameT.position.y = 10;
+        const frameB = new THREE.Mesh(new THREE.BoxGeometry(31, 1, 1), frameMat);
+        frameB.position.y = -10;
+        const frameL = new THREE.Mesh(new THREE.BoxGeometry(1, 21, 1), frameMat);
+        frameL.position.x = -15;
+        const frameR = new THREE.Mesh(new THREE.BoxGeometry(1, 21, 1), frameMat);
+        frameR.position.x = 15;
+        boardGroup.add(board, frameT, frameB, frameL, frameR);
+        boardGroup.castShadow = true;
+        scene.add(boardGroup);
         
-        ctx.fillStyle = '#444444';
-        ctx.font = 'bold 12px monospace';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
+        // Some sticky notes on corkboard
+        const noteMat = new THREE.MeshStandardMaterial({ color: 0xfafa88, roughness: 0.8 });
+        const noteGeo = new THREE.PlaneGeometry(2, 2);
+        [[ -5, 4, 0.3, 0.1 ], [ 2, 2, 0.3, -0.2 ], [ -8, -4, 0.3, 0.05 ]].forEach(pos => {
+           const n = new THREE.Mesh(noteGeo, noteMat);
+           n.position.set(pos[0], pos[1], pos[2]);
+           n.rotation.z = pos[3];
+           boardGroup.add(n);
+        });
+
+        // Framed generic poster on right wall
+        const posterGroup = new THREE.Group();
+        posterGroup.position.set(35, 25, -59);
+        const posterWhite = new THREE.Mesh(new THREE.BoxGeometry(18, 24, 0.4), new THREE.MeshStandardMaterial({ color: 0xffffff }));
+        const posterFrame = new THREE.Mesh(new THREE.BoxGeometry(19, 25, 0.8), new THREE.MeshStandardMaterial({ color: 0x111111 }));
+        posterWhite.position.z = 0.3;
+        posterGroup.add(posterWhite, posterFrame);
+        posterGroup.castShadow = true;
+        scene.add(posterGroup);
+
+        // ── Desk ──
+        // Table top (raised higher)
+        const deskTop = new THREE.Mesh(
+          new THREE.BoxGeometry(80, 2.5, 40),
+          deskMat,
+        );
+        deskTop.position.set(0, -5, 0);
+        deskTop.castShadow = true;
+        deskTop.receiveShadow = true;
+        scene.add(deskTop);
+
+        // Desk pad
+        const deskPad = new THREE.Mesh(
+          new THREE.BoxGeometry(45, 0.1, 22),
+          new THREE.MeshStandardMaterial({ color: 0x111115, roughness: 0.9 }),
+        );
+        deskPad.position.set(4, -3.7, 12);
+        deskPad.receiveShadow = true;
+        scene.add(deskPad);
+
+        // Desk legs (4 metal tube legs)
+        const legGeo = new THREE.CylinderGeometry(1, 1, 19, 8);
+        [
+          [-38, -15, 18],
+          [38, -15, 18],
+          [-38, -15, -18],
+          [38, -15, -18],
+        ].forEach(([x, y, z]) => {
+          const leg = new THREE.Mesh(legGeo, deskLegMat);
+          leg.position.set(x, y, z);
+          leg.castShadow = true;
+          scene.add(leg);
+        });
+
+        // Right-side drawer unit
+        const drawerUnit = new THREE.Mesh(
+          new THREE.BoxGeometry(18, 17, 36),
+          deskMat,
+        );
+        drawerUnit.position.set(30, -14, 0);
+        drawerUnit.castShadow = true;
+        scene.add(drawerUnit);
+        // Drawer handle lines
+        [-8, -13, -18].forEach((y) => {
+          const drawerLine = new THREE.Mesh(
+            new THREE.BoxGeometry(10, 0.4, 0.4),
+            deskLegMat,
+          );
+          drawerLine.position.set(30, y, 18.2);
+          scene.add(drawerLine);
+        });
+
+        // ── PC Base Unit (Authentic 90s Desktop Case) ──
+        const pcBaseGroup = new THREE.Group();
+        pcBaseGroup.position.set(0, -2, 0);
+
+        // Main chassis
+        const pcBase = new THREE.Mesh(
+          new THREE.BoxGeometry(22, 5, 18),
+          retroBeige,
+        );
+        pcBase.castShadow = true;
+        pcBase.receiveShadow = true;
+        pcBaseGroup.add(pcBase);
         
-        let display = code.replace('Key', '').replace('Digit', '').replace('Numpad', '');
-        if (code === 'Escape') display = 'Esc';
-        else if (code.includes('Control')) display = 'Ctrl';
-        else if (code.includes('Shift')) display = 'Shift';
-        else if (code.includes('Alt')) display = 'Alt';
-        else if (code === 'Enter') display = 'Enter';
-        else if (code === 'Backspace') display = 'Back';
-        else if (code === 'Space') display = '';
-        else if (code === 'Tab') display = 'Tab';
-        else if (code === 'CapsLock') display = 'Caps';
-        else if (code === 'Minus') display = '-';
-        else if (code === 'Equal') display = '=';
-        else if (code === 'BracketLeft') display = '[';
-        else if (code === 'BracketRight') display = ']';
-        else if (code === 'Backslash') display = '\\';
-        else if (code === 'Semicolon') display = ';';
-        else if (code === 'Quote') display = "'";
-        else if (code === 'Comma') display = ',';
-        else if (code === 'Period') display = '.';
-        else if (code === 'Slash') display = '/';
-        else if (code === 'Backquote') display = '`';
-        else if (code === 'ArrowUp') display = '↑';
-        else if (code === 'ArrowDown') display = '↓';
-        else if (code === 'ArrowLeft') display = '←';
-        else if (code === 'ArrowRight') display = '→';
-        else if (code === 'PageUp') display = 'PgUp';
-        else if (code === 'PageDown') display = 'PgDn';
-        else if (code === 'PrintScreen') display = 'PrtScn';
-        else if (code === 'ScrollLock') display = 'ScrLk';
-        else if (code === 'Insert') display = 'Ins';
-        else if (code === 'Delete') display = 'Del';
-        else if (code === 'Home') display = 'Home';
-        else if (code === 'End') display = 'End';
-        else if (code === 'Pause') display = 'Pause';
-        else if (code === 'NumLock') display = 'NumLk';
-        else if (code === 'NumpadDivide') display = '/';
-        else if (code === 'NumpadMultiply') display = '*';
-        else if (code === 'NumpadSubtract') display = '-';
-        else if (code === 'NumpadAdd') display = '+';
-        else if (code === 'NumpadDecimal') display = '.';
-        else if (code === 'NumpadEnter') display = 'Ent';
+        // Front panel raised bezel
+        const frontBezel = new THREE.Mesh(
+          new THREE.BoxGeometry(21.5, 4.5, 0.5),
+          retroBeige,
+        );
+        frontBezel.position.set(0, 0, 9.1);
+        pcBaseGroup.add(frontBezel);
+
+        // Floppy drive (3.5 inch)
+        const floppyPanel = new THREE.Mesh(
+          new THREE.BoxGeometry(5, 1.2, 0.2),
+          new THREE.MeshStandardMaterial({ color: 0xcccccc }),
+        );
+        floppyPanel.position.set(-6, -1, 9.4);
         
-        ctx.fillText(display, canvas.width/2, canvas.height/2);
-        const texture = new THREE.CanvasTexture(canvas);
-        texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+        const floppySlot = new THREE.Mesh(
+          new THREE.BoxGeometry(3.5, 0.15, 0.2),
+          screenBlack,
+        );
+        floppySlot.position.set(0, 0, 0.1);
+        floppyPanel.add(floppySlot);
         
-        // Materials array: sides use plain color, top uses texture
-        return [
-          keyMat, keyMat, 
-          new THREE.MeshStandardMaterial({ map: texture, roughness: 0.6 }), // top
-          keyMat, keyMat, keyMat
+        const floppyEject = new THREE.Mesh(
+          new THREE.BoxGeometry(0.5, 0.2, 0.2),
+          new THREE.MeshStandardMaterial({ color: 0xaaaaaa }),
+        );
+        floppyEject.position.set(1.8, -0.3, 0.1);
+        floppyPanel.add(floppyEject);
+        pcBaseGroup.add(floppyPanel);
+
+        // CD-ROM drive (5.25 inch)
+        const cdDrive = new THREE.Mesh(
+          new THREE.BoxGeometry(8, 1.5, 0.2),
+          new THREE.MeshStandardMaterial({ color: 0xdddddd }),
+        );
+        cdDrive.position.set(6, -1, 9.4);
+        
+        const cdTray = new THREE.Mesh(
+          new THREE.BoxGeometry(7, 0.8, 0.2),
+          new THREE.MeshStandardMaterial({ color: 0xc8c0b8 }),
+        );
+        cdTray.position.set(0, 0.2, 0.1);
+        cdDrive.add(cdTray);
+        
+        const cdJack = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.15, 0.15, 0.3, 8),
+          screenBlack,
+        );
+        cdJack.rotation.x = Math.PI/2;
+        cdJack.position.set(-3, -0.4, 0.1);
+        cdDrive.add(cdJack);
+        
+        const cdDial = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.2, 0.2, 0.3, 8),
+          new THREE.MeshStandardMaterial({ color: 0x444444 }),
+        );
+        cdDial.rotation.x = Math.PI/2;
+        cdDial.position.set(-2, -0.4, 0.1);
+        cdDrive.add(cdDial);
+        pcBaseGroup.add(cdDrive);
+
+        // Power button section
+        const powerBtn = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.8, 0.8, 0.3, 16),
+          new THREE.MeshStandardMaterial({ color: 0x444444 }),
+        );
+        powerBtn.rotation.x = Math.PI / 2;
+        powerBtn.position.set(6, -2, 9.3);
+        pcBaseGroup.add(powerBtn);
+
+        // Ventilation grooves on the front left
+        const ventMat = new THREE.MeshStandardMaterial({ color: 0x222222 });
+        for(let i=0; i<8; i++) {
+            const vent = new THREE.Mesh(new THREE.BoxGeometry(3, 0.1, 0.2), ventMat);
+            vent.position.set(-7, -2 + (i*0.3), 9.3);
+            pcBaseGroup.add(vent);
+        }
+
+        scene.add(pcBaseGroup);
+
+        // ── Monitor (Classic chunky 90s CRT) ──
+        const monitorGroup = new THREE.Group();
+
+        // Monitor body back taper
+        const monitorBack = new THREE.Mesh(
+          new RoundedBoxGeometry(16, 18, 14, 4, 1.5),
+          retroBeige,
+        );
+        monitorBack.position.set(0, 12, -7);
+        monitorBack.castShadow = true;
+        monitorGroup.add(monitorBack);
+        
+        const monitorTail = new THREE.Mesh(
+          new RoundedBoxGeometry(10, 10, 8, 4, 1),
+          retroBeige,
+        );
+        monitorTail.position.set(0, 12, -15);
+        monitorTail.castShadow = true;
+        monitorGroup.add(monitorTail);
+
+        // Monitor main front body
+        const monitorBody = new THREE.Mesh(
+          new RoundedBoxGeometry(26, 22, 12, 4, 1.5),
+          retroBeige,
+        );
+        monitorBody.position.set(0, 12, 2);
+        monitorBody.castShadow = true;
+        monitorBody.receiveShadow = true;
+        monitorGroup.add(monitorBody);
+
+        // Monitor stand/neck
+        const monitorStand = new THREE.Mesh(
+          new THREE.BoxGeometry(10, 2, 8),
+          retroBeige,
+        );
+        monitorStand.position.set(0, 0.5, 0);
+        monitorGroup.add(monitorStand);
+        
+        const monitorBase = new THREE.Mesh(
+          new THREE.BoxGeometry(14, 0.5, 12),
+          retroBeige,
+        );
+        monitorBase.position.set(0, 0, 0);
+        monitorGroup.add(monitorBase);
+
+        // Screen bezel (slightly inset)
+        const bezel = new THREE.Mesh(
+          new THREE.BoxGeometry(22, 17, 1),
+          screenBlack,
+        );
+        bezel.position.set(0, 12.5, 7.8);
+        monitorGroup.add(bezel);
+
+        // Front bezel with buttons
+        const lowerBezel = new THREE.Mesh(
+            new THREE.BoxGeometry(26, 3, 0.5),
+            retroBeige
+        );
+        lowerBezel.position.set(0, 2.5, 8.2);
+        monitorGroup.add(lowerBezel);
+
+        // Monitor power button
+        const monPower = new THREE.Mesh(
+          new THREE.BoxGeometry(1, 0.5, 0.2),
+          new THREE.MeshStandardMaterial({ color: 0x444444 }),
+        );
+        monPower.position.set(10, 2.5, 8.5);
+        monitorGroup.add(monPower);
+
+        // Green power LED
+        const led = new THREE.Mesh(
+          new THREE.SphereGeometry(0.2, 8, 8),
+          new THREE.MeshStandardMaterial({
+            color: 0x00ff00,
+            emissive: 0x00ff00,
+            emissiveIntensity: 0.8,
+          }),
+        );
+        led.position.set(11.5, 2.5, 8.5);
+        monitorGroup.add(led);
+
+        // Brand label area
+        const labelGeo = new THREE.BoxGeometry(3, 0.8, 0.1);
+        const labelMat2 = new THREE.MeshStandardMaterial({ color: 0xa09888 });
+        const label = new THREE.Mesh(labelGeo, labelMat2);
+        label.position.set(0, 2.5, 8.5);
+        monitorGroup.add(label);
+
+        // Screen click target
+        const screenTarget = new THREE.Mesh(
+          new THREE.PlaneGeometry(22, 17),
+          new THREE.MeshBasicMaterial({ visible: false }),
+        );
+        screenTarget.position.set(0, 12.5, 8.31);
+        screenTarget.userData.isScreen = true;
+        monitorGroup.add(screenTarget);
+        
+        monitorGroup.position.set(0, -4, -5);
+        scene.add(monitorGroup);
+
+        // ── Keyboard (realistic layout with key labels) ──
+        const kbGroup = new THREE.Group();
+        kbGroup.position.set(0, -3.8, 16);
+        kbGroup.rotation.x = -0.08;
+
+        // Keyboard base (Chunky Model M style with rounded edges)
+        const kbBase = new THREE.Mesh(
+          new RoundedBoxGeometry(31, 1.5, 12, 4, 0.5),
+          retroBeige,
+        );
+        kbBase.position.set(0, -0.2, -0.2);
+        kbBase.castShadow = true;
+        kbGroup.add(kbBase);
+        
+        // Keyboard cable
+        const kbCableGeo = new THREE.CylinderGeometry(0.1, 0.1, 8, 8);
+        const kbCable = new THREE.Mesh(kbCableGeo, new THREE.MeshStandardMaterial({ color: 0x333333 }));
+        kbCable.rotation.x = Math.PI/2;
+        kbCable.position.set(0, -0.5, -9);
+        kbGroup.add(kbCable);
+
+        // Keyboard layout rows (realistic key sizes and positions)
+        const keyRows = [
+          // Row 0: Esc, F1-F12, PrintScreen, ScrollLock, Pause
+          {
+            z: -4.2,
+            keys: [
+              { w: 1.2, code: "Escape" },
+              { w: 0.4, code: null },
+              { w: 1.2, code: "F1" },
+              { w: 1.2, code: "F2" },
+              { w: 1.2, code: "F3" },
+              { w: 1.2, code: "F4" },
+              { w: 0.4, code: null },
+              { w: 1.2, code: "F5" },
+              { w: 1.2, code: "F6" },
+              { w: 1.2, code: "F7" },
+              { w: 1.2, code: "F8" },
+              { w: 0.4, code: null },
+              { w: 1.2, code: "F9" },
+              { w: 1.2, code: "F10" },
+              { w: 1.2, code: "F11" },
+              { w: 1.2, code: "F12" },
+              { w: 0.4, code: null },
+              { w: 1.2, code: "PrintScreen" },
+              { w: 1.2, code: "ScrollLock" },
+              { w: 1.2, code: "Pause" },
+            ],
+          },
+          // Row 1: Number row, Insert/Home/PgUp, NumLock/Divide/Multiply/Subtract
+          {
+            z: -2.8,
+            keys: [
+              { w: 1.2, code: "Backquote" },
+              { w: 1.2, code: "Digit1" },
+              { w: 1.2, code: "Digit2" },
+              { w: 1.2, code: "Digit3" },
+              { w: 1.2, code: "Digit4" },
+              { w: 1.2, code: "Digit5" },
+              { w: 1.2, code: "Digit6" },
+              { w: 1.2, code: "Digit7" },
+              { w: 1.2, code: "Digit8" },
+              { w: 1.2, code: "Digit9" },
+              { w: 1.2, code: "Digit0" },
+              { w: 1.2, code: "Minus" },
+              { w: 1.2, code: "Equal" },
+              { w: 2.4, code: "Backspace" },
+              { w: 0.4, code: null },
+              { w: 1.2, code: "Insert" },
+              { w: 1.2, code: "Home" },
+              { w: 1.2, code: "PageUp" },
+              { w: 0.4, code: null },
+              { w: 1.2, code: "NumLock" },
+              { w: 1.2, code: "NumpadDivide" },
+              { w: 1.2, code: "NumpadMultiply" },
+              { w: 1.2, code: "NumpadSubtract" },
+            ],
+          },
+          // Row 2: QWERTY, Del/End/PgDn, 7/8/9/Add
+          {
+            z: -1.5,
+            keys: [
+              { w: 1.8, code: "Tab" },
+              { w: 1.2, code: "KeyQ" },
+              { w: 1.2, code: "KeyW" },
+              { w: 1.2, code: "KeyE" },
+              { w: 1.2, code: "KeyR" },
+              { w: 1.2, code: "KeyT" },
+              { w: 1.2, code: "KeyY" },
+              { w: 1.2, code: "KeyU" },
+              { w: 1.2, code: "KeyI" },
+              { w: 1.2, code: "KeyO" },
+              { w: 1.2, code: "KeyP" },
+              { w: 1.2, code: "BracketLeft" },
+              { w: 1.2, code: "BracketRight" },
+              { w: 1.6, code: "Backslash" },
+              { w: 0.4, code: null },
+              { w: 1.2, code: "Delete" },
+              { w: 1.2, code: "End" },
+              { w: 1.2, code: "PageDown" },
+              { w: 0.4, code: null },
+              { w: 1.2, code: "Numpad7" },
+              { w: 1.2, code: "Numpad8" },
+              { w: 1.2, code: "Numpad9" },
+              { w: 1.2, code: "NumpadAdd", d: 2.3, z_offset: 0.65 },
+            ],
+          },
+          // Row 3: ASDF, 4/5/6
+          {
+            z: -0.2,
+            keys: [
+              { w: 2.0, code: "CapsLock" },
+              { w: 1.2, code: "KeyA" },
+              { w: 1.2, code: "KeyS" },
+              { w: 1.2, code: "KeyD" },
+              { w: 1.2, code: "KeyF" },
+              { w: 1.2, code: "KeyG" },
+              { w: 1.2, code: "KeyH" },
+              { w: 1.2, code: "KeyJ" },
+              { w: 1.2, code: "KeyK" },
+              { w: 1.2, code: "KeyL" },
+              { w: 1.2, code: "Semicolon" },
+              { w: 1.2, code: "Quote" },
+              { w: 2.4, code: "Enter" },
+              { w: 4.0, code: null },
+              { w: 1.2, code: "Numpad4" },
+              { w: 1.2, code: "Numpad5" },
+              { w: 1.2, code: "Numpad6" },
+              { w: 1.2, code: null },
+            ],
+          },
+          // Row 4: ZXCV, ArrowUp, 1/2/3/Enter
+          {
+            z: 1.1,
+            keys: [
+              { w: 2.8, code: "ShiftLeft" },
+              { w: 1.2, code: "KeyZ" },
+              { w: 1.2, code: "KeyX" },
+              { w: 1.2, code: "KeyC" },
+              { w: 1.2, code: "KeyV" },
+              { w: 1.2, code: "KeyB" },
+              { w: 1.2, code: "KeyN" },
+              { w: 1.2, code: "KeyM" },
+              { w: 1.2, code: "Comma" },
+              { w: 1.2, code: "Period" },
+              { w: 1.2, code: "Slash" },
+              { w: 2.8, code: "ShiftRight" },
+              { w: 1.7, code: null },
+              { w: 1.2, code: "ArrowUp" },
+              { w: 1.1, code: null },
+              { w: 1.2, code: "Numpad1" },
+              { w: 1.2, code: "Numpad2" },
+              { w: 1.2, code: "Numpad3" },
+              { w: 1.2, code: "NumpadEnter", d: 2.3, z_offset: 0.65 },
+            ],
+          },
+          // Row 5: Space bar row, ArrowLeft/Down/Right, 0/.
+          {
+            z: 2.4,
+            keys: [
+              { w: 1.5, code: "ControlLeft" },
+              { w: 1.5, code: "AltLeft" },
+              { w: 8.0, code: "Space" },
+              { w: 1.5, code: "AltRight" },
+              { w: 1.5, code: "ControlRight" },
+              { w: 0.4, code: null },
+              { w: 1.2, code: "ArrowLeft" },
+              { w: 1.2, code: "ArrowDown" },
+              { w: 1.2, code: "ArrowRight" },
+              { w: 0.4, code: null },
+              { w: 2.5, code: "Numpad0" },
+              { w: 1.2, code: "NumpadDecimal" },
+            ],
+          },
         ];
-      }
 
-      keyRows.forEach(row => {
-        let xOffset = -14;
-        row.keys.forEach(k => {
-          if (k.code === null) {
-            xOffset += k.w;
+        const keys = [];
+        const keyMap = {}; // code -> mesh for animation
+        const pressedKeyMat = new THREE.MeshStandardMaterial({
+          color: 0x888880,
+          roughness: 0.5,
+          emissive: 0x06b6d4,
+          emissiveIntensity: 0.3,
+        });
+
+        function createKeyMat(code, width) {
+          if (!code) return keyMat;
+          const canvas = document.createElement("canvas");
+          canvas.width = Math.max(32, width * 32);
+          canvas.height = 32;
+          const ctx = canvas.getContext("2d");
+          ctx.fillStyle = "#c8c0b0";
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+          ctx.fillStyle = "#444444";
+          ctx.font = "bold 12px monospace";
+          ctx.textAlign = "center";
+          ctx.textBaseline = "middle";
+
+          let display = code
+            .replace("Key", "")
+            .replace("Digit", "")
+            .replace("Numpad", "");
+          if (code === "Escape") display = "Esc";
+          else if (code.includes("Control")) display = "Ctrl";
+          else if (code.includes("Shift")) display = "Shift";
+          else if (code.includes("Alt")) display = "Alt";
+          else if (code === "Enter") display = "Enter";
+          else if (code === "Backspace") display = "Back";
+          else if (code === "Space") display = "";
+          else if (code === "Tab") display = "Tab";
+          else if (code === "CapsLock") display = "Caps";
+          else if (code === "Minus") display = "-";
+          else if (code === "Equal") display = "=";
+          else if (code === "BracketLeft") display = "[";
+          else if (code === "BracketRight") display = "]";
+          else if (code === "Backslash") display = "\\";
+          else if (code === "Semicolon") display = ";";
+          else if (code === "Quote") display = "'";
+          else if (code === "Comma") display = ",";
+          else if (code === "Period") display = ".";
+          else if (code === "Slash") display = "/";
+          else if (code === "Backquote") display = "`";
+          else if (code === "ArrowUp") display = "↑";
+          else if (code === "ArrowDown") display = "↓";
+          else if (code === "ArrowLeft") display = "←";
+          else if (code === "ArrowRight") display = "→";
+          else if (code === "PageUp") display = "PgUp";
+          else if (code === "PageDown") display = "PgDn";
+          else if (code === "PrintScreen") display = "PrtScn";
+          else if (code === "ScrollLock") display = "ScrLk";
+          else if (code === "Insert") display = "Ins";
+          else if (code === "Delete") display = "Del";
+          else if (code === "Home") display = "Home";
+          else if (code === "End") display = "End";
+          else if (code === "Pause") display = "Pause";
+          else if (code === "NumLock") display = "NumLk";
+          else if (code === "NumpadDivide") display = "/";
+          else if (code === "NumpadMultiply") display = "*";
+          else if (code === "NumpadSubtract") display = "-";
+          else if (code === "NumpadAdd") display = "+";
+          else if (code === "NumpadDecimal") display = ".";
+          else if (code === "NumpadEnter") display = "Ent";
+
+          ctx.fillText(display, canvas.width / 2, canvas.height / 2);
+          const texture = new THREE.CanvasTexture(canvas);
+          texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+
+          // Materials array: sides use plain color, top uses texture
+          return [
+            keyMat,
+            keyMat,
+            new THREE.MeshStandardMaterial({ map: texture, roughness: 0.6 }), // top
+            keyMat,
+            keyMat,
+            keyMat,
+          ];
+        }
+
+        keyRows.forEach((row) => {
+          let xOffset = -14;
+          row.keys.forEach((k) => {
+            if (k.code === null) {
+              xOffset += k.w;
+              return;
+            }
+            const kMat = createKeyMat(k.code, k.w);
+            const depth = k.d || 1.0;
+            const keyMesh = new THREE.Mesh(
+              new THREE.BoxGeometry(k.w - 0.15, 0.4, depth),
+              kMat,
+            );
+            keyMesh.position.set(
+              xOffset + k.w / 2,
+              0.6,
+              row.z + (k.z_offset || 0),
+            );
+            keyMesh.castShadow = true;
+            keyMesh.userData.code = k.code;
+            keyMesh.userData.origY = 0.6;
+            keyMesh.userData.origMat = kMat;
+            keys.push(keyMesh);
+            keyMap[k.code] = keyMesh;
+            kbGroup.add(keyMesh);
+            xOffset += k.w + 0.1;
+          });
+        });
+        scene.add(kbGroup);
+
+        // ── Keyboard Interaction ──
+        document.addEventListener("keydown", (e) => {
+          const mesh = keyMap[e.code];
+          if (mesh) {
+            mesh.position.y = mesh.userData.origY - 0.25;
+            mesh.material = pressedKeyMat;
+          }
+        });
+        document.addEventListener("keyup", (e) => {
+          const mesh = keyMap[e.code];
+          if (mesh) {
+            mesh.position.y = mesh.userData.origY;
+            mesh.material = mesh.userData.origMat;
+          }
+        });
+
+        // ── Mouse (Classic 90s rounded mouse) ──
+        const mouse3D = new THREE.Group();
+        const mouseBody = new THREE.Mesh(
+          new RoundedBoxGeometry(3.2, 1.6, 5.5, 4, 0.8),
+          retroBeige,
+        );
+        mouseBody.position.y = 0.2;
+        mouseBody.castShadow = true;
+        mouse3D.add(mouseBody);
+        
+        // Left button
+        const mouseBtn = new THREE.Mesh(
+          new RoundedBoxGeometry(1.4, 0.4, 2.2, 2, 0.1),
+          keyMat,
+        );
+        mouseBtn.position.set(-0.7, 0.9, -1.2);
+        mouseBtn.rotation.x = 0.1;
+        mouse3D.add(mouseBtn);
+        
+        // Right button
+        const mouseBtn2 = new THREE.Mesh(
+          new RoundedBoxGeometry(1.4, 0.4, 2.2, 2, 0.1),
+          keyMat,
+        );
+        mouseBtn2.position.set(0.7, 0.9, -1.2);
+        mouseBtn2.rotation.x = 0.1;
+        mouse3D.add(mouseBtn2);
+
+        // Mouse cable
+        const mouseCableGeo = new THREE.CylinderGeometry(0.08, 0.08, 8, 8);
+        const mouseCable = new THREE.Mesh(mouseCableGeo, new THREE.MeshStandardMaterial({ color: 0x333333 }));
+        mouseCable.rotation.x = Math.PI/2;
+        mouseCable.position.set(0, 0, -6);
+        mouse3D.add(mouseCable);
+
+        mouse3D.position.set(20, -3.8, 16);
+        scene.add(mouse3D);
+
+        // ── Paper Tray (sleek wireframe style) ──
+        const trayGroup = new THREE.Group();
+        trayGroup.position.set(-30, -3.8, 5);
+        
+        const wireMat = new THREE.MeshStandardMaterial({ color: 0x444444, metalness: 0.8 });
+        
+        function createWireTray(yPos) {
+           const t = new THREE.Group();
+           t.position.y = yPos;
+           // bottom mesh
+           const base = new THREE.Mesh(new THREE.BoxGeometry(13, 0.2, 9), new THREE.MeshStandardMaterial({ color: 0x222222 }));
+           base.castShadow = true;
+           t.add(base);
+           // side rails
+           const rail1 = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 13, 8), wireMat);
+           rail1.rotation.z = Math.PI/2; rail1.position.set(0, 0.8, -4.5);
+           t.add(rail1);
+           const rail2 = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 13, 8), wireMat);
+           rail2.rotation.z = Math.PI/2; rail2.position.set(0, 0.8, 4.5);
+           t.add(rail2);
+           const rail3 = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 9, 8), wireMat);
+           rail3.rotation.x = Math.PI/2; rail3.position.set(-6.5, 0.8, 0);
+           t.add(rail3);
+           const rail4 = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 9, 8), wireMat);
+           rail4.rotation.x = Math.PI/2; rail4.position.set(6.5, 0.8, 0);
+           t.add(rail4);
+           // vertical corners
+           [ [-6.5, -4.5], [6.5, -4.5], [-6.5, 4.5], [6.5, 4.5] ].forEach(pos => {
+               const p = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 0.8, 8), wireMat);
+               p.position.set(pos[0], 0.4, pos[1]);
+               t.add(p);
+           });
+           
+           // A stack of paper in the tray
+           const stack = new THREE.Mesh(new THREE.BoxGeometry(11, 0.5 + Math.random()*1.5, 7.5), whitePaper);
+           stack.position.y = 0.5;
+           stack.castShadow = true;
+           t.add(stack);
+           return t;
+        }
+        
+        trayGroup.add(createWireTray(0.2));
+        trayGroup.add(createWireTray(4.5));
+        
+        // Vertical struts connecting the two trays
+        [ [-6.5, -4.5], [6.5, -4.5], [-6.5, 4.5], [6.5, 4.5] ].forEach(pos => {
+            const strut = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 4.5, 8), wireMat);
+            strut.position.set(pos[0], 2.3, pos[1]);
+            strut.castShadow = true;
+            trayGroup.add(strut);
+        });
+
+        scene.add(trayGroup);
+
+        // ── Loose Papers & Pencil ──
+        const paperPile = new THREE.Group();
+        paperPile.position.set(-28, -3.6, 17);
+        paperPile.rotation.y = 0.15;
+        
+        const p1 = new THREE.Mesh(new THREE.BoxGeometry(8, 0.05, 10.5), whitePaper);
+        p1.castShadow = true; p1.receiveShadow = true;
+        paperPile.add(p1);
+        
+        const p2 = new THREE.Mesh(new THREE.BoxGeometry(8, 0.05, 10.5), whitePaper);
+        p2.position.set(0.5, 0.1, -0.5); p2.rotation.y = 0.1;
+        p2.castShadow = true; p2.receiveShadow = true;
+        paperPile.add(p2);
+        
+        const p3 = new THREE.Mesh(new THREE.BoxGeometry(8, 0.05, 10.5), whitePaper);
+        p3.position.set(-0.2, 0.2, 0.8); p3.rotation.y = -0.15;
+        p3.castShadow = true; p3.receiveShadow = true;
+        paperPile.add(p3);
+
+        // Yellow Pencil on papers
+        const pencil = new THREE.Group();
+        pencil.position.set(1, 0.4, 0);
+        pencil.rotation.y = -1;
+        pencil.rotation.z = -0.05; // slight tilt
+        
+        const pBody = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 5, 6), new THREE.MeshStandardMaterial({color: 0xf5b041}));
+        pBody.rotation.x = Math.PI/2;
+        pBody.castShadow = true;
+        pencil.add(pBody);
+        
+        const pTip = new THREE.Mesh(new THREE.ConeGeometry(0.15, 0.8, 6), new THREE.MeshStandardMaterial({color: 0xd4cbb8}));
+        pTip.position.set(0, 0, 2.9);
+        pTip.rotation.x = Math.PI/2;
+        pTip.castShadow = true;
+        pencil.add(pTip);
+        
+        const pLead = new THREE.Mesh(new THREE.ConeGeometry(0.04, 0.2, 6), new THREE.MeshStandardMaterial({color: 0x333333}));
+        pLead.position.set(0, 0, 3.2);
+        pLead.rotation.x = Math.PI/2;
+        pencil.add(pLead);
+        
+        const pMetal = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.16, 0.4, 8), new THREE.MeshStandardMaterial({color: 0xaaaaaa, metalness: 0.8}));
+        pMetal.position.set(0, 0, -2.7);
+        pMetal.rotation.x = Math.PI/2;
+        pencil.add(pMetal);
+        
+        const pEraser = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 0.5, 8), new THREE.MeshStandardMaterial({color: 0xe68a9d}));
+        pEraser.position.set(0, 0, -3.1);
+        pEraser.rotation.x = Math.PI/2;
+        pencil.add(pEraser);
+        
+        paperPile.add(pencil);
+        scene.add(paperPile);
+
+        // ── Books/Binders (right side) ──
+        const bookGroup = new THREE.Group();
+        bookGroup.position.set(32, 0, -5);
+        
+        function createBook(width, height, depth, color, xPos, zRot) {
+            const bGroup = new THREE.Group();
+            bGroup.position.set(xPos, height/2 - 2, 0);
+            bGroup.rotation.z = zRot;
+            
+            // Pages (main solid white block)
+            const pages = new THREE.Mesh(
+                new THREE.BoxGeometry(width - 0.2, height - 0.2, depth - 0.2),
+                whitePaper
+            );
+            pages.position.z = 0.1;
+            bGroup.add(pages);
+
+            const coverMat = new THREE.MeshStandardMaterial({ color, roughness: 0.7 });
+            
+            // Spine (back)
+            const spine = new THREE.Mesh(
+                new RoundedBoxGeometry(width, height, 0.2, 4, 0.08),
+                coverMat
+            );
+            spine.position.z = - (depth / 2) + 0.1;
+            bGroup.add(spine);
+            
+            // Left Cover
+            const leftCover = new THREE.Mesh(
+                new RoundedBoxGeometry(0.15, height, depth - 0.1, 4, 0.05),
+                coverMat
+            );
+            leftCover.position.set(- (width / 2) + 0.075, 0, 0.05);
+            bGroup.add(leftCover);
+            
+            // Right Cover
+            const rightCover = new THREE.Mesh(
+                new RoundedBoxGeometry(0.15, height, depth - 0.1, 4, 0.05),
+                coverMat
+            );
+            rightCover.position.set((width / 2) - 0.075, 0, 0.05);
+            bGroup.add(rightCover);
+            
+            return bGroup;
+        }
+        
+        bookGroup.add(createBook(2.5, 13, 9, 0x5c2b2b, 4, 0.05));
+        bookGroup.add(createBook(3.5, 14, 9.5, 0x1e3f32, 0.5, 0));
+        bookGroup.add(createBook(2, 12, 8.5, 0x2c3e6b, -2.5, -0.1));
+        
+        // Stacked book laying flat
+        const flatBook = createBook(2.5, 12, 8.5, 0x8b5cf6, -8, 0);
+        flatBook.rotation.z = Math.PI/2;
+        flatBook.rotation.x = 0.2;
+        flatBook.position.set(-8, -2.5, 2);
+        bookGroup.add(flatBook);
+        
+        scene.add(bookGroup);
+
+        // ── Coffee Mug & Coaster ──
+        const mugGroup = new THREE.Group();
+        mugGroup.position.set(34, -3.8, 12);
+        
+        // Cork coaster
+        const coaster = new THREE.Mesh(
+          new THREE.CylinderGeometry(2.8, 2.8, 0.2, 16),
+          new THREE.MeshStandardMaterial({ color: 0xc49d70, roughness: 0.9 })
+        );
+        coaster.position.y = 0.1;
+        coaster.castShadow = true;
+        coaster.receiveShadow = true;
+        mugGroup.add(coaster);
+
+        // Tapered Mug body
+        const mugBody = new THREE.Mesh(
+          new THREE.CylinderGeometry(2.1, 1.8, 4.5, 24),
+          mugMat,
+        );
+        mugBody.position.set(0, 2.4, 0);
+        mugBody.castShadow = true;
+        mugGroup.add(mugBody);
+        
+        // Mug inner hole
+        const mugInside = new THREE.Mesh(
+          new THREE.CylinderGeometry(1.9, 1.6, 4.3, 24),
+          new THREE.MeshStandardMaterial({ color: 0xdddddd })
+        );
+        mugInside.position.set(0, 2.6, 0);
+        mugGroup.add(mugInside);
+        
+        // Handle
+        const handleGeo = new THREE.TorusGeometry(1.4, 0.35, 8, 16, Math.PI);
+        const handle = new THREE.Mesh(handleGeo, mugMat);
+        handle.position.set(1.9, 2.5, 0);
+        handle.rotation.z = Math.PI / 2;
+        handle.castShadow = true;
+        mugGroup.add(handle);
+        
+        // Coffee liquid
+        const coffee = new THREE.Mesh(
+          new THREE.CylinderGeometry(1.85, 1.85, 0.1, 24),
+          new THREE.MeshStandardMaterial({ color: 0x2a1508, roughness: 0.1 }),
+        );
+        coffee.position.set(0, 4.2, 0);
+        mugGroup.add(coffee);
+        
+        scene.add(mugGroup);
+
+        // ── Office Chair (Premium ergonomic look) ──
+        const chairMat = new THREE.MeshStandardMaterial({
+          color: 0x1a1a1a,
+          roughness: 0.6,
+          metalness: 0.2,
+        });
+        const chairGroup = new THREE.Group();
+        chairGroup.position.set(52, -25, 22);
+        chairGroup.rotation.y = -0.5;
+
+        // Rounded rect helper for smooth cushions
+        function createRoundedRect(width, height, radius) {
+          const shape = new THREE.Shape();
+          const x = -width / 2,
+            y = -height / 2;
+          shape.moveTo(x, y + radius);
+          shape.lineTo(x, y + height - radius);
+          shape.quadraticCurveTo(x, y + height, x + radius, y + height);
+          shape.lineTo(x + width - radius, y + height);
+          shape.quadraticCurveTo(
+            x + width,
+            y + height,
+            x + width,
+            y + height - radius,
+          );
+          shape.lineTo(x + width, y + radius);
+          shape.quadraticCurveTo(x + width, y, x + width - radius, y);
+          shape.lineTo(x + radius, y);
+          shape.quadraticCurveTo(x, y, x, y + radius);
+          return shape;
+        }
+        const cushionExtrude = {
+          depth: 1.2,
+          bevelEnabled: true,
+          bevelSegments: 4,
+          steps: 1,
+          bevelSize: 0.6,
+          bevelThickness: 0.6,
+        };
+        const seatGeo = new THREE.ExtrudeGeometry(
+          createRoundedRect(12, 11, 2),
+          cushionExtrude,
+        );
+        const backGeo = new THREE.ExtrudeGeometry(
+          createRoundedRect(11, 13, 2),
+          cushionExtrude,
+        );
+
+        // Gas lift cylinder
+        const chairPole = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.6, 0.6, 12, 12),
+          metalMat,
+        );
+        chairPole.position.set(0, 6, 0);
+        chairPole.castShadow = true;
+        chairGroup.add(chairPole);
+
+        // 5-star base (sleek tubes)
+        for (let i = 0; i < 5; i++) {
+          const angle = (i / 5) * Math.PI * 2;
+          const legPivot = new THREE.Group();
+          legPivot.position.set(0, 0.5, 0);
+          legPivot.rotation.y = angle;
+
+          // Leg tube
+          const legArm = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.4, 0.4, 8, 6),
+            metalMat,
+          );
+          legArm.rotation.x = Math.PI / 2;
+          legArm.position.set(0, 0, 4);
+          legArm.castShadow = true;
+          legPivot.add(legArm);
+
+          // Realistic dual-wheel caster
+          const casterGroup = new THREE.Group();
+          casterGroup.position.set(0, -0.6, 7.5);
+
+          // Caster housing/bracket
+          const housing = new THREE.Mesh(
+            new THREE.BoxGeometry(0.8, 1.2, 1.2),
+            metalMat,
+          );
+          housing.position.set(0, 0.5, -0.2);
+          housing.castShadow = true;
+          casterGroup.add(housing);
+
+          // Wheel Material
+          const wheelMat = new THREE.MeshStandardMaterial({
+            color: 0x111111,
+            roughness: 0.4,
+          });
+          const wheelGeo = new THREE.TorusGeometry(0.5, 0.2, 8, 16);
+
+          // Left wheel
+          const wheelL = new THREE.Mesh(wheelGeo, wheelMat);
+          wheelL.rotation.y = Math.PI / 2;
+          wheelL.position.set(-0.45, 0, 0);
+          wheelL.castShadow = true;
+          casterGroup.add(wheelL);
+
+          // Right wheel
+          const wheelR = new THREE.Mesh(wheelGeo, wheelMat);
+          wheelR.rotation.y = Math.PI / 2;
+          wheelR.position.set(0.45, 0, 0);
+          wheelR.castShadow = true;
+          casterGroup.add(wheelR);
+
+          // Axle
+          const axle = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.15, 0.15, 0.9, 8),
+            metalMat,
+          );
+          axle.rotation.z = Math.PI / 2;
+          casterGroup.add(axle);
+
+          legPivot.add(casterGroup);
+
+          chairGroup.add(legPivot);
+        }
+
+        // Seat assembly
+        const seatGroup = new THREE.Group();
+        seatGroup.position.set(0, 12.5, 0);
+        chairGroup.add(seatGroup);
+
+        // Seat shell (dark rigid bottom)
+        const seatShell = new THREE.Mesh(
+          new THREE.BoxGeometry(10, 0.5, 10),
+          metalMat,
+        );
+        seatShell.position.set(0, -0.2, 0);
+        seatShell.castShadow = true;
+        seatGroup.add(seatShell);
+
+        // Seat cushion (smooth extruded shape)
+        const seatCushion = new THREE.Mesh(seatGeo, chairMat);
+        seatCushion.rotation.x = -Math.PI / 2;
+        seatCushion.position.set(0, 1.2, 0); // depth is extruded towards +Z, which becomes -Y after rotation
+        seatCushion.castShadow = true;
+        seatGroup.add(seatCushion);
+
+        // Armrests
+        const armrestGeo = new THREE.CapsuleGeometry(0.8, 6, 8, 12);
+        const armSupportGeo = new THREE.CylinderGeometry(0.3, 0.3, 6, 8);
+
+        // Left armrest
+        const armL = new THREE.Group();
+        const armSL = new THREE.Mesh(armSupportGeo, metalMat);
+        armSL.position.set(-7, 2.5, 0);
+        armL.add(armSL);
+        const armPadL = new THREE.Mesh(armrestGeo, chairMat);
+        armPadL.rotation.x = Math.PI / 2;
+        armPadL.position.set(-7, 5.5, 0);
+        armPadL.castShadow = true;
+        armL.add(armPadL);
+        seatGroup.add(armL);
+
+        // Right armrest
+        const armR = new THREE.Group();
+        const armSR = new THREE.Mesh(armSupportGeo, metalMat);
+        armSR.position.set(7, 2.5, 0);
+        armR.add(armSR);
+        const armPadR = new THREE.Mesh(armrestGeo, chairMat);
+        armPadR.rotation.x = Math.PI / 2;
+        armPadR.position.set(7, 5.5, 0);
+        armPadR.castShadow = true;
+        armR.add(armPadR);
+        seatGroup.add(armR);
+
+        // Backrest assembly (tilted slightly for comfort)
+        const backGroup = new THREE.Group();
+        backGroup.position.set(0, 13, -5.5);
+        backGroup.rotation.x = -0.15; // ergonomic tilt
+        chairGroup.add(backGroup);
+
+        // Main central support strut from seat to back
+        const strut = new THREE.Mesh(new THREE.BoxGeometry(2, 8, 1), metalMat);
+        strut.position.set(0, 2, -1);
+        strut.castShadow = true;
+        backGroup.add(strut);
+
+        // Backrest shell (rigid plastic back)
+        const backShell = new THREE.Mesh(
+          new THREE.BoxGeometry(9, 11, 0.5),
+          metalMat,
+        );
+        backShell.position.set(0, 10, -1.2);
+        backShell.castShadow = true;
+        backGroup.add(backShell);
+
+        // Backrest cushion (smooth extruded shape)
+        const backCushion = new THREE.Mesh(backGeo, chairMat);
+        backCushion.position.set(0, 10, -0.6); // Z extruded backwards
+        backCushion.castShadow = true;
+        backGroup.add(backCushion);
+
+        scene.add(chairGroup);
+
+
+        // ── CSS3D Screen ──
+        const screenEl = document.querySelector(".page-wrapper");
+        const cssObject = new CSS3DObject(screenEl);
+        const cssScale = 22 / 1024;
+        cssObject.scale.set(cssScale, cssScale, cssScale);
+        cssObject.position.set(0, 8.5, 3.6);
+        scene.add(cssObject);
+
+        // ── State Machine ──
+        let currentState = "START";
+
+        const OVERVIEW_POS = new THREE.Vector3(120, 60, 130);
+        const OVERVIEW_TARGET = new THREE.Vector3(0, -10, 0);
+
+        const DESK_POS = new THREE.Vector3(0, 12, 50);
+        const DESK_TARGET = new THREE.Vector3(0, 0, 0);
+
+        const SCREEN_POS = new THREE.Vector3(0, 8.5, 30);
+        const SCREEN_TARGET = new THREE.Vector3(0, 8.5, 3.6);
+
+        camera.position.copy(OVERVIEW_POS);
+        camera.lookAt(OVERVIEW_TARGET);
+
+        const cameraTarget = new THREE.Vector3().copy(OVERVIEW_TARGET);
+        const cameraTargetDest = new THREE.Vector3().copy(OVERVIEW_TARGET);
+        const cameraPosDest = new THREE.Vector3().copy(OVERVIEW_POS);
+
+        // ── Interaction ──
+        const startScreen = document.getElementById("start-screen");
+
+        startScreen.addEventListener("click", () => {
+          startScreen.style.opacity = "0";
+          setTimeout(() => {
+            startScreen.style.display = "none";
+            currentState = "OVERVIEW";
+          }, 1500);
+        });
+
+        const raycaster = new THREE.Raycaster();
+        const pointer = new THREE.Vector2();
+
+        window.addEventListener("click", (event) => {
+          if (currentState === "OVERVIEW") {
+            // Any click transitions to DESK view
+            currentState = "TO_DESK";
+            cameraPosDest.copy(DESK_POS);
+            cameraTargetDest.copy(DESK_TARGET);
             return;
           }
-          const kMat = createKeyMat(k.code, k.w);
-          const depth = k.d || 1.0;
-          const keyMesh = new THREE.Mesh(
-            new THREE.BoxGeometry(k.w - 0.15, 0.4, depth),
-            kMat
-          );
-          keyMesh.position.set(xOffset + k.w / 2, 0.6, row.z + (k.z_offset || 0));
-          keyMesh.castShadow = true;
-          keyMesh.userData.code = k.code;
-          keyMesh.userData.origY = 0.6;
-          keyMesh.userData.origMat = kMat;
-          keys.push(keyMesh);
-          keyMap[k.code] = keyMesh;
-          kbGroup.add(keyMesh);
-          xOffset += k.w + 0.1;
+
+          if (currentState === "DESK") {
+            pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
+            pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
+            raycaster.setFromCamera(pointer, camera);
+
+            const intersects = raycaster.intersectObjects(
+              monitorGroup.children,
+            );
+            if (intersects.length > 0) {
+              currentState = "TO_SCREEN";
+              cameraPosDest.copy(SCREEN_POS);
+              cameraTargetDest.copy(SCREEN_TARGET);
+              cssContainer.style.pointerEvents = "auto";
+            }
+          } else if (currentState === "SCREEN") {
+            if (event.target === canvas) {
+              currentState = "TO_DESK";
+              cameraPosDest.copy(DESK_POS);
+              cameraTargetDest.copy(DESK_TARGET);
+              cssContainer.style.pointerEvents = "none";
+            }
+          }
         });
-      });
-      scene.add(kbGroup);
 
-      // ── Keyboard Interaction ──
-      document.addEventListener('keydown', (e) => {
-        const mesh = keyMap[e.code];
-        if (mesh) {
-          mesh.position.y = mesh.userData.origY - 0.25;
-          mesh.material = pressedKeyMat;
+        cssContainer.style.pointerEvents = "none";
+
+        // ── Mouse tracking ──
+        const mousePos = { x: 0, y: 0 };
+        document.addEventListener("mousemove", (e) => {
+          mousePos.x = (e.clientX / window.innerWidth - 0.5) * 2;
+          mousePos.y = (e.clientY / window.innerHeight - 0.5) * 2;
+        });
+
+        // ── HUD Clock ──
+        const hudClock = document.getElementById("hud-clock");
+        const taskbarClock = document.getElementById("taskbar-clock");
+        function updateClocks() {
+          const now = new Date();
+          const timeStr = now.toLocaleTimeString("en-US", {
+            hour: "numeric",
+            minute: "2-digit",
+            second: "2-digit",
+            hour12: true,
+          });
+          if (hudClock) hudClock.textContent = timeStr;
+          if (taskbarClock)
+            taskbarClock.textContent = now.toLocaleTimeString("en-US", {
+              hour: "numeric",
+              minute: "2-digit",
+              hour12: true,
+            });
         }
-      });
-      document.addEventListener('keyup', (e) => {
-        const mesh = keyMap[e.code];
-        if (mesh) {
-          mesh.position.y = mesh.userData.origY;
-          mesh.material = mesh.userData.origMat;
-        }
-      });
+        updateClocks();
+        setInterval(updateClocks, 1000);
 
-      // ── Mouse ──
-      const mouse3D = new THREE.Group();
-      const mouseBody = new THREE.Mesh(new THREE.BoxGeometry(3, 1.2, 5), retroBeige);
-      mouseBody.castShadow = true;
-      mouse3D.add(mouseBody);
-      const mouseBtn = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.2, 2), keyMat);
-      mouseBtn.position.set(-0.5, 0.7, -0.8);
-      mouse3D.add(mouseBtn);
-      const mouseBtn2 = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.2, 2), keyMat);
-      mouseBtn2.position.set(0.5, 0.7, -0.8);
-      mouse3D.add(mouseBtn2);
-      mouse3D.position.set(20, -3.8, 16);
-      scene.add(mouse3D);
+        // ── Render Loop ──
+        function animate() {
+          requestAnimationFrame(animate);
 
-      // ── Paper Tray (left side) ──
-      const trayGroup = new THREE.Group();
-      trayGroup.position.set(-30, -3.8, 5);
-      const tray1 = new THREE.Mesh(new THREE.BoxGeometry(14, 0.6, 10), deskLegMat);
-      tray1.castShadow = true;
-      trayGroup.add(tray1);
-      const paper1 = new THREE.Mesh(new THREE.BoxGeometry(12, 2, 8), whitePaper);
-      paper1.position.set(0, 1.3, 0);
-      paper1.castShadow = true;
-      trayGroup.add(paper1);
-      // Top tray supports
-      [[-6,-4],[6,-4],[-6,4],[6,4]].forEach(([x,z]) => {
-        const sup = new THREE.Mesh(new THREE.BoxGeometry(0.4, 3, 0.4), deskLegMat);
-        sup.position.set(x, 3, z);
-        trayGroup.add(sup);
-      });
-      const tray2 = new THREE.Mesh(new THREE.BoxGeometry(14, 0.6, 10), deskLegMat);
-      tray2.position.set(0, 4.5, 0);
-      tray2.castShadow = true;
-      trayGroup.add(tray2);
-      const paper2 = new THREE.Mesh(new THREE.BoxGeometry(12, 1.5, 8), whitePaper);
-      paper2.position.set(0, 5.5, 0);
-      paper2.castShadow = true;
-      trayGroup.add(paper2);
-      scene.add(trayGroup);
+          const lerpSpeed = 0.035;
 
-      // ── Loose paper ──
-      const loosePaper = new THREE.Mesh(new THREE.BoxGeometry(8, 0.1, 6), whitePaper);
-      loosePaper.position.set(-28, -3.6, 17);
-      loosePaper.rotation.y = 0.15;
-      loosePaper.castShadow = true;
-      scene.add(loosePaper);
+          if (currentState === "TO_DESK" || currentState === "TO_SCREEN") {
+            camera.position.lerp(cameraPosDest, lerpSpeed);
+            cameraTarget.lerp(cameraTargetDest, lerpSpeed);
+            camera.lookAt(cameraTarget);
 
-      // ── Binders/Folders (right side) ──
-      const binder1 = new THREE.Mesh(new THREE.BoxGeometry(3, 14, 10), brownMat);
-      binder1.position.set(35, 3, -5);
-      binder1.castShadow = true;
-      scene.add(binder1);
+            if (camera.position.distanceTo(cameraPosDest) < 0.3) {
+              if (currentState === "TO_DESK") currentState = "DESK";
+              else currentState = "SCREEN";
+            }
+          } else if (currentState === "OVERVIEW") {
+            // Gentle idle rotation
+            const t = Date.now() * 0.0002;
+            camera.position.x = OVERVIEW_POS.x + Math.sin(t) * 8;
+            camera.position.z = OVERVIEW_POS.z + Math.cos(t) * 8;
+            camera.lookAt(OVERVIEW_TARGET);
+          } else if (currentState === "DESK") {
+            camera.position.copy(DESK_POS);
+            camera.lookAt(DESK_TARGET);
+          } else if (currentState === "SCREEN") {
+            // Subtle parallax
+            camera.position.x = SCREEN_POS.x + mousePos.x * 1.2;
+            camera.position.y = SCREEN_POS.y - mousePos.y * 0.8;
+            camera.lookAt(SCREEN_TARGET);
 
-      const binder2 = new THREE.Mesh(new THREE.BoxGeometry(4, 14, 10), darkBrownMat);
-      binder2.position.set(31, 3, -5);
-      binder2.castShadow = true;
-      scene.add(binder2);
-
-      const binder3 = new THREE.Mesh(new THREE.BoxGeometry(2.5, 12, 10), new THREE.MeshStandardMaterial({color: 0x2c3e6b, roughness: 0.7}));
-      binder3.position.set(27.5, 2, -5);
-      binder3.castShadow = true;
-      scene.add(binder3);
-
-      // ── Mug ──
-      const mugGroup = new THREE.Group();
-      mugGroup.position.set(35, -3.8, 12);
-      const mugBody = new THREE.Mesh(new THREE.CylinderGeometry(2, 1.8, 5, 16), mugMat);
-      mugBody.position.set(0, 2.5, 0);
-      mugBody.castShadow = true;
-      mugGroup.add(mugBody);
-      const handleGeo = new THREE.TorusGeometry(1.2, 0.25, 8, 12, Math.PI);
-      const handle = new THREE.Mesh(handleGeo, mugMat);
-      handle.position.set(2, 2.5, 0);
-      handle.rotation.z = Math.PI / 2;
-      mugGroup.add(handle);
-      const coffee = new THREE.Mesh(new THREE.CylinderGeometry(1.7, 1.7, 0.3, 16), new THREE.MeshStandardMaterial({color: 0x3b1f0a, roughness: 0.3}));
-      coffee.position.set(0, 4.7, 0);
-      mugGroup.add(coffee);
-      scene.add(mugGroup);
-
-      // ── Office Chair (Premium ergonomic look) ──
-      const chairGroup = new THREE.Group();
-      chairGroup.position.set(48, -25, 15);
-      chairGroup.rotation.y = -0.6;
-
-      // Gas lift cylinder
-      const chairPole = new THREE.Mesh(new THREE.CylinderGeometry(0.6, 0.6, 12, 12), metalMat);
-      chairPole.position.set(0, 6, 0);
-      chairPole.castShadow = true;
-      chairGroup.add(chairPole);
-
-      // 5-star base (sleek tubes)
-      for (let i = 0; i < 5; i++) {
-        const angle = (i / 5) * Math.PI * 2;
-        const legPivot = new THREE.Group();
-        legPivot.position.set(0, 0.5, 0);
-        legPivot.rotation.y = angle;
-        
-        // Leg tube
-        const legArm = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.4, 8, 6), metalMat);
-        legArm.rotation.x = Math.PI / 2;
-        legArm.position.set(0, 0, 4);
-        legArm.castShadow = true;
-        legPivot.add(legArm);
-        
-        // Caster wheel housing & wheel
-        const wheelGroup = new THREE.Group();
-        wheelGroup.position.set(0, -0.4, 7.5);
-        const wheel = new THREE.Mesh(new THREE.CylinderGeometry(0.7, 0.7, 0.6, 12), new THREE.MeshStandardMaterial({color: 0x111111, roughness: 0.3}));
-        wheel.rotation.z = Math.PI / 2;
-        wheel.castShadow = true;
-        wheelGroup.add(wheel);
-        legPivot.add(wheelGroup);
-        
-        chairGroup.add(legPivot);
-      }
-
-      // Seat assembly
-      const seatGroup = new THREE.Group();
-      seatGroup.position.set(0, 12.5, 0);
-      chairGroup.add(seatGroup);
-
-      // Seat shell (dark rigid bottom)
-      const seatShell = new THREE.Mesh(new THREE.BoxGeometry(12, 0.8, 11), metalMat);
-      seatShell.position.set(0, -0.8, 0);
-      seatShell.castShadow = true;
-      seatGroup.add(seatShell);
-
-      // Seat cushion (plush leather top)
-      const seatCushion = new THREE.Mesh(new THREE.BoxGeometry(11.6, 2.5, 11.2), chairBrown);
-      seatCushion.position.set(0, 0.8, 0.5);
-      seatCushion.castShadow = true;
-      seatGroup.add(seatCushion);
-
-      // Armrests
-      const armrestGeo = new THREE.BoxGeometry(1.5, 0.8, 8);
-      const armSupportGeo = new THREE.CylinderGeometry(0.3, 0.3, 6, 8);
-      // Left armrest
-      const armL = new THREE.Group();
-      const armSL = new THREE.Mesh(armSupportGeo, metalMat);
-      armSL.position.set(-6.5, 2.5, 0);
-      armL.add(armSL);
-      const armPadL = new THREE.Mesh(armrestGeo, chairBrown);
-      armPadL.position.set(-6.5, 5.5, 2);
-      armPadL.castShadow = true;
-      armL.add(armPadL);
-      seatGroup.add(armL);
-      
-      // Right armrest
-      const armR = new THREE.Group();
-      const armSR = new THREE.Mesh(armSupportGeo, metalMat);
-      armSR.position.set(6.5, 2.5, 0);
-      armR.add(armSR);
-      const armPadR = new THREE.Mesh(armrestGeo, chairBrown);
-      armPadR.position.set(6.5, 5.5, 2);
-      armPadR.castShadow = true;
-      armR.add(armPadR);
-      seatGroup.add(armR);
-
-      // Backrest assembly (tilted slightly for comfort)
-      const backGroup = new THREE.Group();
-      backGroup.position.set(0, 13, -5.5);
-      backGroup.rotation.x = -0.15; // ergonomic tilt
-      chairGroup.add(backGroup);
-
-      // Main central support strut from seat to back
-      const strut = new THREE.Mesh(new THREE.BoxGeometry(2, 8, 1), metalMat);
-      strut.position.set(0, 2, -1);
-      strut.castShadow = true;
-      backGroup.add(strut);
-
-      // Backrest shell (rigid plastic back)
-      const backShell = new THREE.Mesh(new THREE.BoxGeometry(11, 14, 0.8), metalMat);
-      backShell.position.set(0, 10, -1.2);
-      backShell.castShadow = true;
-      backGroup.add(backShell);
-
-      // Backrest cushion (leather pad)
-      const backCushion = new THREE.Mesh(new THREE.BoxGeometry(10.6, 13.6, 2), chairBrown);
-      backCushion.position.set(0, 10, 0);
-      backCushion.castShadow = true;
-      backGroup.add(backCushion);
-
-      scene.add(chairGroup);
-
-      // ── Plant ──
-      const plantGroup = new THREE.Group();
-      plantGroup.position.set(35, -11, -20);
-
-      // Pot
-      const pot = new THREE.Mesh(new THREE.CylinderGeometry(3, 2.5, 5, 8), potMat);
-      pot.position.set(0, 2.5, 0);
-      pot.castShadow = true;
-      plantGroup.add(pot);
-
-      // Soil
-      const soil = new THREE.Mesh(new THREE.CylinderGeometry(2.8, 2.8, 0.5, 8), new THREE.MeshStandardMaterial({color: 0x3d2b1f}));
-      soil.position.set(0, 5, 0);
-      plantGroup.add(soil);
-
-      // Leaves (simple ellipses / flat stretched spheres)
-      for (let i = 0; i < 7; i++) {
-        const angle = (i / 7) * Math.PI * 2 + Math.random() * 0.5;
-        const height = 5 + Math.random() * 8;
-        const leafLen = 3 + Math.random() * 4;
-        const leaf = new THREE.Mesh(
-          new THREE.SphereGeometry(1, 8, 4),
-          plantGreen
-        );
-        leaf.scale.set(0.6, 0.15, leafLen / 2);
-        leaf.position.set(Math.sin(angle) * 2, height, Math.cos(angle) * 2);
-        leaf.rotation.set(
-          Math.random() * 0.5 - 0.8,
-          angle,
-          Math.random() * 0.3
-        );
-        leaf.castShadow = true;
-        plantGroup.add(leaf);
-      }
-      // Stem
-      const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.3, 10, 6), new THREE.MeshStandardMaterial({color: 0x2a5a1a}));
-      stem.position.set(0, 9, 0);
-      plantGroup.add(stem);
-
-      scene.add(plantGroup);
-
-      // ── CSS3D Screen ──
-      const screenEl = document.querySelector('.page-wrapper');
-      const cssObject = new CSS3DObject(screenEl);
-      const cssScale = 22 / 1024;
-      cssObject.scale.set(cssScale, cssScale, cssScale);
-      cssObject.position.set(0, 8.5, 3.6);
-      scene.add(cssObject);
-
-      // ── State Machine ──
-      let currentState = 'START';
-
-      const OVERVIEW_POS = new THREE.Vector3(120, 60, 130);
-      const OVERVIEW_TARGET = new THREE.Vector3(0, -10, 0);
-
-      const DESK_POS = new THREE.Vector3(0, 12, 50);
-      const DESK_TARGET = new THREE.Vector3(0, 0, 0);
-
-      const SCREEN_POS = new THREE.Vector3(0, 8.5, 30);
-      const SCREEN_TARGET = new THREE.Vector3(0, 8.5, 3.6);
-
-      camera.position.copy(OVERVIEW_POS);
-      camera.lookAt(OVERVIEW_TARGET);
-
-      const cameraTarget = new THREE.Vector3().copy(OVERVIEW_TARGET);
-      const cameraTargetDest = new THREE.Vector3().copy(OVERVIEW_TARGET);
-      const cameraPosDest = new THREE.Vector3().copy(OVERVIEW_POS);
-
-      // ── Interaction ──
-      const startScreen = document.getElementById('start-screen');
-
-      startScreen.addEventListener('click', () => {
-        startScreen.style.opacity = '0';
-        setTimeout(() => {
-          startScreen.style.display = 'none';
-          currentState = 'OVERVIEW';
-        }, 1500);
-      });
-
-      const raycaster = new THREE.Raycaster();
-      const pointer = new THREE.Vector2();
-
-      window.addEventListener('click', (event) => {
-        if (currentState === 'OVERVIEW') {
-          // Any click transitions to DESK view
-          currentState = 'TO_DESK';
-          cameraPosDest.copy(DESK_POS);
-          cameraTargetDest.copy(DESK_TARGET);
-          return;
-        }
-
-        if (currentState === 'DESK') {
-          pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
-          pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
-          raycaster.setFromCamera(pointer, camera);
-
-          const intersects = raycaster.intersectObjects(monitorGroup.children);
-          if (intersects.length > 0) {
-            currentState = 'TO_SCREEN';
-            cameraPosDest.copy(SCREEN_POS);
-            cameraTargetDest.copy(SCREEN_TARGET);
-            cssContainer.style.pointerEvents = 'auto';
+            // Move virtual mouse
+            mouse3D.position.x = 20 + mousePos.x * 4;
+            mouse3D.position.z = 16 + mousePos.y * 3;
           }
+
+          renderer.render(scene, camera);
+          cssRenderer.render(scene, camera);
         }
-      });
+        animate();
 
-      cssContainer.style.pointerEvents = 'none';
-
-      // ── Mouse tracking ──
-      const mousePos = { x: 0, y: 0 };
-      document.addEventListener('mousemove', (e) => {
-        mousePos.x = (e.clientX / window.innerWidth - 0.5) * 2;
-        mousePos.y = (e.clientY / window.innerHeight - 0.5) * 2;
-      });
-
-      // ── HUD Clock ──
-      const hudClock = document.getElementById('hud-clock');
-      const taskbarClock = document.getElementById('taskbar-clock');
-      function updateClocks() {
-        const now = new Date();
-        const timeStr = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', second: '2-digit', hour12: true });
-        if (hudClock) hudClock.textContent = timeStr;
-        if (taskbarClock) taskbarClock.textContent = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+        // ── Resize ──
+        window.addEventListener("resize", () => {
+          camera.aspect = window.innerWidth / window.innerHeight;
+          camera.updateProjectionMatrix();
+          renderer.setSize(window.innerWidth, window.innerHeight);
+          cssRenderer.setSize(window.innerWidth, window.innerHeight);
+        });
       }
-      updateClocks();
-      setInterval(updateClocks, 1000);
-
-      // ── Render Loop ──
-      function animate() {
-        requestAnimationFrame(animate);
-
-        const lerpSpeed = 0.035;
-
-        if (currentState === 'TO_DESK' || currentState === 'TO_SCREEN') {
-          camera.position.lerp(cameraPosDest, lerpSpeed);
-          cameraTarget.lerp(cameraTargetDest, lerpSpeed);
-          camera.lookAt(cameraTarget);
-
-          if (camera.position.distanceTo(cameraPosDest) < 0.3) {
-            if (currentState === 'TO_DESK') currentState = 'DESK';
-            else currentState = 'SCREEN';
-          }
-        } else if (currentState === 'OVERVIEW') {
-          // Gentle idle rotation
-          const t = Date.now() * 0.0002;
-          camera.position.x = OVERVIEW_POS.x + Math.sin(t) * 8;
-          camera.position.z = OVERVIEW_POS.z + Math.cos(t) * 8;
-          camera.lookAt(OVERVIEW_TARGET);
-        } else if (currentState === 'DESK') {
-          camera.position.copy(DESK_POS);
-          camera.lookAt(DESK_TARGET);
-        } else if (currentState === 'SCREEN') {
-          // Subtle parallax
-          camera.position.x = SCREEN_POS.x + mousePos.x * 1.2;
-          camera.position.y = SCREEN_POS.y - mousePos.y * 0.8;
-          camera.lookAt(SCREEN_TARGET);
-
-          // Move virtual mouse
-          mouse3D.position.x = 20 + mousePos.x * 4;
-          mouse3D.position.z = 16 + mousePos.y * 3;
-        }
-
-        renderer.render(scene, camera);
-        cssRenderer.render(scene, camera);
-      }
-      animate();
-
-      // ── Resize ──
-      window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        cssRenderer.setSize(window.innerWidth, window.innerHeight);
-      });
-</script>
+    </script>
 
     <!-- ═══════════════════════════════════════
          Page Interactivity
     ═══════════════════════════════════════ -->
     <script>
       function initPage() {
-
-
         // ── Word-splitting Staggered Reveal Animation for Hero Title ──
-        const titleEl = document.querySelector('.hero-title');
-        if (titleEl && !titleEl.getAttribute('data-splitted')) {
-          titleEl.setAttribute('data-splitted', 'true');
+        const titleEl = document.querySelector(".hero-title");
+        if (titleEl && !titleEl.getAttribute("data-splitted")) {
+          titleEl.setAttribute("data-splitted", "true");
           const newNodes = [];
-          
+
           titleEl.childNodes.forEach((node) => {
             if (node.nodeType === Node.TEXT_NODE) {
-              const text = node.textContent || '';
+              const text = node.textContent || "";
               const words = text.split(/(\s+)/);
               words.forEach((w) => {
-                if (w.trim() === '') {
+                if (w.trim() === "") {
                   newNodes.push(document.createTextNode(w));
                 } else {
-                  const span = document.createElement('span');
-                  span.className = 'word';
+                  const span = document.createElement("span");
+                  span.className = "word";
                   span.textContent = w;
                   newNodes.push(span);
                 }
               });
             } else if (node.nodeType === Node.ELEMENT_NODE) {
               const el = node as HTMLElement;
-              if (el.tagName === 'BR') {
+              if (el.tagName === "BR") {
                 newNodes.push(el.cloneNode(true));
-              } else if (el.classList.contains('gradient-text')) {
+              } else if (el.classList.contains("gradient-text")) {
                 const words = el.textContent?.split(/(\s+)/) || [];
-                const spanContainer = document.createElement('span');
-                spanContainer.className = 'gradient-text';
+                const spanContainer = document.createElement("span");
+                spanContainer.className = "gradient-text";
                 words.forEach((w) => {
-                  if (w.trim() === '') {
+                  if (w.trim() === "") {
                     spanContainer.appendChild(document.createTextNode(w));
                   } else {
-                    const span = document.createElement('span');
-                    span.className = 'word';
+                    const span = document.createElement("span");
+                    span.className = "word";
                     span.textContent = w;
                     spanContainer.appendChild(span);
                   }
@@ -2170,86 +3246,106 @@ const tools = [
               }
             }
           });
-          
-          titleEl.innerHTML = '';
+
+          titleEl.innerHTML = "";
           newNodes.forEach((n) => titleEl.appendChild(n));
-          
+
           // Trigger staggered word reveal
-          const wordSpans = titleEl.querySelectorAll('.word');
+          const wordSpans = titleEl.querySelectorAll(".word");
           wordSpans.forEach((span, idx) => {
-            setTimeout(() => {
-              span.classList.add('reveal-in');
-            }, 100 + idx * 60);
+            setTimeout(
+              () => {
+                span.classList.add("reveal-in");
+              },
+              100 + idx * 60,
+            );
           });
         }
 
         // ── Hero Subtitle Reveal ──
-        const subtitleEl = document.querySelector('.hero-subtitle');
+        const subtitleEl = document.querySelector(".hero-subtitle");
         if (subtitleEl) {
           setTimeout(() => {
-            subtitleEl.classList.add('reveal-in');
+            subtitleEl.classList.add("reveal-in");
           }, 600);
         }
 
         // ── Interactive 3D Cursor Parallax Tilt on Title ──
-        const titleContainer = document.querySelector('.hero-title') as HTMLElement;
+        const titleContainer = document.querySelector(
+          ".hero-title",
+        ) as HTMLElement;
         if (titleContainer) {
-          titleContainer.addEventListener('mousemove', (e: MouseEvent) => {
+          titleContainer.addEventListener("mousemove", (e: MouseEvent) => {
             const rect = titleContainer.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
-            const rotateX = (y - centerY) / centerY * -10;
-            const rotateY = (x - centerX) / centerX * 10;
+            const rotateX = ((y - centerY) / centerY) * -10;
+            const rotateY = ((x - centerX) / centerX) * 10;
             titleContainer.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
           });
-          titleContainer.addEventListener('mouseleave', () => {
-            titleContainer.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+          titleContainer.addEventListener("mouseleave", () => {
+            titleContainer.style.transform =
+              "perspective(1000px) rotateX(0deg) rotateY(0deg)";
           });
         }
 
         // ── Scroll Progress Bar ──
-        const progressBar = document.getElementById('scroll-progress');
-        window.addEventListener('scroll', () => {
-          const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-          const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const progressBar = document.getElementById("scroll-progress");
+        window.addEventListener("scroll", () => {
+          const winScroll =
+            document.body.scrollTop || document.documentElement.scrollTop;
+          const height =
+            document.documentElement.scrollHeight -
+            document.documentElement.clientHeight;
           const scrolled = (winScroll / height) * 100;
           if (progressBar) {
-            progressBar.style.width = scrolled + '%';
+            progressBar.style.width = scrolled + "%";
           }
         });
 
         // ── Scroll reveal observer for all animation classes ──
-        const animateSelectors = '.reveal, .scroll-fade-up, .scroll-fade-left, .scroll-fade-right, .scroll-scale-in, .scroll-blur-in, .scroll-rotate-in';
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('in-view');
-              
-              // Trigger number counters if present
-              const counters = entry.target.querySelectorAll('[data-counter-target]');
-              counters.forEach(counter => animateCounter(counter as HTMLElement));
-              if (entry.target.hasAttribute('data-counter-target')) {
-                animateCounter(entry.target as HTMLElement);
-              }
-              
-              observer.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.1 });
+        const animateSelectors =
+          ".reveal, .scroll-fade-up, .scroll-fade-left, .scroll-fade-right, .scroll-scale-in, .scroll-blur-in, .scroll-rotate-in";
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("in-view");
 
-        document.querySelectorAll(animateSelectors).forEach(el => observer.observe(el));
+                // Trigger number counters if present
+                const counters = entry.target.querySelectorAll(
+                  "[data-counter-target]",
+                );
+                counters.forEach((counter) =>
+                  animateCounter(counter as HTMLElement),
+                );
+                if (entry.target.hasAttribute("data-counter-target")) {
+                  animateCounter(entry.target as HTMLElement);
+                }
+
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1 },
+        );
+
+        document
+          .querySelectorAll(animateSelectors)
+          .forEach((el) => observer.observe(el));
 
         // ── Counter Animation Function ──
         function animateCounter(el: HTMLElement) {
-          const targetStr = el.getAttribute('data-counter-target') || el.innerText;
+          const targetStr =
+            el.getAttribute("data-counter-target") || el.innerText;
           const match = targetStr.match(/(\d+)/);
           if (!match) return;
           const targetNum = parseInt(match[0], 10);
-          const prefix = targetStr.split(match[0])[0] || '';
-          const suffix = targetStr.split(match[0])[1] || '';
-          
+          const prefix = targetStr.split(match[0])[0] || "";
+          const suffix = targetStr.split(match[0])[1] || "";
+
           let count = 0;
           const duration = 1500;
           const startTime = performance.now();
@@ -2258,7 +3354,9 @@ const tools = [
             const elapsedTime = currentTime - startTime;
             const progress = Math.min(elapsedTime / duration, 1);
             // Ease out quad
-            const currentNum = Math.floor((1 - (1 - progress) * (1 - progress)) * targetNum);
+            const currentNum = Math.floor(
+              (1 - (1 - progress) * (1 - progress)) * targetNum,
+            );
             el.innerText = `${prefix}${currentNum}${suffix}`;
             if (progress < 1) {
               requestAnimationFrame(updateCounter);
@@ -2270,22 +3368,22 @@ const tools = [
         }
 
         // ── Scroll-to buttons ──
-        document.querySelectorAll('[data-scroll-to]').forEach(btn => {
-          btn.addEventListener('click', (e) => {
+        document.querySelectorAll("[data-scroll-to]").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
             e.preventDefault();
-            const targetId = btn.getAttribute('data-scroll-to');
+            const targetId = btn.getAttribute("data-scroll-to");
             if (!targetId) return;
             const target = document.getElementById(targetId);
             if (target) {
-              target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              target.scrollIntoView({ behavior: "smooth", block: "center" });
             }
           });
         });
 
         // ── Registration form ──
-        const form = document.getElementById('register-form');
-        const success = document.getElementById('form-success');
-        const doneBtn = document.getElementById('success-done');
+        const form = document.getElementById("register-form");
+        const success = document.getElementById("form-success");
+        const doneBtn = document.getElementById("success-done");
 
         // Note: To make this work, create a Google Apps Script attached to a Google Sheet:
         // 1. Create a Google Sheet, add headers: timestamp, name, email, roll, yearSection, phone
@@ -2308,46 +3406,67 @@ const tools = [
         */
         // 4. Deploy -> New Deployment -> Select "Web app" -> Execute as "Me", Who has access "Anyone"
         // 5. Copy the Web App URL and paste it below:
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwdhEfl3s5FOmUC0W7U1O9qen9U2wwWlk5dmkU5PV3Gpn9-JQSdxzLT9i7dXvl5NTnq/exec';
+        const GOOGLE_SCRIPT_URL =
+          "https://script.google.com/macros/s/AKfycbwdhEfl3s5FOmUC0W7U1O9qen9U2wwWlk5dmkU5PV3Gpn9-JQSdxzLT9i7dXvl5NTnq/exec";
 
         if (form && success) {
-          form.addEventListener('submit', async (e) => {
+          form.addEventListener("submit", async (e) => {
             e.preventDefault();
-            
-            const submitBtn = form.querySelector('.submit-btn');
+
+            const submitBtn = form.querySelector(".submit-btn");
             if (submitBtn) {
-              submitBtn.innerHTML = 'Submitting...';
+              submitBtn.innerHTML = "Submitting...";
               (submitBtn as HTMLButtonElement).disabled = true;
             }
 
             const formData = new FormData();
-            formData.append('name', (document.getElementById('reg-name') as HTMLInputElement).value);
-            formData.append('email', (document.getElementById('reg-email') as HTMLInputElement).value);
-            formData.append('roll', (document.getElementById('reg-roll') as HTMLInputElement).value);
-            formData.append('yearSection', (document.getElementById('reg-year-section') as HTMLInputElement).value);
-            formData.append('phone', (document.getElementById('reg-phone') as HTMLInputElement).value);
+            formData.append(
+              "name",
+              (document.getElementById("reg-name") as HTMLInputElement).value,
+            );
+            formData.append(
+              "email",
+              (document.getElementById("reg-email") as HTMLInputElement).value,
+            );
+            formData.append(
+              "roll",
+              (document.getElementById("reg-roll") as HTMLInputElement).value,
+            );
+            formData.append(
+              "yearSection",
+              (document.getElementById("reg-year-section") as HTMLInputElement)
+                .value,
+            );
+            formData.append(
+              "phone",
+              (document.getElementById("reg-phone") as HTMLInputElement).value,
+            );
 
             try {
-              if (GOOGLE_SCRIPT_URL !== 'YOUR_GOOGLE_SCRIPT_WEB_APP_URL') {
+              if (GOOGLE_SCRIPT_URL !== "YOUR_GOOGLE_SCRIPT_WEB_APP_URL") {
                 await fetch(GOOGLE_SCRIPT_URL, {
-                  method: 'POST',
+                  method: "POST",
                   body: formData,
-                  mode: 'no-cors' // Google Apps Script requires no-cors if not handling preflight
+                  mode: "no-cors", // Google Apps Script requires no-cors if not handling preflight
                 });
               } else {
-                console.log('Simulating form submission (Google Script URL not set)');
+                console.log(
+                  "Simulating form submission (Google Script URL not set)",
+                );
                 // simulate network delay
-                await new Promise(resolve => setTimeout(resolve, 800));
+                await new Promise((resolve) => setTimeout(resolve, 800));
               }
-              
-              form.style.display = 'none';
-              success.classList.add('active');
+
+              form.style.display = "none";
+              success.classList.add("active");
             } catch (error) {
-              console.error('Error submitting form:', error);
-              alert('There was an error submitting your registration. Please try again.');
+              console.error("Error submitting form:", error);
+              alert(
+                "There was an error submitting your registration. Please try again.",
+              );
             } finally {
               if (submitBtn) {
-                submitBtn.innerHTML = 'Complete Registration &rarr;';
+                submitBtn.innerHTML = "Complete Registration &rarr;";
                 (submitBtn as HTMLButtonElement).disabled = false;
               }
             }
@@ -2355,34 +3474,35 @@ const tools = [
         }
 
         if (doneBtn && form && success) {
-          doneBtn.addEventListener('click', () => {
-            success.classList.remove('active');
-            form.style.display = 'flex';
+          doneBtn.addEventListener("click", () => {
+            success.classList.remove("active");
+            form.style.display = "flex";
             (form as HTMLFormElement).reset();
           });
         }
 
         // ── 3D tilt effect on tool cards ──
-        document.querySelectorAll('.tool-card').forEach(card => {
-          card.addEventListener('mousemove', (e: MouseEvent) => {
+        document.querySelectorAll(".tool-card").forEach((card) => {
+          card.addEventListener("mousemove", (e: MouseEvent) => {
             const rect = (card as HTMLElement).getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
-            const rotateX = (y - centerY) / centerY * -6;
-            const rotateY = (x - centerX) / centerX * 6;
-            (card as HTMLElement).style.transform = `translateY(-8px) perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            const rotateX = ((y - centerY) / centerY) * -6;
+            const rotateY = ((x - centerX) / centerX) * 6;
+            (card as HTMLElement).style.transform =
+              `translateY(-8px) perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
           });
 
-          card.addEventListener('mouseleave', () => {
-            (card as HTMLElement).style.transform = '';
+          card.addEventListener("mouseleave", () => {
+            (card as HTMLElement).style.transform = "";
           });
         });
       }
 
-      document.addEventListener('DOMContentLoaded', initPage);
-      document.addEventListener('astro:after-swap', initPage);
+      document.addEventListener("DOMContentLoaded", initPage);
+      document.addEventListener("astro:after-swap", initPage);
     </script>
   </body>
 </html>
