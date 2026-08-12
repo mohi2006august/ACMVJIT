@@ -2,22 +2,22 @@
   {
     "name": "Ajay Nayak",
     "role": "Chairperson",
-    "photo": ""
+    "photo": "https://res.cloudinary.com/dlz7901m4/image/upload/v1786545207/20260409_115624_1_jl9zll.jpg"
   },
   {
-    "name": "V Nitin",
+    "name": "V Nithin",
     "role": "ViceChair",
-    "photo": ""
+    "photo": "https://res.cloudinary.com/dlz7901m4/image/upload/v1786544711/Nithin_arfnrh.jpg"
   },
   {
     "name": "Jashwanth",
     "role": "Treasurer",
-    "photo": ""
+    "photo": "https://res.cloudinary.com/dlz7901m4/image/upload/v1786544892/Jaswanth_cpcykm.jpg"
   },
   {
     "name": "Ayush",
     "role": "Secretary",
-    "photo": ""
+    "photo": "https://res.cloudinary.com/dlz7901m4/image/upload/v1786544876/Ayush_puu43d.png"
   },
   {
     "name": "Mohammed Mohiuddin",
@@ -26,57 +26,57 @@
   },
   {
     "name": "Tejaswini",
-    "role": "Reporting Lead",
-    "photo": ""
+    "role": "",
+    "photo": "https://res.cloudinary.com/dlz7901m4/image/upload/v1786544735/Tejaswini__pks5tk.jpg"
   },
   {
     "name": "Sathwika",
-    "role": "Reporting Lead",
-    "photo": ""
+    "role": "",
+    "photo": "https://res.cloudinary.com/dlz7901m4/image/upload/v1786544721/N._Hema_Sathvika_urjkxn.jpg"
   },
   {
     "name": "Srihitha",
-    "role": "Reporting Lead",
-    "photo": ""
+    "role": "",
+    "photo": "https://res.cloudinary.com/dlz7901m4/image/upload/v1786544708/Srihitha__lhrfdz.jpg"
   },
   {
     "name": "Sai Charan",
-    "role": "Membership Recruitment",
+    "role": "",
     "photo": ""
   },
   {
     "name": "Ruchika",
-    "role": "Membership Recruitment",
-    "photo": ""
+    "role": "",
+    "photo": "https://res.cloudinary.com/dlz7901m4/image/upload/v1786544708/Rushika_Reddy_cuhsqc.jpg"
   },
   {
-    "name": "Tarun",
-    "role": "Event Planner",
+    "name": "Tharun",
+    "role": "r",
     "photo": ""
   },
   {
     "name": "Srikanth",
-    "role": "Event Planner",
+    "role": "",
     "photo": ""
   },
   {
     "name": "Lokesh",
-    "role": "Digital Media",
+    "role": "",
     "photo": ""
   },
   {
     "name": "Vikas",
-    "role": "Digital Media",
+    "role": "",
     "photo": ""
   },
   {
-    "name": "IR Lead",
+    "name": "M.Karthik",
     "role": "Industry Relations Lead",
-    "photo": ""
+    "photo": "https://res.cloudinary.com/dlz7901m4/image/upload/v1786544753/karthik_kujvlm.jpg"
   },
   {
-    "name": "AR Lead",
+    "name": "Uthkota Mohitha",
     "role": "Alumni Relations Lead",
-    "photo": ""
+    "photo": "https://res.cloudinary.com/dlz7901m4/image/upload/v1785072161/mohitha_fjyo4a.jpg"
   }
 ]
