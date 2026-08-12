@@ -2,6 +2,16 @@
 import Layout from '../layouts/Layout.astro';
 import leadsData from '../data/chapterLeads.json';
 import membersData from '../data/members.json';
+
+const chair = leadsData.filter(l => l.role.includes("Chairperson"));
+const core = leadsData.filter(l => ["ViceChair", "Treasurer", "Secretary"].includes(l.role));
+const otherLeads = leadsData.filter(l => !l.role.includes("Chairperson") && !["ViceChair", "Treasurer", "Secretary"].includes(l.role));
+
+const leadGroups = [
+  { leads: chair },
+  { leads: core },
+  { leads: otherLeads }
+];
 ---
 
 <Layout 
@@ -19,31 +29,39 @@ import membersData from '../data/members.json';
 
     <section class="section">
     <div class="container">
-      <div class="team-grid">
+      <div class="hierarchy-container">
         {
-          leadsData.map((lead, index) => {
-            const roleParts = lead.role.split(',');
-            const primaryRole = roleParts[0];
-            const secondaryRole = roleParts.length > 1 ? roleParts[1].trim() : null;
-            return (
-              <div class="lead-card">
-                <div class="card-image-wrapper">
-                  {lead.photo ? (
-                    <img src={lead.photo} alt={lead.name} />
-                  ) : (
-                    <div class="photo-placeholder">{lead.name.charAt(0)}</div>
-                  )}
-                </div>
-                <div class="card-info">
-                  <div class="role-text">
-                    <span class="role-primary">{primaryRole}</span>
-                    {secondaryRole && <span class="role-secondary"> • {secondaryRole}</span>}
-                  </div>
-                  <h3 class="lead-name">{lead.name}</h3>
-                </div>
+          leadGroups.map(group => (
+            <div class="hierarchy-tier animate-fade-up">
+              <div class="team-grid" style={group.leads.length < 4 ? 'display: flex; flex-wrap: wrap; justify-content: center;' : ''}>
+                {
+                  group.leads.map((lead, index) => {
+                    const roleParts = lead.role.split(',');
+                    const primaryRole = roleParts[0];
+                    const secondaryRole = roleParts.length > 1 ? roleParts[1].trim() : null;
+                    return (
+                      <div class="lead-card" style={group.leads.length < 4 ? "width: 300px; max-width: 100%;" : ""}>
+                        <div class="card-image-wrapper">
+                          {lead.photo ? (
+                            <img src={lead.photo} alt={lead.name} />
+                          ) : (
+                            <div class="photo-placeholder">{lead.name.charAt(0)}</div>
+                          )}
+                        </div>
+                        <div class="card-info">
+                          <div class="role-text">
+                            <span class="role-primary">{primaryRole}</span>
+                            {secondaryRole && <span class="role-secondary"> • {secondaryRole}</span>}
+                          </div>
+                          <h3 class="lead-name">{lead.name}</h3>
+                        </div>
+                      </div>
+                    );
+                  })
+                }
               </div>
-            );
-          })
+            </div>
+          ))
         }
       </div>
     </div>
@@ -136,6 +154,12 @@ import membersData from '../data/members.json';
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hierarchy-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
   }
 
   .team-grid {
