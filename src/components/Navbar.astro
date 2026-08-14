@@ -56,6 +56,14 @@ const currentPath = Astro.url.pathname;
         });
       });
     }
+
+    // Reset preloader visited state when the user clicks the logo to play it on home page return
+    const logo = document.querySelector('.logo');
+    if (logo) {
+      logo.addEventListener('click', () => {
+        sessionStorage.removeItem('acm-preloader-visited');
+      });
+    }
   }
 
   document.addEventListener('DOMContentLoaded', initNavbar);

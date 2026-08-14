@@ -1,0 +1,356 @@
+---
+// src/components/Preloader.astro
+---
+
+<div id="preloader" class="preloader">
+  <!-- Inline blocking script to prevent flashing on subpage navigation -->
+  <script is:inline>
+    (function() {
+      var visited = sessionStorage.getItem('acm-preloader-visited') === 'true';
+      
+      // If already visited, hide the preloader instantly to prevent flashes
+      if (visited) {
+        document.getElementById('preloader').style.display = 'none';
+      }
+    })();
+  </script>
+
+  <!-- Split Doors Background panels -->
+  <div class="preloader-panel left-panel"></div>
+  <div class="preloader-panel right-panel"></div>
+  
+  <!-- Centered Elegant Branding -->
+  <div class="loader-content" id="loader-content">
+    <div class="logo-container">
+      <img src="/images/acm-logo.png" alt="ACM Logo" class="loader-logo" />
+    </div>
+    <div class="brand-section">
+      <h1 class="brand-name">ACM VJIT</h1>
+      <p class="brand-subtitle">Student Chapter</p>
+    </div>
+  </div>
+
+  <!-- Giant Bottom-Left Counter & Status -->
+  <div class="counter-container" id="counter-container">
+    <div class="init-label" id="status-message">Initializing</div>
+    <div class="counter-row">
+      <span class="giant-counter" id="loader-counter">00</span><span class="giant-percent">%</span>
+    </div>
+  </div>
+
+  <!-- Full-Width Bottom Edge Progress Line -->
+  <div class="progress-track" id="progress-track">
+    <div class="progress-fill" id="progress-fill"></div>
+  </div>
+</div>
+
+<style>
+  .preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    overflow: hidden;
+    display: flex;
+  }
+
+  /* Sliding panels */
+  .preloader-panel {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background-color: #ffffff;
+    /* Clean dot grid background matching the site's cheatsheets */
+    background-image: radial-gradient(rgba(0, 114, 206, 0.08) 1.5px, transparent 1.5px);
+    background-size: 24px 24px;
+    transition: transform 0.8s cubic-bezier(0.85, 0, 0.15, 1);
+    z-index: 1;
+  }
+
+  .left-panel {
+    left: 0;
+    border-right: 1px solid rgba(0, 114, 206, 0.05);
+  }
+
+  .right-panel {
+    right: 0;
+    border-left: 1px solid rgba(0, 114, 206, 0.05);
+  }
+
+  /* Split slide triggers */
+  .preloader.split-active .left-panel {
+    transform: translateX(-100%);
+  }
+
+  .preloader.split-active .right-panel {
+    transform: translateX(100%);
+  }
+
+  /* Centered Loader Content */
+  .loader-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 90%;
+    max-width: 320px;
+    opacity: 1;
+    transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1), transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .loader-content.fade-out {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.94);
+  }
+
+  /* Logo */
+  .logo-container {
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .loader-logo {
+    width: 120px;
+    height: auto;
+    filter: drop-shadow(0 8px 24px rgba(0, 114, 206, 0.06));
+    animation: gentleFloat 3s ease-in-out infinite;
+  }
+
+  @keyframes gentleFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+  }
+
+  /* Brand Typography */
+  .brand-section {
+    margin-bottom: 8px;
+  }
+
+  .brand-name {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    color: #0f172a; /* Slate 900 */
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 1.2;
+    background: linear-gradient(135deg, #0f172a 30%, #0072CE 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .brand-subtitle {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #64748b; /* Slate 500 */
+    text-transform: uppercase;
+    letter-spacing: 0.35em;
+    margin: 6px 0 0 0;
+    padding-left: 0.35em; /* Compensate for letter-spacing alignment */
+  }
+
+  /* Giant Bottom-Left Counter */
+  .counter-container {
+    position: absolute;
+    bottom: 48px;
+    left: 48px;
+    z-index: 2;
+    pointer-events: none;
+    text-align: left;
+    line-height: 0.8;
+    opacity: 1;
+    transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1), transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .counter-container.fade-out {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  .init-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 12px;
+    padding-left: 4px;
+    animation: pulseLabel 1.5s ease-in-out infinite alternate;
+  }
+
+  .counter-row {
+    display: flex;
+    align-items: baseline;
+  }
+
+  .giant-counter {
+    font-size: clamp(4rem, 10vw, 7.5rem);
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    color: #0f172a;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .giant-percent {
+    font-size: clamp(2rem, 5vw, 3.8rem);
+    font-weight: 800;
+    color: #0072CE;
+    margin-left: 2px;
+  }
+
+  /* Full-Width Bottom Progress Line */
+  .progress-track {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: rgba(0, 114, 206, 0.05);
+    z-index: 2;
+    overflow: hidden;
+    opacity: 1;
+    transition: opacity 0.4s ease;
+  }
+
+  .progress-track.fade-out {
+    opacity: 0;
+  }
+
+  .progress-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #0072CE 0%, #00d2ff 100%);
+    transition: width 0.08s cubic-bezier(0.1, 0.8, 0.1, 1);
+  }
+
+  @keyframes pulseLabel {
+    0% { opacity: 0.6; }
+    100% { opacity: 1; }
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 600px) {
+    .counter-container {
+      bottom: 32px;
+      left: 32px;
+    }
+  }
+</style>
+
+<script>
+  const MESSAGES = [
+    "Initializing",
+    "Connecting",
+    "Configuring",
+    "Loading Site",
+    "Ready"
+  ];
+
+  function runPreloader() {
+    const preloader = document.getElementById('preloader');
+    const fill = document.getElementById('progress-fill');
+    const counter = document.getElementById('loader-counter');
+    const statusText = document.getElementById('status-message');
+    const content = document.getElementById('loader-content');
+    const counterContainer = document.getElementById('counter-container');
+    const progressTrack = document.getElementById('progress-track');
+
+    if (!preloader || !fill || !counter || !content || !counterContainer || !progressTrack) return;
+
+    const visited = sessionStorage.getItem('acm-preloader-visited') === 'true';
+
+    // Check if visited in this session
+    if (visited) {
+      preloader.style.display = 'none';
+      return;
+    }
+
+    // Reset preloader UI state
+    preloader.classList.remove('split-active');
+    preloader.style.display = 'flex';
+    preloader.style.pointerEvents = 'auto';
+    content.classList.remove('fade-out');
+    counterContainer.classList.remove('fade-out');
+    progressTrack.classList.remove('fade-out');
+    
+    fill.style.width = '0%';
+    counter.innerText = '00';
+    if (statusText) statusText.innerText = MESSAGES[0];
+
+    let currentProgress = 0;
+    const duration = 1200; // Animation duration in ms (1.2 seconds)
+    const intervalTime = 16; // 60fps frame rate
+    
+    const startTime = Date.now();
+
+    const interval = setInterval(() => {
+      const elapsed = Date.now() - startTime;
+      currentProgress = Math.min(100, (elapsed / duration) * 100);
+
+      // Organic loading simulation (subtle jumps)
+      if (currentProgress < 100) {
+        const rand = Math.sin(elapsed / 80) * 4;
+        currentProgress = Math.max(0, Math.min(99, currentProgress + rand));
+      }
+
+      // Update text & layout width
+      const formatted = Math.floor(currentProgress).toString().padStart(2, '0');
+      counter.innerText = formatted;
+      fill.style.width = `${currentProgress}%`;
+
+      // Cycle message based on progress bracket
+      if (statusText) {
+        const msgIdx = Math.min(MESSAGES.length - 1, Math.floor((currentProgress / 100) * MESSAGES.length));
+        if (statusText.innerText !== MESSAGES[msgIdx]) {
+          statusText.innerText = MESSAGES[msgIdx];
+        }
+      }
+
+      if (elapsed >= duration) {
+        clearInterval(interval);
+        
+        counter.innerText = '100';
+        fill.style.width = '100%';
+        if (statusText) statusText.innerText = 'Ready';
+
+        // Set session visited flag to bypass preloader on SPA navigations
+        sessionStorage.setItem('acm-preloader-visited', 'true');
+
+        // Phase 1: Fade out the central text/logo content, counter, and track
+        setTimeout(() => {
+          content.classList.add('fade-out');
+          counterContainer.classList.add('fade-out');
+          progressTrack.classList.add('fade-out');
+          
+          // Phase 2: Split the background panels
+          setTimeout(() => {
+            preloader.classList.add('split-active');
+            preloader.style.pointerEvents = 'none';
+            
+            // Phase 3: Fully hide the preloader container after split completes
+            setTimeout(() => {
+              preloader.style.display = 'none';
+            }, 800); // Matches the .preloader-panel transition duration (0.8s)
+          }, 300); // Delay before panels start splitting
+        }, 150);
+      }
+    }, intervalTime);
+  }
+
+  // Handle standard page loads
+  window.addEventListener('load', runPreloader);
+
+  // Handle Astro page transition swaps
+  document.addEventListener('astro:page-load', runPreloader);
+</script>

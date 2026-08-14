@@ -13,22 +13,27 @@ const pastEvents     = eventsData.filter(e => e.status === 'past');
 
   <div class="events-page">
 
-    <!-- ── Hero ── -->
+    <!-- ── Hero: Clean Centered Design ── -->
     <section class="events-hero">
-      <div class="container">
-        <div class="hero-tag scroll-reveal">ACM VJIT · Events</div>
+      <div class="container hero-container-centered">
+        <div class="hero-tag scroll-reveal">Our Events</div>
         <h1 class="hero-title scroll-reveal delay-1">
-          Where Ideas<br/><span class="title-accent">Ignite</span>
+          <span class="text-gradient">ACM VJIT</span> Events
         </h1>
         <p class="hero-subtitle scroll-reveal delay-2">
-          Hackathons, ideathons, workshops, and tech battles — every event is a chance to build, compete, and grow.
+          Discover hands-on technical workshops, competitive hackathons, and engineering events hosted by the ACM VJIT Student Chapter.
         </p>
-      </div>
-      <!-- Decorative grid lines -->
-      <div class="hero-lines" aria-hidden="true">
-        <div class="line line-1"></div>
-        <div class="line line-2"></div>
-        <div class="line line-3"></div>
+        <div class="hero-stats scroll-reveal delay-3">
+          <div class="stat-item">
+            <span class="stat-number" id="stat-events">00+</span>
+            <span class="stat-label">Events Hosted</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number" id="stat-attendees">000+</span>
+            <span class="stat-label">Total Attendees</span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -204,8 +209,52 @@ const pastEvents     = eventsData.filter(e => e.status === 'past');
     document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
   }
 
-  document.addEventListener('DOMContentLoaded', initScrollReveal);
-  document.addEventListener('astro:page-load', initScrollReveal);
+  function animateStats() {
+    const stats = [
+      { id: 'stat-events', end: 2, suffix: '+' },
+      { id: 'stat-attendees', end: 350, suffix: '+' }
+    ];
+
+    stats.forEach(stat => {
+      const el = document.getElementById(stat.id);
+      if (!el) return;
+
+      const duration = 1500; // 1.5s count-up duration
+      const startTime = Date.now();
+      const startVal = 0;
+
+      const interval = setInterval(() => {
+        const elapsed = Date.now() - startTime;
+        const progress = Math.min(1, elapsed / duration);
+        
+        // Easing: easeOutQuad
+        const easeProgress = progress * (2 - progress);
+        const currentVal = Math.floor(startVal + (stat.end - startVal) * easeProgress);
+
+        let formatted = currentVal.toString();
+        if (stat.end === 2) {
+          formatted = formatted.padStart(2, '0');
+        } else {
+          formatted = formatted.padStart(3, '0');
+        }
+
+        el.innerText = formatted + stat.suffix;
+
+        if (progress >= 1) {
+          clearInterval(interval);
+          el.innerText = (stat.end === 2 ? '0' : '') + stat.end + stat.suffix;
+        }
+      }, 16);
+    });
+  }
+
+  function initEventsPage() {
+    initScrollReveal();
+    animateStats();
+  }
+
+  document.addEventListener('DOMContentLoaded', initEventsPage);
+  document.addEventListener('astro:page-load', initEventsPage);
 </script>
 
 <style>
@@ -245,48 +294,103 @@ const pastEvents     = eventsData.filter(e => e.status === 'past');
   ═══════════════════════════════════════ */
   .events-hero {
     position: relative;
-    padding: 7rem 0 5rem;
+    padding: 8rem 0 6rem;
     overflow: hidden;
+    text-align: center;
+  }
+
+  .hero-container-centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 800px;
+    margin: 0 auto;
   }
 
   .hero-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.75rem;
-    font-weight: 800;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: #0072CE;
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
     background: rgba(0, 114, 206, 0.08);
+    color: var(--primary-color, #0072CE);
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
     border: 1px solid rgba(0, 114, 206, 0.2);
-    padding: 0.4rem 1rem;
-    border-radius: 99px;
-    margin-bottom: 1.75rem;
   }
 
   .hero-title {
-    font-size: clamp(3rem, 8vw, 6rem);
-    font-weight: 900;
-    line-height: 1.0;
-    letter-spacing: -3px;
-    color: #1a1a1a;
+    font-size: 4.5rem;
     margin-bottom: 1.5rem;
+    letter-spacing: -1.5px;
+    color: #1a1a1a;
+    line-height: 1.1;
+    margin-top: 0;
   }
 
-  .title-accent {
-    background: linear-gradient(135deg, #0072CE, #00d2ff);
+  .text-gradient {
+    background: linear-gradient(to right, #0072CE, #00d2ff);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     background-clip: text;
+    color: transparent;
   }
 
   .hero-subtitle {
-    font-size: 1.15rem;
+    font-size: 1.25rem;
     color: #555;
-    max-width: 540px;
-    line-height: 1.7;
-    margin-bottom: 0;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* --- Hero Stats Row --- */
+  .hero-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 3.5rem;
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .stat-number {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--primary-color, #0072CE);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #555;
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 50px;
+    background-color: rgba(0, 114, 206, 0.15);
+  }
+
+  @media (max-width: 600px) {
+    .hero-stats {
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .stat-divider {
+      display: none;
+    }
   }
 
   /* Decorative lines */

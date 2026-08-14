@@ -2,6 +2,7 @@
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import WaveBackground from '../components/WaveBackground.astro';
+import Preloader from '../components/Preloader.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -50,6 +51,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://acmvjit.
 		<meta property="twitter:image" content={image} />
 	</head>
 	<body>
+		<Preloader />
 		<WaveBackground />
 		<Navbar />
 		<main>
