@@ -44,8 +44,7 @@ import leadsData from '../data/leads.json';
       </p>
       
       <div class="hero-actions centered-actions">
-        <a href="/recruitment" class="btn btn-primary">Join ACM VJIT</a>
-        <a href="/events" class="btn btn-outline">Explore Events</a>
+        <a href="/events" class="btn btn-primary">Explore Events</a>
       </div>
     </div>
   </section>
@@ -216,118 +215,6 @@ import leadsData from '../data/leads.json';
         <a href="/team" class="btn btn-outline">View Full Team</a>
       </div>
     </div>
-  </section>  <!-- Glowing Screen Tab Section -->
-  <section class="section glowing-screen-section scroll-reveal">
-    <div class="container text-center" style="margin-bottom: 2rem;">
-      <h2 class="snippet-title">Get In <span class="text-primary">Touch</span></h2>
-      <p class="snippet-desc" style="max-width: 600px; margin-left: auto; margin-right: auto;">Have a question or want to collaborate? Connect with us through our digital portal.</p>
-    </div>
-    
-    
-    <div class="ipad-pro-wrapper" id="glowing-contact-tab">
-      <div class="ipad-pro-inner">
-        <div class="ipad-power-btn" id="ipad-power-btn"></div>
-        <div class="ipad-notch">
-          <div class="ipad-camera"></div>
-        </div>
-        <div class="ipad-screen off" id="ipad-screen">
-          <!-- Boot Screen Overlay -->
-          <div class="ipad-boot-screen" id="ipad-boot-screen">
-            <svg class="boot-logo" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 128 128">
-              <path fill="#fff" d="M50.4 78.5a75.1 75.1 0 0 0-28.5 6.9l24.2-65.7c.7-2 1.9-3.2 3.4-3.2h29c1.5 0 2.7 1.2 3.4 3.2l24.2 65.7s-11.6-7-28.5-7L67 45.5c-.4-1.7-1.6-2.8-2.9-2.8-1.3 0-2.5 1.1-2.9 2.7L50.4 78.5Zm-1.1 28.2Zm-4.2-20.2c-2 6.6-.6 15.8 4.2 20.2a17.5 17.5 0 0 1 .2-.7 5.5 5.5 0 0 1 5.7-4.5c2.8.1 4.3 1.5 4.7 4.7.2 1.1.2 2.3.2 3.5v.4c0 2.7.7 5.2 2.2 7.4a13 13 0 0 0 5.7 4.9v-.3l-.2-.3c-1.8-5.6-.5-9.5 4.4-12.8l1.5-1a73 73 0 0 0 3.2-2.2 16 16 0 0 0 6.8-11.4c.3-2 .1-4-.6-6l-.8.6-1.6 1a37 37 0 0 1-22.4 2.7c-5-.7-9.7-2-13.2-6.2Z" />
-            </svg>
-            <div class="boot-progress-bar">
-              <div class="boot-progress-fill"></div>
-            </div>
-          </div>
-          
-          <div class="glowing-tab-wrapper off" id="ipad-main-ui">
-      <div class="glowing-tab-border">
-        <div class="glowing-tab-content">
-          
-          <div class="glowing-grid">
-            <!-- Left Pane: Info & Map -->
-            <div class="glowing-pane info-pane">
-              <h3 class="pane-title">Contact Info</h3>
-              <p class="pane-intro">Reach out directly or visit our campus branch.</p>
-              
-              <div class="info-list">
-                <div class="info-item">
-                  <div class="info-icon-wrapper"><span class="info-icon">✉️</span></div>
-                  <div class="info-details">
-                    <h5>Email</h5>
-                    <p><a href="mailto:acm@vjit.ac.in">acm@vjit.ac.in</a></p>
-                  </div>
-                </div>
-                
-                <div class="info-item">
-                  <div class="info-icon-wrapper"><span class="info-icon">📱</span></div>
-                  <div class="info-details">
-                    <h5>Socials</h5>
-                    <p>
-                      <a href="https://instagram.com" target="_blank">Instagram</a> • 
-                      <a href="https://linkedin.com" target="_blank">LinkedIn</a>
-                    </p>
-                  </div>
-                </div>
-
-                <div class="info-item">
-                  <div class="info-icon-wrapper"><span class="info-icon">📍</span></div>
-                  <div class="info-details">
-                    <h5>Address</h5>
-                    <p>VJIT, Hyderabad, India</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="tab-map">
-                <iframe 
-                  src="https://maps.google.com/maps?q=Vidya%20Jyothi%20Institute%20of%20Technology%2C%20Hyderabad&t=&z=14&ie=UTF8&iwloc=&output=embed" 
-                  width="100%" 
-                  height="140" 
-                  style="border:0; border-radius: 12px; filter: grayscale(100%) invert(90%) contrast(1.2);" 
-                  allowfullscreen="" 
-                  loading="lazy">
-                </iframe>
-              </div>
-            </div>
-            
-            <!-- Right Pane: Form -->
-            <div class="glowing-pane form-pane">
-              <h3 class="pane-title">Send Message</h3>
-              <form id="contact-tab-form">
-                <div class="tab-form-group">
-                  <input type="text" id="tab-name" required placeholder="Full Name">
-                </div>
-                <div class="tab-form-group">
-                  <input type="email" id="tab-email" required placeholder="Email Address">
-                </div>
-                <div class="tab-form-group">
-                  <input type="tel" id="tab-phone" required placeholder="Phone Number">
-                </div>
-                <div class="tab-form-grid-inner">
-                  <div class="tab-form-group">
-                    <input type="text" id="tab-department" required placeholder="Dept (e.g. AIML)">
-                  </div>
-                  <div class="tab-form-group">
-                    <input type="text" id="tab-year" required placeholder="Year (e.g. 2nd)">
-                  </div>
-                </div>
-                <div class="tab-form-group">
-                  <textarea id="tab-message" rows="3" required placeholder="Your message here..."></textarea>
-                </div>
-                <button type="submit" class="glowing-submit-btn">
-                  <span>Send Message</span>
-                  <div class="btn-glow"></div>
-                </button>
-              </form>
-            </div>
-                    </div>
-        </div>
-      </div>
-        </div>
-      </div>
-    </div>
   </section>
 
 </Layout>
@@ -399,104 +286,8 @@ import leadsData from '../data/leads.json';
   }
 
   
-  function initIPadBoot() {
-    const bootScreen = document.getElementById('ipad-boot-screen');
-    const mainUI = document.getElementById('ipad-main-ui');
-    const ipadScreen = document.getElementById('ipad-screen');
-    const ipadWrapper = document.getElementById('glowing-contact-tab');
-    
-    let isBooted = false;
-    let isBooting = false;
-
-    if (!bootScreen || !ipadWrapper) return;
-
-    function startBoot() {
-      if (isBooted || isBooting) return;
-      isBooting = true;
-      
-      // Turn on backlight (allow wallpaper to show later, but keep boot screen black for now)
-      ipadScreen.classList.remove('off');
-      
-      // Start boot sequence
-      bootScreen.classList.add('booting');
-      
-      // After progress bar finishes (2.5s + 0.5s delay)
-      setTimeout(() => {
-        bootScreen.classList.remove('booting');
-        bootScreen.classList.add('hidden');
-        
-        mainUI.classList.remove('off');
-        mainUI.classList.add('on');
-        
-        isBooted = true;
-        isBooting = false;
-      }, 3000);
-    }
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          startBoot();
-          observer.disconnect(); // Only boot once
-        }
-      });
-    }, { threshold: 0.3 });
-
-    observer.observe(ipadWrapper);
-  }
-
-  function initContactTab() {
-    const form = document.getElementById('contact-tab-form');
-    if (!form) return;
-
-    // Clone to remove old listeners
-    const newForm = form.cloneNode(true);
-    if (form.parentNode) {
-      form.parentNode.replaceChild(newForm, form);
-    }
-
-    newForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const btn = newForm.querySelector('button[type="submit"]');
-      if (!btn) return;
-
-      const originalText = btn.querySelector('span').textContent;
-      btn.querySelector('span').textContent = 'Sending...';
-      btn.disabled = true;
-      
-      const formData = new FormData();
-      formData.append('name', newForm.querySelector('#tab-name').value);
-      formData.append('Email', newForm.querySelector('#tab-email').value);
-      formData.append('Phone', newForm.querySelector('#tab-phone').value);
-      formData.append('Department', newForm.querySelector('#tab-department').value);
-      formData.append('Year', newForm.querySelector('#tab-year').value);
-      formData.append('Message', newForm.querySelector('#tab-message').value);
-      formData.append('Submission Time', new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'long', timeStyle: 'medium' }));
-      
-      fetch("https://script.google.com/macros/s/AKfycbwgnB-e2j-AaD5rhDmmqvAqrxCMlNE7wkfN6tqAjWJBNOrKBLUyIfYg7v6xMkUawbXQ/exec", {
-          method: "POST",
-          body: formData
-      })
-      .then(response => {
-          alert("Thank you! Your message has been sent successfully.");
-          newForm.reset();
-          btn.querySelector('span').textContent = originalText;
-          btn.disabled = false;
-      })
-      .catch(error => {
-          console.error(error);
-          alert("Oops! Something went wrong.");
-          btn.querySelector('span').textContent = originalText;
-          btn.disabled = false;
-      });
-    });
-  }
-
   function runHomeInit() {
     initHomeJS();
-    initContactTab();
-    initIPadBoot();
   }
 
 
