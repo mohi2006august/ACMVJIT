@@ -46,33 +46,33 @@
     ]
   },
   {
-    "slug": "retro-computer-workshop",
-    "title": "Build & Deploy $5,000 3D Animated Website",
+    "slug": "ai-powered-web-development",
+    "title": "AI-Powered Web Development",
     "status": "upcoming",
-    "category": "Hands-on Workshop",
-    "categoryColor": "#a855f7",
-    "categoryBg": "rgba(168, 85, 247, 0.15)",
+    "category": "Seminar",
+    "categoryColor": "#f97316",
+    "categoryBg": "rgba(249, 115, 22, 0.15)",
     "date": "2026-08-22",
     "dateDisplay": "22 AUG '26",
-    "shortDesc": "Learn to build and deploy a $5,000-worth 3D animated website in one day using Google Flow, Google Antigravity, Google Stitch, and modern deployment tools.",
-    "fullDesc": "Join us for the most ambitious workshop ACM VJIT has ever hosted — a full-day, hands-on deep dive into creating stunning 3D animated websites from scratch.\n\nTools covered: Google Flow, Google Antigravity, Google Stitch, External UI Libraries, Github and Vercel.",
-    "venue": "C-Block Lab 3",
-    "photo": null,
-    "posterBgFrom": "#050510",
-    "posterBgTo": "#0a0520",
-    "accentColor": "#8b5cf6",
-    "accentColorLight": "#c084fc",
-    "accentGlow": "rgba(139, 92, 246, 0.3)",
+    "shortDesc": "Department of CSE(AI&ML) ACM STUDENT CHAPTER in association with IIIC-VJIT presents an insightful session on AI-Powered Web Development by industry experts from GWD Global Pvt Ltd.",
+    "fullDesc": "Join us for an insightful session on AI-Powered Web Development organized by the Department of CSE(AI&ML) ACM Student Chapter in association with IIIC-VJIT.\n\n**Resource Persons**\nMr. Mohd Abdul Rahman Pasha - Chairman & CEO, GWD Global Pvt Ltd\nMr. Mohammed Abdul Mudabbir - MD, COO & CMO, GWD Global Pvt Ltd\n\n**Patron**: Dr. A. Srujana (Principal)\n**Convenor**: Dr. Mohammed Nazeer (HOD - CSE(AI&ML))\n**ACM - Faculty Coordinators**: Mr. K. Srinivasa Rao, Dr. I.S. Hephzi Punithavathi\n\n**Core Committee**\nMr. K. Ajay Nayak (90591 32298)\nMr. V. Nithin (63056 21696)\nMr. P. Jaswanth (73861 46226)\nMs. N. Hema Sathvika (85006 51500)",
+    "venue": "C Block Seminar Hall",
+    "photo": "https://res.cloudinary.com/alzutw6c/image/upload/v1787239897/Department_of_CSE_AI_ML__20260816_192744_0000.jpg.jpg",
+    "posterBgFrom": "#412a32",
+    "posterBgTo": "#1a1829",
+    "accentColor": "#f97316",
+    "accentColorLight": "#fdba74",
+    "accentGlow": "rgba(249, 115, 22, 0.3)",
     "registerLink": null,
     "winners": [],
     "stats": [
       {
-        "value": "140",
-        "label": "Seats Available"
+        "value": "9:45AM",
+        "label": "Starts at"
       },
       {
-        "value": "1 Day",
-        "label": "Duration"
+        "value": "4:00PM",
+        "label": "Ends at"
       }
     ]
   }

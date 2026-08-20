@@ -88,7 +88,6 @@ import Layout from '../layouts/Layout.astro';
           <button type="submit" class="btn btn-primary w-full">Send Message</button>
         </form>
       </div>
-      </div>
     </div>
   </section>
   </div>
@@ -118,27 +117,28 @@ import Layout from '../layouts/Layout.astro';
   }
 
   function initContactForm() {
-    const form = document.getElementById('contact-form');
-    if (!form) return;
+    const form = document.getElementById('contact-form') as HTMLFormElement | null;
+    if (!form || !form.parentNode) return;
     
-    const newForm = form.cloneNode(true);
+    const newForm = form.cloneNode(true) as HTMLFormElement;
     form.parentNode.replaceChild(newForm, form);
     
     newForm.addEventListener('submit', function(e) {
       e.preventDefault();
       
-      const btn = newForm.querySelector('button[type="submit"]');
+      const btn = newForm.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+      if (!btn) return;
       const originalText = btn.textContent;
       btn.textContent = 'Sending...';
       btn.disabled = true;
       
       const formData = new FormData();
-      formData.append('name', newForm.querySelector('#name').value);
-      formData.append('Email', newForm.querySelector('#email').value);
-      formData.append('Phone', newForm.querySelector('#phone').value);
-      formData.append('Department', newForm.querySelector('#department').value);
-      formData.append('Year', newForm.querySelector('#year').value);
-      formData.append('Message', newForm.querySelector('#message').value);
+      formData.append('name', (newForm.querySelector('#name') as HTMLInputElement).value);
+      formData.append('Email', (newForm.querySelector('#email') as HTMLInputElement).value);
+      formData.append('Phone', (newForm.querySelector('#phone') as HTMLInputElement).value);
+      formData.append('Department', (newForm.querySelector('#department') as HTMLInputElement).value);
+      formData.append('Year', (newForm.querySelector('#year') as HTMLInputElement).value);
+      formData.append('Message', (newForm.querySelector('#message') as HTMLTextAreaElement).value);
       formData.append('Submission Time', new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'long', timeStyle: 'medium' }));
       
       fetch("https://script.google.com/macros/s/AKfycbwgnB-e2j-AaD5rhDmmqvAqrxCMlNE7wkfN6tqAjWJBNOrKBLUyIfYg7v6xMkUawbXQ/exec", {

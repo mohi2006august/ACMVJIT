@@ -1,7 +1,7 @@
 ---
 import eventsData from "../../../data/events.json";
 
-const event = eventsData.find((e) => e.slug === "retro-computer-workshop")!;
+const event = eventsData.find((e) => e.slug === "ai-powered-web-development")!;
 const isUpcoming = event.status === "upcoming" || event.status === "live";
 
 const tools = [
@@ -64,20 +64,20 @@ const tools = [
          CSS Custom Properties
       ═══════════════════════════════════════ */
       :root {
-        --accent: #8b5cf6;
-        --accent-light: #c084fc;
-        --accent-glow: rgba(139, 92, 246, 0.3);
+        --accent: #f97316;
+        --accent-light: #fdba74;
+        --accent-glow: rgba(249, 115, 22, 0.3);
         --cyan: #06b6d4;
         --pink: #ec4899;
         --gold: #f59e0b;
-        --bg-deep: #c8c0b8;
-        --bg-mid: #d4ccc4;
-        --surface: rgba(0, 0, 0, 0.03);
-        --surface-hover: rgba(0, 0, 0, 0.07);
-        --border: rgba(0, 0, 0, 0.08);
-        --text-primary: #1a1a1a;
-        --text-secondary: rgba(0, 0, 0, 0.6);
-        --text-muted: rgba(0, 0, 0, 0.35);
+        --bg-deep: #412a32;
+        --bg-mid: #1a1829;
+        --surface: rgba(255, 255, 255, 0.03);
+        --surface-hover: rgba(255, 255, 255, 0.07);
+        --border: rgba(255, 255, 255, 0.08);
+        --text-primary: #ffffff;
+        --text-secondary: rgba(255, 255, 255, 0.7);
+        --text-muted: rgba(255, 255, 255, 0.45);
       }
 
       /* ═══════════════════════════════════════
@@ -1575,12 +1575,12 @@ const tools = [
             <h1
               style="font-family: 'Times New Roman', Times, serif; font-size: 3.5rem; font-weight: 900; color: #222; margin: 0; letter-spacing: -1px; line-height: 1.1;"
             >
-              Build & Deploy $5,000<br />3D Animated Website
+              AI-Powered<br />Web Development
             </h1>
             <h2
               style="font-family: 'Times New Roman', Times, serif; font-size: 1.5rem; font-weight: 600; color: #444; margin: 15px 0 0 0;"
             >
-              in one day
+              in association with IIIC-VJIT
             </h2>
 
             <div
@@ -1726,97 +1726,12 @@ const tools = [
           <!-- ── Registration Section ── -->
           <section class="register-section" id="register">
             <div class="register-card scroll-scale-in">
-              <div class="register-card-inner">
-                <div class="register-info scroll-fade-right">
-                  <h3>Secure Your<br />Spot Now</h3>
-                  <p>
-                    Limited seats available. Register today and join the most
-                    ambitious workshop ACM VJIT has ever hosted.
-                  </p>
-                  <div class="register-perks">
-                    <div class="perk-item">
-                      <span class="perk-icon">💻</span>
-                      Hands-on, project-based learning
-                    </div>
-                    <div class="perk-item">
-                      <span class="perk-icon">🎯</span>
-                      Take home a deployed portfolio site
-                    </div>
-                    <div class="perk-item">
-                      <span class="perk-icon">🏆</span>
-                      Certificate of completion
-                    </div>
-                    <div class="perk-item">
-                      <span class="perk-icon">🤝</span>
-                      Network with like-minded builders
-                    </div>
-                  </div>
-                </div>
-
-                <div class="scroll-fade-left reveal-delay-2">
-                  <form id="register-form" class="register-form">
-                    <div class="form-field">
-                      <label for="reg-name">Full Name</label>
-                      <input
-                        type="text"
-                        id="reg-name"
-                        required
-                        placeholder="Enter your full name"
-                      />
-                    </div>
-                    <div class="form-field">
-                      <label for="reg-email">Email Address</label>
-                      <input
-                        type="email"
-                        id="reg-email"
-                        required
-                        placeholder="Enter your college email"
-                      />
-                    </div>
-                    <div class="form-field">
-                      <label for="reg-roll">Roll Number</label>
-                      <input
-                        type="text"
-                        id="reg-roll"
-                        required
-                        placeholder="Enter your roll number"
-                      />
-                    </div>
-                    <div class="form-field">
-                      <label for="reg-year-section">Year & Section</label>
-                      <input
-                        type="text"
-                        id="reg-year-section"
-                        required
-                        placeholder="e.g. 2nd Year Section A"
-                      />
-                    </div>
-                    <div class="form-field">
-                      <label for="reg-phone">WhatsApp Number</label>
-                      <input
-                        type="tel"
-                        id="reg-phone"
-                        required
-                        placeholder="Enter your WhatsApp number"
-                      />
-                    </div>
-                    <button type="submit" class="submit-btn">
-                      Complete Registration →
-                    </button>
-                  </form>
-
-                  <div id="form-success" class="form-success">
-                    <div class="success-emoji">🎉</div>
-                    <h4>You're In!</h4>
-                    <p>
-                      Registration successful! We'll send you all the details
-                      via email. See you on {event.dateDisplay}!
-                    </p>
-                    <button id="success-done" class="success-done-btn"
-                      >Done</button
-                    >
-                  </div>
-                </div>
+              <div class="register-card-inner" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 4rem 2rem;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🔒</div>
+                <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; color: #1a1a2e; margin-bottom: 0.75rem;">Registrations Closed</h3>
+                <p style="color: rgba(0,0,0,0.5); font-size: 1.05rem; max-width: 450px; line-height: 1.7;">
+                  Thank you for your overwhelming response! Registrations for this event are now closed. See you at the event on {event.dateDisplay}!
+                </p>
               </div>
             </div>
           </section>
@@ -3206,7 +3121,7 @@ const tools = [
         const titleEl = document.querySelector(".hero-title");
         if (titleEl && !titleEl.getAttribute("data-splitted")) {
           titleEl.setAttribute("data-splitted", "true");
-          const newNodes = [];
+          const newNodes: Node[] = [];
 
           titleEl.childNodes.forEach((node) => {
             if (node.nodeType === Node.TEXT_NODE) {
@@ -3443,19 +3358,11 @@ const tools = [
             );
 
             try {
-              if (GOOGLE_SCRIPT_URL !== "YOUR_GOOGLE_SCRIPT_WEB_APP_URL") {
-                await fetch(GOOGLE_SCRIPT_URL, {
-                  method: "POST",
-                  body: formData,
-                  mode: "no-cors", // Google Apps Script requires no-cors if not handling preflight
-                });
-              } else {
-                console.log(
-                  "Simulating form submission (Google Script URL not set)",
-                );
-                // simulate network delay
-                await new Promise((resolve) => setTimeout(resolve, 800));
-              }
+              await fetch(GOOGLE_SCRIPT_URL, {
+                method: "POST",
+                body: formData,
+                mode: "no-cors",
+              });
 
               form.style.display = "none";
               success.classList.add("active");
@@ -3483,10 +3390,11 @@ const tools = [
 
         // ── 3D tilt effect on tool cards ──
         document.querySelectorAll(".tool-card").forEach((card) => {
-          card.addEventListener("mousemove", (e: MouseEvent) => {
+          card.addEventListener("mousemove", (e) => {
+            const mouseEvent = e as MouseEvent;
             const rect = (card as HTMLElement).getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+            const x = mouseEvent.clientX - rect.left;
+            const y = mouseEvent.clientY - rect.top;
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
             const rotateX = ((y - centerY) / centerY) * -6;

@@ -692,7 +692,6 @@ const isUpcoming = event.status === 'upcoming' || event.status === 'live';
     <!-- Immersive Background -->
     <div class="event-bg" style={isUpcoming ? "background: #eae9e4;" : ""}>
       {isUpcoming ? (
-        <!-- ASCII Art Video as Page Background for Upcoming Events -->
         <video
           class="registration-bg-video"
           src="https://assets.21st.dev/ascii-recipes/videos/user_3GPTiAnC9sbzHhxwSKYXvQdPCa1/e60d8d3d-e665-4ef9-b7de-68b26b4d94f2.mp4"
@@ -704,7 +703,6 @@ const isUpcoming = event.status === 'upcoming' || event.status === 'live';
           style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2;"
         ></video>
       ) : (
-        <!-- Default Background for Past Events -->
         <div class="event-bg-image"></div>
         <div class="event-bg-dots"></div>
         <div class="orb orb-1"></div>
