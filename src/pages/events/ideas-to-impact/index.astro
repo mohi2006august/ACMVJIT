@@ -1,0 +1,1412 @@
+---
+import eventsData from '../../../data/events.json';
+
+const event = eventsData.find((e) => e.slug === 'ideas-to-impact')!;
+const isUpcoming = event.status === 'upcoming' || event.status === 'live';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Ideas to Impact — Think Script | Vision Board | ACM VJIT</title>
+    <meta name="description" content="Department of CSE (AI & ML), ACM VJIT, and IIC-VJIT present Ideas to Impact: Think Script (Paper Presentation) & Vision Board (Poster Presentation)." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+    <style define:vars={{
+      accentColor: event.accentColor || '#8b5cf6',
+      accentColorLight: event.accentColorLight || '#c084fc',
+      accentGlow: event.accentGlow || 'rgba(139, 92, 246, 0.35)',
+      bgFrom: event.posterBgFrom || '#090714',
+      bgTo: event.posterBgTo || '#16092e',
+      photoUrl: event.photo ? `url(${event.photo})` : 'none',
+    }}>
+      *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        background-color: var(--bgFrom);
+        color: #f1f5f9;
+        min-height: 100vh;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        line-height: 1.6;
+      }
+
+      /* ── Background & Ambient Lighting ── */
+      .event-bg {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        background: radial-gradient(circle at 50% 10%, #200d43 0%, var(--bgFrom) 70%, #05040a 100%);
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .event-bg-image {
+        position: absolute;
+        inset: 0;
+        background-image: var(--photoUrl);
+        background-size: cover;
+        background-position: center 20%;
+        opacity: 0.18;
+        filter: blur(60px) brightness(0.4) saturate(1.4);
+        transform: scale(1.15);
+      }
+
+      .event-bg-mesh {
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(circle, rgba(168, 85, 247, 0.12) 1px, transparent 1px);
+        background-size: 36px 36px;
+        mask-image: radial-gradient(ellipse 90% 70% at 50% 40%, black 20%, transparent 95%);
+      }
+
+      .glow-orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(100px);
+        pointer-events: none;
+        animation: orb-float 12s ease-in-out infinite alternate;
+      }
+      .glow-orb-1 {
+        width: 650px;
+        height: 650px;
+        background: radial-gradient(circle, rgba(139, 92, 246, 0.28), transparent 70%);
+        top: -150px;
+        left: -100px;
+      }
+      .glow-orb-2 {
+        width: 550px;
+        height: 550px;
+        background: radial-gradient(circle, rgba(192, 132, 252, 0.2), transparent 70%);
+        top: 35%;
+        right: -150px;
+        animation-delay: -5s;
+      }
+      .glow-orb-3 {
+        width: 450px;
+        height: 450px;
+        background: radial-gradient(circle, rgba(56, 189, 248, 0.15), transparent 70%);
+        bottom: 10%;
+        left: 10%;
+        animation-delay: -8s;
+      }
+
+      @keyframes orb-float {
+        0% { transform: translate(0, 0) scale(1); }
+        50% { transform: translate(40px, 30px) scale(1.08); }
+        100% { transform: translate(-30px, 60px) scale(0.95); }
+      }
+
+      /* ── Page Container ── */
+      .page-wrapper {
+        position: relative;
+        z-index: 1;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* ── Navigation Bar ── */
+      .top-nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.1rem 2rem;
+        background: rgba(9, 7, 20, 0.75);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(168, 85, 247, 0.15);
+      }
+
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-decoration: none;
+        padding: 0.45rem 1rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.25s ease;
+      }
+      .back-link:hover {
+        color: #fff;
+        background: rgba(139, 92, 246, 0.2);
+        border-color: rgba(139, 92, 246, 0.4);
+        transform: translateX(-3px);
+      }
+      .back-link svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .nav-meta-badge {
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--accentColorLight);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .nav-meta-badge::before {
+        content: '';
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--accentColorLight);
+        box-shadow: 0 0 10px var(--accentColorLight);
+      }
+
+      .nav-register-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1.25rem;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #fff;
+        background: linear-gradient(135deg, #7c3aed, #9333ea);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 999px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+      .nav-register-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 20px var(--accentGlow);
+      }
+
+      /* ── Main Container ── */
+      .main-content {
+        flex: 1;
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 3rem 1.5rem 6rem;
+        width: 100%;
+      }
+
+      /* ── Hero Section ── */
+      .hero-section {
+        text-align: center;
+        margin-bottom: 3.5rem;
+        position: relative;
+      }
+
+      .association-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.45rem 1.2rem;
+        border-radius: 999px;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        background: rgba(139, 92, 246, 0.12);
+        border: 1px solid rgba(168, 85, 247, 0.3);
+        color: var(--accentColorLight);
+        margin-bottom: 1.5rem;
+        box-shadow: 0 4px 24px rgba(139, 92, 246, 0.15);
+      }
+
+      .hero-title {
+        font-family: 'Space Grotesk', 'Inter', sans-serif;
+        font-size: clamp(2.8rem, 7vw, 5.2rem);
+        font-weight: 800;
+        line-height: 1.05;
+        letter-spacing: -2px;
+        color: #fff;
+        margin-bottom: 0.75rem;
+        background: linear-gradient(180deg, #ffffff 30%, #d8b4fe 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .hero-subtitle {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: clamp(1.2rem, 3vw, 1.85rem);
+        font-weight: 700;
+        color: #e2e8f0;
+        letter-spacing: -0.5px;
+        margin-bottom: 1.25rem;
+      }
+      .hero-subtitle .track-tag {
+        color: var(--accentColorLight);
+        background: rgba(168, 85, 247, 0.15);
+        padding: 0.2rem 0.6rem;
+        border-radius: 8px;
+        border: 1px solid rgba(168, 85, 247, 0.25);
+      }
+
+      .hero-motto {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 0.95rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #cbd5e1;
+        padding: 0.5rem 1.4rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        margin-bottom: 2.25rem;
+      }
+
+      /* ── Key Metadata Strip ── */
+      .meta-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+        margin-bottom: 2.5rem;
+      }
+      .meta-pill {
+        background: rgba(255, 255, 255, 0.035);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+        padding: 1.1rem 1rem;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+        backdrop-filter: blur(16px);
+        transition: transform 0.25s ease, border-color 0.25s ease;
+      }
+      .meta-pill:hover {
+        transform: translateY(-2px);
+        border-color: rgba(168, 85, 247, 0.35);
+        background: rgba(255, 255, 255, 0.05);
+      }
+      .meta-pill-header {
+        display: flex;
+        align-items: center;
+        gap: 0.45rem;
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        color: rgba(255, 255, 255, 0.5);
+      }
+      .meta-pill-header svg {
+        width: 15px;
+        height: 15px;
+        color: var(--accentColorLight);
+      }
+      .meta-pill-value {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #fff;
+      }
+      .meta-pill-sub {
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.45);
+      }
+
+      /* Hero Buttons */
+      .hero-actions {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.95rem 2.2rem;
+        border-radius: 14px;
+        font-size: 1rem;
+        font-weight: 700;
+        color: #fff;
+        background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        box-shadow: 0 10px 30px -5px rgba(139, 92, 246, 0.5);
+        cursor: pointer;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+      .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 16px 40px -5px rgba(139, 92, 246, 0.7);
+        border-color: rgba(255, 255, 255, 0.4);
+      }
+      .btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.95rem 1.8rem;
+        border-radius: 14px;
+        font-size: 1rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.85);
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        cursor: pointer;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+      .btn-secondary:hover {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.09);
+        border-color: rgba(255, 255, 255, 0.25);
+      }
+
+      /* ── Featured Poster Container ── */
+      .poster-showcase-section {
+        margin-bottom: 4rem;
+      }
+      .poster-card {
+        position: relative;
+        border-radius: 28px;
+        overflow: hidden;
+        border: 1px solid rgba(168, 85, 247, 0.25);
+        background: rgba(18, 12, 38, 0.6);
+        box-shadow: 0 30px 90px -20px rgba(0, 0, 0, 0.7), 0 0 40px -10px rgba(139, 92, 246, 0.25);
+      }
+      .poster-img {
+        width: 100%;
+        display: block;
+        max-height: 520px;
+        object-fit: cover;
+        object-position: center top;
+        filter: brightness(0.95);
+        transition: transform 0.5s ease;
+      }
+      .poster-card:hover .poster-img {
+        transform: scale(1.015);
+      }
+      .poster-bottom-bar {
+        position: absolute;
+        bottom: 0;
+        inset-x: 0;
+        padding: 1.5rem 2rem;
+        background: linear-gradient(to top, rgba(9, 7, 20, 0.95) 0%, rgba(9, 7, 20, 0.7) 70%, transparent 100%);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .poster-tagline {
+        font-size: 0.9rem;
+        color: #cbd5e1;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .poster-tagline strong {
+        color: #fff;
+      }
+      .brochure-qr-hint {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--accentColorLight);
+        background: rgba(139, 92, 246, 0.2);
+        padding: 0.35rem 0.8rem;
+        border-radius: 999px;
+        border: 1px solid rgba(139, 92, 246, 0.3);
+      }
+
+      /* ── Section Title Standard ── */
+      .section-heading-wrapper {
+        text-align: center;
+        margin-bottom: 2.2rem;
+      }
+      .section-subheading {
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--accentColorLight);
+        margin-bottom: 0.5rem;
+        display: block;
+      }
+      .section-main-heading {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
+        font-weight: 800;
+        color: #fff;
+        letter-spacing: -0.5px;
+      }
+
+      /* ── Tracks Showcase (Two Column Dual Feature) ── */
+      .tracks-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.75rem;
+        margin-bottom: 4rem;
+      }
+      .track-box {
+        position: relative;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 24px;
+        padding: 2.2rem;
+        display: flex;
+        flex-direction: column;
+        transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        backdrop-filter: blur(20px);
+        overflow: hidden;
+      }
+      .track-box::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, transparent, var(--accentColorLight), transparent);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      .track-box:hover {
+        transform: translateY(-4px);
+        border-color: rgba(168, 85, 247, 0.4);
+        background: rgba(255, 255, 255, 0.05);
+        box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.6), 0 0 30px -5px rgba(139, 92, 246, 0.2);
+      }
+      .track-box:hover::before {
+        opacity: 1;
+      }
+
+      .track-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+      }
+      .track-icon-wrapper {
+        width: 54px;
+        height: 54px;
+        border-radius: 16px;
+        background: rgba(139, 92, 246, 0.15);
+        border: 1px solid rgba(168, 85, 247, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.7rem;
+        flex-shrink: 0;
+      }
+      .track-title-group {
+        display: flex;
+        flex-direction: column;
+      }
+      .track-tag-pill {
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        color: var(--accentColorLight);
+      }
+      .track-name-headline {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: #fff;
+        line-height: 1.2;
+      }
+
+      .track-lead-quote {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #e2e8f0;
+        background: rgba(168, 85, 247, 0.1);
+        border-left: 3px solid var(--accentColorLight);
+        padding: 0.5rem 0.8rem;
+        border-radius: 0 8px 8px 0;
+        margin-bottom: 1.2rem;
+      }
+
+      .track-body-desc {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.95rem;
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+        flex: 1;
+      }
+
+      .track-features-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.65rem;
+        margin-bottom: 1.75rem;
+      }
+      .track-features-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.6rem;
+        font-size: 0.88rem;
+        color: rgba(255, 255, 255, 0.82);
+      }
+      .track-features-list li svg {
+        width: 16px;
+        height: 16px;
+        color: var(--accentColorLight);
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+
+      .track-status-pill {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: rgba(0, 0, 0, 0.25);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+        padding: 0.75rem 1rem;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: #cbd5e1;
+      }
+      .track-status-pill strong {
+        color: #fff;
+      }
+
+      /* ── Why Participate (Grid) ── */
+      .highlights-section {
+        margin-bottom: 4.5rem;
+      }
+      .highlights-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.2rem;
+      }
+      .highlight-card {
+        background: rgba(255, 255, 255, 0.025);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 20px;
+        padding: 1.6rem 1.3rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        transition: all 0.3s ease;
+      }
+      .highlight-card:hover {
+        transform: translateY(-3px);
+        border-color: rgba(168, 85, 247, 0.3);
+        background: rgba(255, 255, 255, 0.05);
+      }
+      .highlight-icon {
+        font-size: 1.8rem;
+        display: inline-block;
+      }
+      .highlight-title {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #fff;
+      }
+      .highlight-desc {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 1.6;
+      }
+
+      /* ── Organization Hierarchy Cards ── */
+      .org-section {
+        margin-bottom: 4.5rem;
+      }
+      
+      .org-block {
+        margin-bottom: 2rem;
+      }
+      .org-block-label {
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.45);
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .org-block-label::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .org-grid-two {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.25rem;
+      }
+      .org-grid-three {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+      }
+
+      .person-card {
+        background: rgba(255, 255, 255, 0.035);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 18px;
+        padding: 1.4rem 1.6rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+        transition: all 0.25s ease;
+      }
+      .person-card:hover {
+        border-color: rgba(168, 85, 247, 0.35);
+        background: rgba(255, 255, 255, 0.06);
+        transform: translateY(-2px);
+      }
+      .person-role-badge {
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        color: var(--accentColorLight);
+        margin-bottom: 0.2rem;
+      }
+      .person-name {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #fff;
+      }
+      .person-designation {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.55);
+      }
+
+      /* ── Student Coordinators ── */
+      .coordinators-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.25rem;
+      }
+      .coord-card {
+        background: rgba(255, 255, 255, 0.035);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 18px;
+        padding: 1.4rem 1.6rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        transition: all 0.25s ease;
+      }
+      .coord-card:hover {
+        border-color: rgba(168, 85, 247, 0.35);
+        background: rgba(255, 255, 255, 0.06);
+      }
+      .coord-info {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+      }
+      .coord-name {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #fff;
+      }
+      .coord-title {
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--accentColorLight);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .coord-phone-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: rgba(139, 92, 246, 0.15);
+        border: 1px solid rgba(139, 92, 246, 0.3);
+        color: #fff;
+        padding: 0.5rem 0.9rem;
+        border-radius: 12px;
+        font-size: 0.88rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.2s ease;
+      }
+      .coord-phone-link:hover {
+        background: var(--accentColor);
+        color: #fff;
+        border-color: var(--accentColorLight);
+        transform: scale(1.03);
+      }
+      .coord-phone-link svg {
+        width: 14px;
+        height: 14px;
+      }
+
+      /* ── Final Call to Action Banner ── */
+      .bottom-cta-banner {
+        position: relative;
+        border-radius: 28px;
+        padding: 3.5rem 2rem;
+        text-align: center;
+        background: radial-gradient(circle at 50% 20%, rgba(139, 92, 246, 0.25) 0%, rgba(18, 12, 38, 0.9) 80%);
+        border: 1px solid rgba(168, 85, 247, 0.3);
+        box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.7), 0 0 50px -10px rgba(139, 92, 246, 0.3);
+        overflow: hidden;
+      }
+      .cta-headline {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: clamp(2rem, 5vw, 3rem);
+        font-weight: 800;
+        color: #fff;
+        letter-spacing: -1px;
+        margin-bottom: 0.75rem;
+      }
+      .cta-desc {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 1.05rem;
+        max-width: 560px;
+        margin: 0 auto 2rem;
+      }
+
+      /* ── Registration Modal Drawer ── */
+      .reg-modal-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: rgba(4, 2, 10, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+      .reg-modal-backdrop.is-open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .reg-modal-container {
+        position: relative;
+        background: #0f0a20;
+        border: 1px solid rgba(168, 85, 247, 0.3);
+        border-radius: 24px;
+        max-width: 540px;
+        width: 100%;
+        max-height: 90vh;
+        overflow-y: auto;
+        padding: 2.25rem 2rem;
+        box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.8), 0 0 50px rgba(139, 92, 246, 0.35);
+        transform: translateY(20px) scale(0.98);
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .reg-modal-backdrop.is-open .reg-modal-container {
+        transform: translateY(0) scale(1);
+      }
+
+      .modal-close-btn {
+        position: absolute;
+        top: 1.25rem;
+        right: 1.25rem;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.7);
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+      .modal-close-btn:hover {
+        background: rgba(255, 255, 255, 0.15);
+        color: #fff;
+        transform: rotate(90deg);
+      }
+      .modal-close-btn svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      .modal-header {
+        margin-bottom: 1.75rem;
+      }
+      .modal-tag {
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--accentColorLight);
+        margin-bottom: 0.25rem;
+        display: block;
+      }
+      .modal-title {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: #fff;
+      }
+      .modal-lead {
+        font-size: 0.88rem;
+        color: rgba(255, 255, 255, 0.6);
+        margin-top: 0.3rem;
+      }
+
+      .reg-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+      .form-field {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+      }
+      .form-field label {
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .form-input, .form-select {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 12px;
+        padding: 0.85rem 1rem;
+        color: #fff;
+        font-size: 0.95rem;
+        font-family: inherit;
+        outline: none;
+        transition: border-color 0.2s ease, background 0.2s ease;
+      }
+      .form-input:focus, .form-select:focus {
+        border-color: var(--accentColorLight);
+        background: rgba(255, 255, 255, 0.08);
+      }
+      .form-select option {
+        background: #0f0a20;
+        color: #fff;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      .btn-submit {
+        margin-top: 0.5rem;
+        width: 100%;
+        padding: 1rem;
+        border-radius: 12px;
+        font-size: 1rem;
+        font-weight: 700;
+        color: #fff;
+        background: linear-gradient(135deg, #7c3aed, #a855f7);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .btn-submit:hover {
+        opacity: 0.95;
+        box-shadow: 0 8px 25px var(--accentGlow);
+      }
+
+      /* Modal Success */
+      .modal-success-screen {
+        display: none;
+        text-align: center;
+        padding: 2rem 1rem;
+      }
+      .success-icon-bubble {
+        width: 70px;
+        height: 70px;
+        margin: 0 auto 1.5rem;
+        border-radius: 50%;
+        background: rgba(139, 92, 246, 0.2);
+        border: 2px solid var(--accentColorLight);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+      }
+      .success-title {
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: #fff;
+        margin-bottom: 0.6rem;
+      }
+      .success-text {
+        font-size: 0.95rem;
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.6;
+        margin-bottom: 2rem;
+      }
+
+      /* ── Responsive Queries ── */
+      @media (max-width: 900px) {
+        .meta-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .tracks-container {
+          grid-template-columns: 1fr;
+        }
+        .highlights-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .org-grid-three {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .top-nav {
+          padding: 0.9rem 1rem;
+        }
+        .nav-meta-badge {
+          display: none;
+        }
+        .main-content {
+          padding: 2rem 1rem 5rem;
+        }
+        .hero-title {
+          font-size: 2.5rem;
+          letter-spacing: -1px;
+        }
+        .meta-grid {
+          grid-template-columns: 1fr;
+        }
+        .highlights-grid {
+          grid-template-columns: 1fr;
+        }
+        .org-grid-two {
+          grid-template-columns: 1fr;
+        }
+        .coordinators-grid {
+          grid-template-columns: 1fr;
+        }
+        .coord-card {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Background Elements -->
+    <div class="event-bg">
+      <div class="event-bg-image"></div>
+      <div class="event-bg-mesh"></div>
+      <div class="glow-orb glow-orb-1"></div>
+      <div class="glow-orb glow-orb-2"></div>
+      <div class="glow-orb glow-orb-3"></div>
+    </div>
+
+    <div class="page-wrapper">
+      <!-- Top Navigation -->
+      <header class="top-nav">
+        <a href="/events" class="back-link" id="back-to-events">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+          </svg>
+          All Events
+        </a>
+
+        <div class="nav-meta-badge">
+          ACM VJIT &times; IIC-VJIT Flagship
+        </div>
+
+        <a href="/events/ideas-to-impact/register" class="nav-register-btn" id="nav-reg-trigger">
+          Register Now
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" style="width:14px;height:14px;">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+          </svg>
+        </a>
+      </header>
+
+      <!-- Main Layout -->
+      <main class="main-content">
+        
+        <!-- ── HERO SECTION ── -->
+        <section class="hero-section">
+          <div class="association-badge">
+            Department of CSE (AI & ML) &bull; ACM Student Chapter &bull; IIC-VJIT
+          </div>
+
+          <h1 class="hero-title">IDEAS TO IMPACT</h1>
+          <h2 class="hero-subtitle">
+            <span class="track-tag">Think Script</span> &mdash; Paper Presentation &nbsp;|&nbsp; 
+            <span class="track-tag">Vision Board</span> &mdash; Poster Presentation
+          </h2>
+
+          <div class="hero-motto">
+            <span>&bull; Innovate</span>
+            <span>&bull; Present</span>
+            <span>&bull; Inspire &bull;</span>
+          </div>
+
+          <!-- Metadata 4-Strip -->
+          <div class="meta-grid">
+            <div class="meta-pill">
+              <div class="meta-pill-header">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+                </svg>
+                Registration Deadline
+              </div>
+              <div class="meta-pill-value">TBA</div>
+              <div class="meta-pill-sub">Will be announced soon</div>
+            </div>
+
+            <div class="meta-pill">
+              <div class="meta-pill-header">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                </svg>
+                Abstract Submission
+              </div>
+              <div class="meta-pill-value">TBA</div>
+              <div class="meta-pill-sub">For Paper Presentation track</div>
+            </div>
+
+            <div class="meta-pill">
+              <div class="meta-pill-header">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                </svg>
+                Event Venue
+              </div>
+              <div class="meta-pill-value">VJIT Campus</div>
+              <div class="meta-pill-sub">Seminar Hall / Block TBA</div>
+            </div>
+
+            <div class="meta-pill">
+              <div class="meta-pill-header">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342" />
+                </svg>
+                Eligibility
+              </div>
+              <div class="meta-pill-value">All Students</div>
+              <div class="meta-pill-sub">CSE(AI&ML) & Inter-Department</div>
+            </div>
+          </div>
+
+          <!-- Hero Action Buttons -->
+          <div class="hero-actions">
+            <a href="/events/ideas-to-impact/register" class="btn-primary" id="hero-reg-trigger">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" style="width:18px;height:18px;">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 0 1 0 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a3 3 0 0 1 0-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375Z" />
+              </svg>
+              Register for Event
+            </a>
+            <a href="#tracks-section" class="btn-secondary">
+              Explore Event Tracks
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:16px;height:16px;">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </a>
+          </div>
+        </section>
+
+        <!-- ── POSTER SHOWCASE ── -->
+        {event.photo && (
+          <section class="poster-showcase-section">
+            <div class="poster-card">
+              <img src={event.photo} alt="Ideas to Impact Official Poster" class="poster-img" />
+              <div class="poster-bottom-bar">
+                <div class="poster-tagline">
+                  <span>✨</span>
+                  <span><strong>Ideas to Impact:</strong> Showcase your research, creativity, and technical brilliance.</span>
+                </div>
+                <div class="brochure-qr-hint">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:14px;height:14px;">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 3.75 9.375v-4.5ZM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 0 1-1.125-1.125v-4.5ZM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 13.5 9.375v-4.5Z" />
+                  </svg>
+                  Scan QR code in brochure or register online
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
+        <!-- ── TWO TRACKS SHOWCASE ── -->
+        <section id="tracks-section" class="tracks-section" style="margin-bottom: 4rem;">
+          <div class="section-heading-wrapper">
+            <span class="section-subheading">Event Tracks</span>
+            <h2 class="section-main-heading">Two Pathways to Showcase Innovation</h2>
+          </div>
+
+          <div class="tracks-container">
+            <!-- Track 1: Think Script -->
+            <div class="track-box">
+              <div class="track-header">
+                <div class="track-icon-wrapper">📝</div>
+                <div class="track-title-group">
+                  <span class="track-tag-pill">Track 01 &bull; Technical Research</span>
+                  <h3 class="track-name-headline">Think Script</h3>
+                </div>
+              </div>
+
+              <div class="track-lead-quote">
+                💡 Ideas that Inspire &mdash; Paper Presentation
+              </div>
+
+              <p class="track-body-desc">
+                Think Script provides an academic stage for undergraduate researchers and technologists to articulate innovative research methodologies, system architectures, and software breakthroughs to an esteemed jury.
+              </p>
+
+              <ul class="track-features-list">
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.857-9.809a.75.75 0 0 0-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clip-rule="evenodd" />
+                  </svg>
+                  <span>Oral presentation with slide deck &amp; technical defense</span>
+                </li>
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.857-9.809a.75.75 0 0 0-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clip-rule="evenodd" />
+                  </svg>
+                  <span>Topics: AI, Machine Learning, Data Science, Cyber Security &amp; Next-Gen Tech</span>
+                </li>
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.857-9.809a.75.75 0 0 0-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clip-rule="evenodd" />
+                  </svg>
+                  <span>Constructive evaluation &amp; critique from domain mentors</span>
+                </li>
+              </ul>
+
+              <div class="track-status-pill">
+                <span>Abstract Requirement:</span>
+                <strong>Mandatory Submission (Date: TBA)</strong>
+              </div>
+            </div>
+
+            <!-- Track 2: Vision Board -->
+            <div class="track-box">
+              <div class="track-header">
+                <div class="track-icon-wrapper">🎨</div>
+                <div class="track-title-group">
+                  <span class="track-tag-pill">Track 02 &bull; Visual Innovation</span>
+                  <h3 class="track-name-headline">Vision Board</h3>
+                </div>
+              </div>
+
+              <div class="track-lead-quote">
+                🚀 Ideas on Display &mdash; Poster Presentation
+              </div>
+
+              <p class="track-body-desc">
+                Vision Board invites visual storytellers, UI/UX designers, and innovative thinkers to transform complex concepts into rich, intuitive visual posters and prototype infographics displayed for faculty and attendees.
+              </p>
+
+              <ul class="track-features-list">
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.857-9.809a.75.75 0 0 0-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clip-rule="evenodd" />
+                  </svg>
+                  <span>Interactive poster gallery exhibition on campus</span>
+                </li>
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.857-9.809a.75.75 0 0 0-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clip-rule="evenodd" />
+                  </svg>
+                  <span>Focus: Product Design, Architecture Diagrams, Social Innovation &amp; Concepts</span>
+                </li>
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.857-9.809a.75.75 0 0 0-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clip-rule="evenodd" />
+                  </svg>
+                  <span>Live demonstration &amp; discussion with judges and peers</span>
+                </li>
+              </ul>
+
+              <div class="track-status-pill">
+                <span>Display Format:</span>
+                <strong>Physical Poster Exhibition (Venue: TBA)</strong>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── WHY PARTICIPATE ── -->
+        <section class="highlights-section">
+          <div class="section-heading-wrapper">
+            <span class="section-subheading">Opportunities</span>
+            <h2 class="section-main-heading">Why You Should Participate</h2>
+          </div>
+
+          <div class="highlights-grid">
+            <div class="highlight-card">
+              <span class="highlight-icon">🎯</span>
+              <h3 class="highlight-title">Showcase Research</h3>
+              <p class="highlight-desc">Demonstrate your technical depth, analytical thinking, and creativity before a panel of respected faculty mentors.</p>
+            </div>
+
+            <div class="highlight-card">
+              <span class="highlight-icon">🏆</span>
+              <h3 class="highlight-title">Academic Exposure</h3>
+              <p class="highlight-desc">Gain formal academic recognition, boost your profile, and receive certificates endorsed by ACM VJIT and IIC-VJIT.</p>
+            </div>
+
+            <div class="highlight-card">
+              <span class="highlight-icon">💡</span>
+              <h3 class="highlight-title">Expert Mentorship</h3>
+              <p class="highlight-desc">Receive direct, actionable feedback from professors and department leadership to refine your project into a viable publication.</p>
+            </div>
+
+            <div class="highlight-card">
+              <span class="highlight-icon">🚀</span>
+              <h3 class="highlight-title">Pathway to Impact</h3>
+              <p class="highlight-desc">Bridge the gap between theoretical knowledge and real-world execution by turning raw ideas into tangible engineering impact.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── ORGANIZING COMMITTEE & LEADERSHIP ── -->
+        <section class="org-section">
+          <div class="section-heading-wrapper">
+            <span class="section-subheading">Patrons &amp; Advisory</span>
+            <h2 class="section-main-heading">Organizing Committee</h2>
+          </div>
+
+          <!-- Institutional Leadership -->
+          <div class="org-block">
+            <div class="org-block-label">Institutional Leadership</div>
+            <div class="org-grid-two">
+              <div class="person-card">
+                <span class="person-role-badge">Patron</span>
+                <h4 class="person-name">Dr. A. Srujana</h4>
+                <p class="person-designation">Principal &bull; Vidya Jyothi Institute of Technology</p>
+              </div>
+
+              <div class="person-card">
+                <span class="person-role-badge">Convenor</span>
+                <h4 class="person-name">Dr. Mohammed Nazeer</h4>
+                <p class="person-designation">Professor &amp; Head &bull; Department of CSE (AI &amp; ML)</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Honorary Advisors & Training Director -->
+          <div class="org-block">
+            <div class="org-block-label">Honorary Advisors &amp; Directorate</div>
+            <div class="org-grid-three">
+              <div class="person-card">
+                <span class="person-role-badge">Honorary Advisor</span>
+                <h4 class="person-name">Dr. A. Padmaja</h4>
+                <p class="person-designation">Senior Academic Advisor &bull; VJIT</p>
+              </div>
+
+              <div class="person-card">
+                <span class="person-role-badge">Honorary Advisor</span>
+                <h4 class="person-name">Mrs. G. Srilatha</h4>
+                <p class="person-designation">Academic Leadership &bull; VJIT</p>
+              </div>
+
+              <div class="person-card">
+                <span class="person-role-badge">Directorate</span>
+                <h4 class="person-name">Mr. R. Venkatachalam</h4>
+                <p class="person-designation">Director &bull; Training &amp; Placements (T&amp;P)</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Faculty Coordinators -->
+          <div class="org-block">
+            <div class="org-block-label">Faculty Coordinators &mdash; ACM VJIT</div>
+            <div class="org-grid-two">
+              <div class="person-card">
+                <span class="person-role-badge">Faculty Coordinator</span>
+                <h4 class="person-name">Mr. K. Srinivasa Rao</h4>
+                <p class="person-designation">Assistant Professor &bull; Department of CSE (AI &amp; ML)</p>
+              </div>
+
+              <div class="person-card">
+                <span class="person-role-badge">Faculty Coordinator</span>
+                <h4 class="person-name">Dr. I. S. Hephzi Punithavathi</h4>
+                <p class="person-designation">Associate Professor &bull; Department of CSE (AI &amp; ML)</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Student Coordinators & Direct Contact -->
+          <div class="org-block">
+            <div class="org-block-label">Student Coordinators &mdash; Event Help Desk</div>
+            <div class="coordinators-grid">
+              <div class="coord-card">
+                <div class="coord-info">
+                  <span class="coord-title">Web Master</span>
+                  <h4 class="coord-name">Mohammed Mohiuddin</h4>
+                </div>
+                <a href="tel:8074422913" class="coord-phone-link">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+                  </svg>
+                  8074422913
+                </a>
+              </div>
+
+              <div class="coord-card">
+                <div class="coord-info">
+                  <span class="coord-title">Secretary</span>
+                  <h4 class="coord-name">Ayush Kumar Jha</h4>
+                </div>
+                <a href="tel:8501070951" class="coord-phone-link">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+                  </svg>
+                  8501070951
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── BOTTOM CALL TO ACTION ── -->
+        <section class="bottom-cta-banner">
+          <h2 class="cta-headline">Ready to Make Your Ideas Impactful?</h2>
+          <p class="cta-desc">
+            Whether through an analytical research paper or an expressive vision board, this is your platform to stand out. Registration deadline will be announced soon.
+          </p>
+          <a href="/events/ideas-to-impact/register" class="btn-primary" id="bottom-reg-trigger" style="font-size:1.1rem; padding:1.1rem 2.5rem;">
+            Register Your Participation
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" style="width:18px;height:18px;">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+            </svg>
+          </a>
+        </section>
+
+      </main>
+    </div>
+  </body>
+</html>

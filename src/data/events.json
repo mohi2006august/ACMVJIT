@@ -48,13 +48,13 @@
   {
     "slug": "ai-powered-web-development",
     "title": "AI-Powered Web Development",
-    "status": "upcoming",
+    "status": "past",
     "category": "Seminar",
     "categoryColor": "#f97316",
     "categoryBg": "rgba(249, 115, 22, 0.15)",
     "date": "2026-08-22",
     "dateDisplay": "22 AUG '26",
-    "shortDesc": "Department of CSE(AI&ML) ACM STUDENT CHAPTER in association with IIIC-VJIT presents an insightful session on AI-Powered Web Development by industry experts from GWD Global Pvt Ltd.",
+    "shortDesc": "An insightful session on AI-Powered Web Development by industry experts from GWD Global Pvt Ltd, organized by the Department of CSE(AI&ML) ACM Student Chapter in association with IIIC-VJIT.",
     "fullDesc": "Join us for an insightful session on AI-Powered Web Development organized by the Department of CSE(AI&ML) ACM Student Chapter in association with IIIC-VJIT.\n\n**Resource Persons**\nMr. Mohd Abdul Rahman Pasha - Chairman & CEO, GWD Global Pvt Ltd\nMr. Mohammed Abdul Mudabbir - MD, COO & CMO, GWD Global Pvt Ltd\n\n**Patron**: Dr. A. Srujana (Principal)\n**Convenor**: Dr. Mohammed Nazeer (HOD - CSE(AI&ML))\n**ACM - Faculty Coordinators**: Mr. K. Srinivasa Rao, Dr. I.S. Hephzi Punithavathi\n\n**Core Committee**\nMr. K. Ajay Nayak (90591 32298)\nMr. V. Nithin (63056 21696)\nMr. P. Jaswanth (73861 46226)\nMs. N. Hema Sathvika (85006 51500)",
     "venue": "C Block Seminar Hall",
     "photo": "https://res.cloudinary.com/alzutw6c/image/upload/v1787239897/Department_of_CSE_AI_ML__20260816_192744_0000.jpg.jpg",
@@ -73,6 +73,37 @@
       {
         "value": "4:00PM",
         "label": "Ends at"
+      }
+    ]
+  },
+  {
+    "slug": "ideas-to-impact",
+    "title": "Ideas to Impact",
+    "status": "upcoming",
+    "category": "Paper & Poster Presentation",
+    "categoryColor": "#8b5cf6",
+    "categoryBg": "rgba(139, 92, 246, 0.15)",
+    "date": "2026-10-15",
+    "dateDisplay": "TBA",
+    "shortDesc": "Think Script (Paper Presentation) & Vision Board (Poster Presentation) — Showcase your innovative ideas, research, creativity, and technical insights at this flagship academic event.",
+    "fullDesc": "The Department of CSE (AI & ML), ACM Student Chapter, in association with IIC-VJIT, proudly presents IDEAS TO IMPACT — an academic showcase featuring Think Script (Paper Presentation) and Vision Board (Poster Presentation). Innovate, present, and inspire with technical insights and creative displays.",
+    "venue": "TBA",
+    "photo": "/images/ideas-to-impact.png",
+    "posterBgFrom": "#0a0a1a",
+    "posterBgTo": "#1a0a2e",
+    "accentColor": "#8b5cf6",
+    "accentColorLight": "#c4b5fd",
+    "accentGlow": "rgba(139, 92, 246, 0.3)",
+    "registerLink": "/events/ideas-to-impact/register",
+    "winners": [],
+    "stats": [
+      {
+        "value": "TBA",
+        "label": "Date"
+      },
+      {
+        "value": "TBA",
+        "label": "Venue"
       }
     ]
   }
